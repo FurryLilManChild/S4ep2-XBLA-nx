@@ -249,6 +249,13 @@ set(BANJO_HOT_SOURCES src/cpu/banjo_hot_guest.cpp
     src/cpu/banjo_hot_shard_10.cpp
     src/cpu/banjo_hot_shard_11.cpp
 )
+# S4ep2-XBLA-nx (2026-11-16): these include generated/renut_pch.h and generated/hot, so on a fresh tree they must wait
+# for the code generator (and the post-codegen steps appended to its command). Mark's first build compiled them
+# before it had run: "'renut_pch.h' file not found".
+if(TARGET renut_codegen)
+    set_property(SOURCE ${BANJO_HOT_SOURCES} APPEND PROPERTY OBJECT_DEPENDS
+                 "${CMAKE_CURRENT_SOURCE_DIR}/generated/codegen.build.stamp")
+endif()
 if(BANJO_GENERATED_MATH_FLAGS AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     set_property(SOURCE ${BANJO_HOT_SOURCES} APPEND PROPERTY COMPILE_OPTIONS -fno-math-errno)
 endif()
