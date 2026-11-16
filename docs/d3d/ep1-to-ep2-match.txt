@@ -1,0 +1,315 @@
+reference: 12553 functions, 314 named; ours: 23392 functions
+AlignTextureDimensions_hook_821B6C38     ref 0x821B6C38 ( 72 ins) -> sub_823F0B68 1.00   next sub_82403FB8 0.21
+BeginRingBig_hook_821C4D58               ref 0x821C4D58 ( 30 ins) -> sub_823FFE08 1.00   next sub_824A4090 0.41
+BlockOnFence_hook_821C62C8               ref 0x821C62C8 ( 62 ins) -> sub_824014F8 1.00   next sub_82400118 0.35
+BlockSizeOfGpuFormat_hook_821B6B18       ref 0x821B6B18 ( 38 ins) -> sub_823F0A48 1.00   next sub_8227A970 0.22
+CBlocker_Check_hook_821C4870             ref 0x821C4870 ( 54 ins) -> sub_823FF840 1.00   next sub_826E6278 0.27
+D3DBaseTexture_GetLevelCount_hook_821B8518 ref 0x821B8518 (  4 ins) -> sub_823F2448 1.00   next sub_824ADC58 0.80
+D3DCubeTexture_GetCubeMapSurface_hook_821B85F8 ref 0x821B85F8 ( 46 ins) -> sub_823F2560 1.00   next sub_823F2460 0.76
+D3DDevice_BeginVertices_hook_821BF968    ref 0x821BF968 (294 ins) -> sub_823F9910 0.96   next sub_823F9E18 0.70
+D3DDevice_BlockUntilIdle_hook_821C6678   ref 0x821C6678 ( 32 ins) -> sub_82401908 1.00   next sub_82164E80 0.57
+D3DDevice_ClearF_hook_821B2FD0           ref 0x821B2FD0 ( 74 ins) -> sub_823ECD20 0.97   next sub_823FC190 0.40
+D3DDevice_CreatePixelShader_hook_821B9A30 ref 0x821B9A30 ( 60 ins) -> sub_823F3998 1.00   next sub_823F3D40 0.63
+D3DDevice_CreateSurface_hook_821B88A8    ref 0x821B88A8 ( 90 ins) -> sub_823F2808 1.00   next sub_826B5F40 0.26
+D3DDevice_CreateTexture_hook_821B8788    ref 0x821B8788 ( 72 ins) -> sub_823F26E8 1.00   next sub_826D9788 0.36
+D3DDevice_CreateVertexBuffer_hook_821C3EA8 ref 0x821C3EA8 ( 50 ins) -> sub_823FEB08 1.00   next sub_823D9748 0.41
+D3DDevice_CreateVertexDeclaration_hook_821BA1D8 ref 0x821BA1D8 ( 32 ins) -> sub_823F4158 1.00   next sub_823F8CD0 0.65
+D3DDevice_CreateVertexShader_hook_821B9DD8 ref 0x821B9DD8 ( 60 ins) -> sub_823F3D40 1.00   next sub_823F3998 0.63
+D3DDevice_DrawVerticesUP_hook_821BFE00   ref 0x821BFE00 ( 18 ins) -> sub_823F9DD0 1.00   next sub_826ED670 0.50
+D3DDevice_GetDeviceCaps_hook_821C6B80    ref 0x821C6B80 (  6 ins) -> sub_824040C8 1.00   next sub_826D50E0 0.83
+D3DDevice_Release_hook_821C4B80          ref 0x821C4B80 ( 22 ins) -> sub_82718858 0.79   next sub_82445188 0.74  (check)
+D3DDevice_SetDepthStencilSurface_hook_821B6090 ref 0x821B6090 (182 ins) -> sub_823EFF88 1.00   next sub_823EFBF8 0.43
+D3DDevice_SetGammaRamp_hook_821B6978     ref 0x821B6978 ( 52 ins) -> sub_823F0978 1.00   next sub_823F08A8 1.00  (check)
+D3DDevice_SetPWLGamma_hook_821B6A48      ref 0x821B6A48 ( 52 ins) -> sub_823F0978 1.00   next sub_823F08A8 1.00  (check)
+D3DDevice_SetPixelShader_hook_821B9B20   ref 0x821B9B20 (112 ins) -> sub_823F3A88 1.00   next sub_823F3E30 0.89
+D3DDevice_SetPredication_hook_821C2BC0   ref 0x821C2BC0 ( 92 ins) -> sub_823FC190 1.00   next sub_823ECD20 0.40
+D3DDevice_SetRenderTarget_hook_821B5D40  ref 0x821B5D40 (212 ins) -> sub_823EFBF8 0.95   next sub_823EFF88 0.44
+D3DDevice_SetRingBufferParameters_hook_821C6788 ref 0x821C6788 (254 ins) -> sub_82401AD8 1.00   next sub_8243C920 0.13
+D3DDevice_SetScissorRect_hook_821B5B28   ref 0x821B5B28 ( 62 ins) -> sub_823EF848 1.00   next sub_826EE2B0 0.25
+D3DDevice_SetScreenExtentQueryMode_hook_821C6B98 ref 0x821C6B98 ( 28 ins) -> sub_824040E0 1.00   next sub_82401908 0.67
+D3DDevice_SetShaderGPRAllocation_hook_821BA258 ref 0x821BA258 ( 54 ins) -> sub_823F41D8 0.79   next sub_822C19A0 0.27  (check)
+D3DDevice_SetTexture_hook_821B8B48       ref 0x821B8B48 (100 ins) -> sub_823F2AA8 1.00   next sub_823EF9C0 0.42
+D3DDevice_SetVertexShader_hook_821B9EC8  ref 0x821B9EC8 (116 ins) -> sub_823F3E30 1.00   next sub_823F3A88 0.89
+D3DDevice_Swap_hook_821C0E58             ref 0x821C0E58 (516 ins) -> sub_823FB720 0.71   next sub_824653F8 0.13  (check)
+D3DDevice_UnsetAll_hook_821C4BD8         ref 0x821C4BD8 ( 96 ins) -> sub_823FFCF0 0.76   next sub_824590E8 0.22  (check)
+D3DResource_AddRef_hook_821C3CB8         ref 0x821C3CB8 ( 30 ins) -> sub_823FE908 1.00   next sub_823FE980 0.84
+D3DResource_Destroy_hook_821C3580        ref 0x821C3580 (136 ins) -> sub_823FE0D0 0.61   next sub_826763D0 0.22  (check)
+D3DResource_GetType_hook_821C3E18        ref 0x821C3E18 ( 36 ins) -> sub_823FEA78 1.00   next sub_825B8998 0.34
+D3DResource_Release_hook_821C3D30        ref 0x821C3D30 ( 32 ins) -> sub_823FE980 1.00   next sub_823FE908 0.84
+D3DSurface_GetDesc_hook_821B8A10         ref 0x821B8A10 ( 38 ins) -> sub_823F2970 1.00   next sub_828552D0 0.66
+D3DSurface_LockRect_hook_821B8AA8        ref 0x821B8AA8 (  8 ins) -> sub_823F2A08 1.00   next sub_823F2A70 0.50
+D3DSurface_UnlockRect_hook_821B8B30      ref 0x821B8B30 (  6 ins) -> sub_823F2A90 1.00   next sub_823F2548 0.83
+D3DTexture_GetSurfaceLevel_hook_821B8528 ref 0x821B8528 ( 52 ins) -> sub_823F2460 1.00   next sub_823F2620 0.76
+D3DVolumeTexture_GetVolumeLevel_hook_821B86C0 ref 0x821B86C0 ( 50 ins) -> sub_823F2620 1.00   next sub_823F2460 0.75
+D3DVolume_GetDesc_hook_821B8AC8          ref 0x821B8AC8 ( 18 ins) -> sub_823F2A28 1.00   next sub_82874BF8 0.81
+D3DVolume_LockBox_hook_821B8B10          ref 0x821B8B10 (  8 ins) -> sub_823F2A70 1.00   next sub_8284D440 0.71
+D3D_CleanupGprAllocationSetup_hook_821B8EB0 ref 0x821B8EB0 ( 70 ins) -> sub_823F2E10 1.00   next sub_823FED20 0.12
+D3D_InitializeApiState_hook_821CF0A8     ref 0x821CF0A8 (156 ins) -> sub_8240B3F0 0.99   next sub_826BC308 0.21
+D3D_Lock2DSurface_hook_821B7E78          ref 0x821B7E78 ( 36 ins) -> sub_823F1DA8 1.00   next sub_823F1E38 0.51
+D3D_Lock3DSurface_hook_821B7F08          ref 0x821B7F08 ( 42 ins) -> sub_823F1E38 1.00   next sub_823F1DA8 0.51
+D3D_LockSurface_hook_821B7DB8            ref 0x821B7DB8 ( 48 ins) -> sub_823F1CE8 1.00   next sub_825EE6F0 0.22
+D3D_ResetAllState_hook_821B30F8          ref 0x821B30F8 ( 74 ins) -> sub_823ECE58 1.00   next sub_8240F680 0.39
+D3D_SetSurfaceClip_hook_821B32D8         ref 0x821B32D8 (188 ins) -> sub_823ED010 0.94   next sub_82402180 0.25
+D3D_SetSurfaceInfo_hook_821B3220         ref 0x821B3220 ( 46 ins) -> sub_823ECF80 0.71   next sub_821BBE70 0.18  (check)
+D3D_SetViewport_hook_821B35C8            ref 0x821B35C8 (150 ins) -> sub_823ED2F8 0.95   next sub_823EFF88 0.36
+D3D_SynchronizeToPresentationInterval_hook_821C0920 ref 0x821C0920 (114 ins) -> sub_823FA9D8 0.97   next sub_823FAE18 0.27
+D3D_UnlockResource_hook_821C3AA0         ref 0x821C3AA0 ( 86 ins) -> sub_823FE6F0 1.00   next sub_82574E20 0.24
+D3D_XenonGpu_Initialize_hook_821D5578    ref 0x821D5578 (122 ins) -> sub_824123C8 0.93   next sub_823FED20 0.29
+FindTextureSize_hook_821B6D58            ref 0x821B6D58 (224 ins) -> sub_823F0C88 1.00   next sub_823F1298 0.21
+Get2DSurfaceDesc_821B7738                ref 0x821B7738 ( 64 ins) -> sub_823F1668 1.00   next sub_823F1768 0.97  (check)
+Get3DSurfaceDesc_821B7838                ref 0x821B7838 ( 64 ins) -> sub_823F1768 1.00   next sub_823F1668 0.97  (check)
+GetMaxMipLevels_hook_821B6BB0            ref 0x821B6BB0 ( 34 ins) -> sub_823F0AE0 1.00   next sub_826AD800 0.17
+GetMipTailLevelOffsetCoords_hook_821B7210 ref 0x821B7210 ( 86 ins) -> sub_823F1140 1.00   next sub_823F0B68 0.16
+GetRenderStateHook_821B3840              ref 0x821B3840 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B3870              ref 0x821B3870 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B38A8              ref 0x821B38A8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B3938              ref 0x821B3938 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B39C8              ref 0x821B39C8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B3A58              ref 0x821B3A58 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B3AE8              ref 0x821B3AE8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B3B58              ref 0x821B3B58 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B3BC8              ref 0x821B3BC8 (  4 ins) -> sub_823EE768 1.00   next sub_823EE6E8 1.00  (check)
+GetRenderStateHook_821B3C38              ref 0x821B3C38 (  4 ins) -> sub_823EE788 1.00   next sub_823EE708 1.00  (check)
+GetRenderStateHook_821B3CD0              ref 0x821B3CD0 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B3D18              ref 0x821B3D18 ( 12 ins) -> sub_823EDA48 1.00   next sub_828C9650 0.60
+GetRenderStateHook_821B3D68              ref 0x821B3D68 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B3E10              ref 0x821B3E10 ( 30 ins) -> sub_823EDB40 1.00   next sub_823E3D28 0.29
+GetRenderStateHook_821B3EB0              ref 0x821B3EB0 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B3F00              ref 0x821B3F00 ( 14 ins) -> sub_823EDC30 0.77   next sub_823EF3E0 0.62  (check)
+GetRenderStateHook_821B3F58              ref 0x821B3F58 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B3FA0              ref 0x821B3FA0 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B3FC8              ref 0x821B3FC8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4000              ref 0x821B4000 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4048              ref 0x821B4048 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4078              ref 0x821B4078 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B40A8              ref 0x821B40A8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B40E0              ref 0x821B40E0 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4118              ref 0x821B4118 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4148              ref 0x821B4148 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4178              ref 0x821B4178 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B41B0              ref 0x821B41B0 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B41E8              ref 0x821B41E8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4218              ref 0x821B4218 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4240              ref 0x821B4240 (  2 ins) -> sub_826C20C8 1.00   next sub_82631088 1.00  (check)
+GetRenderStateHook_821B4260              ref 0x821B4260 (  2 ins) -> sub_826C20C8 1.00   next sub_82631088 1.00  (check)
+GetRenderStateHook_821B4280              ref 0x821B4280 (  2 ins) -> sub_826C20C8 1.00   next sub_82631088 1.00  (check)
+GetRenderStateHook_821B42A0              ref 0x821B42A0 (  2 ins) -> sub_826C20C8 1.00   next sub_82631088 1.00  (check)
+GetRenderStateHook_821B42C0              ref 0x821B42C0 (  2 ins) -> sub_826C20C8 1.00   next sub_82631088 1.00  (check)
+GetRenderStateHook_821B42E0              ref 0x821B42E0 (  2 ins) -> sub_826C20C8 1.00   next sub_82631088 1.00  (check)
+GetRenderStateHook_821B4330              ref 0x821B4330 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4350              ref 0x821B4350 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4400              ref 0x821B4400 (  8 ins) -> sub_823EE128 0.88   next sub_828D8CB0 0.50
+GetRenderStateHook_821B44B8              ref 0x821B44B8 (  4 ins) -> sub_823EEAB8 1.00   next sub_823EEA80 1.00  (check)
+GetRenderStateHook_821B44E8              ref 0x821B44E8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4510              ref 0x821B4510 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4550              ref 0x821B4550 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4590              ref 0x821B4590 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B45D0              ref 0x821B45D0 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4610              ref 0x821B4610 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4620              ref 0x821B4620 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4678              ref 0x821B4678 (  4 ins) -> sub_823EEAB8 1.00   next sub_823EEA80 1.00  (check)
+GetRenderStateHook_821B46C8              ref 0x821B46C8 (  4 ins) -> sub_823EEAB8 1.00   next sub_823EEA80 1.00  (check)
+GetRenderStateHook_821B4718              ref 0x821B4718 (  4 ins) -> sub_823EEAB8 1.00   next sub_823EEA80 1.00  (check)
+GetRenderStateHook_821B4988              ref 0x821B4988 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4998              ref 0x821B4998 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B49A8              ref 0x821B49A8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B49B8              ref 0x821B49B8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B49C8              ref 0x821B49C8 (  4 ins) -> sub_823EE768 1.00   next sub_823EE6E8 1.00  (check)
+GetRenderStateHook_821B49D8              ref 0x821B49D8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B49E8              ref 0x821B49E8 (  4 ins) -> sub_823EE788 1.00   next sub_823EE708 1.00  (check)
+GetRenderStateHook_821B49F8              ref 0x821B49F8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4A08              ref 0x821B4A08 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4A18              ref 0x821B4A18 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4A28              ref 0x821B4A28 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4A38              ref 0x821B4A38 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4A48              ref 0x821B4A48 (  4 ins) -> sub_823EE768 1.00   next sub_823EE6E8 1.00  (check)
+GetRenderStateHook_821B4A58              ref 0x821B4A58 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4A68              ref 0x821B4A68 (  4 ins) -> sub_823EE788 1.00   next sub_823EE708 1.00  (check)
+GetRenderStateHook_821B4A78              ref 0x821B4A78 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4AC8              ref 0x821B4AC8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4B68              ref 0x821B4B68 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4C00              ref 0x821B4C00 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4C98              ref 0x821B4C98 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4D30              ref 0x821B4D30 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4D60              ref 0x821B4D60 (  4 ins) -> sub_823EEAB8 1.00   next sub_823EEA80 1.00  (check)
+GetRenderStateHook_821B4D98              ref 0x821B4D98 (  4 ins) -> sub_823EEAB8 1.00   next sub_823EEA80 1.00  (check)
+GetRenderStateHook_821B4DD0              ref 0x821B4DD0 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4E08              ref 0x821B4E08 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4E38              ref 0x821B4E38 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4E68              ref 0x821B4E68 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4E90              ref 0x821B4E90 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B4EC0              ref 0x821B4EC0 (  2 ins) -> sub_826C20C8 1.00   next sub_82631088 1.00  (check)
+GetRenderStateHook_821B4EF0              ref 0x821B4EF0 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4F20              ref 0x821B4F20 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4F48              ref 0x821B4F48 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4F78              ref 0x821B4F78 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B4FA0              ref 0x821B4FA0 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B5008              ref 0x821B5008 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B5038              ref 0x821B5038 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B5068              ref 0x821B5068 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B5098              ref 0x821B5098 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetRenderStateHook_821B50C0              ref 0x821B50C0 (  2 ins) -> sub_826C20C8 1.00   next sub_82631088 1.00  (check)
+GetRenderStateHook_821B50D0              ref 0x821B50D0 (  2 ins) -> sub_828613C8 1.00   next sub_82700720 1.00  (check)
+GetRenderStateHook_821B50E8              ref 0x821B50E8 (  4 ins) -> sub_826C20B8 1.00   next sub_826C1B38 1.00  (check)
+GetSamplerStateHook_821B51C0             ref 0x821B51C0 ( 14 ins) -> sub_823EF088 1.00   next sub_823EEEE0 1.00  (check)
+GetSamplerStateHook_821B5290             ref 0x821B5290 (  4 ins) -> sub_823EF250 1.00   next sub_823EF150 1.00  (check)
+GetSamplerStateHook_821B5368             ref 0x821B5368 ( 14 ins) -> sub_823EF088 1.00   next sub_823EEEE0 1.00  (check)
+GetSamplerStateHook_821B5430             ref 0x821B5430 (  4 ins) -> sub_823EF250 1.00   next sub_823EF150 1.00  (check)
+GetSamplerStateHook_821B5480             ref 0x821B5480 (  6 ins) -> sub_823EF7D0 1.00   next sub_823EF6C8 1.00  (check)
+GetSamplerStateHook_821B5530             ref 0x821B5530 (  4 ins) -> sub_823EF250 1.00   next sub_823EF150 1.00  (check)
+GetSamplerStateHook_821B55A8             ref 0x821B55A8 (  4 ins) -> sub_823EF518 1.00   next sub_823EF498 1.00  (check)
+GetSamplerStateHook_821B5618             ref 0x821B5618 ( 18 ins) -> sub_823EF3E0 0.89   next sub_823EF338 0.78
+GetSamplerStateHook_821B56C0             ref 0x821B56C0 ( 18 ins) -> sub_823EF3E0 1.00   next sub_823EDC30 0.73
+GetSamplerStateHook_821B5778             ref 0x821B5778 (  4 ins) -> sub_823EF518 1.00   next sub_823EF498 1.00  (check)
+GetSamplerStateHook_821B57F8             ref 0x821B57F8 (  4 ins) -> sub_823EF518 1.00   next sub_823EF498 1.00  (check)
+GetSamplerStateHook_821B5850             ref 0x821B5850 ( 10 ins) -> sub_823EF570 1.00   next sub_823EF7D0 0.62
+GetSamplerStateHook_821B58B0             ref 0x821B58B0 (  6 ins) -> sub_823EF620 1.00   next sub_823EF5D0 1.00  (check)
+GetSamplerStateHook_821B5900             ref 0x821B5900 (  6 ins) -> sub_823EF620 1.00   next sub_823EF5D0 1.00  (check)
+GetSamplerStateHook_821B5950             ref 0x821B5950 (  6 ins) -> sub_823EF670 1.00   next sub_823EF620 0.83
+GetSamplerStateHook_821B59A8             ref 0x821B59A8 (  6 ins) -> sub_823EF7D0 1.00   next sub_823EF6C8 1.00  (check)
+GetSamplerStateHook_821B5A00             ref 0x821B5A00 (  6 ins) -> sub_823EF720 1.00   next sub_823EF778 0.83
+GetSamplerStateHook_821B5A58             ref 0x821B5A58 (  6 ins) -> sub_823EF778 1.00   next sub_823EF7D0 0.83
+GetSamplerStateHook_821B5AB0             ref 0x821B5AB0 (  6 ins) -> sub_823EF7D0 1.00   next sub_823EF6C8 1.00  (check)
+GetSamplerStateHook_821B5B10             ref 0x821B5B10 (  6 ins) -> sub_823EF830 1.00   next sub_823EF7D0 0.83
+GetTextureDimensions_hook_821B70D8       ref 0x821B70D8 ( 38 ins) -> sub_823F1008 1.00   next sub_823F10A0 0.85
+IsFencePending_hook_821C66F8             ref 0x821C66F8 ( 36 ins) -> sub_824019F0 1.00   next sub_822E7590 0.55
+KickOffSegment_hook_821C5EE8             ref 0x821C5EE8 ( 98 ins) -> sub_82400FB8 1.00   next sub_821599C0 0.26
+KickOff_hook_821C61C8                    ref 0x821C61C8 ( 64 ins) -> sub_824013F8 1.00   next sub_8224C9D0 0.32
+LevelLayout_hook_821B7368                ref 0x821B7368 (244 ins) -> sub_823F1298 1.00   next sub_823F1868 0.22
+RingBufferDeviceAllocate_hook_821C5118   ref 0x821C5118 (140 ins) -> sub_824001D0 1.00   next sub_824554B8 0.15
+S4_CreateDevice_hook_82494160            ref 0x82494160 ( 62 ins) -> sub_828631F0 0.97   next sub_82345730 0.42
+S4_DrawIndexedVertices_hook_821C0238     ref 0x821C0238 (262 ins) -> sub_823FA230 0.85   next sub_823F9E18 0.64
+S4_DrawVertices_hook_821BFE48            ref 0x821BFE48 (252 ins) -> sub_823F9E18 0.92   next sub_823F9910 0.70
+S4_InitializePresentationParameters_hook_821CF318 ref 0x821CF318 (172 ins) -> sub_8240B660 0.89   next sub_826078E0 0.20
+S4_Resolve_hook_821C1C80                 ref 0x821C1C80 (600 ins) -> sub_823FD100 0.80   next sub_823EC6A0 0.31  (check)
+SetRenderStateHook_821B3820              ref 0x821B3820 (  8 ins) -> sub_823EDA78 1.00   next sub_823ED550 1.00  (check)
+SetRenderStateHook_821B3850              ref 0x821B3850 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B3880              ref 0x821B3880 ( 10 ins) -> sub_823EDEE8 1.00   next sub_823EDEB0 1.00  (check)
+SetRenderStateHook_821B38B8              ref 0x821B38B8 ( 32 ins) -> sub_823ED5E8 1.00   next sub_823ED798 0.81
+SetRenderStateHook_821B3948              ref 0x821B3948 ( 32 ins) -> sub_823ED798 1.00   next sub_823ED708 1.00  (check)
+SetRenderStateHook_821B39D8              ref 0x821B39D8 ( 32 ins) -> sub_823ED798 1.00   next sub_823ED708 1.00  (check)
+SetRenderStateHook_821B3A68              ref 0x821B3A68 ( 32 ins) -> sub_823ED798 1.00   next sub_823ED708 1.00  (check)
+SetRenderStateHook_821B3AF8              ref 0x821B3AF8 ( 24 ins) -> sub_823ED908 1.00   next sub_823ED898 1.00  (check)
+SetRenderStateHook_821B3B68              ref 0x821B3B68 ( 24 ins) -> sub_823ED908 1.00   next sub_823ED898 1.00  (check)
+SetRenderStateHook_821B3BD8              ref 0x821B3BD8 ( 24 ins) -> sub_823ED908 1.00   next sub_823ED898 1.00  (check)
+SetRenderStateHook_821B3C48              ref 0x821B3C48 ( 34 ins) -> sub_823ED978 1.00   next sub_823ED5E8 0.70
+SetRenderStateHook_821B3CE0              ref 0x821B3CE0 ( 14 ins) -> sub_823EDA10 1.00   next sub_823EDBF0 0.40
+SetRenderStateHook_821B3D48              ref 0x821B3D48 (  8 ins) -> sub_823EDA78 1.00   next sub_823ED550 1.00  (check)
+SetRenderStateHook_821B3D78              ref 0x821B3D78 ( 38 ins) -> sub_823EDAA8 1.00   next sub_82208F78 0.23
+SetRenderStateHook_821B3E88              ref 0x821B3E88 ( 10 ins) -> sub_823EDBB8 1.00   next sub_823EEB00 0.80
+SetRenderStateHook_821B3EC0              ref 0x821B3EC0 ( 16 ins) -> sub_823EDBF0 0.94   next sub_823EE3F8 0.69
+SetRenderStateHook_821B3F38              ref 0x821B3F38 (  8 ins) -> sub_823EDC60 1.00   next sub_826E75E8 0.67
+SetRenderStateHook_821B3F68              ref 0x821B3F68 ( 14 ins) -> sub_823EDD38 1.00   next sub_823EDC90 1.00  (check)
+SetRenderStateHook_821B3FA8              ref 0x821B3FA8 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B3FD8              ref 0x821B3FD8 ( 10 ins) -> sub_823EDEE8 1.00   next sub_823EDEB0 1.00  (check)
+SetRenderStateHook_821B4010              ref 0x821B4010 ( 14 ins) -> sub_823EDD38 1.00   next sub_823EDC90 1.00  (check)
+SetRenderStateHook_821B4050              ref 0x821B4050 ( 10 ins) -> sub_823EDEE8 1.00   next sub_823EDEB0 1.00  (check)
+SetRenderStateHook_821B4088              ref 0x821B4088 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B40B8              ref 0x821B40B8 ( 10 ins) -> sub_823EDEE8 1.00   next sub_823EDEB0 1.00  (check)
+SetRenderStateHook_821B40F0              ref 0x821B40F0 ( 10 ins) -> sub_823EDEE8 1.00   next sub_823EDEB0 1.00  (check)
+SetRenderStateHook_821B4128              ref 0x821B4128 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B4158              ref 0x821B4158 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B4188              ref 0x821B4188 ( 10 ins) -> sub_823EDEE8 1.00   next sub_823EDEB0 1.00  (check)
+SetRenderStateHook_821B41C0              ref 0x821B41C0 ( 10 ins) -> sub_823EDEE8 1.00   next sub_823EDEB0 1.00  (check)
+SetRenderStateHook_821B41F8              ref 0x821B41F8 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B4228              ref 0x821B4228 (  6 ins) -> sub_823EDFF0 1.00   next sub_823EDFD0 1.00  (check)
+SetRenderStateHook_821B4248              ref 0x821B4248 (  6 ins) -> sub_823EDFF0 1.00   next sub_823EDFD0 1.00  (check)
+SetRenderStateHook_821B4268              ref 0x821B4268 (  6 ins) -> sub_823EDFF0 1.00   next sub_823EDFD0 1.00  (check)
+SetRenderStateHook_821B4288              ref 0x821B4288 (  6 ins) -> sub_823EDFF0 1.00   next sub_823EDFD0 1.00  (check)
+SetRenderStateHook_821B42A8              ref 0x821B42A8 (  6 ins) -> sub_823EDFF0 1.00   next sub_823EDFD0 1.00  (check)
+SetRenderStateHook_821B42C8              ref 0x821B42C8 (  6 ins) -> sub_823EDFF0 1.00   next sub_823EDFD0 1.00  (check)
+SetRenderStateHook_821B42E8              ref 0x821B42E8 ( 18 ins) -> sub_823EE010 1.00   next sub_823EE300 0.31
+SetRenderStateHook_821B4340              ref 0x821B4340 (  4 ins) -> sub_823EE068 1.00   next sub_828D9648 0.50
+SetRenderStateHook_821B4358              ref 0x821B4358 ( 42 ins) -> sub_823EE080 0.90   next sub_823EE148 0.80
+SetRenderStateHook_821B4420              ref 0x821B4420 ( 38 ins) -> sub_823EE148 1.00   next sub_823EE080 0.72
+SetRenderStateHook_821B44C8              ref 0x821B44C8 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B44F8              ref 0x821B44F8 (  6 ins) -> sub_823EE220 1.00   next sub_823EECA0 0.71
+SetRenderStateHook_821B4518              ref 0x821B4518 ( 14 ins) -> sub_823EE240 1.00   next sub_823EE300 0.86
+SetRenderStateHook_821B4558              ref 0x821B4558 ( 14 ins) -> sub_823EE300 1.00   next sub_823EE2C0 1.00  (check)
+SetRenderStateHook_821B4598              ref 0x821B4598 ( 14 ins) -> sub_823EE300 1.00   next sub_823EE2C0 1.00  (check)
+SetRenderStateHook_821B45D8              ref 0x821B45D8 ( 14 ins) -> sub_823EE300 1.00   next sub_823EE2C0 1.00  (check)
+SetRenderStateHook_821B4618              ref 0x821B4618 (  2 ins) -> sub_82772AA0 1.00   next sub_82700728 1.00  (check)
+SetRenderStateHook_821B4628              ref 0x821B4628 ( 20 ins) -> sub_823EE350 0.95   next sub_823EE3F8 0.89
+SetRenderStateHook_821B4688              ref 0x821B4688 ( 16 ins) -> sub_823EE3F8 1.00   next sub_823EE3A8 1.00  (check)
+SetRenderStateHook_821B46D8              ref 0x821B46D8 ( 16 ins) -> sub_823EE3F8 1.00   next sub_823EE3A8 1.00  (check)
+SetRenderStateHook_821B4728              ref 0x821B4728 (  8 ins) -> sub_823EE578 1.00   next sub_823EE448 1.00  (check)
+SetRenderStateHook_821B4748              ref 0x821B4748 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B4770              ref 0x821B4770 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B4798              ref 0x821B4798 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B47C0              ref 0x821B47C0 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B47E8              ref 0x821B47E8 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B4810              ref 0x821B4810 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B4838              ref 0x821B4838 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B4858              ref 0x821B4858 (  8 ins) -> sub_823EE578 1.00   next sub_823EE448 1.00  (check)
+SetRenderStateHook_821B4878              ref 0x821B4878 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B48A0              ref 0x821B48A0 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B48C8              ref 0x821B48C8 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B48F0              ref 0x821B48F0 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B4918              ref 0x821B4918 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B4940              ref 0x821B4940 ( 10 ins) -> sub_823EE660 1.00   next sub_823EE638 1.00  (check)
+SetRenderStateHook_821B4968              ref 0x821B4968 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B4A88              ref 0x821B4A88 ( 16 ins) -> sub_823EE7A8 1.00   next sub_823EDEE8 0.46
+SetRenderStateHook_821B4AD8              ref 0x821B4AD8 ( 36 ins) -> sub_823EE9C0 1.00   next sub_823EE928 1.00  (check)
+SetRenderStateHook_821B4B70              ref 0x821B4B70 ( 36 ins) -> sub_823EE9C0 1.00   next sub_823EE928 1.00  (check)
+SetRenderStateHook_821B4C08              ref 0x821B4C08 ( 36 ins) -> sub_823EE9C0 1.00   next sub_823EE928 1.00  (check)
+SetRenderStateHook_821B4CA0              ref 0x821B4CA0 ( 36 ins) -> sub_823EE9C0 1.00   next sub_823EE928 1.00  (check)
+SetRenderStateHook_821B4D38              ref 0x821B4D38 ( 10 ins) -> sub_823EEC70 1.00   next sub_823EEC18 1.00  (check)
+SetRenderStateHook_821B4D70              ref 0x821B4D70 ( 10 ins) -> sub_823EEC70 1.00   next sub_823EEC18 1.00  (check)
+SetRenderStateHook_821B4DA8              ref 0x821B4DA8 ( 10 ins) -> sub_823EEB00 1.00   next sub_823EEAC8 1.00  (check)
+SetRenderStateHook_821B4DE0              ref 0x821B4DE0 ( 10 ins) -> sub_823EEB00 1.00   next sub_823EEAC8 1.00  (check)
+SetRenderStateHook_821B4E18              ref 0x821B4E18 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B4E48              ref 0x821B4E48 (  8 ins) -> sub_823EEB68 1.00   next sub_823EEC70 0.78
+SetRenderStateHook_821B4E70              ref 0x821B4E70 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B4EA0              ref 0x821B4EA0 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B4EC8              ref 0x821B4EC8 ( 10 ins) -> sub_823EEC70 1.00   next sub_823EEC18 1.00  (check)
+SetRenderStateHook_821B4EF8              ref 0x821B4EF8 ( 10 ins) -> sub_823EEC70 1.00   next sub_823EEC18 1.00  (check)
+SetRenderStateHook_821B4F28              ref 0x821B4F28 (  8 ins) -> sub_823EEC48 1.00   next sub_823F4050 0.71
+SetRenderStateHook_821B4F50              ref 0x821B4F50 ( 10 ins) -> sub_823EEC70 1.00   next sub_823EEC18 1.00  (check)
+SetRenderStateHook_821B4F80              ref 0x821B4F80 (  8 ins) -> sub_823EECA0 1.00   next sub_823EDEE8 0.89
+SetRenderStateHook_821B4FB0              ref 0x821B4FB0 ( 22 ins) -> sub_823EECD0 1.00   next sub_823ED978 0.43
+SetRenderStateHook_821B5018              ref 0x821B5018 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B5048              ref 0x821B5048 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B5078              ref 0x821B5078 (  8 ins) -> sub_823EED98 1.00   next sub_823EED68 1.00  (check)
+SetRenderStateHook_821B50A8              ref 0x821B50A8 (  6 ins) -> sub_823EEDC8 1.00   next sub_823EDFF0 0.83
+SetRenderStateHook_821B50C8              ref 0x821B50C8 (  2 ins) -> sub_82772AA0 1.00   next sub_82700728 1.00  (check)
+SetRenderStateHook_821B50D8              ref 0x821B50D8 (  4 ins) -> sub_823EEDF8 1.00   next sub_826E75D8 0.75
+SetSamplerStateHook_821B50F8             ref 0x821B50F8 ( 50 ins) -> sub_823EEFC0 1.00   next sub_823EEE18 1.00  (check)
+SetSamplerStateHook_821B51F8             ref 0x821B51F8 ( 38 ins) -> sub_823EF1B8 1.00   next sub_823EEF18 1.00  (check)
+SetSamplerStateHook_821B52A0             ref 0x821B52A0 ( 50 ins) -> sub_823EEFC0 1.00   next sub_823EEE18 1.00  (check)
+SetSamplerStateHook_821B53A0             ref 0x821B53A0 ( 36 ins) -> sub_823EF0C0 1.00   next sub_823EF1B8 0.59
+SetSamplerStateHook_821B5440             ref 0x821B5440 ( 16 ins) -> sub_823EF790 1.00   next sub_823EF738 1.00  (check)
+SetSamplerStateHook_821B5498             ref 0x821B5498 ( 38 ins) -> sub_823EF1B8 1.00   next sub_823EEF18 1.00  (check)
+SetSamplerStateHook_821B5540             ref 0x821B5540 ( 26 ins) -> sub_823EF260 1.00   next sub_823EF790 0.29
+SetSamplerStateHook_821B55B8             ref 0x821B55B8 ( 24 ins) -> sub_823EF2D8 1.00   next sub_823EF790 0.60
+SetSamplerStateHook_821B5660             ref 0x821B5660 ( 24 ins) -> sub_823EF2D8 1.00   next sub_823EF790 0.60
+SetSamplerStateHook_821B5708             ref 0x821B5708 ( 28 ins) -> sub_823EF428 1.00   next sub_823EF4A8 0.96  (check)
+SetSamplerStateHook_821B5788             ref 0x821B5788 ( 28 ins) -> sub_823EF4A8 1.00   next sub_823EF428 0.96  (check)
+SetSamplerStateHook_821B5808             ref 0x821B5808 ( 18 ins) -> sub_823EF528 1.00   next sub_823EF7E8 0.78
+SetSamplerStateHook_821B5878             ref 0x821B5878 ( 14 ins) -> sub_823EF638 1.00   next sub_823EF5E8 1.00  (check)
+SetSamplerStateHook_821B58C8             ref 0x821B58C8 ( 14 ins) -> sub_823EF638 1.00   next sub_823EF5E8 1.00  (check)
+SetSamplerStateHook_821B5918             ref 0x821B5918 ( 14 ins) -> sub_823EF638 1.00   next sub_823EF5E8 1.00  (check)
+SetSamplerStateHook_821B5968             ref 0x821B5968 ( 16 ins) -> sub_823EF790 1.00   next sub_823EF738 1.00  (check)
+SetSamplerStateHook_821B59C0             ref 0x821B59C0 ( 16 ins) -> sub_823EF790 1.00   next sub_823EF738 1.00  (check)
+SetSamplerStateHook_821B5A18             ref 0x821B5A18 ( 16 ins) -> sub_823EF790 1.00   next sub_823EF738 1.00  (check)
+SetSamplerStateHook_821B5A70             ref 0x821B5A70 ( 16 ins) -> sub_823EF790 1.00   next sub_823EF738 1.00  (check)
+SetSamplerStateHook_821B5AC8             ref 0x821B5AC8 ( 18 ins) -> sub_823EF7E8 1.00   next sub_823EF528 0.78
+SetTextureHeader_hook_821B7FB0           ref 0x821B7FB0 (190 ins) -> sub_823F1EE0 1.00   next sub_8253E240 0.13
+SubresourceLayout_hook_821B7938          ref 0x821B7938 (288 ins) -> sub_823F1868 1.00   next sub_823F1298 0.24
+XGRegisterPixelShader_hook_821B99F8      ref 0x821B99F8 ( 14 ins) -> sub_823F3960 1.00   next sub_824ABE38 0.41
+XGRegisterVertexShader_hook_821B9CE0     ref 0x821B9CE0 ( 62 ins) -> sub_823F3C48 1.00   next sub_82403FB8 0.28
+raw_821C2D30_821C2D30                    ref 0x821C2D30 (232 ins) -> sub_823FC300 0.75   next sub_823FC678 0.19  (check)
+raw_821C30D0_821C30D0                    ref 0x821C30D0 (300 ins) -> sub_823FC678 0.92   next sub_823EC100 0.19
+raw_821D55E8_821D55E8                    reference 0x821D55E8: not a function start in the reference tree
+raw_822050D0_822050D0                    reference 0x822050D0: not a function start in the reference tree
+raw_82208C50_82208C50                    reference 0x82208C50: not a function start in the reference tree
+raw_82235C88_82235C88                    reference 0x82235C88: not a function start in the reference tree
+raw_822E8660_822E8660                    reference 0x822E8660: not a function start in the reference tree
+raw_82333708_82333708                    reference 0x82333708: not a function start in the reference tree
+raw_823B7338_823B7338                    reference 0x823B7338: not a function start in the reference tree
+raw_823BB7C0_823BB7C0                    reference 0x823BB7C0: not a function start in the reference tree
+raw_82488958_82488958                    ref 0x82488958 ( 94 ins) -> sub_828604B8 0.94   next sub_822B2530 0.30
+raw_8249E2F8_8249E2F8                    ref 0x8249E2F8 (110 ins) -> sub_823FBF58 0.63   next sub_82247FC8 0.30  (check)
+raw_825AB958_825AB958                    reference 0x825AB958: not a function start in the reference tree
+raw_825CA958_825CA958                    reference 0x825CA958: not a function start in the reference tree
+raw_82634740_82634740                    reference 0x82634740: not a function start in the reference tree
+raw_82A27180_82A27180                    reference 0x82A27180: not a function start in the reference tree
