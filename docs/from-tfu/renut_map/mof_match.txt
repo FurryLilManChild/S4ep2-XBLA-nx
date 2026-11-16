@@ -1,0 +1,39 @@
+reference: 50882 functions, 38 named; ours: 68291 functions
+AllocateInlineData                       ref 0x826F8AA8 ( 58 ins) -> sub_822D8F38 0.84   next sub_825E9278 0.40  (check)
+BeginRingBig                             ref 0x826FA050 ( 30 ins) -> sub_822D9E08 0.71   next sub_82747138 0.36  (check)
+CBlocker_Check                           ref 0x826F2B60 ( 56 ins) -> sub_822D83F8 0.75   next sub_82A4C920 0.27  (check)
+CDevice_BlockOnFence                     ref 0x826F8748 ( 52 ins) -> sub_822D9588 0.63   next sub_822D8860 0.42  (check)
+CDevice_KickOff                          ref 0x826F9DA8 ( 66 ins) -> sub_822D9BE8 0.92   next sub_827BD640 0.40
+CDevice_KickOffSegment                   ref 0x826F9A20 ( 98 ins) -> sub_822D9A60 0.72   next sub_829603A0 0.24  (check)
+CreateDevice hardware path               ref 0x8270EAB8 (160 ins) -> sub_822E1950 0.66   next sub_8221FC20 0.22  (check)
+CreateDevice part (side buffer)          ref 0x8270E520 ( 28 ins) -> sub_824A8110 0.57   next sub_824A3640 0.57  (check)
+CreateDevice part 2                      ref 0x8270E590 ( 20 ins) -> sub_822E1B58 1.00   next sub_82274AB8 0.85
+D3DDevice_BeginVertices                  ref 0x826DDBF0 (304 ins) -> sub_8281E2B8 0.53   next sub_8281E6A0 0.49  (check)
+D3DDevice_Clear                          ref 0x826DD4A0 ( 48 ins) -> sub_822F6918 0.75   next sub_829EA650 0.33  (check)
+D3DDevice_ClearF                         ref 0x826DD368 ( 78 ins) -> sub_822F67F0 0.82   next sub_822F3570 0.39  (check)
+D3DDevice_CreatePixelShader              ref 0x826E9AB8 ( 60 ins) -> sub_822E57B8 0.62   next sub_822E56A8 0.59  (check)
+D3DDevice_CreateVertexDeclaration        ref 0x826E70C0 ( 32 ins) -> sub_822E41A0 0.85   next sub_82B7EC68 0.58  (check)
+D3DDevice_CreateVertexShader             ref 0x826E9D28 ( 60 ins) -> sub_822E57B8 0.93   next sub_827BCD50 0.33
+D3DDevice_DrawIndexedVertices            ref 0x826DEAF0 (286 ins) -> sub_8281E2B8 0.58   next sub_8281E6A0 0.57  (check)
+D3DDevice_DrawVertices                   ref 0x826DE6D8 (262 ins) -> sub_8281E2B8 0.63   next sub_8281E6A0 0.58  (check)
+D3DDevice_DrawVerticesUP                 ref 0x826DE0B0 ( 18 ins) -> sub_82228628 0.56   next sub_82B6CF38 0.55  (check)
+D3DDevice_Resolve                        ref 0x826EFAA0 ( 20 ins) -> sub_828232B0 0.48   next sub_8291A748 0.46  (check)
+D3DDevice_Swap                           ref 0x826E11F0 (474 ins) -> sub_822E9340 0.60   next sub_824A2BF8 0.15  (check)
+D3DResource_Destroy                      ref 0x826E2F68 (170 ins) -> sub_822DC958 0.53   next sub_82696C00 0.18  (check)
+Direct3D_CreateDevice                    ref 0x826F36D0 ( 54 ins) -> sub_822D8710 0.93   next sub_8289CD70 0.41
+GameXMemFree (what D3DResource_Destroy calls; Renut's `resource.cpp` imports it) ref 0x82447D48 (  2 ins) -> sub_82CA4EB0 1.00   next sub_82CA1A38 1.00  (check)
+InitializeApiState                       ref 0x8270DE68 (154 ins) -> sub_822E1218 0.94   next sub_828E8C40 0.18
+InitializePresentationParameters         ref 0x8270E838 (160 ins) -> sub_822E1480 0.72   next sub_8264C000 0.22  (check)
+InsertCallback                           ref 0x826FA298 ( 22 ins) -> sub_822D9EE8 0.86   next sub_8256F598 0.68
+IsFencePending                           ref 0x826F9F50 ( 36 ins) -> sub_822D9D20 0.76   next sub_82590820 0.52  (check)
+RingBufferDeviceAllocate                 ref 0x826F83B8 (140 ins) -> sub_822D8D30 0.70   next sub_8250E9E0 0.16  (check)
+RingSegmentAllocate (Sa2NewSegment)      ref 0x826F8B90 ( 92 ins) -> sub_822D98E8 0.72   next sub_826F7360 0.23  (check)
+SetGammaRamp (device +15408)             ref 0x826DA7C0 ( 52 ins) -> sub_822D7690 0.78   next sub_822D75B0 0.78  (check)
+SetRingBufferParameters                  ref 0x826FA498 (242 ins) -> sub_822D9F40 0.48   next sub_825F1250 0.14  (check)
+SynchronizeToPresentationInterval        ref 0x826E0D30 (120 ins) -> sub_822E8E98 0.35   next sub_829E1CF0 0.20  (check)
+Window offset/scissor writer (registers 0x2080-0x2082; sa2-nx hooks it in `me/sa2_me_hooks.cpp` to fill the device's window packet for Renut, since Direct3D keeps no copy at +0x28C0) ref 0x826D7A48 (186 ins) -> sub_822D4B98 0.45   next sub_822EA368 0.25  (check)
+XGRegisterPixelShader                    ref 0x826E6B18 ( 14 ins) -> sub_8286B9D0 0.56   next sub_82BA8A20 0.47  (check)
+XGRegisterVertexShader                   ref 0x826E9C30 ( 62 ins) -> sub_822E3D88 0.65   next sub_822E63C8 0.24  (check)
+draw-time shader load                    ref 0x827037B0 (600 ins) -> sub_822EB838 0.26   next sub_829AC088 0.11  (check)
+is resource bound                        ref 0x826E25A0 ( 60 ins) -> sub_822DD200 0.58   next sub_82587A68 0.18  (check)
+side buffer out of memory                ref 0x826F7C10 ( 10 ins) -> sub_8282CB20 0.38   next sub_82500D58 0.38  (check)

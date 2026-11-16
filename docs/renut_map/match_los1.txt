@@ -1,0 +1,42 @@
+reference: 59257 functions, 41 named; ours: 12440 functions
+AllocateInlineData                       ref 0x824A3D30 ( 58 ins) -> sub_8215F898 0.37   next sub_8242F010 0.34  (check)
+BeginRingBig                             ref 0x824A5130 ( 30 ins) -> sub_821C4D58 1.00   next sub_82243CF8 0.41
+CBlocker::Check                          ref 0x8249A408 ( 54 ins) -> sub_821C4870 1.00   next sub_824474C0 0.27
+CDevice::BlockOnFence                    ref 0x824A3E18 ( 52 ins) -> sub_821C62C8 0.70   next sub_823162F0 0.33  (check)
+CDevice::KickOff                         ref 0x824A4EF8 ( 66 ins) -> sub_821C61C8 0.94   next sub_822226C8 0.38
+CDevice::KickOffSegment                  ref 0x824A4D70 ( 98 ins) -> sub_821C5EE8 0.97   next sub_820E6498 0.24
+CreateDevice hardware path               ref 0x824ADA68 (154 ins) -> sub_821CF800 0.81   next sub_8228F7D0 0.28  (check)
+CreateDevice part (side buffer)          ref 0x824AD9F8 ( 28 ins) -> sub_82439DF8 0.58   next sub_824384F0 0.58  (check)
+CreateDevice part 2                      ref 0x824ADCD0 ( 20 ins) -> sub_82433A70 0.76   next sub_82465BE0 0.74  (check)
+D3DDevice_BeginVertices                  ref 0x82900FB0 (294 ins) -> sub_821BF968 1.00   next sub_821BFE48 0.74
+D3DDevice_Clear                          ref 0x8249A238 ( 48 ins) -> sub_823E30D8 0.37   next sub_82217FA8 0.35  (check)
+D3DDevice_ClearF                         ref 0x8249A110 ( 74 ins) -> sub_821B2FD0 1.00   next sub_821C2BC0 0.40
+D3DDevice_CreatePixelShader              ref 0x8249E2A8 ( 60 ins) -> sub_821B9A30 1.00   next sub_821B9DD8 0.63
+D3DDevice_CreateVertexDeclaration        ref 0x8249CD90 ( 32 ins) -> sub_821BA1D8 1.00   next sub_821BED28 0.65
+D3DDevice_CreateVertexShader             ref 0x8249E490 ( 60 ins) -> sub_821B9DD8 1.00   next sub_821B9A30 0.63
+D3DDevice_DrawIndexedVertices            ref 0x82901880 (276 ins) -> sub_821C0238 0.90   next sub_821BFE48 0.71
+D3DDevice_DrawVertices                   ref 0x82901490 (252 ins) -> sub_821BFE48 0.98   next sub_821BF968 0.75
+D3DDevice_DrawVerticesUP                 ref 0x82901448 ( 18 ins) -> sub_821BFE00 1.00   next sub_822F7BE8 0.50
+D3DDevice_Resolve                        ref 0x824AC870 ( 20 ins) -> sub_82306360 0.46   next sub_82211F68 0.45  (check)
+D3DDevice_Swap                           ref 0x824AF2F8 (410 ins) -> sub_821C0E58 0.72   next sub_821D0FC0 0.13  (check)
+D3DResource_Destroy                      ref 0x824A26A0 (136 ins) -> sub_821C3580 0.68   next sub_82286980 0.26  (check)
+Direct3D_CreateDevice                    ref 0x8249AB48 ( 54 ins) -> sub_822AD1B8 0.41   next sub_822AD120 0.39  (check)
+GameXMemFree                             ref 0x824B9E48 (  6 ins) -> sub_82223908 1.00   next sub_822F3CD8 0.60
+InitializeApiState                       ref 0x824AD2F8 (154 ins) -> sub_821CF0A8 0.92   next sub_822A5A90 0.18
+InitializePresentationParameters         ref 0x824AD560 (148 ins) -> sub_821CF318 0.79   next sub_82220B68 0.24  (check)
+InsertCallback                           ref 0x824A5220 ( 22 ins) -> sub_8220E990 0.71   next sub_8220E940 0.71  (check)
+IsFencePending                           ref 0x824A5038 ( 36 ins) -> sub_821C66F8 1.00   next sub_821C3DB0 0.58
+RingBufferDeviceAllocate                 ref 0x824A3B00 (140 ins) -> sub_821C5118 1.00   next sub_82381528 0.15
+SetDepthStencilSurface                   ref 0x824986D8 (182 ins) -> sub_821B6090 1.00   next sub_821B5D40 0.44
+SetGammaRamp (and its twin)              ref 0x82497E28 ( 52 ins) -> sub_821B6A48 0.98   next sub_821B6978 0.98  (check)
+SetRenderTarget                          ref 0x82498388 (212 ins) -> sub_821B5D40 1.00   next sub_821B6090 0.44
+SetRingBufferParameters                  ref 0x824A5278 (242 ins) -> sub_821C6788 0.91   next sub_821161C8 0.14
+SynchronizeToPresentationInterval        ref 0x824AEEC8 (114 ins) -> sub_821C0920 1.00   next sub_821C0C88 0.29
+XGRegisterPixelShader                    ref 0x8249C8C0 ( 14 ins) -> sub_821B99F8 1.00   next sub_8227C000 0.44
+XGRegisterVertexShader                   ref 0x8249E398 ( 62 ins) -> sub_821B9CE0 1.00   next sub_820F2600 0.27
+draw-time shader load                    ref 0x824AA428 (600 ins) -> sub_821CA128 1.00   next sub_823427D8 0.10
+is resource bound                        ref 0x824A1D68 ( 60 ins) -> sub_821FB320 0.26   next sub_820D57E0 0.23  (check)
+ring segment allocator                   ref 0x824A4220 ( 78 ins) -> sub_821C54E8 0.68   next sub_82109538 0.29  (check)
+side buffer out of memory                ref 0x824A3A88 ( 30 ins) -> sub_821C4FE8 1.00   next sub_8214CDF0 0.52
+the four-target setter                   ref 0x824989B0 (388 ins) -> sub_821B6368 1.00   next sub_823E60F8 0.12
+window offset/scissor writer             ref 0x82495420 (188 ins) -> sub_821B32D8 1.00   next sub_821C8BD8 0.24

@@ -1,0 +1,156 @@
+#!/usr/bin/env python3
+"""rr6-nx (2026-11-02, from katamari-nx's make_katamari_tomls.py): writes the package's tomls from banjo-nx's shipped renut.toml
+(its SD package of 2026-10-29 evening), with Ridge Racer 6's settings:
+
+  renut.toml       the shipped settings: Renut on deko3d, 720 lines handheld and docked (pixel-identical; 1080 docked is a config
+                   for the user), the game's own MSAA, every exact enhancement as banjo-nx ships it, the items measured SLOWER ON THE
+                   CONSOLE off, diagnostics as banjo-nx's renut.toml (logs on);
+  renut_play.toml  renut.toml with the render-thread diagnostics off (banjo-nx's renut_play.toml difference);
+  renut_ab.toml    renut.toml with an in-run A/B list, 30 s halves, target 1 (a Vulkan-only key: does nothing on the Switch)
+                   as the control.
+  configs/*.toml   the picture-changing options, each one key away from renut.toml, for the user to decide on.
+
+  python tools/make_rr6_tomls.py --banjo <banjo-nx renut.toml> --out dist/switch/rr6-nx
+"""
+import argparse
+import os
+import re
+
+HEADER = """# rr6-nx (Ridge Racer 6 on the Switch, Renut's renderer on deko3d): {what}
+# Made by tools/make_rr6_tomls.py from banjo-nx's shipped renut.toml (2026-10-29). Copy to
+# sdmc:/switch/rr6-nx/renut.toml. Credits: reNut's renderer (masterspike52, reuse permitted), banjo-nx, sa2-nx,
+# NetherSX2_nx (four-core layout), battd_nx (the GPU arena), bejeweled3-nx and the zuma ports (hot functions),
+# katamari-nx, zuma-nx (XDK 2.0.2135), Ridge Racer 6 Recomp by Sirhalo23 (BSD 3-Clause; its codegen work and game fixes).
+"""
+
+# Keys set for Ridge Racer 6 (the rest as banjo-nx ships them).
+SHIPPED = {
+    'banjo_renderer': '"renut"',
+    'renut_gpu_backend': '"deko3d"',
+    # rr6-nx (2026-11-08, the ultimate renderer): sasrt-nx's decompress of a compressed depth target at every unbind cost
+    # 0.46 ms of GPU a frame in the race on the console (perf10_depthresolve_off against perf4); its lazy form
+    # (ultimate_deko3d_depth_resolve_lazy, on) costs nothing here (perfL3: 37,220 left for later, 0 needed), so the key
+    # stays as the base ships it: correct for any screen that reads depth.
+    # The game's MSAA, no dynamic resolution. 720 lines handheld and docked, the Xbox 360's own: pixel-identical is the
+    # default here, and Katamari's 1080 lines docked was the user's decision for that game. configs/renut_1080_docked.toml
+    # is one key away, for the user to decide on.
+    'banjo_renut_render_height_handheld': '720',
+    'banjo_renut_render_height_docked': '720',
+    'banjo_renut_dynamic_resolution': 'false',
+    'disable_msaa': 'false',
+    'renut_shadow_resolution': '"1x"',
+    'renut_ambient_occlusion': '"Half"',
+    'renut_post_process_precision': '"Game"',
+    # The game paces itself (its presentation interval); no extra cap.
+    'frame_cap': '"Off"',
+    'target_refreshRate': '-1',
+    # banjo-nx's PM4 renderer and its keys are not used here.
+    'masseffect_renderer_native': 'false',
+    'gpu_plugin': '""',
+    # No four-core NPDM (2026-11-01, the user: "let's just focus on 3 core performance"): empty, the NRO writes none.
+    # rc5 named the user's forwarder (0100080021954000) and wrote its NPDM on the first launch; deleting
+    # sdmc:/atmosphere/contents/0100080021954000/exefs/main.npdm puts that forwarder back on three cores.
+    'banjo_forwarder_program_id': '""',
+    # The XMA frame cache off (2026-10-31): in the rc4 console run it saved 0-8 % of the decoding and re-decoded
+    # 10,000-23,000 frames per 10 s in bursts "to catch the codec up", which line up with the worst kick-to-data
+    # delays (16-18 ms) while sounds stalled. Exact either way (the same samples).
+    'banjo_xma_frame_cache': 'false',
+    'banjo_shader_misses': '"sdmc:/switch/rr6-nx/shader_misses"',
+    # The 36 car unlock keys stay out of the game (the user's decision): true shows them too. The music packs always show.
+    'rr6_dlc_unlock_keys': 'false  # true: also load the 36 car unlock keys',
+    # 2026-11-03: the display's ramp, which the reference applies and Renut's present did not. Measured against the
+    # reference: menus from 3-12 levels off to 0.14-0.54. Ridge Racer 6 only ever has the default ramp.
+    'banjo_renut_game_gamma': 'true  # the ramp of the reference and the 360 display; false: brighter darks, A/B 73',
+    # 2026-11-03: the foliage's alpha test of >= 1, which flickered on NVIDIA in ours and in the reference.
+    'rr6_alpha_near_one': 'true  # false: the test of >= 1 exact, flickering trees on NVIDIA, A/B 74',
+    # 2026-11-03: a draw after SetTexture(NULL) samples what the fetch constant holds, as the GPU does: the game's bloom.
+    'rr6_user_clip_plane': 'true  # false: the car reflects the wrong scene and no sky, A/B 76',
+    'rr6_strip_markers': 'true  # false: torn meshes and wedges on the Switch (a strip restart marker drawn as a vertex), A/B 77',
+    'rr6_fetch_over_pointer': 'true  # false: no bloom, lit surfaces a quarter too dark, A/B 75',
+    # 2026-11-03 evening, for the console's chrome car: a log line a second per cube-sampling pixel shader with its
+    # reflection constants, to tell a CPU-side value from a GPU-side fault against the emulator's lines. Diagnostics only.
+    'rr6_diag_paint_frames': '60  # [paint] lines in the log, one a second per paint shader; 0 in renut_play.toml',
+}
+PLAY = {'banjo_renut_diag_resolve_trace': 'false', 'banjo_renut_diag_gpu_shaders': 'false',
+        'banjo_renut_diag_terrain': 'false', 'rr6_diag_paint_frames': '0'}
+# The targets that act on Ridge Racer 6's draws (direct calls, no command-buffer recordings: the census in docs/rr6-notes.md): the
+# fast draw (25), pipelines by content (28), whole-buffer copies (22), the setters' touch compare (26), merged draws (33), mesh
+# objects (42); 70 the localized copies of the hot functions; 1 (a Vulkan-only key) is the do-nothing control on the Switch.
+AB = {'banjo_renut_ab_targets': '"25,28,22,26,33,42,70,71,72,73,74,75,76,77,1"', 'banjo_renut_ab_s': '30',
+      'banjo_renut_dynamic_resolution': 'false'}
+VERIFY = {k: 'true' for k in (
+    'banjo_renut_fast_draw_verify', 'banjo_renut_resource_objects_verify', 'banjo_renut_fetch_cache_verify',
+    'banjo_renut_whole_buffers_verify', 'banjo_renut_persistent_shared_verify', 'banjo_renut_chain_reuse_verify',
+    'banjo_renut_snapshot_deltas_verify', 'banjo_renut_store_cards_verify', 'banjo_renut_record_extents_verify')}
+# The CPU natives' guard (banjo_hot_guest.cpp): each thread's first 4000 calls of every native compared with the
+# generated original, then one in 64 ("[hot] DIFFERENCE" lines; the 10-s "[hot]" report counts the checks).
+VERIFY.update({'banjo_hot_guard_calls': '4000', 'banjo_hot_guard_period': '64'})
+# 2026-11-02, the user's PGO build: "turn off all logging besides crash logging". The log off (no file is made:
+# sdk/src/core/logging.cpp; deko3d.log neither), the samplers, the stall watchdog and the renderer's diagnostics off
+# (they would also put their own code in the profile, as banjo-nx's profile sessions turned them off). The crash
+# handler's rex_crash.log and the crash hooks' rex_stderr.log (abort, terminate and Mesa messages) stay.
+PGO = {'log_level': '"off"', 'switch_profile_stacks': 'false', 'banjo_cpu_profiler': 'false',
+       'banjo_show_profiler': 'false', 'banjo_show_fps': 'false', 'banjo_stall_watch_seconds': '0',
+       'renut_gpu_profile': '0.0', 'banjo_renut_diag_resolve_trace': 'false', 'banjo_renut_diag_gpu_shaders': 'false',
+       'banjo_renut_diag_terrain': 'false', 'banjo_hot_guard_calls': '0', 'banjo_hot_guard_period': '0',
+       'rr6_diag_paint_frames': '0'}
+CONFIGS = {
+    'renut_verify.toml': (VERIFY, 'every Renut verify mode on (emulator / test runs: slow; the log\'s verify lines '
+                                  'must count 0 differences)'),
+    'renut_pgo.toml': (PGO, 'the shipped settings with only the crash logs (the PGO build\'s renut.toml: no log, no '
+                            'profilers, no diagnostics)'),
+    'renut_648_864.toml': ({'banjo_renut_render_height_handheld': '648', 'banjo_renut_render_height_docked': '864'},
+                           'banjo-nx\'s internal resolution: 648 lines handheld, 864 docked (not pixel-identical)'),
+    'renut_1080_docked.toml': ({'banjo_renut_render_height_docked': '1080'},
+                               '1080 lines docked (not pixel-identical: the user\'s decision)'),
+    'renut_720_docked.toml': ({'banjo_renut_render_height_docked': '720'},
+                              '720 lines docked too, the Xbox 360\'s own (pixel-identical)'),
+    'renut_dynamic.toml': ({'banjo_renut_dynamic_resolution': 'true'},
+                           'banjo-nx\'s dynamic resolution, 540-720 handheld / 720-1080 docked (not pixel-identical)'),
+}
+
+
+def apply(text, keys):
+    """Sets each key: in place where the base has it at the top level, else before the first [section] (banjo-nx's
+    [input_p1] / [input_p2] stay last: a key after a table header belongs to that table)."""
+    first_section = re.search(r'^\[', text, re.M)
+    top_end = first_section.start() if first_section else len(text)
+    for k, v in keys.items():
+        pat = re.compile(r'^(\s*)' + re.escape(k) + r'\s*=.*$', re.M)
+        m = pat.search(text, 0, top_end)
+        if m:
+            text = text[:m.start()] + f'{m.group(1)}{k} = {v}' + text[m.end():]
+        else:
+            text = text[:top_end].rstrip('\n') + f'\n{k} = {v}\n\n' + text[top_end:]
+        first_section = re.search(r'^\[', text, re.M)
+        top_end = first_section.start() if first_section else len(text)
+    return text
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--banjo', required=True)
+    ap.add_argument('--out', required=True)
+    a = ap.parse_args()
+    base = open(a.banjo, encoding='utf-8').read().replace('sdmc:/switch/banjo-nx/', 'sdmc:/switch/rr6-nx/')
+    base = re.sub(r'# The gamma ramp the game loads.*?(?=banjo_renut_game_gamma)', '', base, count=1, flags=re.S)
+    # rr6-nx: the base's comment names a config this port does not ship.
+    base = base.replace('configs/banjo_cpu_native_bulk_off.toml is the A/B', 'banjo_cpu_native_bulk = false is the A/B')
+    shipped = apply(base, SHIPPED)
+    os.makedirs(os.path.join(a.out, 'configs'), exist_ok=True)
+    outs = {
+        'renut.toml': (shipped, 'the shipped settings (720 lines handheld, 1080 docked; diagnostics and logs on)'),
+        'renut_play.toml': (apply(shipped, PLAY), 'renut.toml with the render-thread diagnostics off, for playing'),
+        'renut_ab.toml': (apply(shipped, AB), 'renut.toml with an in-run A/B list, 30 s halves, target 1 as the '
+                                              'control (a Vulkan-only key: nothing on the Switch)'),
+    }
+    for name, (cfg, what) in CONFIGS.items():
+        outs[os.path.join('configs', name)] = (apply(shipped, cfg), what)
+    for name, (text, what) in outs.items():
+        with open(os.path.join(a.out, name), 'w', encoding='utf-8', newline='\n') as f:
+            f.write(HEADER.format(what=what) + text)
+        print(name)
+
+
+if __name__ == '__main__':
+    main()

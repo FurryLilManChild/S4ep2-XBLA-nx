@@ -1,0 +1,45 @@
+821CAE78 82223908 los1 d3d_match 1.00 (same XDK) GameXMemFree
+821CB658 822252B8 tfu d3d_match 1.00 (next 0.53) XPhysicalAlloc
+822D83F8 821C4870 los1 d3d_match 1.00 (same XDK) CBlocker::Check
+822D84D0 821C4B80 tfu d3d_match 0.95 (next 0.74) D3DDevice_Release
+822D8D30 821C5118 los1 d3d_match 1.00 (same XDK) RingBufferDeviceAllocate
+822D9A60 821C5EE8 los1 d3d_match 0.97 (same XDK) CDevice::KickOffSegment
+822D9BE8 821C61C8 los1 d3d_match 0.94 (same XDK) CDevice::KickOff
+822D9D20 821C66F8 los1 d3d_match 1.00 (same XDK) IsFencePending
+822D9E08 821C4D58 los1 d3d_match 1.00 (same XDK) BeginRingBig
+822D9F40 821C6788 los1 d3d_match 0.91 (same XDK) SetRingBufferParameters
+822DA388 821B70D8 tfu d3d_match 0.92 (next 0.77) D3D_GetTextureDimensions
+822DA438 821B8B30 tfu d3d_match 1.00 (next 0.46) D3DSurface_UnlockRect
+822DA4C0 821B6B18 tfu d3d_match 1.00 (next 0.26) D3D_BlockSizeOfGpuFormat
+822DBDB8 821B8518 tfu d3d_match 1.00 (next 0.80) D3DBaseTexture_GetLevelCount
+822DC010 821B8788 tfu d3d_match 0.94 (next 0.30) D3DDevice_CreateTexture
+822DC258 821B8A10 tfu d3d_match 0.97 (next 0.66) D3DSurface_GetDesc
+822DC2F0 821B8AA8 tfu d3d_match 1.00 (next 0.50) D3DSurface_LockRect
+822DC310 821B8AC8 tfu d3d_match 0.94 (next 0.81) D3DVolume_GetDesc
+822DC358 821B8B10 tfu d3d_match 1.00 (next 0.71) D3DVolume_LockBox
+822DC898 821C3E18 tfu d3d_match 1.00 (next 0.34) D3DResource_GetType
+822DCE88 821C3CB8 tfu d3d_match 0.97 (next 0.81) D3DResource_AddRef
+822DCF00 821C3D30 tfu d3d_match 0.94 (next 0.77) D3DResource_Release
+822DCFD0 821C3EA8 tfu d3d_match 0.86 (next 0.41) D3DDevice_CreateVertexBuffer
+822DDBE8 821C6B80 tfu d3d_match 1.00 (next 0.67) D3DDevice_GetDeviceCaps
+822E1218 821CF0A8 los1 d3d_match 0.92 (same XDK) InitializeApiState
+822E3D88 821B9CE0 los1 d3d_match 1.00 (same XDK) XGRegisterVertexShader
+822E41A0 821BA1D8 los1 d3d_match 1.00 (same XDK) D3DDevice_CreateVertexDeclaration
+822E56A8 821B9A30 los1 d3d_match 1.00 (same XDK) D3DDevice_CreatePixelShader
+822E57B8 821B9DD8 los1 d3d_match 1.00 (same XDK) D3DDevice_CreateVertexShader
+822E8E98 821C0920 los1 d3d_match 1.00 (same XDK) SynchronizeToPresentationInterval
+822F67F0 821B2FD0 los1 d3d_match 1.00 (same XDK) D3DDevice_ClearF
+822F7C38 82223E18 tfu d3d_match 1.00 (next 0.75) GetCurrentThreadId
+8281E2B8 821BFE48 los1 d3d_match 0.98 (same XDK) D3DDevice_DrawVertices
+8281E6A0 821C0238 los1 d3d_match 0.90 (same XDK) D3DDevice_DrawIndexedVertices
+822D7C00 821B5D40 los1 d3d_match 1.00 (same XDK, next 0.44) SetRenderTarget; tfu 0.59
+822D7F68 821B6090 los1 d3d_match 1.00 (same XDK, next 0.44) SetDepthStencilSurface; tfu 0.87 (next 0.38)
+822F3570 821C2BC0 tfu d3d_match 0.90 (next 0.39) D3DDevice_SetPredication
+822E9340 821C0E58 the only caller of VdSwap in both games (also VdGetSystemCommandBuffer, VdPersistDisplay); LoS1 0.72 and TFU 0.52 tops agree
+822E98D8 8249E2F8 Present: the same callees as TFU's (SetRenderTarget, KickOff, Swap, SynchronizeToPresentationInterval, Resolve, SetScissorRect, sub_822C0450's pair); outside the D3D block (LTCG)
+822F47A8 821C1C80 Resolve: called by Present in both; TFU d3d_match top 0.48
+822D71B0 821B5B28 SetScissorRect: called by Present in both; TFU d3d_match top 0.62 (next 0.25)
+822E1480 821CF318 InitializePresentationParameters: VdQueryVideoMode caller in both; LoS1 0.79 and TFU 0.66 tops agree
+822DD4A0 821CADB0 the only caller of VdGetCurrentDisplayGamma in both
+822F3488 821D33B8 the only caller of VdRetrainEDRAM in both
+822E1C20 821CFAE8 VdSetGraphicsInterruptCallback plus VdShutdownEngines in both

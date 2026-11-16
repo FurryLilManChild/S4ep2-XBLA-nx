@@ -1,0 +1,40 @@
+propagated 277 of 316
+MISS D3DDevice_InsertCallback device.cpp 822D9EE8 ('8220E990', 0.76, 0.76)
+MISS D3DDevice_AddRef device.cpp 822D8338 ('824496F8', 0.5, 0.5)
+MISS D3DDevice_AcquireThreadOwnership device.cpp 822D85A8 ('824998B8', 0.81, 0.8)
+MISS D3DDevice_ReleaseThreadOwnership device.cpp 822D85E8 ('8249A388', 0.75, 0.75)
+MISS Direct3D_CreateDevice device.cpp 822D8710 ('822AD1B8', 0.41, 0.39)
+MISS D3D_XenonGpu_Initialize device.cpp 822EDAB8 ('821D5578', 0.33, 0.17)
+MISS D3DDevice_DrawIndexedTessellatedVertices draw.cpp 8281EAF8 ('821BFE48', 0.51, 0.49)
+MISS D3DDevice_Clear draw.cpp 822F6918 ('82217FA8', 0.35, 0.35)
+MISS D3DDevice_SetVertexShader draw.cpp 822E3E80 ('821B9EC8', 0.77, 0.69)
+MISS D3DDevice_SetPixelShader draw.cpp 822E3B80 ('821B9B20', 0.77, 0.72)
+MISS D3D_UnlockResource resource.cpp 822DCD78 ('821C3AA0', 0.27, 0.23)
+MISS D3DVertexBuffer_Unlock resource.cpp 822DD0E8 ('8249BCB0', 0.5, 0.5)
+MISS D3D_LockResource resource.cpp 822DCB40 ('82341440', 0.18, 0.17)
+MISS D3DVertexBuffer_Lock resource.cpp 822DD098 ('820E1578', 0.55, 0.53)
+MISS D3DIndexBuffer_Lock resource.cpp 822DD1A8 ('8247A008', 0.69, 0.65)
+MISS D3D_LockSurface resource.cpp 822DB650 ('821B7DB8', 0.35, 0.19)
+MISS D3D_Lock2DSurface resource.cpp 822DB718 ('821B7E78', 0.72, 0.54)
+MISS D3D_Lock3DSurface resource.cpp 822DB7A8 ('821B7F08', 0.76, 0.51)
+MISS D3DLineTexture_LockRect resource.cpp 822DBE88 ('8240A540', 1.0, 1.0)
+MISS D3D_GetSubresourceLayout resource.cpp 822DB190 ('821B7938', 0.36, 0.14)
+MISS D3DArrayTexture_UnlockRect resource.cpp 822DA420 ('821B8B30', 0.83, 0.5)
+MISS D3DConstantBuffer_Unlock resource.cpp 822DD1F0 ('82476318', 0.75, 0.75)
+MISS D3DTexture_GetSurfaceLevel resource.cpp 822DBDD0 ('821B85F8', 0.43, 0.42)
+MISS D3DCubeTexture_GetCubeMapSurface resource.cpp 822DBEA0 ('821B85F8', 0.48, 0.41)
+MISS D3DVolumeTexture_GetVolumeLevel resource.cpp 822DBF60 ('821B85F8', 0.47, 0.45)
+MISS D3DDevice_CreateIndexBuffer resource.cpp 822DD0F8 ('821C3EA8', 0.66, 0.37)
+MISS D3D_FindTextureSize resource.cpp 822DA700 ('821B6D58', 0.79, 0.22)
+MISS D3D_GetMaxMipLevels resource.cpp 822DA558 ('821B6BB0', 0.41, 0.2)
+MISS D3D_GetMipTailLevelOffsetCoords resource.cpp 822DAA70 ('821B7210', 0.53, 0.16)
+MISS D3DDevice_SetStreamSource state.cpp 822D72B0 None
+MISS D3DDevice_SetIndices state.cpp 822D7458 None
+MISS D3DDevice_SetVertexDeclaration state.cpp 822E4098 None
+MISS D3DDevice_SetViewport state.cpp 822D7AC8 None
+MISS D3D_SetViewport state.cpp 822D7850 None
+MISS D3D_CleanupGprAllocationSetup state.cpp 822E3540 None
+MISS D3DDevice_UnsetAll state.cpp 822D85F8 None
+MISS D3D_ResetAllState state.cpp 822D7758 None
+MISS D3DDevice_SetVertexShaderConstantB state.cpp 822E39C0 None
+MISS D3DDevice_SetPixelShaderConstantB state.cpp 822E3A20 None

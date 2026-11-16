@@ -1,0 +1,57 @@
+# S4ep1-nx: codegen options. Core speed set (x360-switch-port CPU step 1) from the first codegen.
+# non_argument_as_local (step 2) waits for tools/non_argument_audit.py on code generated without it.
+# TFU's version is in docs/from-tfu/app-config/.
+# TFU-nx (Star Wars: The Force Unleashed, title 4C4107D2, XDK 2.0.6534) - ReXGlue codegen configuration.
+# Copied from rr6-nx 1.0.1; its game-specific entries removed.
+# The project keeps banjo-nx's internal name "renut" (generated/renut_*.h, the renut / renut_recomp targets,
+# out/renut_image.bin) so banjo-nx's CMake, post-codegen passes and renderer glue work unchanged; the NRO and the SD
+# folder are rr6-nx (docs/rr6-notes.md, "Decisions").
+
+includes = [
+"config/renut_funcs.toml",
+"config/renut_hooks.toml",
+"overrides.toml",
+]
+
+# banjo-nx's optimised codegen keys that need no per-game audit (they change how the C++ is written, not what the
+# guest sees; banjo-nx's renut_config.toml carries the reasoning and the console measurements for each):
+cr_as_local = true
+ctr_as_local = true
+xer_as_local = true
+reserved_as_local = true
+skip_msr = true
+dform_disp_split = true
+fctiwz_inline = true
+fcti_inline = true
+dcbt_prefetch = true
+rotate_word_shifts = true
+fp_compares_modeless = true
+fp_mode_lookahead = true
+fp_mode_lookahead_past_branch = true
+fp_copy_pairs = true
+fp_copy_forwarding = true
+div_inline = true
+fp_moves_modeless = true
+
+# TFU-nx build 3 (2026-11-12, Mark's go-ahead): the register diet, audited on the cloud codegen (docs/progress-log.md).
+# read_before_write.py WITH the options: 28 normal functions with their own frames (infeasible paths), setjmp's
+# callers' env copies, and 10 vector routines reading v64-v92 at entry (a codec's, as katamari-nx and rr6-nx found):
+# v64-v127 kept in ctx. non_argument_audit.py WITHOUT the option: ENTRY 471 (453 MSVC unwind funclets taking r12, the
+# vector save / restore pair sub_82EE0FB8 / sub_82EE1300 and their callers, two taking r11 / r0), RET 59: all in
+# non_argument_as_local_keep (tools/diet_keep_list.py). WITH it: HANDOVER 1 (sub_8282B8C0 -> sub_82863528, a setjmp
+# env copy of r11, a volatile register nothing restores), read_before_write.py --volatile: 0.
+non_volatile_as_local = true
+elide_lr_stores = true
+non_volatile_as_local_keep = ["v64-v127"]
+# 471 ENTRY and 59 RET functions (tools/diet_keep_list.py, from tools/non_argument_audit.py).
+
+
+# setjmp / longjmp: the CRT's, which both Lua copies (5.1 and 5.0.2) call. Found by shape (tools: docs/scan.md):
+# setjmp 0x828197A0 is the image's only `stfd f14,0(r3)` (at +0x1C, after the hook word check, not in .pdata);
+# longjmp 0x8281A930 (.pdata length 0x314) holds the only `lfd f14,0(r7)` (at +0x3C). Same shapes as rr6-nx's pair.
+
+project_name = "renut"
+file_path = "assets/default.xex"
+out_directory_path = "generated"
+
+[functions]

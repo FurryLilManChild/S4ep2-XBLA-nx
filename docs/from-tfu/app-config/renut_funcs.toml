@@ -1,0 +1,10 @@
+# TFU-nx: function boundaries found by the analysis tools (pointer_fixpoint.py, gap_sweep.py, switch_check.py), each
+# with its evidence. Empty until the first sweeps.
+
+[functions]
+
+# First codegen (2026-11-10): "UnresolvedCall b 0x8242E02C from 0x8242E06C - target not in any function". A leaf with
+# no .pdata entry (0x8242DFF0-0x8242E070, between pdata 0x8242DE08+0x98 and 0x8242E080): a linear search over a word
+# array that ends in two blr; its found-path (0x8242E068: li r10,1) branches back into the body. Declared whole, so the
+# back branch stays inside it. The same shape just before it (0x8242DF?? .. 0x8242DFEC, `b 0x8242DFAC`) was found whole.
+"0x8242DFF0" = { size = 0x80 }

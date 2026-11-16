@@ -1,0 +1,80 @@
+reference: 68291 functions, 79 named; ours: 12551 functions
+BeginTiling                              ref 0x822F36E0 (294 ins) -> sub_821C2D30 0.38   next sub_821C30D0 0.16  (check)
+D3DArrayTexture_UnlockRect               ref 0x822DA420 (  6 ins) -> sub_821B8B30 0.83   next sub_821F6D70 0.50  (check)
+D3DBaseTexture_GetLevelCount             ref 0x822DBDB8 (  4 ins) -> sub_821B8518 1.00   next sub_8227DE60 0.80
+D3DConstantBuffer_Unlock                 ref 0x822DD1F0 (  4 ins) -> sub_82476318 0.75   next sub_82447B68 0.75  (check)
+D3DCubeTexture_GetCubeMapSurface         ref 0x822DBEA0 ( 46 ins) -> sub_821B85F8 0.48   next sub_821B8528 0.41  (check)
+D3DDevice_AcquireThreadOwnership         ref 0x822D85A8 ( 16 ins) -> sub_824998B8 0.81   next sub_8213C830 0.80  (check)
+D3DDevice_AddRef                         ref 0x822D8338 (  6 ins) -> sub_824496F8 0.50   next sub_82223B70 0.50  (check)
+D3DDevice_Clear                          ref 0x822F6918 ( 48 ins) -> sub_82217FA8 0.35   next sub_823E30D8 0.35  (check)
+D3DDevice_ClearF                         ref 0x822F67F0 ( 74 ins) -> sub_821B2FD0 0.82   next sub_821C2BC0 0.40  (check)
+D3DDevice_CreateIndexBuffer              ref 0x822DD0F8 ( 44 ins) -> sub_821C3EA8 0.66   next sub_824365E8 0.37  (check)
+D3DDevice_CreatePixelShader              ref 0x822E56A8 ( 68 ins) -> sub_821B9A30 0.59   next sub_821B9DD8 0.52  (check)
+D3DDevice_CreateSurface                  ref 0x822DC130 ( 74 ins) -> sub_821B88A8 0.76   next sub_8242DAC0 0.32  (check)
+D3DDevice_CreateTexture                  ref 0x822DC010 ( 72 ins) -> sub_821B8788 0.94   next sub_82384C30 0.30
+D3DDevice_CreateVertexBuffer             ref 0x822DCFD0 ( 50 ins) -> sub_821C3EA8 0.86   next sub_821A04D0 0.41
+D3DDevice_CreateVertexDeclaration        ref 0x822E41A0 ( 34 ins) -> sub_821BA1D8 0.85   next sub_822F3CF0 0.61  (check)
+D3DDevice_CreateVertexShader             ref 0x822E57B8 ( 60 ins) -> sub_821B9DD8 0.93   next sub_821B9A30 0.62
+D3DDevice_DrawIndexedTessellatedVertices ref 0x8281EAF8 (374 ins) -> sub_821BFE48 0.51   next sub_821C0238 0.49  (check)
+D3DDevice_DrawIndexedVertices            ref 0x8281E6A0 (278 ins) -> sub_821BFE48 0.62   next sub_821C0238 0.57  (check)
+D3DDevice_DrawVertices                   ref 0x8281E2B8 (250 ins) -> sub_821BFE48 0.67   next sub_821C0238 0.60  (check)
+D3DDevice_GetDeviceCaps                  ref 0x822DDBE8 (  6 ins) -> sub_821C6B80 1.00   next sub_8249F9F8 0.67
+D3DDevice_InsertCallback                 ref 0x822D9EE8 ( 22 ins) -> sub_8220E990 0.76   next sub_8220E940 0.76  (check)
+D3DDevice_IsFencePending                 ref 0x822D9D20 ( 30 ins) -> sub_821C66F8 0.76   next sub_820F8A00 0.59  (check)
+D3DDevice_Present                        ref 0x822E98D8 ( 76 ins) -> sub_8249E620 0.31   next sub_820F8B90 0.30  (check)
+D3DDevice_Release                        ref 0x822D84D0 ( 22 ins) -> sub_821C4B80 0.95   next sub_82210968 0.74
+D3DDevice_ReleaseThreadOwnership         ref 0x822D85E8 (  4 ins) -> sub_8249A388 0.75   next sub_8248B058 0.75  (check)
+D3DDevice_Resolve                        ref 0x822F47A8 (600 ins) -> sub_821C1C80 0.48   next sub_821B2920 0.31  (check)
+D3DDevice_SetGammaRamp                   ref 0x822D75B0 ( 50 ins) -> sub_821B6A48 0.78   next sub_821B6978 0.78  (check)
+D3DDevice_SetPWLGamma                    ref 0x822D7690 ( 50 ins) -> sub_821B6A48 0.78   next sub_821B6978 0.78  (check)
+D3DDevice_SetPixelShader                 ref 0x822E3B80 (112 ins) -> sub_821B9B20 0.77   next sub_821B9EC8 0.72  (check)
+D3DDevice_SetRingBufferParameters        ref 0x822D9F40 (274 ins) -> sub_821C6788 0.47   next sub_82493DB0 0.15  (check)
+D3DDevice_SetVertexShader                ref 0x822E3E80 (116 ins) -> sub_821B9EC8 0.77   next sub_821B9B20 0.69  (check)
+D3DDevice_Swap                           ref 0x822E9340 (358 ins) -> sub_821C0E58 0.52   next sub_821D0FC0 0.21  (check)
+D3DIndexBuffer_Lock                      ref 0x822DD1A8 ( 18 ins) -> sub_8247A008 0.69   next sub_82211FB8 0.65  (check)
+D3DLineTexture_LockRect                  ref 0x822DBE88 (  6 ins) -> sub_8240A540 1.00   next sub_82408C10 1.00  (check)
+D3DResource_AddRef                       ref 0x822DCE88 ( 30 ins) -> sub_821C3CB8 0.97   next sub_821C3D30 0.81
+D3DResource_Destroy                      ref 0x822DC958 (122 ins) -> sub_821C3580 0.46   next sub_8245FD60 0.29  (check)
+D3DResource_GetType                      ref 0x822DC898 ( 36 ins) -> sub_821C3E18 1.00   next sub_82380690 0.34
+D3DResource_Release                      ref 0x822DCF00 ( 32 ins) -> sub_821C3D30 0.94   next sub_821C3CB8 0.77
+D3DSurface_GetDesc                       ref 0x822DC258 ( 38 ins) -> sub_821B8A10 0.97   next sub_8247D840 0.66
+D3DSurface_LockRect                      ref 0x822DC2F0 (  8 ins) -> sub_821B8AA8 1.00   next sub_821B8B10 0.50
+D3DSurface_UnlockRect                    ref 0x822DA438 (  6 ins) -> sub_821B8B30 1.00   next sub_82119970 0.46
+D3DTexture_GetSurfaceLevel               ref 0x822DBDD0 ( 46 ins) -> sub_821B85F8 0.43   next sub_821B86C0 0.42  (check)
+D3DVertexBuffer_Lock                     ref 0x822DD098 ( 20 ins) -> sub_820E1578 0.55   next sub_820CD4A0 0.53  (check)
+D3DVertexBuffer_Unlock                   ref 0x822DD0E8 (  4 ins) -> sub_8249BCB0 0.50   next sub_8249AF78 0.50  (check)
+D3DVolumeTexture_GetVolumeLevel          ref 0x822DBF60 ( 44 ins) -> sub_821B85F8 0.47   next sub_821B86C0 0.45  (check)
+D3DVolume_GetDesc                        ref 0x822DC310 ( 18 ins) -> sub_821B8AC8 0.94   next sub_8249C3E8 0.81
+D3DVolume_LockBox                        ref 0x822DC358 (  8 ins) -> sub_821B8B10 1.00   next sub_82475198 0.71
+D3D_AlignTextureDimensions               ref 0x822DA5E0 ( 72 ins) -> sub_821B6C38 0.56   next sub_82190530 0.18  (check)
+D3D_BlockSizeOfGpuFormat                 ref 0x822DA4C0 ( 38 ins) -> sub_821B6B18 1.00   next sub_82224520 0.26
+D3D_CBlocker_Check                       ref 0x822D83F8 ( 54 ins) -> sub_821C4870 0.81   next sub_8235E9A8 0.28  (check)
+D3D_CDevice_BeginRingBig                 ref 0x822D9E08 ( 26 ins) -> sub_821C4D58 0.71   next sub_82234A68 0.40  (check)
+D3D_CDevice_BlockOnFence                 ref 0x822D9588 ( 50 ins) -> sub_821C62C8 0.46   next sub_821FEF20 0.33  (check)
+D3D_CDevice_KickOff                      ref 0x822D9BE8 ( 64 ins) -> sub_821C61C8 0.92   next sub_821D9388 0.39
+D3D_CDevice_KickOffSegment               ref 0x822D9A60 ( 98 ins) -> sub_821C5EE8 0.72   next sub_82327690 0.24  (check)
+D3D_FindTextureSize                      ref 0x822DA700 (220 ins) -> sub_821B6D58 0.79   next sub_821B7368 0.22  (check)
+D3D_Get2DSurfaceDesc                     ref 0x822DAF90 ( 64 ins) -> sub_821B7838 0.59   next sub_821B7738 0.59  (check)
+D3D_Get3DSurfaceDesc                     ref 0x822DB090 ( 64 ins) -> sub_821B7838 0.61   next sub_821B7738 0.59  (check)
+D3D_GetLevelLayout                       ref 0x822DABC8 (242 ins) -> sub_821B7368 0.66   next sub_821B7938 0.23  (check)
+D3D_GetMaxMipLevels                      ref 0x822DA558 ( 34 ins) -> sub_821B6BB0 0.41   next sub_823087D8 0.20  (check)
+D3D_GetMipTailLevelOffsetCoords          ref 0x822DAA70 ( 86 ins) -> sub_821B7210 0.53   next sub_821B6C38 0.16  (check)
+D3D_GetSubresourceLayout                 ref 0x822DB190 (304 ins) -> sub_821B7938 0.36   next sub_821B6D58 0.14  (check)
+D3D_GetTextureDimensions                 ref 0x822DA388 ( 38 ins) -> sub_821B70D8 0.92   next sub_821B7170 0.77
+D3D_InitializeApiState                   ref 0x822E1218 (154 ins) -> sub_821CF0A8 0.87   next sub_822F9378 0.17
+D3D_InitializePresentationParameters     ref 0x822E1480 (144 ins) -> sub_821CF318 0.66   next sub_823D0168 0.23  (check)
+D3D_Lock2DSurface                        ref 0x822DB718 ( 36 ins) -> sub_821B7E78 0.72   next sub_821B7F08 0.54  (check)
+D3D_Lock3DSurface                        ref 0x822DB7A8 ( 42 ins) -> sub_821B7F08 0.76   next sub_821B7E78 0.51  (check)
+D3D_LockResource                         ref 0x822DCB40 (142 ins) -> sub_82341440 0.18   next sub_821C37A0 0.17  (check)
+D3D_LockSurface                          ref 0x822DB650 ( 50 ins) -> sub_821B7DB8 0.35   next sub_823E9538 0.19  (check)
+D3D_RingBufferDeviceAllocate             ref 0x822D8D30 (130 ins) -> sub_821C5118 0.71   next sub_8212BFF0 0.21  (check)
+D3D_SetTextureHeader                     ref 0x822DB850 (196 ins) -> sub_821B7FB0 0.56   next sub_82355EB8 0.10  (check)
+D3D_SynchronizeToPresentationInterval    ref 0x822E8E98 (106 ins) -> sub_821C0920 0.31   next sub_821C0C88 0.24  (check)
+D3D_UnlockResource                       ref 0x822DCD78 ( 68 ins) -> sub_821C3AA0 0.27   next sub_82353928 0.23  (check)
+D3D_XenonGpu_Initialize                  ref 0x822EDAB8 (116 ins) -> sub_821D5578 0.33   next sub_821C3F70 0.17  (check)
+Direct3D_CreateDevice                    ref 0x822D8710 ( 54 ins) -> sub_822AD1B8 0.41   next sub_822AD120 0.39  (check)
+EndTiling                                ref 0x822F3B78 (304 ins) -> sub_821C30D0 0.64   next sub_821B23A8 0.19  (check)
+GameXMemFree                             ref 0x821CAE78 ( 52 ins) -> sub_82122A50 0.50   next sub_8242C9B8 0.44  (check)
+GetCurrentThreadId                       ref 0x822F7C38 (  4 ins) -> sub_82223E18 1.00   next sub_824355C0 0.75
+XGRegisterVertexShader                   ref 0x822E3D88 ( 62 ins) -> sub_821B9CE0 0.68   next sub_820F2600 0.25  (check)
+XPhysicalAlloc                           ref 0x821CB658 ( 34 ins) -> sub_822252B8 1.00   next sub_8221EFF0 0.53

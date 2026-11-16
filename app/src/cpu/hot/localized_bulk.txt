@@ -1,0 +1,2 @@
+# S4ep1-nx: machine copies by tools/switch_hot_bulk.py --merge (docs/optimising-functions.md). Empty until this
+# game's first console profile (TFU's list is in docs/from-tfu/app-config/).

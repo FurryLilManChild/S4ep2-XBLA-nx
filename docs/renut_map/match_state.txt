@@ -1,0 +1,17 @@
+reference: 68291 functions, 16 named; ours: 12551 functions
+D3DDevice_BlockUntilIdle                 ref 0x822D9E70 ( 30 ins) -> sub_821C6678 0.65   next sub_82221D88 0.58  (check)
+D3DDevice_SetDepthStencilSurface         ref 0x822D7F68 (182 ins) -> sub_821B6090 0.87   next sub_821B5D40 0.38
+D3DDevice_SetIndices                     ref 0x822D7458 ( 36 ins) -> sub_82427CD8 0.31   next sub_824061C0 0.30  (check)
+D3DDevice_SetPixelShaderConstantB        ref 0x822E3A20 ( 24 ins) -> sub_821B9898 0.50   next sub_821B9838 0.50  (check)
+D3DDevice_SetPredication                 ref 0x822F3570 ( 92 ins) -> sub_821C2BC0 0.90   next sub_821B2FD0 0.39
+D3DDevice_SetRenderTarget                ref 0x822D7C00 (218 ins) -> sub_821B5D40 0.59   next sub_821B6090 0.38  (check)
+D3DDevice_SetScissorRect                 ref 0x822D71B0 ( 64 ins) -> sub_821B5B28 0.62   next sub_820DD760 0.25  (check)
+D3DDevice_SetStreamSource                ref 0x822D72B0 ( 72 ins) -> sub_821B5C20 0.57   next sub_821B8B48 0.33  (check)
+D3DDevice_SetVertexDeclaration           ref 0x822E4098 (  6 ins) -> sub_821B42C8 0.83   next sub_821B42A8 0.83  (check)
+D3DDevice_SetVertexShaderConstantB       ref 0x822E39C0 ( 24 ins) -> sub_821B9898 0.50   next sub_821B9838 0.50  (check)
+D3DDevice_SetViewport                    ref 0x822D7AC8 ( 32 ins) -> sub_82487F50 0.37   next sub_820E12B8 0.36  (check)
+D3DDevice_UnsetAll                       ref 0x822D85F8 ( 68 ins) -> sub_821C4BD8 0.68   next sub_8231C598 0.27  (check)
+D3D_CleanupGprAllocationSetup            ref 0x822E3540 ( 70 ins) -> sub_821B8EB0 0.77   next sub_821C3F70 0.13  (check)
+D3D_ResetAllState                        ref 0x822D7758 ( 62 ins) -> sub_821B30F8 0.50   next sub_8210B5F0 0.35  (check)
+D3D_SetSurfaceInfo                       ref 0x822D7B68 ( 38 ins) -> sub_821B3220 0.24   next sub_820DE0A8 0.10  (check)
+D3D_SetViewport                          ref 0x822D7850 (154 ins) -> sub_821B35C8 0.65   next sub_821B6090 0.36  (check)

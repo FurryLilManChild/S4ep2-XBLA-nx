@@ -1,0 +1,8234 @@
+{
+ "821CAC58": {
+  "nights": "82223870",
+  "how": "call at +0x18 of 822E7680"
+ },
+ "821CAE78": {
+  "nights": "82223908",
+  "how": "seed los1 d3d_match 1.00 (same XDK) GameXMemFree"
+ },
+ "821CB0D0": {
+  "nights": "82223908",
+  "how": "unique shape"
+ },
+ "821CB610": {
+  "nights": "82225270",
+  "how": "unique shape"
+ },
+ "821CB658": {
+  "nights": "822252B8",
+  "how": "seed tfu d3d_match 1.00 (next 0.53) XPhysicalAlloc"
+ },
+ "821CB818": {
+  "nights": "82223A30",
+  "how": "unique shape"
+ },
+ "821CBA20": {
+  "nights": "82223C38",
+  "how": "call at +0xc of 822FC684"
+ },
+ "821CBC18": {
+  "nights": "82225068",
+  "how": "call at +0x2c of 822FC628"
+ },
+ "821CBE18": {
+  "nights": "8222C040",
+  "how": "call at +0x108 of 821CD288"
+ },
+ "821CBFD8": {
+  "nights": "8222C218",
+  "how": "call at +0x118 of 821CCEE0"
+ },
+ "821CC0F8": {
+  "nights": "8222C338",
+  "how": "call at +0x74 of 821CD048"
+ },
+ "821CC388": {
+  "nights": "8222C5C8",
+  "how": "call at +0x98 of 821CD048"
+ },
+ "821CC790": {
+  "nights": "8222C9D0",
+  "how": "call at +0x6d8 of 821CDBA0"
+ },
+ "821CCEE0": {
+  "nights": "8222D130",
+  "how": "call at +0x1f0 of 821CD048"
+ },
+ "821CD048": {
+  "nights": "8222D298",
+  "how": "call at +0x318 of 821CDBA0"
+ },
+ "821CD288": {
+  "nights": "8222D4D8",
+  "how": "call at +0x170 of 821CE488"
+ },
+ "821CDBA0": {
+  "nights": "8222DE10",
+  "how": "call at +0x28 of 821CB610"
+ },
+ "821CE434": {
+  "nights": "8222E6B8",
+  "how": "call at +0x85c of 821CDBA0"
+ },
+ "821CE488": {
+  "nights": "8222E708",
+  "how": "call at +0x28 of 822C1408"
+ },
+ "821CE71C": {
+  "nights": "8222E9AC",
+  "how": "call at +0x25c of 821CE488"
+ },
+ "821CF028": {
+  "nights": "8222F2E0",
+  "how": "call at +0x1c of 821CB610"
+ },
+ "821CF038": {
+  "nights": "82225410",
+  "how": "call at +0x68 of 821CB658"
+ },
+ "821CF040": {
+  "nights": "82224660",
+  "how": "call at +0xc of 822BF628"
+ },
+ "821CF050": {
+  "nights": "82225408",
+  "how": "call at +0x64 of 821CB818"
+ },
+ "821CF058": {
+  "nights": "82224D88",
+  "how": "unique shape"
+ },
+ "821CF070": {
+  "nights": "82224DA0",
+  "how": "unique shape"
+ },
+ "821CF0A8": {
+  "nights": "82224DD8",
+  "how": "unique shape"
+ },
+ "821CF0C8": {
+  "nights": "822253A0",
+  "how": "unique shape"
+ },
+ "821CF130": {
+  "nights": "82225470",
+  "how": "unique shape"
+ },
+ "822BF150": {
+  "nights": "82475B20",
+  "how": "call at +0x4 of 828B5980"
+ },
+ "822BF180": {
+  "nights": "82475B50",
+  "how": "call at +0x4 of 8289CB98"
+ },
+ "822BF200": {
+  "nights": "82476500",
+  "how": "unique shape"
+ },
+ "822BF2A0": {
+  "nights": "82477918",
+  "how": "call at +0x38 of 822C5FD0"
+ },
+ "822BF2A8": {
+  "nights": "82477BB8",
+  "how": "call at +0x20 of 822BF718"
+ },
+ "822BF2F8": {
+  "nights": "82477928",
+  "how": "call at +0xc of 822C0C7C"
+ },
+ "822BF558": {
+  "nights": "824A040C",
+  "how": "call at +0x1c of 822BF628"
+ },
+ "822BF628": {
+  "nights": "82477C30",
+  "how": "call at +0x10 of 822BF718"
+ },
+ "822BF718": {
+  "nights": "82477D08",
+  "how": "unique shape"
+ },
+ "822BF9D0": {
+  "nights": "82477F50",
+  "how": "unique shape"
+ },
+ "822BFDC0": {
+  "nights": "82478050",
+  "how": "unique shape"
+ },
+ "822C0100": {
+  "nights": "8227BC48",
+  "how": "state table row 9 col 1"
+ },
+ "822C01A8": {
+  "nights": "824743E8",
+  "how": "call at +0xc0 of 829F9DE0"
+ },
+ "822C03F0": {
+  "nights": "82478C60",
+  "how": "call at +0x127c of 829C6080"
+ },
+ "822C0450": {
+  "nights": "82475BD0",
+  "how": "unique shape"
+ },
+ "822C08D8": {
+  "nights": "82476058",
+  "how": "call at +0x1010 of 828B5980"
+ },
+ "822C0B10": {
+  "nights": "8247A040",
+  "how": "unique shape"
+ },
+ "822C0C7C": {
+  "nights": "824748C4",
+  "how": "unique shape"
+ },
+ "822C0D20": {
+  "nights": "8247A068",
+  "how": "call at +0xa24 of 82960FE8"
+ },
+ "822C0E38": {
+  "nights": "824751F0",
+  "how": "call at +0x94 of 822C0EF8"
+ },
+ "822C0EF8": {
+  "nights": "82475298",
+  "how": "call at +0x68 of 822CC938"
+ },
+ "822C0FDC": {
+  "nights": "8247535C",
+  "how": "call at +0xa4 of 822C0EF8"
+ },
+ "822C13F0": {
+  "nights": "82478038",
+  "how": "call at +0x110 of 82841E60"
+ },
+ "822C1408": {
+  "nights": "82474658",
+  "how": "call at +0x2c of 822C48C0"
+ },
+ "822C1468": {
+  "nights": "82476FC8",
+  "how": "call at +0x340 of 8295E0E8"
+ },
+ "822C1830": {
+  "nights": "824746B8",
+  "how": "call at +0x60 of 822C5FD0"
+ },
+ "822C20C0": {
+  "nights": "82478B60",
+  "how": "call at +0x200 of 82843C20"
+ },
+ "822C2100": {
+  "nights": "82478BA0",
+  "how": "call at +0x44 of 82843160"
+ },
+ "822C2120": {
+  "nights": "82478BC0",
+  "how": "call at +0x2c of 828288A0"
+ },
+ "822C2140": {
+  "nights": "82478BE0",
+  "how": "call at +0x40 of 828288A0"
+ },
+ "822C2540": {
+  "nights": "82476100",
+  "how": "call at +0xc of 829C6080"
+ },
+ "822C255C": {
+  "nights": "8247611C",
+  "how": "call at +0xc of 829ADE10"
+ },
+ "822C2570": {
+  "nights": "82476130",
+  "how": "call at +0xc of 82969A20"
+ },
+ "822C2578": {
+  "nights": "82476138",
+  "how": "call at +0xc of 82983B00"
+ },
+ "822C25C4": {
+  "nights": "82476184",
+  "how": "call at +0x128 of 82992A70"
+ },
+ "822C25E4": {
+  "nights": "82478D84",
+  "how": "unique shape"
+ },
+ "822C2608": {
+  "nights": "82474C70",
+  "how": "call at +0xc of 822F0FC8"
+ },
+ "822C2AE0": {
+  "nights": "82478D78",
+  "how": "call at +0x288 of 82841E60"
+ },
+ "822C2AE8": {
+  "nights": "8247BA38",
+  "how": "call at +0x38 of 822C3E30"
+ },
+ "822C2B98": {
+  "nights": "8247BA88",
+  "how": "call at +0x34 of 822C3E30"
+ },
+ "822C2C60": {
+  "nights": "82474550",
+  "how": "call at +0x220 of 82841E60"
+ },
+ "822C2EF8": {
+  "nights": "82478880",
+  "how": "call at +0x30 of 82303DA0"
+ },
+ "822C2F08": {
+  "nights": "8247A6D8",
+  "how": "unique shape"
+ },
+ "822C3E30": {
+  "nights": "82474608",
+  "how": "unique shape"
+ },
+ "822C3E80": {
+  "nights": "82478DA8",
+  "how": "call at +0x30 of 828444A0"
+ },
+ "822C3E98": {
+  "nights": "82473E80",
+  "how": "call at +0x38c of 828BE790"
+ },
+ "822C4020": {
+  "nights": "82475398",
+  "how": "unique shape"
+ },
+ "822C4790": {
+  "nights": "8247C5F0",
+  "how": "call at +0xb4 of 822C74A8"
+ },
+ "822C48C0": {
+  "nights": "8247C728",
+  "how": "unique shape"
+ },
+ "822C4900": {
+  "nights": "8247C768",
+  "how": "call at +0x88 of 822C0EF8"
+ },
+ "822C4970": {
+  "nights": "8247C7D8",
+  "how": "unique shape"
+ },
+ "822C49C0": {
+  "nights": "8247C828",
+  "how": "call at +0x28 of 8281B5E4"
+ },
+ "822C4A08": {
+  "nights": "8247C868",
+  "how": "unique shape"
+ },
+ "822C4E30": {
+  "nights": "8247D8A8",
+  "how": "call at +0x64 of 822C0E38"
+ },
+ "822C5228": {
+  "nights": "8247DB98",
+  "how": "call at +0xc of 822C48C0"
+ },
+ "822C5428": {
+  "nights": "824994A8",
+  "how": "unique shape"
+ },
+ "822C5A68": {
+  "nights": "82482778",
+  "how": "call at +0x20 of 822C5B40"
+ },
+ "822C5B40": {
+  "nights": "8247A168",
+  "how": "call at +0x60 of 822BF628"
+ },
+ "822C5BC8": {
+  "nights": "8247B8E8",
+  "how": "call at +0x50 of 822C5CA0"
+ },
+ "822C5C30": {
+  "nights": "8247B958",
+  "how": "call at +0x20 of 822D2978"
+ },
+ "822C5C68": {
+  "nights": "8247B990",
+  "how": "call at +0x28 of 822CB508"
+ },
+ "822C5CA0": {
+  "nights": "8247B9C8",
+  "how": "unique shape"
+ },
+ "822C5E90": {
+  "nights": "8247BB20",
+  "how": "call at +0x14 of 822BF2A8"
+ },
+ "822C5FB0": {
+  "nights": "8247FDE8",
+  "how": "call at +0x30 of 8281B5E4"
+ },
+ "822C5FD0": {
+  "nights": "8247FF28",
+  "how": "call at +0x2c of 822C6110"
+ },
+ "822C60C4": {
+  "nights": "8248001C",
+  "how": "unique shape"
+ },
+ "822C60E0": {
+  "nights": "82480038",
+  "how": "unique shape"
+ },
+ "822C6110": {
+  "nights": "82480068",
+  "how": "call at +0x20 of 822C4970"
+ },
+ "822C6260": {
+  "nights": "8247B7E8",
+  "how": "call at +0x60 of 822C0EF8"
+ },
+ "822C6370": {
+  "nights": "8247FE08",
+  "how": "call at +0xa4 of 822C5FD0"
+ },
+ "822C6430": {
+  "nights": "8247A4D8",
+  "how": "unique shape"
+ },
+ "822C6770": {
+  "nights": "8247DCF0",
+  "how": "unique shape"
+ },
+ "822C6790": {
+  "nights": "8247DD10",
+  "how": "unique shape"
+ },
+ "822C7450": {
+  "nights": "8247E8D8",
+  "how": "unique shape"
+ },
+ "822C74A8": {
+  "nights": "8247AA00",
+  "how": "call at +0x60 of 822C7678"
+ },
+ "822C7678": {
+  "nights": "82482918",
+  "how": "unique shape"
+ },
+ "822C9968": {
+  "nights": "8247D5F8",
+  "how": "call at +0xe4 of 822C9A48"
+ },
+ "822C9A48": {
+  "nights": "8247D6E0",
+  "how": "call at +0x7c of 822C0E38"
+ },
+ "822C9B84": {
+  "nights": "8247D808",
+  "how": "call at +0x10c of 822C9A48"
+ },
+ "822C9BC0": {
+  "nights": "824751B0",
+  "how": "call at +0x18 of 822C74A8"
+ },
+ "822C9C18": {
+  "nights": "8247D840",
+  "how": "call at +0x70 of 822C0E38"
+ },
+ "822CA320": {
+  "nights": "82478010",
+  "how": "unique shape"
+ },
+ "822CB2B0": {
+  "nights": "82481958",
+  "how": "call at +0xf4 of 822CB508"
+ },
+ "822CB508": {
+  "nights": "82481BA0",
+  "how": "call at +0x128 of 822C74A8"
+ },
+ "822CB660": {
+  "nights": "82481CE4",
+  "how": "call at +0x128 of 822CB508"
+ },
+ "822CB750": {
+  "nights": "82480D90",
+  "how": "call at +0x3c of 822CDDF8"
+ },
+ "822CC418": {
+  "nights": "8247A830",
+  "how": "unique shape"
+ },
+ "822CC468": {
+  "nights": "8247A880",
+  "how": "call at +0x20 of 822CC858"
+ },
+ "822CC5D8": {
+  "nights": "82476368",
+  "how": "call at +0x660 of 82A042B8"
+ },
+ "822CC788": {
+  "nights": "82478DC0",
+  "how": "call at +0x3c of 829EBC18"
+ },
+ "822CC7C0": {
+  "nights": "82478DF8",
+  "how": "call at +0x60 of 829EBC18"
+ },
+ "822CC7F0": {
+  "nights": "82478E28",
+  "how": "call at +0x38c of 829A8448"
+ },
+ "822CC810": {
+  "nights": "82478E48",
+  "how": "unique shape"
+ },
+ "822CC858": {
+  "nights": "82478E90",
+  "how": "call at +0x14 of 829EB248"
+ },
+ "822CC938": {
+  "nights": "82483C08",
+  "how": "call at +0x20 of 822C48C0"
+ },
+ "822CC9F8": {
+  "nights": "82483CC8",
+  "how": "call at +0xb0 of 822CC938"
+ },
+ "822CCB54": {
+  "nights": "82483E10",
+  "how": "unique shape"
+ },
+ "822CDDF8": {
+  "nights": "82483E68",
+  "how": "call at +0x28 of 822C6790"
+ },
+ "822CDEA0": {
+  "nights": "82483F10",
+  "how": "call at +0x3c of 822C6790"
+ },
+ "822CE260": {
+  "nights": "824834F8",
+  "how": "call at +0xfc of 822CE328"
+ },
+ "822CE328": {
+  "nights": "824835C8",
+  "how": "call at +0x184 of 822C74A8"
+ },
+ "822CE484": {
+  "nights": "82483710",
+  "how": "call at +0x12c of 822CE328"
+ },
+ "822CE4C0": {
+  "nights": "82483748",
+  "how": "call at +0xe8 of 822C74A8"
+ },
+ "822CE678": {
+  "nights": "824838D0",
+  "how": "unique shape"
+ },
+ "822D03B8": {
+  "nights": "824844E0",
+  "how": "unique shape"
+ },
+ "822D0488": {
+  "nights": "8247BD48",
+  "how": "call at +0x94 of 822C9968"
+ },
+ "822D0520": {
+  "nights": "8247BDE0",
+  "how": "call at +0x20 of 822CE260"
+ },
+ "822D05F0": {
+  "nights": "8247BEA0",
+  "how": "call at +0xcc of 822CB508"
+ },
+ "822D06B0": {
+  "nights": "8247BF68",
+  "how": "call at +0x8c of 822D05F0"
+ },
+ "822D06E8": {
+  "nights": "8247BFA0",
+  "how": "call at +0x1c of 822CB660"
+ },
+ "822D1078": {
+  "nights": "82484558",
+  "how": "call at +0x4c of 822CDDF8"
+ },
+ "822D1790": {
+  "nights": "82484C70",
+  "how": "call at +0x4c of 822CDEA0"
+ },
+ "822D2978": {
+  "nights": "824807B0",
+  "how": "unique shape"
+ },
+ "822D29C0": {
+  "nights": "824807F8",
+  "how": "unique shape"
+ },
+ "822D2DE0": {
+  "nights": "82480C10",
+  "how": "unique shape"
+ },
+ "822D2E20": {
+  "nights": "82480C50",
+  "how": "unique shape"
+ },
+ "822D2E44": {
+  "nights": "82480C74",
+  "how": "unique shape"
+ },
+ "822D2E74": {
+  "nights": "82480CA4",
+  "how": "unique shape"
+ },
+ "822D4960": {
+  "nights": "82478268",
+  "how": "unique shape"
+ },
+ "822D4B80": {
+  "nights": "82480CC0",
+  "how": "unique shape"
+ },
+ "822D4B98": {
+  "nights": "821B32D8",
+  "how": "call at +0xe4 of 822D71B0"
+ },
+ "822D4E78": {
+  "nights": "821B3820",
+  "how": "state table row 14 col 1"
+ },
+ "822D4E98": {
+  "nights": "821B3840",
+  "how": "state table row 14 col 0"
+ },
+ "822D4EA8": {
+  "nights": "821B3850",
+  "how": "state table row 13 col 1"
+ },
+ "822D4EC8": {
+  "nights": "821B3870",
+  "how": "state table row 13 col 0"
+ },
+ "822D4ED8": {
+  "nights": "821B3880",
+  "how": "state table row 24 col 1"
+ },
+ "822D4F00": {
+  "nights": "821B38A8",
+  "how": "state table row 24 col 0"
+ },
+ "822D4F10": {
+  "nights": "821B38B8",
+  "how": "state table row 15 col 1"
+ },
+ "822D4F90": {
+  "nights": "821B3938",
+  "how": "state table row 15 col 0"
+ },
+ "822D4FA0": {
+  "nights": "821B3948",
+  "how": "state table row 20 col 1"
+ },
+ "822D5020": {
+  "nights": "821B39C8",
+  "how": "state table row 20 col 0"
+ },
+ "822D5030": {
+  "nights": "821B39D8",
+  "how": "state table row 18 col 1"
+ },
+ "822D50B0": {
+  "nights": "821B3A58",
+  "how": "state table row 18 col 0"
+ },
+ "822D50C0": {
+  "nights": "821B3A68",
+  "how": "state table row 19 col 1"
+ },
+ "822D5140": {
+  "nights": "821B3AE8",
+  "how": "state table row 19 col 0"
+ },
+ "822D5150": {
+  "nights": "821B3AF8",
+  "how": "state table row 23 col 1"
+ },
+ "822D51B0": {
+  "nights": "821B3B58",
+  "how": "state table row 23 col 0"
+ },
+ "822D51C0": {
+  "nights": "821B3B68",
+  "how": "state table row 21 col 1"
+ },
+ "822D5220": {
+  "nights": "821B3BC8",
+  "how": "state table row 21 col 0"
+ },
+ "822D5230": {
+  "nights": "821B3BD8",
+  "how": "state table row 22 col 1"
+ },
+ "822D5290": {
+  "nights": "821B3C38",
+  "how": "state table row 22 col 0"
+ },
+ "822D52A0": {
+  "nights": "821B3C48",
+  "how": "state table row 16 col 1"
+ },
+ "822D5328": {
+  "nights": "821B3CD0",
+  "how": "state table row 16 col 0"
+ },
+ "822D5338": {
+  "nights": "821B3CE0",
+  "how": "state table row 25 col 1"
+ },
+ "822D5370": {
+  "nights": "821B3D18",
+  "how": "state table row 25 col 0"
+ },
+ "822D53A0": {
+  "nights": "821B3D48",
+  "how": "state table row 26 col 1"
+ },
+ "822D53C0": {
+  "nights": "821B3D68",
+  "how": "state table row 26 col 0"
+ },
+ "822D53D0": {
+  "nights": "821B3D78",
+  "how": "state table row 17 col 1"
+ },
+ "822D5470": {
+  "nights": "821B3E10",
+  "how": "state table row 17 col 0"
+ },
+ "822D54F0": {
+  "nights": "821B3E88",
+  "how": "state table row 98 col 1"
+ },
+ "822D5518": {
+  "nights": "821B3EB0",
+  "how": "state table row 98 col 0"
+ },
+ "822D5528": {
+  "nights": "821B3EC0",
+  "how": "state table row 99 col 1"
+ },
+ "822D5568": {
+  "nights": "821B3F00",
+  "how": "state table row 99 col 0"
+ },
+ "822D5598": {
+  "nights": "821B3F38",
+  "how": "state table row 100 col 1"
+ },
+ "822D55B8": {
+  "nights": "821B3F58",
+  "how": "state table row 100 col 0"
+ },
+ "822D55C8": {
+  "nights": "821B3F68",
+  "how": "state table row 10 col 1"
+ },
+ "822D5600": {
+  "nights": "821B3FA0",
+  "how": "state table row 10 col 0"
+ },
+ "822D5608": {
+  "nights": "821B3FA8",
+  "how": "state table row 12 col 1"
+ },
+ "822D5628": {
+  "nights": "821B3FC8",
+  "how": "state table row 12 col 0"
+ },
+ "822D5638": {
+  "nights": "821B3FD8",
+  "how": "state table row 11 col 1"
+ },
+ "822D5660": {
+  "nights": "821B4000",
+  "how": "state table row 11 col 0"
+ },
+ "822D5670": {
+  "nights": "821B4010",
+  "how": "state table row 27 col 1"
+ },
+ "822D56A8": {
+  "nights": "821B4048",
+  "how": "state table row 27 col 0"
+ },
+ "822D56B0": {
+  "nights": "821B4050",
+  "how": "state table row 28 col 1"
+ },
+ "822D56D8": {
+  "nights": "821B4078",
+  "how": "state table row 28 col 0"
+ },
+ "822D56E8": {
+  "nights": "821B4088",
+  "how": "state table row 32 col 1"
+ },
+ "822D5708": {
+  "nights": "821B40A8",
+  "how": "state table row 32 col 0"
+ },
+ "822D5718": {
+  "nights": "821B40B8",
+  "how": "state table row 29 col 1"
+ },
+ "822D5740": {
+  "nights": "821B40E0",
+  "how": "state table row 29 col 0"
+ },
+ "822D5750": {
+  "nights": "821B40F0",
+  "how": "state table row 30 col 1"
+ },
+ "822D5778": {
+  "nights": "821B4118",
+  "how": "state table row 30 col 0"
+ },
+ "822D5788": {
+  "nights": "821B4128",
+  "how": "state table row 31 col 1"
+ },
+ "822D57A8": {
+  "nights": "821B4148",
+  "how": "state table row 31 col 0"
+ },
+ "822D57B8": {
+  "nights": "821B4158",
+  "how": "state table row 39 col 1"
+ },
+ "822D57D8": {
+  "nights": "821B4178",
+  "how": "state table row 39 col 0"
+ },
+ "822D57E8": {
+  "nights": "821B4188",
+  "how": "state table row 36 col 1"
+ },
+ "822D5810": {
+  "nights": "821B41B0",
+  "how": "state table row 36 col 0"
+ },
+ "822D5820": {
+  "nights": "821B41C0",
+  "how": "state table row 37 col 1"
+ },
+ "822D5848": {
+  "nights": "821B41E8",
+  "how": "state table row 37 col 0"
+ },
+ "822D5858": {
+  "nights": "821B41F8",
+  "how": "state table row 38 col 1"
+ },
+ "822D5878": {
+  "nights": "821B4218",
+  "how": "state table row 38 col 0"
+ },
+ "822D5888": {
+  "nights": "821B4228",
+  "how": "state table row 33 col 1"
+ },
+ "822D58A0": {
+  "nights": "821B4240",
+  "how": "state table row 33 col 0"
+ },
+ "822D58A8": {
+  "nights": "821B4248",
+  "how": "state table row 34 col 1"
+ },
+ "822D58C0": {
+  "nights": "821B4260",
+  "how": "state table row 34 col 0"
+ },
+ "822D58C8": {
+  "nights": "821B4268",
+  "how": "state table row 35 col 1"
+ },
+ "822D58E0": {
+  "nights": "821B4280",
+  "how": "state table row 35 col 0"
+ },
+ "822D58E8": {
+  "nights": "821B4288",
+  "how": "state table row 40 col 1"
+ },
+ "822D5900": {
+  "nights": "821B42A0",
+  "how": "state table row 40 col 0"
+ },
+ "822D5908": {
+  "nights": "821B42A8",
+  "how": "state table row 41 col 1"
+ },
+ "822D5920": {
+  "nights": "821B42C0",
+  "how": "state table row 41 col 0"
+ },
+ "822D5928": {
+  "nights": "821B42C8",
+  "how": "state table row 42 col 1"
+ },
+ "822D5940": {
+  "nights": "821B42E0",
+  "how": "state table row 42 col 0"
+ },
+ "822D5948": {
+  "nights": "821B42E8",
+  "how": "state table row 43 col 1"
+ },
+ "822D5988": {
+  "nights": "821B4330",
+  "how": "state table row 43 col 0"
+ },
+ "822D5998": {
+  "nights": "821B4350",
+  "how": "state table row 50 col 0"
+ },
+ "822D59A0": {
+  "nights": "821B4358",
+  "how": "state table row 51 col 1"
+ },
+ "822D5A48": {
+  "nights": "821B4400",
+  "how": "state table row 51 col 0"
+ },
+ "822D5A68": {
+  "nights": "821B4420",
+  "how": "state table row 52 col 1"
+ },
+ "822D5B00": {
+  "nights": "821B44B8",
+  "how": "state table row 52 col 0"
+ },
+ "822D5B10": {
+  "nights": "821B44C8",
+  "how": "state table row 48 col 1"
+ },
+ "822D5B30": {
+  "nights": "821B44E8",
+  "how": "state table row 48 col 0"
+ },
+ "822D5B40": {
+  "nights": "821B44F8",
+  "how": "state table row 49 col 1"
+ },
+ "822D5B58": {
+  "nights": "821B4510",
+  "how": "state table row 49 col 0"
+ },
+ "822D5B60": {
+  "nights": "821B4518",
+  "how": "state table row 53 col 1"
+ },
+ "822D5B98": {
+  "nights": "821B4550",
+  "how": "state table row 53 col 0"
+ },
+ "822D5BA0": {
+  "nights": "821B4558",
+  "how": "state table row 54 col 1"
+ },
+ "822D5BD8": {
+  "nights": "821B4590",
+  "how": "state table row 54 col 0"
+ },
+ "822D5BE0": {
+  "nights": "821B4598",
+  "how": "state table row 55 col 1"
+ },
+ "822D5C18": {
+  "nights": "821B45D0",
+  "how": "state table row 55 col 0"
+ },
+ "822D5C20": {
+  "nights": "821B45D8",
+  "how": "state table row 56 col 1"
+ },
+ "822D5C58": {
+  "nights": "821B4610",
+  "how": "state table row 56 col 0"
+ },
+ "822D5C60": {
+  "nights": "821B4618",
+  "how": "state table row 46 col 1"
+ },
+ "822D5C68": {
+  "nights": "821B4620",
+  "how": "state table row 46 col 0"
+ },
+ "822D5C70": {
+  "nights": "821B4628",
+  "how": "state table row 44 col 1"
+ },
+ "822D5CC0": {
+  "nights": "821B4678",
+  "how": "state table row 44 col 0"
+ },
+ "822D5CD0": {
+  "nights": "821B4688",
+  "how": "state table row 45 col 1"
+ },
+ "822D5D18": {
+  "nights": "821B46C8",
+  "how": "state table row 45 col 0"
+ },
+ "822D5D28": {
+  "nights": "821B46D8",
+  "how": "state table row 47 col 1"
+ },
+ "822D5D70": {
+  "nights": "821B4718",
+  "how": "state table row 47 col 0"
+ },
+ "822D5D80": {
+  "nights": "821B4728",
+  "how": "state table row 60 col 1"
+ },
+ "822D5DA0": {
+  "nights": "821B4748",
+  "how": "state table row 61 col 1"
+ },
+ "822D5DC8": {
+  "nights": "821B4770",
+  "how": "state table row 62 col 1"
+ },
+ "822D5DF0": {
+  "nights": "821B4798",
+  "how": "state table row 63 col 1"
+ },
+ "822D5E18": {
+  "nights": "821B47C0",
+  "how": "state table row 64 col 1"
+ },
+ "822D5E40": {
+  "nights": "821B47E8",
+  "how": "state table row 65 col 1"
+ },
+ "822D5E68": {
+  "nights": "821B4810",
+  "how": "state table row 66 col 1"
+ },
+ "822D5E90": {
+  "nights": "821B4838",
+  "how": "state table row 67 col 1"
+ },
+ "822D5EB0": {
+  "nights": "821B4858",
+  "how": "state table row 68 col 1"
+ },
+ "822D5ED0": {
+  "nights": "821B4878",
+  "how": "state table row 69 col 1"
+ },
+ "822D5EF8": {
+  "nights": "821B48A0",
+  "how": "state table row 70 col 1"
+ },
+ "822D5F20": {
+  "nights": "821B48C8",
+  "how": "state table row 71 col 1"
+ },
+ "822D5F48": {
+  "nights": "821B48F0",
+  "how": "state table row 72 col 1"
+ },
+ "822D5F70": {
+  "nights": "821B4918",
+  "how": "state table row 73 col 1"
+ },
+ "822D5F98": {
+  "nights": "821B4940",
+  "how": "state table row 74 col 1"
+ },
+ "822D5FC0": {
+  "nights": "821B4968",
+  "how": "state table row 75 col 1"
+ },
+ "822D5FE0": {
+  "nights": "821B4988",
+  "how": "state table row 60 col 0"
+ },
+ "822D5FF0": {
+  "nights": "821B4998",
+  "how": "state table row 61 col 0"
+ },
+ "822D6000": {
+  "nights": "821B49A8",
+  "how": "state table row 62 col 0"
+ },
+ "822D6010": {
+  "nights": "821B49B8",
+  "how": "state table row 63 col 0"
+ },
+ "822D6020": {
+  "nights": "821B49C8",
+  "how": "state table row 64 col 0"
+ },
+ "822D6030": {
+  "nights": "821B49D8",
+  "how": "state table row 65 col 0"
+ },
+ "822D6040": {
+  "nights": "821B49E8",
+  "how": "state table row 66 col 0"
+ },
+ "822D6050": {
+  "nights": "821B49F8",
+  "how": "state table row 67 col 0"
+ },
+ "822D6060": {
+  "nights": "821B4A08",
+  "how": "state table row 68 col 0"
+ },
+ "822D6070": {
+  "nights": "821B4A18",
+  "how": "state table row 69 col 0"
+ },
+ "822D6080": {
+  "nights": "821B4A28",
+  "how": "state table row 70 col 0"
+ },
+ "822D6090": {
+  "nights": "821B4A38",
+  "how": "state table row 71 col 0"
+ },
+ "822D60A0": {
+  "nights": "821B4A48",
+  "how": "state table row 72 col 0"
+ },
+ "822D60B0": {
+  "nights": "821B4A58",
+  "how": "state table row 73 col 0"
+ },
+ "822D60C0": {
+  "nights": "821B4A68",
+  "how": "state table row 74 col 0"
+ },
+ "822D60D0": {
+  "nights": "821B4A78",
+  "how": "state table row 75 col 0"
+ },
+ "822D60E0": {
+  "nights": "821B4A88",
+  "how": "state table row 76 col 1"
+ },
+ "822D6120": {
+  "nights": "821B4AC8",
+  "how": "state table row 76 col 0"
+ },
+ "822D6130": {
+  "nights": "821B4AD8",
+  "how": "state table row 77 col 1"
+ },
+ "822D61D8": {
+  "nights": "821B4B68",
+  "how": "state table row 77 col 0"
+ },
+ "822D61E0": {
+  "nights": "821B4B70",
+  "how": "state table row 78 col 1"
+ },
+ "822D6288": {
+  "nights": "821B4C00",
+  "how": "state table row 78 col 0"
+ },
+ "822D6290": {
+  "nights": "821B4C08",
+  "how": "state table row 79 col 1"
+ },
+ "822D6338": {
+  "nights": "821B4C98",
+  "how": "state table row 79 col 0"
+ },
+ "822D6340": {
+  "nights": "821B4CA0",
+  "how": "state table row 80 col 1"
+ },
+ "822D63E8": {
+  "nights": "821B4D30",
+  "how": "state table row 80 col 0"
+ },
+ "822D63F0": {
+  "nights": "821B4D38",
+  "how": "state table row 58 col 1"
+ },
+ "822D6418": {
+  "nights": "821B4D60",
+  "how": "state table row 58 col 0"
+ },
+ "822D6428": {
+  "nights": "821B4D70",
+  "how": "state table row 59 col 1"
+ },
+ "822D6450": {
+  "nights": "821B4D98",
+  "how": "state table row 59 col 0"
+ },
+ "822D6460": {
+  "nights": "821B4DA8",
+  "how": "state table row 57 col 1"
+ },
+ "822D6488": {
+  "nights": "821B4DD0",
+  "how": "state table row 57 col 0"
+ },
+ "822D6498": {
+  "nights": "821B4DE0",
+  "how": "state table row 81 col 1"
+ },
+ "822D64C0": {
+  "nights": "821B4E08",
+  "how": "state table row 81 col 0"
+ },
+ "822D64D0": {
+  "nights": "821B4E18",
+  "how": "state table row 82 col 1"
+ },
+ "822D64F0": {
+  "nights": "821B4E38",
+  "how": "state table row 82 col 0"
+ },
+ "822D6500": {
+  "nights": "821B4E48",
+  "how": "state table row 83 col 1"
+ },
+ "822D6520": {
+  "nights": "821B4E68",
+  "how": "state table row 83 col 0"
+ },
+ "822D6528": {
+  "nights": "821B4E70",
+  "how": "state table row 84 col 1"
+ },
+ "822D6548": {
+  "nights": "821B4E90",
+  "how": "state table row 84 col 0"
+ },
+ "822D6558": {
+  "nights": "821B4EA0",
+  "how": "state table row 85 col 1"
+ },
+ "822D6578": {
+  "nights": "821B4EC0",
+  "how": "state table row 85 col 0"
+ },
+ "822D6590": {
+  "nights": "821B4EC8",
+  "how": "state table row 86 col 1"
+ },
+ "822D65B8": {
+  "nights": "821B4EF0",
+  "how": "state table row 86 col 0"
+ },
+ "822D65C0": {
+  "nights": "821B4EF8",
+  "how": "state table row 87 col 1"
+ },
+ "822D65E8": {
+  "nights": "821B4F20",
+  "how": "state table row 87 col 0"
+ },
+ "822D65F0": {
+  "nights": "821B4F28",
+  "how": "state table row 88 col 1"
+ },
+ "822D6610": {
+  "nights": "821B4F48",
+  "how": "state table row 88 col 0"
+ },
+ "822D6618": {
+  "nights": "821B4F50",
+  "how": "state table row 89 col 1"
+ },
+ "822D6640": {
+  "nights": "821B4F78",
+  "how": "state table row 89 col 0"
+ },
+ "822D6648": {
+  "nights": "821B4F80",
+  "how": "state table row 96 col 1"
+ },
+ "822D6668": {
+  "nights": "821B4FA0",
+  "how": "state table row 96 col 0"
+ },
+ "822D6678": {
+  "nights": "821B4FB0",
+  "how": "state table row 97 col 1"
+ },
+ "822D66D0": {
+  "nights": "821B5008",
+  "how": "state table row 97 col 0"
+ },
+ "822D66E0": {
+  "nights": "821B5018",
+  "how": "state table row 90 col 1"
+ },
+ "822D6700": {
+  "nights": "821B5038",
+  "how": "state table row 90 col 0"
+ },
+ "822D6710": {
+  "nights": "821B5048",
+  "how": "state table row 91 col 1"
+ },
+ "822D6730": {
+  "nights": "821B5068",
+  "how": "state table row 91 col 0"
+ },
+ "822D6740": {
+  "nights": "821B5078",
+  "how": "state table row 92 col 1"
+ },
+ "822D6760": {
+  "nights": "821B5098",
+  "how": "state table row 92 col 0"
+ },
+ "822D6770": {
+  "nights": "821B50A8",
+  "how": "state table row 93 col 1"
+ },
+ "822D6788": {
+  "nights": "821B50C0",
+  "how": "state table row 93 col 0"
+ },
+ "822D6790": {
+  "nights": "821B50C8",
+  "how": "state table row 94 col 1"
+ },
+ "822D6798": {
+  "nights": "821B50D0",
+  "how": "state table row 94 col 0"
+ },
+ "822D67A0": {
+  "nights": "821B50D8",
+  "how": "state table row 95 col 1"
+ },
+ "822D67B0": {
+  "nights": "821B50E8",
+  "how": "state table row 95 col 0"
+ },
+ "822D67C0": {
+  "nights": "821B50F8",
+  "how": "state table row 5 col 1"
+ },
+ "822D6880": {
+  "nights": "821B51C0",
+  "how": "state table row 5 col 0"
+ },
+ "822D68B8": {
+  "nights": "821B51F8",
+  "how": "state table row 11 col 1"
+ },
+ "822D6940": {
+  "nights": "821B5290",
+  "how": "state table row 11 col 0"
+ },
+ "822D6950": {
+  "nights": "821B52A0",
+  "how": "state table row 4 col 1"
+ },
+ "822D6A10": {
+  "nights": "821B5368",
+  "how": "state table row 4 col 0"
+ },
+ "822D6A48": {
+  "nights": "821B53A0",
+  "how": "state table row 10 col 1"
+ },
+ "822D6AD0": {
+  "nights": "821B5430",
+  "how": "state table row 10 col 0"
+ },
+ "822D6AE0": {
+  "nights": "821B5440",
+  "how": "state table row 6 col 1"
+ },
+ "822D6B20": {
+  "nights": "821B5480",
+  "how": "state table row 6 col 0"
+ },
+ "822D6B38": {
+  "nights": "821B5498",
+  "how": "state table row 12 col 1"
+ },
+ "822D6BC0": {
+  "nights": "821B5530",
+  "how": "state table row 12 col 0"
+ },
+ "822D6BD0": {
+  "nights": "821B5540",
+  "how": "state table row 9 col 1"
+ },
+ "822D6C38": {
+  "nights": "821B55A8",
+  "how": "state table row 9 col 0"
+ },
+ "822D6C48": {
+  "nights": "821B55B8",
+  "how": "state table row 15 col 1"
+ },
+ "822D6CA8": {
+  "nights": "821B5618",
+  "how": "state table row 15 col 0"
+ },
+ "822D6CF0": {
+  "nights": "821B5660",
+  "how": "state table row 7 col 1"
+ },
+ "822D6D50": {
+  "nights": "821B56C0",
+  "how": "state table row 7 col 0"
+ },
+ "822D6D90": {
+  "nights": "821B5708",
+  "how": "state table row 8 col 1"
+ },
+ "822D6E00": {
+  "nights": "821B5778",
+  "how": "state table row 8 col 0"
+ },
+ "822D6E10": {
+  "nights": "821B5788",
+  "how": "state table row 13 col 1"
+ },
+ "822D6E80": {
+  "nights": "821B57F8",
+  "how": "state table row 13 col 0"
+ },
+ "822D6E90": {
+  "nights": "821B5808",
+  "how": "state table row 3 col 1"
+ },
+ "822D6EE0": {
+  "nights": "821B5850",
+  "how": "state table row 3 col 0"
+ },
+ "822D6F00": {
+  "nights": "821B5878",
+  "how": "state table row 0 col 1"
+ },
+ "822D6F38": {
+  "nights": "821B58B0",
+  "how": "state table row 0 col 0"
+ },
+ "822D6F50": {
+  "nights": "821B58C8",
+  "how": "state table row 1 col 1"
+ },
+ "822D6F88": {
+  "nights": "821B5900",
+  "how": "state table row 1 col 0"
+ },
+ "822D6FA0": {
+  "nights": "821B5918",
+  "how": "state table row 2 col 1"
+ },
+ "822D6FD8": {
+  "nights": "821B5950",
+  "how": "state table row 2 col 0"
+ },
+ "822D6FF0": {
+  "nights": "821B5968",
+  "how": "state table row 14 col 1"
+ },
+ "822D7030": {
+  "nights": "821B59A8",
+  "how": "state table row 14 col 0"
+ },
+ "822D7048": {
+  "nights": "821B59C0",
+  "how": "state table row 16 col 1"
+ },
+ "822D7088": {
+  "nights": "821B5A00",
+  "how": "state table row 16 col 0"
+ },
+ "822D70A0": {
+  "nights": "821B5A18",
+  "how": "state table row 17 col 1"
+ },
+ "822D70E0": {
+  "nights": "821B5A58",
+  "how": "state table row 17 col 0"
+ },
+ "822D70F8": {
+  "nights": "821B5A70",
+  "how": "state table row 18 col 1"
+ },
+ "822D7138": {
+  "nights": "821B5AB0",
+  "how": "state table row 18 col 0"
+ },
+ "822D7150": {
+  "nights": "821B5AC8",
+  "how": "state table row 19 col 1"
+ },
+ "822D7198": {
+  "nights": "821B5B10",
+  "how": "state table row 19 col 0"
+ },
+ "822D71B0": {
+  "nights": "821B5B28",
+  "how": "seed SetScissorRect: called by Present in both; TFU d3d_match top 0.62 (next 0.25)"
+ },
+ "822D75B0": {
+  "nights": "821B6978",
+  "how": "call at +0x204 of 822E1480"
+ },
+ "822D7690": {
+  "nights": "821B6A48",
+  "how": "call at +0x224 of 822E1480"
+ },
+ "822D7AB8": {
+  "nights": "821B4340",
+  "how": "state table row 50 col 1"
+ },
+ "822D7B68": {
+  "nights": "821B3220",
+  "how": "call at +0x34 of 822D7F68"
+ },
+ "822D7C00": {
+  "nights": "821B5D40",
+  "how": "seed los1 d3d_match 1.00 (same XDK, next 0.44) SetRenderTarget; tfu 0.59"
+ },
+ "822D7F68": {
+  "nights": "821B6090",
+  "how": "seed los1 d3d_match 1.00 (same XDK, next 0.44) SetDepthStencilSurface; tfu 0.87 (next 0.38)"
+ },
+ "822D8278": {
+  "nights": "821C47A8",
+  "how": "call at +0x8c of 822D8860"
+ },
+ "822D83F8": {
+  "nights": "821C4870",
+  "how": "seed los1 d3d_match 1.00 (same XDK) CBlocker::Check"
+ },
+ "822D84D0": {
+  "nights": "821C4B80",
+  "how": "seed tfu d3d_match 0.95 (next 0.74) D3DDevice_Release"
+ },
+ "822D8860": {
+  "nights": "821C5060",
+  "how": "call at +0xf4 of 822D8D30"
+ },
+ "822D8D30": {
+  "nights": "821C5118",
+  "how": "seed los1 d3d_match 1.00 (same XDK) RingBufferDeviceAllocate"
+ },
+ "822D8F38": {
+  "nights": "821C5348",
+  "how": "call at +0x68 of 822D9BE8"
+ },
+ "822D9208": {
+  "nights": "821C5C00",
+  "how": "call at +0x4c of 822D9BE8"
+ },
+ "822D93C8": {
+  "nights": "821C5DF8",
+  "how": "call at +0x108 of 822D9A60"
+ },
+ "822D94B0": {
+  "nights": "821C6070",
+  "how": "call at +0x138 of 822D9A60"
+ },
+ "822D9588": {
+  "nights": "821C62C8",
+  "how": "call at +0xd0 of 822D9BE8"
+ },
+ "822D97E8": {
+  "nights": "821C4E18",
+  "how": "call at +0xe0 of 822D9A60"
+ },
+ "822D98E8": {
+  "nights": "821C54E8",
+  "how": "call at +0x164 of 822D9A60"
+ },
+ "822D9A60": {
+  "nights": "821C5EE8",
+  "how": "seed los1 d3d_match 0.97 (same XDK) CDevice::KickOffSegment"
+ },
+ "822D9BE8": {
+  "nights": "821C61C8",
+  "how": "seed los1 d3d_match 0.94 (same XDK) CDevice::KickOff"
+ },
+ "822D9D20": {
+  "nights": "821C66F8",
+  "how": "seed los1 d3d_match 1.00 (same XDK) IsFencePending"
+ },
+ "822D9E08": {
+  "nights": "821C4D58",
+  "how": "seed los1 d3d_match 1.00 (same XDK) BeginRingBig"
+ },
+ "822D9E70": {
+  "nights": "821C6678",
+  "how": "call at +0x74 of 822F3488"
+ },
+ "822D9F40": {
+  "nights": "821C6788",
+  "how": "seed los1 d3d_match 0.91 (same XDK) SetRingBufferParameters"
+ },
+ "822DA388": {
+  "nights": "821B70D8",
+  "how": "seed tfu d3d_match 0.92 (next 0.77) D3D_GetTextureDimensions"
+ },
+ "822DA438": {
+  "nights": "821B8B30",
+  "how": "seed tfu d3d_match 1.00 (next 0.46) D3DSurface_UnlockRect"
+ },
+ "822DA450": {
+  "nights": "82195B80",
+  "how": "unique shape"
+ },
+ "822DA4C0": {
+  "nights": "821B6B18",
+  "how": "seed tfu d3d_match 1.00 (next 0.26) D3D_BlockSizeOfGpuFormat"
+ },
+ "822DA5E0": {
+  "nights": "821B6C38",
+  "how": "call at +0xb0 of 822DABC8"
+ },
+ "822DABC8": {
+  "nights": "821B7368",
+  "how": "call at +0x30 of 822DB090"
+ },
+ "822DAF90": {
+  "nights": "821B7738",
+  "how": "call at +0x30 of 822DC258"
+ },
+ "822DB090": {
+  "nights": "821B7838",
+  "how": "call at +0x24 of 822DC310"
+ },
+ "822DB850": {
+  "nights": "821B7FB0",
+  "how": "call at +0x8c of 822DC010"
+ },
+ "822DBB60": {
+  "nights": "821B82A8",
+  "how": "call at +0x5c of 822DC130"
+ },
+ "822DBDB8": {
+  "nights": "821B8518",
+  "how": "seed tfu d3d_match 1.00 (next 0.80) D3DBaseTexture_GetLevelCount"
+ },
+ "822DC010": {
+  "nights": "821B8788",
+  "how": "seed tfu d3d_match 0.94 (next 0.30) D3DDevice_CreateTexture"
+ },
+ "822DC130": {
+  "nights": "821B88A8",
+  "how": "call at +0x160 of 822E1480"
+ },
+ "822DC258": {
+  "nights": "821B8A10",
+  "how": "seed tfu d3d_match 0.97 (next 0.66) D3DSurface_GetDesc"
+ },
+ "822DC2F0": {
+  "nights": "821B8AA8",
+  "how": "seed tfu d3d_match 1.00 (next 0.50) D3DSurface_LockRect"
+ },
+ "822DC310": {
+  "nights": "821B8AC8",
+  "how": "seed tfu d3d_match 0.94 (next 0.81) D3DVolume_GetDesc"
+ },
+ "822DC358": {
+  "nights": "821B8B10",
+  "how": "seed tfu d3d_match 1.00 (next 0.71) D3DVolume_LockBox"
+ },
+ "822DC378": {
+  "nights": "821B8B48",
+  "how": "call at +0xfc of 822E1218"
+ },
+ "822DC6B8": {
+  "nights": "821CAB58",
+  "how": "call at +0x6c of 822D9A60"
+ },
+ "822DC898": {
+  "nights": "821C3E18",
+  "how": "seed tfu d3d_match 1.00 (next 0.34) D3DResource_GetType"
+ },
+ "822DC958": {
+  "nights": "821C3580",
+  "how": "call at +0x64 of 822DCF00"
+ },
+ "822DCE88": {
+  "nights": "821C3CB8",
+  "how": "seed tfu d3d_match 0.97 (next 0.81) D3DResource_AddRef"
+ },
+ "822DCF00": {
+  "nights": "821C3D30",
+  "how": "seed tfu d3d_match 0.94 (next 0.77) D3DResource_Release"
+ },
+ "822DCFD0": {
+  "nights": "821C3EA8",
+  "how": "seed tfu d3d_match 0.86 (next 0.41) D3DDevice_CreateVertexBuffer"
+ },
+ "822DD4A0": {
+  "nights": "821CADB0",
+  "how": "seed the only caller of VdGetCurrentDisplayGamma in both"
+ },
+ "822DD630": {
+  "nights": "821CB018",
+  "how": "call at +0x24 of 822D75B0"
+ },
+ "822DD6C8": {
+  "nights": "821CB0B0",
+  "how": "call at +0x24 of 822D7690"
+ },
+ "822DDBE8": {
+  "nights": "821C6B80",
+  "how": "seed tfu d3d_match 1.00 (next 0.67) D3DDevice_GetDeviceCaps"
+ },
+ "822DE9F0": {
+  "nights": "821C6B98",
+  "how": "call at +0x128 of 822E1218"
+ },
+ "822E0998": {
+  "nights": "8249FD8C",
+  "how": "call at +0x1c of 822E1110"
+ },
+ "822E0A08": {
+  "nights": "821D4C98",
+  "how": "unique shape"
+ },
+ "822E0DD8": {
+  "nights": "821D50E0",
+  "how": "call at +0x30 of 822E1110"
+ },
+ "822E1110": {
+  "nights": "821D5478",
+  "how": "call at +0xb0 of 822D83F8"
+ },
+ "822E11D0": {
+  "nights": "821CF778",
+  "how": "unique shape"
+ },
+ "822E11F0": {
+  "nights": "821CF7D8",
+  "how": "unique shape"
+ },
+ "822E1218": {
+  "nights": "821CF0A8",
+  "how": "seed los1 d3d_match 0.92 (same XDK) InitializeApiState"
+ },
+ "822E1480": {
+  "nights": "821CF318",
+  "how": "seed InitializePresentationParameters: VdQueryVideoMode caller in both; LoS1 0.79 and TFU 0.66 tops agree"
+ },
+ "822E1C20": {
+  "nights": "821CFAE8",
+  "how": "seed VdSetGraphicsInterruptCallback plus VdShutdownEngines in both"
+ },
+ "822E1D60": {
+  "nights": "821B9158",
+  "how": "call at +0x20 of 822E58A8"
+ },
+ "822E2570": {
+  "nights": "821BC310",
+  "how": "unique shape"
+ },
+ "822E2BC8": {
+  "nights": "821BE040",
+  "how": "call at +0xc0 of 8291D010"
+ },
+ "822E3D88": {
+  "nights": "821B9CE0",
+  "how": "seed los1 d3d_match 1.00 (same XDK) XGRegisterVertexShader"
+ },
+ "822E40B0": {
+  "nights": "821BA0E8",
+  "how": "call at +0x64 of 822E41A0"
+ },
+ "822E41A0": {
+  "nights": "821BA1D8",
+  "how": "seed los1 d3d_match 1.00 (same XDK) D3DDevice_CreateVertexDeclaration"
+ },
+ "822E4228": {
+  "nights": "821BA258",
+  "how": "call at +0x25c of 822E1218"
+ },
+ "822E4310": {
+  "nights": "821BA330",
+  "how": "call at +0x94 of 82920110"
+ },
+ "822E5098": {
+  "nights": "821BE060",
+  "how": "call at +0xd1c of 8293D7A8"
+ },
+ "822E50C8": {
+  "nights": "821BE100",
+  "how": "call at +0x200 of 8291DA78"
+ },
+ "822E50E0": {
+  "nights": "821BE200",
+  "how": "call at +0xd8 of 8291D960"
+ },
+ "822E5110": {
+  "nights": "821BE6B8",
+  "how": "unique shape"
+ },
+ "822E5128": {
+  "nights": "821BE6D0",
+  "how": "unique shape"
+ },
+ "822E5140": {
+  "nights": "821BE6E8",
+  "how": "unique shape"
+ },
+ "822E5170": {
+  "nights": "821BE718",
+  "how": "call at +0x550 of 8291EFD0"
+ },
+ "822E5440": {
+  "nights": "821BF658",
+  "how": "call at +0x1d4 of 829D32B0"
+ },
+ "822E56A8": {
+  "nights": "821B9A30",
+  "how": "seed los1 d3d_match 1.00 (same XDK) D3DDevice_CreatePixelShader"
+ },
+ "822E57B8": {
+  "nights": "821B9DD8",
+  "how": "seed los1 d3d_match 1.00 (same XDK) D3DDevice_CreateVertexShader"
+ },
+ "822E58A8": {
+  "nights": "821BA098",
+  "how": "call at +0x134 of 822E1218"
+ },
+ "822E69E8": {
+  "nights": "821BE180",
+  "how": "call at +0x184 of 8291DA78"
+ },
+ "822E7388": {
+  "nights": "821BE968",
+  "how": "call at +0x30 of 822E7680"
+ },
+ "822E7680": {
+  "nights": "821BED28",
+  "how": "unique shape"
+ },
+ "822E77B8": {
+  "nights": "821BF808",
+  "how": "call at +0x48 of 822E8118"
+ },
+ "822E8118": {
+  "nights": "821BE388",
+  "how": "unique shape"
+ },
+ "822E82B8": {
+  "nights": "821BE2F0",
+  "how": "call at +0xdc of 8291D4F0"
+ },
+ "822E82D0": {
+  "nights": "821BE388",
+  "how": "call at +0x30 of 8291D4F0"
+ },
+ "822E8940": {
+  "nights": "821BDF48",
+  "how": "call at +0x70 of 82928008"
+ },
+ "822E8948": {
+  "nights": "821BE000",
+  "how": "call at +0x88 of 8293D7A8"
+ },
+ "822E8950": {
+  "nights": "821BE298",
+  "how": "call at +0xb70 of 8293D7A8"
+ },
+ "822E89B8": {
+  "nights": "821BE4D8",
+  "how": "call at +0xd70 of 8293D7A8"
+ },
+ "822E89C0": {
+  "nights": "821BE7A8",
+  "how": "call at +0xd90 of 8293D7A8"
+ },
+ "822E89C8": {
+  "nights": "821BE890",
+  "how": "call at +0xe28 of 8293D7A8"
+ },
+ "822E8B40": {
+  "nights": "821BE5B8",
+  "how": "call at +0xda0 of 8293D7A8"
+ },
+ "822E8B88": {
+  "nights": "821BE800",
+  "how": "call at +0xdbc of 8293D7A8"
+ },
+ "822E8E98": {
+  "nights": "821C0920",
+  "how": "seed los1 d3d_match 1.00 (same XDK) SynchronizeToPresentationInterval"
+ },
+ "822E9340": {
+  "nights": "821C0E58",
+  "how": "seed the only caller of VdSwap in both games (also VdGetSystemCommandBuffer, VdPersistDisplay); LoS1 0.72 and TFU 0.52 tops agree"
+ },
+ "822E98D8": {
+  "nights": "8249E2F8",
+  "how": "seed Present: the same callees as TFU's (SetRenderTarget, KickOff, Swap, SynchronizeToPresentationInterval, Resolve, SetScissorRect, sub_822C0450's pair); outside the D3D block (LTCG)"
+ },
+ "822E9CC0": {
+  "nights": "8249FCDC",
+  "how": "call at +0xd0 of 822DC130"
+ },
+ "822E9D10": {
+  "nights": "821CB518",
+  "how": "call at +0xa0 of 822DC130"
+ },
+ "822EA0B0": {
+  "nights": "821C8928",
+  "how": "call at +0x84 of 822EAAA0"
+ },
+ "822EA368": {
+  "nights": "821C8BD8",
+  "how": "call at +0xac of 8281E2B8"
+ },
+ "822EA700": {
+  "nights": "821C8F70",
+  "how": "call at +0xd0 of 8281E2B8"
+ },
+ "822EA7C0": {
+  "nights": "821C9030",
+  "how": "call at +0x208 of 8281E2B8"
+ },
+ "822EA940": {
+  "nights": "821C91B0",
+  "how": "call at +0x168 of 8281E2B8"
+ },
+ "822EAAA0": {
+  "nights": "821C9308",
+  "how": "call at +0x44 of 8281E2B8"
+ },
+ "822EB838": {
+  "nights": "821CA128",
+  "how": "call at +0x88 of 8281E2B8"
+ },
+ "822EDD08": {
+  "nights": "821D1FC0",
+  "how": "unique shape"
+ },
+ "822EF168": {
+  "nights": "82476500",
+  "how": "call at +0x84 of 822E1110"
+ },
+ "822F0F68": {
+  "nights": "821CD0D0",
+  "how": "call at +0x1d8 of 822E1480"
+ },
+ "822F0FC8": {
+  "nights": "821CD238",
+  "how": "unique shape"
+ },
+ "822F1000": {
+  "nights": "821CD270",
+  "how": "unique shape"
+ },
+ "822F3488": {
+  "nights": "821D33B8",
+  "how": "seed the only caller of VdRetrainEDRAM in both"
+ },
+ "822F3570": {
+  "nights": "821C2BC0",
+  "how": "seed tfu d3d_match 0.90 (next 0.39) D3DDevice_SetPredication"
+ },
+ "822F47A8": {
+  "nights": "821C1C80",
+  "how": "seed Resolve: called by Present in both; TFU d3d_match top 0.48"
+ },
+ "822F5BD0": {
+  "nights": "821B23A8",
+  "how": "call at +0x558 of 822F6160"
+ },
+ "822F6160": {
+  "nights": "821B2920",
+  "how": "call at +0x10c of 822F67F0"
+ },
+ "822F67F0": {
+  "nights": "821B2FD0",
+  "how": "seed los1 d3d_match 1.00 (same XDK) D3DDevice_ClearF"
+ },
+ "822F6CC0": {
+  "nights": "8222BCA8",
+  "how": "call at +0x94 of 822E57B8"
+ },
+ "822F7098": {
+  "nights": "82223328",
+  "how": "unique shape"
+ },
+ "822F70E0": {
+  "nights": "82223ED8",
+  "how": "unique shape"
+ },
+ "822F7330": {
+  "nights": "82222C08",
+  "how": "unique shape"
+ },
+ "822F7510": {
+  "nights": "822245F8",
+  "how": "call at +0x48 of 82822BF8"
+ },
+ "822F7648": {
+  "nights": "822244B8",
+  "how": "unique shape"
+ },
+ "822F79A0": {
+  "nights": "82223D48",
+  "how": "unique shape"
+ },
+ "822F7A70": {
+  "nights": "822245B8",
+  "how": "call at +0x44 of 82A382A0"
+ },
+ "822F7C38": {
+  "nights": "82223E18",
+  "how": "seed tfu d3d_match 1.00 (next 0.75) GetCurrentThreadId"
+ },
+ "822F7DC8": {
+  "nights": "82224B68",
+  "how": "call at +0x50 of 822CE260"
+ },
+ "822F8198": {
+  "nights": "82224018",
+  "how": "call at +0x164 of 822CB2B0"
+ },
+ "822F82C0": {
+  "nights": "82224A98",
+  "how": "unique shape"
+ },
+ "822F8480": {
+  "nights": "82224CD8",
+  "how": "unique shape"
+ },
+ "822F8940": {
+  "nights": "8222F390",
+  "how": "unique shape"
+ },
+ "822F8C64": {
+  "nights": "8222F6B4",
+  "how": "unique shape"
+ },
+ "822F9130": {
+  "nights": "8222FB80",
+  "how": "unique shape"
+ },
+ "822F94C0": {
+  "nights": "8222FF10",
+  "how": "unique shape"
+ },
+ "822F99E0": {
+  "nights": "82230430",
+  "how": "unique shape"
+ },
+ "822F9B58": {
+  "nights": "82225418",
+  "how": "call at +0x30 of 822F70E0"
+ },
+ "822F9E80": {
+  "nights": "82225500",
+  "how": "unique shape"
+ },
+ "822FA018": {
+  "nights": "82225570",
+  "how": "call at +0x2c of 822F7A70"
+ },
+ "822FC628": {
+  "nights": "8222F2F8",
+  "how": "unique shape"
+ },
+ "822FC684": {
+  "nights": "8222F354",
+  "how": "unique shape"
+ },
+ "82303DA0": {
+  "nights": "822100F0",
+  "how": "unique shape"
+ },
+ "8269B7A0": {
+  "nights": "821E1C50",
+  "how": "unique shape"
+ },
+ "8271A290": {
+  "nights": "824917E8",
+  "how": "unique shape"
+ },
+ "82750F40": {
+  "nights": "821FC3F0",
+  "how": "unique shape"
+ },
+ "82767FB0": {
+  "nights": "821253A0",
+  "how": "unique shape"
+ },
+ "82818FE0": {
+  "nights": "82477350",
+  "how": "unique shape"
+ },
+ "828197A0": {
+  "nights": "82478890",
+  "how": "call at +0x78 of 82928920"
+ },
+ "8281A930": {
+  "nights": "82478480",
+  "how": "call at +0xb0 of 82927A10"
+ },
+ "8281B5C4": {
+  "nights": "82479F9C",
+  "how": "unique shape"
+ },
+ "8281B5E4": {
+  "nights": "82479FBC",
+  "how": "unique shape"
+ },
+ "8281D770": {
+  "nights": "824816F0",
+  "how": "unique shape"
+ },
+ "8281E2B8": {
+  "nights": "821BFE48",
+  "how": "seed los1 d3d_match 0.98 (same XDK) D3DDevice_DrawVertices"
+ },
+ "8281E6A0": {
+  "nights": "821C0238",
+  "how": "seed los1 d3d_match 0.90 (same XDK) D3DDevice_DrawIndexedVertices"
+ },
+ "8281F0D0": {
+  "nights": "82234AD0",
+  "how": "call at +0x4c of 82842858"
+ },
+ "8281F140": {
+  "nights": "822305C8",
+  "how": "call at +0x1c of 829276B8"
+ },
+ "8281F148": {
+  "nights": "822305D0",
+  "how": "call at +0x68 of 829284C0"
+ },
+ "8281F150": {
+  "nights": "822304F0",
+  "how": "unique shape"
+ },
+ "8281F198": {
+  "nights": "82230538",
+  "how": "unique shape"
+ },
+ "8281F1C8": {
+  "nights": "822305D8",
+  "how": "unique shape"
+ },
+ "82822288": {
+  "nights": "82232A80",
+  "how": "call at +0x134 of 82843610"
+ },
+ "82822368": {
+  "nights": "82232B58",
+  "how": "call at +0x9f8 of 8293D7A8"
+ },
+ "828223E8": {
+  "nights": "82232BD8",
+  "how": "unique shape"
+ },
+ "82822540": {
+  "nights": "822336D8",
+  "how": "call at +0xe98 of 8293D7A8"
+ },
+ "82822548": {
+  "nights": "82232C08",
+  "how": "call at +0x90 of 82822BF8"
+ },
+ "82822BF8": {
+  "nights": "82232F28",
+  "how": "call at +0x2c of 828230C8"
+ },
+ "828230C8": {
+  "nights": "822333F0",
+  "how": "unique shape"
+ },
+ "82823658": {
+  "nights": "8224DCC8",
+  "how": "unique shape"
+ },
+ "82823830": {
+  "nights": "8224DE98",
+  "how": "call at +0x230 of 8287ECA8"
+ },
+ "82823900": {
+  "nights": "8224DF68",
+  "how": "call at +0x1c of 82844B38"
+ },
+ "82823908": {
+  "nights": "82248800",
+  "how": "unique shape"
+ },
+ "82823A50": {
+  "nights": "8226BB48",
+  "how": "call at +0x78 of 82823B60"
+ },
+ "82823B60": {
+  "nights": "8226BC58",
+  "how": "call at +0x1b8 of 82828000"
+ },
+ "82823FE0": {
+  "nights": "8226C0D0",
+  "how": "call at +0x1fc of 82828000"
+ },
+ "828241A8": {
+  "nights": "8226C288",
+  "how": "unique shape"
+ },
+ "828241C8": {
+  "nights": "8226C2A8",
+  "how": "unique shape"
+ },
+ "82824890": {
+  "nights": "8226C950",
+  "how": "unique shape"
+ },
+ "828273C8": {
+  "nights": "8226F288",
+  "how": "call at +0x48 of 82823FE0"
+ },
+ "82827A70": {
+  "nights": "8226F930",
+  "how": "call at +0x170 of 82827DD8"
+ },
+ "82827DD8": {
+  "nights": "8226FC98",
+  "how": "call at +0x1dc of 82828000"
+ },
+ "82828000": {
+  "nights": "8226FEC8",
+  "how": "call at +0x18 of 828284E8"
+ },
+ "828284E8": {
+  "nights": "822703B0",
+  "how": "unique shape"
+ },
+ "82828520": {
+  "nights": "822703E8",
+  "how": "call at +0x3c of 82828B10"
+ },
+ "828288A0": {
+  "nights": "82270768",
+  "how": "call at +0x20 of 82828B10"
+ },
+ "82828B10": {
+  "nights": "822709D0",
+  "how": "unique shape"
+ },
+ "82828C10": {
+  "nights": "82234998",
+  "how": "unique shape"
+ },
+ "82828C70": {
+  "nights": "822349F8",
+  "how": "unique shape"
+ },
+ "82828CA0": {
+  "nights": "82234A28",
+  "how": "unique shape"
+ },
+ "8282BDD8": {
+  "nights": "82237A60",
+  "how": "unique shape"
+ },
+ "8282CB20": {
+  "nights": "822387A8",
+  "how": "call at +0x1c of 8283C8E8"
+ },
+ "8282CC98": {
+  "nights": "82238920",
+  "how": "call at +0x6c of 8283DE68"
+ },
+ "82830410": {
+  "nights": "82470738",
+  "how": "call at +0x2c of 82BD3538"
+ },
+ "8283C8E8": {
+  "nights": "82248948",
+  "how": "unique shape"
+ },
+ "8283CCB8": {
+  "nights": "82248D10",
+  "how": "unique shape"
+ },
+ "8283CD58": {
+  "nights": "82248DB0",
+  "how": "unique shape"
+ },
+ "8283D840": {
+  "nights": "82249898",
+  "how": "call at +0x1c of 8283F110"
+ },
+ "8283D890": {
+  "nights": "822498E8",
+  "how": "call at +0x90 of 8283F110"
+ },
+ "8283DB38": {
+  "nights": "82249B98",
+  "how": "call at +0x1c of 8283DC20"
+ },
+ "8283DC20": {
+  "nights": "82249C80",
+  "how": "call at +0x2b0 of 82840D80"
+ },
+ "8283DCF0": {
+  "nights": "82249D50",
+  "how": "call at +0x5d0 of 82841330"
+ },
+ "8283DDA0": {
+  "nights": "82249E00",
+  "how": "unique shape"
+ },
+ "8283DE08": {
+  "nights": "82249E68",
+  "how": "call at +0xd0 of 8283F110"
+ },
+ "8283DE68": {
+  "nights": "82249EC8",
+  "how": "call at +0x454 of 82840D80"
+ },
+ "8283DEF8": {
+  "nights": "82249F58",
+  "how": "call at +0x38 of 8283DE68"
+ },
+ "8283E268": {
+  "nights": "8224A268",
+  "how": "call at +0x70 of 828407C8"
+ },
+ "8283F110": {
+  "nights": "8224B108",
+  "how": "call at +0x6c of 8283F200"
+ },
+ "8283F200": {
+  "nights": "8224B1F8",
+  "how": "unique shape"
+ },
+ "8283F440": {
+  "nights": "8224B440",
+  "how": "call at +0x38 of 8283FA48"
+ },
+ "8283FA48": {
+  "nights": "8224BA50",
+  "how": "call at +0x4d8 of 828407C8"
+ },
+ "82840278": {
+  "nights": "8224C280",
+  "how": "call at +0x3ac of 828407C8"
+ },
+ "828407C8": {
+  "nights": "8224C7E0",
+  "how": "call at +0x15c of 82840D80"
+ },
+ "82840D80": {
+  "nights": "8224CDA0",
+  "how": "call at +0x14 of 8286DC90"
+ },
+ "82841330": {
+  "nights": "8224D350",
+  "how": "call at +0x2cc of 82840D80"
+ },
+ "82841C88": {
+  "nights": "8224DF70",
+  "how": "unique shape"
+ },
+ "82841D98": {
+  "nights": "8224E058",
+  "how": "unique shape"
+ },
+ "82841DC0": {
+  "nights": "8224E080",
+  "how": "call at +0x6ac of 82841330"
+ },
+ "82841E60": {
+  "nights": "8224E120",
+  "how": "call at +0xac of 82843C20"
+ },
+ "82842118": {
+  "nights": "8224E3D0",
+  "how": "call at +0x280 of 82843C20"
+ },
+ "82842258": {
+  "nights": "8224E510",
+  "how": "call at +0x2a0 of 82843C20"
+ },
+ "828423E0": {
+  "nights": "8224E6A0",
+  "how": "call at +0xd0 of 82843C20"
+ },
+ "82842458": {
+  "nights": "8224E718",
+  "how": "call at +0x13c of 82843C20"
+ },
+ "82842510": {
+  "nights": "8224E7D0",
+  "how": "unique shape"
+ },
+ "82842578": {
+  "nights": "8224E838",
+  "how": "call at +0x20 of 828428B8"
+ },
+ "828427C0": {
+  "nights": "8224EA88",
+  "how": "call at +0x228 of 82842968"
+ },
+ "82842858": {
+  "nights": "8224EB18",
+  "how": "unique shape"
+ },
+ "828428B8": {
+  "nights": "8224EB78",
+  "how": "unique shape"
+ },
+ "82842968": {
+  "nights": "8224EC28",
+  "how": "call at +0x44 of 8283DDA0"
+ },
+ "82842BA0": {
+  "nights": "8224EE50",
+  "how": "call at +0x5c of 8284BFB8"
+ },
+ "82842E70": {
+  "nights": "8224F110",
+  "how": "call at +0x68 of 8286F858"
+ },
+ "82843008": {
+  "nights": "8224F2A8",
+  "how": "call at +0x1f8 of 82840D80"
+ },
+ "82843160": {
+  "nights": "8224F400",
+  "how": "call at +0xe0 of 82843C20"
+ },
+ "82843258": {
+  "nights": "8224F4F0",
+  "how": "call at +0x104 of 82843C20"
+ },
+ "82843328": {
+  "nights": "8224F5C0",
+  "how": "call at +0x154 of 82843C20"
+ },
+ "82843410": {
+  "nights": "8224F6A8",
+  "how": "call at +0x34 of 82843990"
+ },
+ "82843610": {
+  "nights": "8224F8B0",
+  "how": "call at +0x260 of 82843C20"
+ },
+ "82843770": {
+  "nights": "8224FA10",
+  "how": "call at +0x2c of 82843C20"
+ },
+ "82843990": {
+  "nights": "8224FC20",
+  "how": "call at +0x194 of 82843C20"
+ },
+ "82843A08": {
+  "nights": "8224FC98",
+  "how": "call at +0x1b8 of 82843C20"
+ },
+ "82843C20": {
+  "nights": "8224FEB0",
+  "how": "call at +0xd8 of 82840D80"
+ },
+ "828444A0": {
+  "nights": "82250720",
+  "how": "call at +0x20 of 82844E58"
+ },
+ "828445E0": {
+  "nights": "82250860",
+  "how": "unique shape"
+ },
+ "82844B38": {
+  "nights": "82250DC0",
+  "how": "unique shape"
+ },
+ "82844E58": {
+  "nights": "82251128",
+  "how": "call at +0xe8 of 8289B268"
+ },
+ "82849F98": {
+  "nights": "82256218",
+  "how": "unique shape"
+ },
+ "8284B470": {
+  "nights": "822576C8",
+  "how": "unique shape"
+ },
+ "8284BC60": {
+  "nights": "82257EC0",
+  "how": "call at +0x2c of 8284BFB8"
+ },
+ "8284BD48": {
+  "nights": "82257FA8",
+  "how": "call at +0x28 of 8293A390"
+ },
+ "8284BFB8": {
+  "nights": "82258218",
+  "how": "unique shape"
+ },
+ "828601C0": {
+  "nights": "82270D18",
+  "how": "call at +0x90 of 82863EE8"
+ },
+ "828601C8": {
+  "nights": "82270D20",
+  "how": "unique shape"
+ },
+ "82860208": {
+  "nights": "82270D60",
+  "how": "call at +0x28 of 828E7490"
+ },
+ "82860268": {
+  "nights": "82270DC0",
+  "how": "call at +0x1c of 82863EE8"
+ },
+ "82860278": {
+  "nights": "82270DD0",
+  "how": "unique shape"
+ },
+ "828630C8": {
+  "nights": "822738F8",
+  "how": "unique shape"
+ },
+ "828632F0": {
+  "nights": "82273B30",
+  "how": "unique shape"
+ },
+ "82863440": {
+  "nights": "82273C78",
+  "how": "unique shape"
+ },
+ "82863468": {
+  "nights": "82273CA0",
+  "how": "unique shape"
+ },
+ "82863EE8": {
+  "nights": "82274720",
+  "how": "unique shape"
+ },
+ "828640E0": {
+  "nights": "82274918",
+  "how": "unique shape"
+ },
+ "82864108": {
+  "nights": "82274940",
+  "how": "unique shape"
+ },
+ "82864128": {
+  "nights": "82274960",
+  "how": "unique shape"
+ },
+ "82864148": {
+  "nights": "82274980",
+  "how": "unique shape"
+ },
+ "82864188": {
+  "nights": "822749C0",
+  "how": "unique shape"
+ },
+ "828642E8": {
+  "nights": "82274B20",
+  "how": "unique shape"
+ },
+ "82864308": {
+  "nights": "82274B40",
+  "how": "unique shape"
+ },
+ "82864360": {
+  "nights": "82274B98",
+  "how": "unique shape"
+ },
+ "82866330": {
+  "nights": "82276990",
+  "how": "call at +0x18 of 828E7490"
+ },
+ "82868810": {
+  "nights": "82278D98",
+  "how": "unique shape"
+ },
+ "82868860": {
+  "nights": "82278DE8",
+  "how": "call at +0x2c of 82868960"
+ },
+ "82868928": {
+  "nights": "82278EB0",
+  "how": "call at +0x30 of 8283CCB8"
+ },
+ "82868960": {
+  "nights": "82278EE8",
+  "how": "unique shape"
+ },
+ "828689A8": {
+  "nights": "82278F30",
+  "how": "unique shape"
+ },
+ "82868A08": {
+  "nights": "82278F90",
+  "how": "call at +0x20 of 828E9520"
+ },
+ "82868AC0": {
+  "nights": "82279048",
+  "how": "unique shape"
+ },
+ "82868AE8": {
+  "nights": "82279070",
+  "how": "unique shape"
+ },
+ "82868B70": {
+  "nights": "822790F8",
+  "how": "unique shape"
+ },
+ "82868FA0": {
+  "nights": "82279530",
+  "how": "call at +0xa8 of 829928D0"
+ },
+ "82868FC8": {
+  "nights": "82279558",
+  "how": "call at +0x50 of 82841330"
+ },
+ "82869110": {
+  "nights": "82279690",
+  "how": "call at +0x128 of 829D32B0"
+ },
+ "82869648": {
+  "nights": "82279BD8",
+  "how": "call at +0x9c of 828C04F8"
+ },
+ "82869998": {
+  "nights": "82279F40",
+  "how": "call at +0x30 of 828B7CF0"
+ },
+ "8286A1B8": {
+  "nights": "8227A7A8",
+  "how": "call at +0x100 of 828C04F8"
+ },
+ "8286A5C0": {
+  "nights": "8227ABA8",
+  "how": "call at +0xe0 of 829D32B0"
+ },
+ "8286B138": {
+  "nights": "8227B750",
+  "how": "call at +0x24 of 829B9450"
+ },
+ "8286B670": {
+  "nights": "8227BCA8",
+  "how": "call at +0x88 of 828BF300"
+ },
+ "8286BA18": {
+  "nights": "8227C048",
+  "how": "call at +0x134 of 828BF300"
+ },
+ "8286C728": {
+  "nights": "8227CD80",
+  "how": "unique shape"
+ },
+ "8286C748": {
+  "nights": "8227CDA0",
+  "how": "call at +0x18 of 8283CCB8"
+ },
+ "8286D7C0": {
+  "nights": "8227DE40",
+  "how": "call at +0x1a8 of 8293D7A8"
+ },
+ "8286D7E0": {
+  "nights": "8227DE60",
+  "how": "unique shape"
+ },
+ "8286D7F8": {
+  "nights": "8227DE78",
+  "how": "unique shape"
+ },
+ "8286D870": {
+  "nights": "8227DEF0",
+  "how": "call at +0x3ac of 8293D7A8"
+ },
+ "8286DB50": {
+  "nights": "8227E1D0",
+  "how": "call at +0xb3c of 8293D7A8"
+ },
+ "8286DB60": {
+  "nights": "8227E1E0",
+  "how": "unique shape"
+ },
+ "8286DC90": {
+  "nights": "8227E310",
+  "how": "unique shape"
+ },
+ "8286EA28": {
+  "nights": "8227F080",
+  "how": "call at +0x20 of 8286EB10"
+ },
+ "8286EB10": {
+  "nights": "8227F168",
+  "how": "call at +0x34 of 82873808"
+ },
+ "8286EBF0": {
+  "nights": "8227F248",
+  "how": "call at +0x19d8 of 829C6080"
+ },
+ "8286F0E0": {
+  "nights": "8227F748",
+  "how": "call at +0x1960 of 829C6080"
+ },
+ "8286F858": {
+  "nights": "8227FEB0",
+  "how": "call at +0x34 of 82870050"
+ },
+ "82870050": {
+  "nights": "82280698",
+  "how": "call at +0x28 of 82873868"
+ },
+ "82873700": {
+  "nights": "82283CE8",
+  "how": "call at +0x20 of 82873808"
+ },
+ "82873808": {
+  "nights": "82283DF0",
+  "how": "unique shape"
+ },
+ "82873868": {
+  "nights": "82283E50",
+  "how": "unique shape"
+ },
+ "82878AF8": {
+  "nights": "822890C8",
+  "how": "unique shape"
+ },
+ "82878BC8": {
+  "nights": "82289118",
+  "how": "unique shape"
+ },
+ "828793E0": {
+  "nights": "82289930",
+  "how": "call at +0x84 of 82879840"
+ },
+ "82879840": {
+  "nights": "82289DA0",
+  "how": "call at +0x18 of 8287C880"
+ },
+ "82879910": {
+  "nights": "82289E70",
+  "how": "call at +0x18 of 8287E660"
+ },
+ "8287C880": {
+  "nights": "8228CDA8",
+  "how": "unique shape"
+ },
+ "8287E660": {
+  "nights": "8228EB00",
+  "how": "unique shape"
+ },
+ "8287ECA8": {
+  "nights": "8228F178",
+  "how": "unique shape"
+ },
+ "8287EF80": {
+  "nights": "8228F448",
+  "how": "unique shape"
+ },
+ "8287F020": {
+  "nights": "8228F4E8",
+  "how": "unique shape"
+ },
+ "828830C0": {
+  "nights": "82293550",
+  "how": "unique shape"
+ },
+ "82883248": {
+  "nights": "822936D8",
+  "how": "unique shape"
+ },
+ "82883FC8": {
+  "nights": "822944A0",
+  "how": "call at +0x54 of 828DF638"
+ },
+ "8288C410": {
+  "nights": "8229C8F0",
+  "how": "unique shape"
+ },
+ "8288C4C8": {
+  "nights": "8229C9A8",
+  "how": "call at +0x18 of 82878BC8"
+ },
+ "8288D0F0": {
+  "nights": "8229D5C8",
+  "how": "call at +0x534 of 8289B268"
+ },
+ "8288D1B0": {
+  "nights": "8229D688",
+  "how": "unique shape"
+ },
+ "8288D3D0": {
+  "nights": "8229D8A8",
+  "how": "unique shape"
+ },
+ "8288E0D0": {
+  "nights": "8229E5B0",
+  "how": "call at +0x14 of 828DF638"
+ },
+ "82890E50": {
+  "nights": "822A1338",
+  "how": "call at +0x700 of 8293D7A8"
+ },
+ "82891168": {
+  "nights": "822A1650",
+  "how": "call at +0x20 of 82892B48"
+ },
+ "82891550": {
+  "nights": "822A1A40",
+  "how": "call at +0x98 of 8289B268"
+ },
+ "82892B48": {
+  "nights": "822A3030",
+  "how": "call at +0x268 of 8289B268"
+ },
+ "828958C8": {
+  "nights": "822A5DA8",
+  "how": "call at +0x254 of 8289B268"
+ },
+ "82899490": {
+  "nights": "822A9940",
+  "how": "call at +0x1b8 of 8287ECA8"
+ },
+ "8289B268": {
+  "nights": "822AB6B0",
+  "how": "call at +0x18 of 82878AF8"
+ },
+ "8289B8A8": {
+  "nights": "822ABCF8",
+  "how": "unique shape"
+ },
+ "8289B8F8": {
+  "nights": "822ABD48",
+  "how": "unique shape"
+ },
+ "8289B920": {
+  "nights": "822ABD70",
+  "how": "call at +0xb8 of 828AC3D0"
+ },
+ "8289B978": {
+  "nights": "822ABDC8",
+  "how": "unique shape"
+ },
+ "8289B9C0": {
+  "nights": "822ABE10",
+  "how": "unique shape"
+ },
+ "8289BA08": {
+  "nights": "822ABE58",
+  "how": "unique shape"
+ },
+ "8289BA58": {
+  "nights": "822ABEA8",
+  "how": "call at +0x278 of 828AD710"
+ },
+ "8289BAB8": {
+  "nights": "822ABF08",
+  "how": "unique shape"
+ },
+ "8289BB48": {
+  "nights": "822ABF98",
+  "how": "unique shape"
+ },
+ "8289BC80": {
+  "nights": "822AC0D0",
+  "how": "unique shape"
+ },
+ "8289BCB0": {
+  "nights": "822AC100",
+  "how": "unique shape"
+ },
+ "8289BE68": {
+  "nights": "822AC2B8",
+  "how": "unique shape"
+ },
+ "8289BF60": {
+  "nights": "822AC3B0",
+  "how": "unique shape"
+ },
+ "8289BFA0": {
+  "nights": "822AC3F0",
+  "how": "call at +0x20 of 8289CCD8"
+ },
+ "8289BFF8": {
+  "nights": "822AC448",
+  "how": "call at +0x78 of 8289CCD8"
+ },
+ "8289C038": {
+  "nights": "822AC488",
+  "how": "call at +0x60 of 8289CCD8"
+ },
+ "8289C528": {
+  "nights": "822AC978",
+  "how": "call at +0x68 of 8289CC38"
+ },
+ "8289C5B0": {
+  "nights": "822ACA00",
+  "how": "unique shape"
+ },
+ "8289C6A8": {
+  "nights": "822ACAF8",
+  "how": "unique shape"
+ },
+ "8289C730": {
+  "nights": "822ACB80",
+  "how": "call at +0x28 of 8289CC38"
+ },
+ "8289C788": {
+  "nights": "822ACBD8",
+  "how": "call at +0x80 of 8289CC38"
+ },
+ "8289C838": {
+  "nights": "822ACC80",
+  "how": "call at +0x94 of 8289CB98"
+ },
+ "8289C910": {
+  "nights": "822ACD58",
+  "how": "call at +0x90 of 8289CC38"
+ },
+ "8289CAC8": {
+  "nights": "822ACF10",
+  "how": "call at +0x88 of 8289CCD8"
+ },
+ "8289CB98": {
+  "nights": "822ACFE0",
+  "how": "unique shape"
+ },
+ "8289CC38": {
+  "nights": "822AD080",
+  "how": "unique shape"
+ },
+ "8289CCD8": {
+  "nights": "822AD120",
+  "how": "unique shape"
+ },
+ "8289CD70": {
+  "nights": "822AD1B8",
+  "how": "unique shape"
+ },
+ "8289D2C0": {
+  "nights": "822AD708",
+  "how": "unique shape"
+ },
+ "8289D348": {
+  "nights": "822AD790",
+  "how": "call at +0x230 of 828A7188"
+ },
+ "8289D418": {
+  "nights": "822AD888",
+  "how": "unique shape"
+ },
+ "8289D848": {
+  "nights": "822ADCB8",
+  "how": "unique shape"
+ },
+ "8289D888": {
+  "nights": "822ADCF8",
+  "how": "call at +0x298 of 828ACF68"
+ },
+ "8289DBB8": {
+  "nights": "822AE030",
+  "how": "unique shape"
+ },
+ "8289DC18": {
+  "nights": "822AE090",
+  "how": "call at +0x1ac of 828A1D80"
+ },
+ "8289E9D8": {
+  "nights": "822AEE78",
+  "how": "call at +0x164 of 828A43D0"
+ },
+ "8289EA78": {
+  "nights": "822AEF18",
+  "how": "call at +0x124 of 828AA1B8"
+ },
+ "8289F4A8": {
+  "nights": "822AF940",
+  "how": "call at +0xe8 of 828B6AD8"
+ },
+ "8289F5B8": {
+  "nights": "822AFA58",
+  "how": "call at +0x130 of 828B6AD8"
+ },
+ "8289F768": {
+  "nights": "822AFC00",
+  "how": "call at +0x18 of 8289F7F8"
+ },
+ "8289F7F8": {
+  "nights": "822AFC90",
+  "how": "call at +0x7c of 8289F8D8"
+ },
+ "8289F8D8": {
+  "nights": "822AFD70",
+  "how": "call at +0x418 of 828ACF68"
+ },
+ "8289FB38": {
+  "nights": "822AFFD0",
+  "how": "call at +0x4c0 of 8289FEC8"
+ },
+ "8289FBC8": {
+  "nights": "822B0060",
+  "how": "call at +0x508 of 8289FEC8"
+ },
+ "8289FCE8": {
+  "nights": "822B0180",
+  "how": "call at +0x570 of 828AC720"
+ },
+ "8289FEC8": {
+  "nights": "822B0338",
+  "how": "call at +0x51c of 828AC720"
+ },
+ "828A03F8": {
+  "nights": "822B0850",
+  "how": "call at +0x144 of 828B1B10"
+ },
+ "828A0498": {
+  "nights": "822B08F0",
+  "how": "call at +0x88 of 828B1B10"
+ },
+ "828A0500": {
+  "nights": "822B0958",
+  "how": "call at +0x1a8 of 828B1B10"
+ },
+ "828A06E8": {
+  "nights": "822B0B48",
+  "how": "unique shape"
+ },
+ "828A0B00": {
+  "nights": "822B0F50",
+  "how": "call at +0xfb0 of 828B5980"
+ },
+ "828A0C38": {
+  "nights": "822B1088",
+  "how": "unique shape"
+ },
+ "828A0CD8": {
+  "nights": "822B1128",
+  "how": "call at +0x2a8 of 828A55B8"
+ },
+ "828A0D58": {
+  "nights": "822B11A8",
+  "how": "call at +0x4a8 of 828A55B8"
+ },
+ "828A0EA0": {
+  "nights": "822B12F0",
+  "how": "call at +0xa8 of 828A5A80"
+ },
+ "828A0F88": {
+  "nights": "822B13D8",
+  "how": "unique shape"
+ },
+ "828A0FC8": {
+  "nights": "822B1470",
+  "how": "call at +0x5c of 828A1448"
+ },
+ "828A11F8": {
+  "nights": "822B1698",
+  "how": "call at +0x18 of 828A1448"
+ },
+ "828A1448": {
+  "nights": "822B18D8",
+  "how": "unique shape"
+ },
+ "828A15D0": {
+  "nights": "822B1A58",
+  "how": "call at +0x1a4 of 828A6A98"
+ },
+ "828A1678": {
+  "nights": "822B1B00",
+  "how": "call at +0x1b8 of 828B7650"
+ },
+ "828A1BF8": {
+  "nights": "822B2090",
+  "how": "call at +0xa4 of 828A1D80"
+ },
+ "828A1D80": {
+  "nights": "822B2210",
+  "how": "call at +0x38 of 828A1F38"
+ },
+ "828A1F38": {
+  "nights": "822B23C8",
+  "how": "call at +0x248 of 828A7188"
+ },
+ "828A4300": {
+  "nights": "822B4780",
+  "how": "call at +0x3c0 of 828A43D0"
+ },
+ "828A43D0": {
+  "nights": "822B4848",
+  "how": "call at +0x10c of 828AA1B8"
+ },
+ "828A4930": {
+  "nights": "822B4DA8",
+  "how": "call at +0x12c of 828AA1B8"
+ },
+ "828A4B58": {
+  "nights": "822B4FC8",
+  "how": "call at +0x158 of 828AA1B8"
+ },
+ "828A4CB8": {
+  "nights": "822B5138",
+  "how": "call at +0x158 of 828B7650"
+ },
+ "828A4F18": {
+  "nights": "822B5398",
+  "how": "call at +0x1a4 of 828B30D0"
+ },
+ "828A52B0": {
+  "nights": "822B5738",
+  "how": "call at +0x814 of 828AD710"
+ },
+ "828A54B0": {
+  "nights": "822B5930",
+  "how": "unique shape"
+ },
+ "828A55B8": {
+  "nights": "822B5A38",
+  "how": "call at +0x10 of 828AA1B8"
+ },
+ "828A5A80": {
+  "nights": "822B5F00",
+  "how": "call at +0x30 of 828ACF68"
+ },
+ "828A5E50": {
+  "nights": "822B62C0",
+  "how": "call at +0x2bc of 828AC720"
+ },
+ "828A6A98": {
+  "nights": "822B6EC0",
+  "how": "call at +0x24 of 828DF638"
+ },
+ "828A7188": {
+  "nights": "822B75C0",
+  "how": "call at +0x828 of 828AC720"
+ },
+ "828A7AA0": {
+  "nights": "822B7ED0",
+  "how": "call at +0x6c of 828B7650"
+ },
+ "828A9BE0": {
+  "nights": "822BA008",
+  "how": "call at +0x1d0 of 828B7650"
+ },
+ "828AA1B8": {
+  "nights": "822BA5E0",
+  "how": "call at +0x18 of 828B7650"
+ },
+ "828AA530": {
+  "nights": "822BA958",
+  "how": "call at +0x98 of 828B7650"
+ },
+ "828AC3D0": {
+  "nights": "822BC818",
+  "how": "call at +0x4c of 828B7650"
+ },
+ "828AC720": {
+  "nights": "822BCB68",
+  "how": "call at +0x108 of 828B7650"
+ },
+ "828ACF68": {
+  "nights": "822BD3D0",
+  "how": "call at +0x128 of 828B7650"
+ },
+ "828AD430": {
+  "nights": "822BD880",
+  "how": "call at +0x200 of 828B7650"
+ },
+ "828AD710": {
+  "nights": "822BDB50",
+  "how": "call at +0x54 of 828B6AD8"
+ },
+ "828AE150": {
+  "nights": "822BE588",
+  "how": "call at +0x74 of 8288C4C8"
+ },
+ "828AEEB8": {
+  "nights": "822BF2E8",
+  "how": "unique shape"
+ },
+ "828B1B10": {
+  "nights": "822C1F20",
+  "how": "call at +0x4c0 of 828B5980"
+ },
+ "828B30D0": {
+  "nights": "822C34D0",
+  "how": "call at +0x30 of 828B34C0"
+ },
+ "828B34C0": {
+  "nights": "822C38C8",
+  "how": "unique shape"
+ },
+ "828B3510": {
+  "nights": "822C3918",
+  "how": "call at +0x6c of 828B6AD8"
+ },
+ "828B50C0": {
+  "nights": "822C54C0",
+  "how": "call at +0x30 of 828B7650"
+ },
+ "828B5980": {
+  "nights": "822C5D68",
+  "how": "call at +0xb0 of 828B7650"
+ },
+ "828B6AD8": {
+  "nights": "822C6EC8",
+  "how": "call at +0x140 of 828B7650"
+ },
+ "828B6D98": {
+  "nights": "822C7180",
+  "how": "call at +0x1e8 of 828B7650"
+ },
+ "828B7650": {
+  "nights": "822C7A40",
+  "how": "unique shape"
+ },
+ "828B7918": {
+  "nights": "822C7D08",
+  "how": "call at +0x1cc of 828B9720"
+ },
+ "828B7AF0": {
+  "nights": "822C7EE0",
+  "how": "unique shape"
+ },
+ "828B7B70": {
+  "nights": "822C7F60",
+  "how": "call at +0x50 of 828B9720"
+ },
+ "828B7CF0": {
+  "nights": "822C80E0",
+  "how": "unique shape"
+ },
+ "828B7D50": {
+  "nights": "822C8140",
+  "how": "unique shape"
+ },
+ "828B80F0": {
+  "nights": "822C84D8",
+  "how": "call at +0x44 of 828BE790"
+ },
+ "828B8298": {
+  "nights": "822C8678",
+  "how": "unique shape"
+ },
+ "828B8800": {
+  "nights": "822C8BD8",
+  "how": "call at +0x468 of 828BE790"
+ },
+ "828B89E0": {
+  "nights": "822C8DB0",
+  "how": "call at +0x70 of 828BF4A0"
+ },
+ "828B8A60": {
+  "nights": "822C8E30",
+  "how": "call at +0x340 of 828BE790"
+ },
+ "828B92E8": {
+  "nights": "822C96A0",
+  "how": "call at +0xdc of 828BCA60"
+ },
+ "828B93D0": {
+  "nights": "822C9788",
+  "how": "call at +0xa0 of 828B9C68"
+ },
+ "828B9450": {
+  "nights": "822C9808",
+  "how": "call at +0x5c of 828B9AF0"
+ },
+ "828B9720": {
+  "nights": "822C9AD8",
+  "how": "call at +0x1d8 of 828C04F8"
+ },
+ "828B9AF0": {
+  "nights": "822C9EA8",
+  "how": "unique shape"
+ },
+ "828B9B80": {
+  "nights": "822C9F38",
+  "how": "call at +0x28 of 828BCA60"
+ },
+ "828B9C68": {
+  "nights": "822CA020",
+  "how": "unique shape"
+ },
+ "828B9D38": {
+  "nights": "822CA0F0",
+  "how": "unique shape"
+ },
+ "828B9E08": {
+  "nights": "822CA1C0",
+  "how": "call at +0x60 of 828BA318"
+ },
+ "828BA318": {
+  "nights": "822CA6C8",
+  "how": "unique shape"
+ },
+ "828BA4D0": {
+  "nights": "822CA880",
+  "how": "call at +0x134 of 828BE790"
+ },
+ "828BBAD8": {
+  "nights": "822CBE08",
+  "how": "call at +0x170 of 828BF300"
+ },
+ "828BCA60": {
+  "nights": "822CCE58",
+  "how": "unique shape"
+ },
+ "828BE790": {
+  "nights": "822CEB68",
+  "how": "call at +0x54 of 828BF300"
+ },
+ "828BF300": {
+  "nights": "822CF6D8",
+  "how": "call at +0x1c of 828BF4A0"
+ },
+ "828BF4A0": {
+  "nights": "822CF878",
+  "how": "call at +0x138 of 828C04F8"
+ },
+ "828C04F8": {
+  "nights": "822D08D0",
+  "how": "call at +0x60 of 828C0738"
+ },
+ "828C0738": {
+  "nights": "822D0B10",
+  "how": "unique shape"
+ },
+ "828CF0F0": {
+  "nights": "822DF580",
+  "how": "unique shape"
+ },
+ "828D5C10": {
+  "nights": "822E6168",
+  "how": "unique shape"
+ },
+ "828D9DC0": {
+  "nights": "822EA360",
+  "how": "unique shape"
+ },
+ "828D9E18": {
+  "nights": "822EA3B8",
+  "how": "unique shape"
+ },
+ "828DEED0": {
+  "nights": "822EF540",
+  "how": "unique shape"
+ },
+ "828DF638": {
+  "nights": "822EFCA8",
+  "how": "unique shape"
+ },
+ "828E35C8": {
+  "nights": "822F3C60",
+  "how": "unique shape"
+ },
+ "828E36C8": {
+  "nights": "822F3D60",
+  "how": "call at +0x3c of 82863EE8"
+ },
+ "828E3710": {
+  "nights": "822F3DA8",
+  "how": "call at +0x20 of 828601C8"
+ },
+ "828E5298": {
+  "nights": "822F5A48",
+  "how": "unique shape"
+ },
+ "828E6D38": {
+  "nights": "822F74A8",
+  "how": "call at +0xfc of 82863EE8"
+ },
+ "828E7490": {
+  "nights": "822F7BE8",
+  "how": "unique shape"
+ },
+ "828E7588": {
+  "nights": "822F7CE8",
+  "how": "unique shape"
+ },
+ "828E9140": {
+  "nights": "822F9870",
+  "how": "unique shape"
+ },
+ "828E9520": {
+  "nights": "822F9C40",
+  "how": "call at +0x28 of 828E9570"
+ },
+ "828E9570": {
+  "nights": "822F9C90",
+  "how": "unique shape"
+ },
+ "828E95E8": {
+  "nights": "822F9D08",
+  "how": "unique shape"
+ },
+ "828E9640": {
+  "nights": "822F9D60",
+  "how": "unique shape"
+ },
+ "828E9868": {
+  "nights": "822AD868",
+  "how": "unique shape"
+ },
+ "828F2728": {
+  "nights": "82302C50",
+  "how": "call at +0x20 of 828F3120"
+ },
+ "828F3120": {
+  "nights": "82303650",
+  "how": "call at +0x44 of 828E6D38"
+ },
+ "828F4F20": {
+  "nights": "82305438",
+  "how": "call at +0x68 of 828F2728"
+ },
+ "828FE0A8": {
+  "nights": "82430268",
+  "how": "unique shape"
+ },
+ "8291B2B8": {
+  "nights": "82306F30",
+  "how": "call at +0x10 of 8291B468"
+ },
+ "8291B468": {
+  "nights": "823070E8",
+  "how": "unique shape"
+ },
+ "8291B490": {
+  "nights": "82307110",
+  "how": "unique shape"
+ },
+ "8291BF00": {
+  "nights": "8230E2B0",
+  "how": "unique shape"
+ },
+ "8291BFC8": {
+  "nights": "8230E370",
+  "how": "unique shape"
+ },
+ "8291C018": {
+  "nights": "8230E3C0",
+  "how": "call at +0x104 of 8291D4F0"
+ },
+ "8291C138": {
+  "nights": "8230E4E0",
+  "how": "call at +0xcc of 8291D1E8"
+ },
+ "8291C210": {
+  "nights": "8230E5B8",
+  "how": "unique shape"
+ },
+ "8291C270": {
+  "nights": "8230E618",
+  "how": "call at +0x48 of 8291C2C0"
+ },
+ "8291C2C0": {
+  "nights": "8230E668",
+  "how": "call at +0x94 of 8291C560"
+ },
+ "8291C4F0": {
+  "nights": "8230E8A0",
+  "how": "call at +0x7c of 8291C560"
+ },
+ "8291C560": {
+  "nights": "8230E910",
+  "how": "call at +0x108 of 8291D1E8"
+ },
+ "8291C8B0": {
+  "nights": "8230EC60",
+  "how": "call at +0x3ac of 8291EFD0"
+ },
+ "8291CBA0": {
+  "nights": "8230F068",
+  "how": "call at +0xb4 of 8291CC98"
+ },
+ "8291CC98": {
+  "nights": "8230F158",
+  "how": "call at +0x64 of 829D3CE0"
+ },
+ "8291CDB0": {
+  "nights": "8230F270",
+  "how": "call at +0x98 of 8291D960"
+ },
+ "8291D010": {
+  "nights": "8230F4D0",
+  "how": "call at +0x1bc of 8291DD38"
+ },
+ "8291D1E8": {
+  "nights": "8230F6A8",
+  "how": "call at +0x78 of 8291D960"
+ },
+ "8291D418": {
+  "nights": "8230F8D8",
+  "how": "call at +0xa8 of 8291D960"
+ },
+ "8291D4F0": {
+  "nights": "8230F9B8",
+  "how": "call at +0x104 of 8291DD38"
+ },
+ "8291D800": {
+  "nights": "8230FCB0",
+  "how": "call at +0x1e0 of 8291DD38"
+ },
+ "8291D960": {
+  "nights": "8230FE10",
+  "how": "call at +0x12c of 8291DD38"
+ },
+ "8291DA78": {
+  "nights": "8230FF20",
+  "how": "call at +0x14c of 8291DD38"
+ },
+ "8291DD38": {
+  "nights": "823101E0",
+  "how": "call at +0x514 of 8291EFD0"
+ },
+ "8291E010": {
+  "nights": "823104C0",
+  "how": "call at +0x178 of 82920110"
+ },
+ "8291E230": {
+  "nights": "823106D8",
+  "how": "call at +0x48 of 8291EC18"
+ },
+ "8291EC18": {
+  "nights": "82311090",
+  "how": "call at +0x52c of 8291EFD0"
+ },
+ "8291EC78": {
+  "nights": "823110F0",
+  "how": "call at +0x78 of 8291F5E8"
+ },
+ "8291EFD0": {
+  "nights": "82311448",
+  "how": "call at +0x54 of 8291F5E8"
+ },
+ "8291F5E8": {
+  "nights": "82311A60",
+  "how": "call at +0x6c of 82920010"
+ },
+ "82920010": {
+  "nights": "82312470",
+  "how": "call at +0x7c of 82920110"
+ },
+ "82920110": {
+  "nights": "82312570",
+  "how": "call at +0x294 of 82822BF8"
+ },
+ "82921A08": {
+  "nights": "82313E58",
+  "how": "call at +0x19c of 82920110"
+ },
+ "829226D0": {
+  "nights": "82308840",
+  "how": "unique shape"
+ },
+ "829229B0": {
+  "nights": "82308B50",
+  "how": "call at +0xdb4 of 8293D7A8"
+ },
+ "82922DD0": {
+  "nights": "823090B0",
+  "how": "call at +0xc0 of 82924F88"
+ },
+ "82922E60": {
+  "nights": "82308D50",
+  "how": "call at +0xa0 of 82924F88"
+ },
+ "82922EF0": {
+  "nights": "82309140",
+  "how": "call at +0x70 of 82925FB8"
+ },
+ "82922F78": {
+  "nights": "823091C8",
+  "how": "call at +0xe0 of 82924F88"
+ },
+ "82923008": {
+  "nights": "82309258",
+  "how": "unique shape"
+ },
+ "82923058": {
+  "nights": "823092A8",
+  "how": "unique shape"
+ },
+ "829242B8": {
+  "nights": "8230ABD0",
+  "how": "call at +0xb8c of 8293D7A8"
+ },
+ "82924E98": {
+  "nights": "8230BCF8",
+  "how": "call at +0x54 of 829265F0"
+ },
+ "82924F88": {
+  "nights": "8230B870",
+  "how": "call at +0x20 of 82926060"
+ },
+ "829250A0": {
+  "nights": "8230B988",
+  "how": "unique shape"
+ },
+ "82925FB8": {
+  "nights": "8230D5E0",
+  "how": "call at +0x1c of 829265F0"
+ },
+ "82926060": {
+  "nights": "8230D688",
+  "how": "unique shape"
+ },
+ "829260A0": {
+  "nights": "8230D6C8",
+  "how": "call at +0xd10 of 8293D7A8"
+ },
+ "829265F0": {
+  "nights": "8230DC70",
+  "how": "unique shape"
+ },
+ "829269A0": {
+  "nights": "8230E100",
+  "how": "call at +0xec of 82928630"
+ },
+ "82927678": {
+  "nights": "82314928",
+  "how": "call at +0x44 of 82928920"
+ },
+ "829276B8": {
+  "nights": "82314968",
+  "how": "unique shape"
+ },
+ "82927740": {
+  "nights": "823149F0",
+  "how": "unique shape"
+ },
+ "82927778": {
+  "nights": "82314A28",
+  "how": "unique shape"
+ },
+ "829277D8": {
+  "nights": "82314A88",
+  "how": "call at +0x1c of 82927820"
+ },
+ "82927820": {
+  "nights": "82314AD0",
+  "how": "unique shape"
+ },
+ "82927880": {
+  "nights": "82314B30",
+  "how": "call at +0x3c of 8296DA70"
+ },
+ "82927898": {
+  "nights": "82314B48",
+  "how": "call at +0x5e8 of 8295E0E8"
+ },
+ "829278B8": {
+  "nights": "82314B68",
+  "how": "call at +0x290 of 829280D8"
+ },
+ "82927A10": {
+  "nights": "82314D10",
+  "how": "call at +0x34 of 82927BC0"
+ },
+ "82927AC8": {
+  "nights": "82314DC8",
+  "how": "call at +0x1224 of 829CF9A8"
+ },
+ "82927B60": {
+  "nights": "82314E60",
+  "how": "call at +0x228 of 829F5B68"
+ },
+ "82927BC0": {
+  "nights": "82314EC0",
+  "how": "unique shape"
+ },
+ "82927BF8": {
+  "nights": "82314EF8",
+  "how": "unique shape"
+ },
+ "82927C58": {
+  "nights": "82314F58",
+  "how": "unique shape"
+ },
+ "82927CB0": {
+  "nights": "82314FB0",
+  "how": "call at +0x40 of 82927D20"
+ },
+ "82927D20": {
+  "nights": "82315020",
+  "how": "call at +0x94 of 82928008"
+ },
+ "82927D80": {
+  "nights": "82315080",
+  "how": "call at +0x1bc of 82928630"
+ },
+ "82927DF8": {
+  "nights": "823150F8",
+  "how": "call at +0x84 of 8293A488"
+ },
+ "82928008": {
+  "nights": "82315158",
+  "how": "call at +0x40 of 829284C0"
+ },
+ "829280D8": {
+  "nights": "82315248",
+  "how": "call at +0x1d8 of 82928630"
+ },
+ "829283E0": {
+  "nights": "823155D8",
+  "how": "call at +0x98 of 82928920"
+ },
+ "829284C0": {
+  "nights": "823156B8",
+  "how": "unique shape"
+ },
+ "82928550": {
+  "nights": "82315748",
+  "how": "call at +0xb8 of 82928920"
+ },
+ "82928630": {
+  "nights": "82315828",
+  "how": "call at +0xf4 of 82928920"
+ },
+ "82928818": {
+  "nights": "82315A10",
+  "how": "call at +0xf4 of 82928A80"
+ },
+ "82928920": {
+  "nights": "82315B18",
+  "how": "unique shape"
+ },
+ "82928A80": {
+  "nights": "82315C78",
+  "how": "unique shape"
+ },
+ "82928C28": {
+  "nights": "82315DF0",
+  "how": "unique shape"
+ },
+ "8292C190": {
+  "nights": "823191F8",
+  "how": "call at +0x28 of 8291BFC8"
+ },
+ "8292C9F0": {
+  "nights": "823199D0",
+  "how": "unique shape"
+ },
+ "8292D550": {
+  "nights": "8231A518",
+  "how": "call at +0x1c of 8291BFC8"
+ },
+ "8292DBA8": {
+  "nights": "8231AB60",
+  "how": "call at +0x60 of 8291DD38"
+ },
+ "8292DC98": {
+  "nights": "8231AC50",
+  "how": "call at +0x48 of 829D3C60"
+ },
+ "8292DEA8": {
+  "nights": "8231AE98",
+  "how": "call at +0x70 of 829E7520"
+ },
+ "8292DF00": {
+  "nights": "8231AEF0",
+  "how": "call at +0x24 of 829E6FE8"
+ },
+ "8292DF70": {
+  "nights": "8231AF68",
+  "how": "call at +0x1c of 82923008"
+ },
+ "82930A38": {
+  "nights": "8231DBE0",
+  "how": "call at +0x2f8 of 8291EFD0"
+ },
+ "82930B20": {
+  "nights": "8231DCC8",
+  "how": "call at +0x5f4 of 8291EFD0"
+ },
+ "82930B88": {
+  "nights": "8231DD30",
+  "how": "call at +0x48 of 82930EA0"
+ },
+ "82930E08": {
+  "nights": "8231DFB0",
+  "how": "call at +0x318 of 8291EFD0"
+ },
+ "82930EA0": {
+  "nights": "8231E048",
+  "how": "call at +0x5c8 of 8291EFD0"
+ },
+ "82930F58": {
+  "nights": "8231E100",
+  "how": "call at +0x50 of 82931A10"
+ },
+ "829310B8": {
+  "nights": "8231E260",
+  "how": "call at +0xf4 of 82931A10"
+ },
+ "829311A0": {
+  "nights": "8231E348",
+  "how": "call at +0xb0 of 829316B8"
+ },
+ "82931248": {
+  "nights": "8231E3F0",
+  "how": "call at +0x174 of 829354F8"
+ },
+ "82931380": {
+  "nights": "8231E528",
+  "how": "call at +0x30 of 82935840"
+ },
+ "82931540": {
+  "nights": "8231E6E0",
+  "how": "call at +0x90 of 82931608"
+ },
+ "82931608": {
+  "nights": "8231E7A8",
+  "how": "call at +0x70 of 829356B8"
+ },
+ "829316B8": {
+  "nights": "8231E858",
+  "how": "call at +0xc0 of 829356B8"
+ },
+ "829318F8": {
+  "nights": "8231EA98",
+  "how": "call at +0xc4 of 829D5C30"
+ },
+ "82931A10": {
+  "nights": "8231EBA8",
+  "how": "call at +0x9c of 829D8C00"
+ },
+ "82931B30": {
+  "nights": "8231ECC8",
+  "how": "call at +0x90 of 82931BF8"
+ },
+ "82931BF8": {
+  "nights": "8231ED90",
+  "how": "call at +0xac of 829D9098"
+ },
+ "82931CA8": {
+  "nights": "8231EE40",
+  "how": "call at +0xbc of 829D9098"
+ },
+ "82931D58": {
+  "nights": "8231EEF0",
+  "how": "call at +0x94 of 829D8D88"
+ },
+ "82931E50": {
+  "nights": "8231EFE8",
+  "how": "call at +0x64 of 829D9248"
+ },
+ "82931F28": {
+  "nights": "8231F0C0",
+  "how": "call at +0x98 of 829D5C30"
+ },
+ "82932060": {
+  "nights": "8231F1F8",
+  "how": "call at +0xc8 of 829D5C30"
+ },
+ "82932410": {
+  "nights": "8231F5A0",
+  "how": "call at +0xf8 of 82932E30"
+ },
+ "829328B8": {
+  "nights": "8231FA48",
+  "how": "call at +0xa8 of 82933A58"
+ },
+ "82932948": {
+  "nights": "8231FAD8",
+  "how": "call at +0x3cc of 8291EFD0"
+ },
+ "82932C48": {
+  "nights": "8231FDD8",
+  "how": "call at +0x434 of 8291EFD0"
+ },
+ "82932CF0": {
+  "nights": "8231FE88",
+  "how": "call at +0x3d0 of 8291EFD0"
+ },
+ "82932E30": {
+  "nights": "8231FFC8",
+  "how": "call at +0x10c of 82935EA8"
+ },
+ "82933420": {
+  "nights": "82320618",
+  "how": "unique shape"
+ },
+ "82933448": {
+  "nights": "823205A8",
+  "how": "call at +0xa0 of 82933750"
+ },
+ "82933570": {
+  "nights": "823206F8",
+  "how": "call at +0xa0 of 82936698"
+ },
+ "829336F8": {
+  "nights": "82320880",
+  "how": "call at +0x30 of 8291DD38"
+ },
+ "82933750": {
+  "nights": "823208D8",
+  "how": "call at +0x1c of 829D3CE0"
+ },
+ "82933800": {
+  "nights": "82320988",
+  "how": "call at +0x4c of 8291D4F0"
+ },
+ "829338B8": {
+  "nights": "82320A40",
+  "how": "call at +0x404 of 8291EFD0"
+ },
+ "82933A00": {
+  "nights": "82320BE0",
+  "how": "call at +0x24 of 8291D010"
+ },
+ "82933A58": {
+  "nights": "82320C38",
+  "how": "call at +0x88 of 829FA000"
+ },
+ "82934130": {
+  "nights": "823212C0",
+  "how": "call at +0x110 of 8291D1E8"
+ },
+ "82934188": {
+  "nights": "82321318",
+  "how": "call at +0xec of 82936698"
+ },
+ "82934710": {
+  "nights": "823218D0",
+  "how": "call at +0x58 of 829362B0"
+ },
+ "82934728": {
+  "nights": "823218E8",
+  "how": "call at +0x84 of 82936698"
+ },
+ "82934AA0": {
+  "nights": "82321C60",
+  "how": "unique shape"
+ },
+ "82934AD8": {
+  "nights": "82321C98",
+  "how": "call at +0x374 of 8291EFD0"
+ },
+ "82934AF0": {
+  "nights": "82470DA8",
+  "how": "call at +0x368 of 8291EFD0"
+ },
+ "82934B20": {
+  "nights": "82321CE8",
+  "how": "call at +0x188 of 829354F8"
+ },
+ "82934B40": {
+  "nights": "82321D08",
+  "how": "call at +0x3c of 82935840"
+ },
+ "82934BE0": {
+  "nights": "82321DA8",
+  "how": "call at +0x1c of 82935310"
+ },
+ "82934D28": {
+  "nights": "82321EF8",
+  "how": "call at +0x2dc of 8291EFD0"
+ },
+ "82935310": {
+  "nights": "823224D0",
+  "how": "call at +0x5fc of 8291EFD0"
+ },
+ "829354F0": {
+  "nights": "82449BA8",
+  "how": "call at +0x3bc of 8291EFD0"
+ },
+ "829354F8": {
+  "nights": "823226B0",
+  "how": "call at +0x30c of 8291EFD0"
+ },
+ "829356B8": {
+  "nights": "82322870",
+  "how": "call at +0xa0 of 82930EA0"
+ },
+ "82935788": {
+  "nights": "82322940",
+  "how": "call at +0x28 of 82935840"
+ },
+ "82935840": {
+  "nights": "823229F8",
+  "how": "call at +0x5d0 of 8291EFD0"
+ },
+ "829358E8": {
+  "nights": "82322A98",
+  "how": "call at +0x104 of 82935B88"
+ },
+ "829359F8": {
+  "nights": "82322BA8",
+  "how": "call at +0x4c of 82935CC8"
+ },
+ "82935A60": {
+  "nights": "82322C10",
+  "how": "call at +0x10c of 82935310"
+ },
+ "82935B88": {
+  "nights": "82322D38",
+  "how": "call at +0x50 of 82930B20"
+ },
+ "82935CC8": {
+  "nights": "82322E78",
+  "how": "call at +0x37c of 8291EFD0"
+ },
+ "82935E28": {
+  "nights": "82322FD8",
+  "how": "call at +0x3c8 of 8291EFD0"
+ },
+ "82935EA8": {
+  "nights": "82323058",
+  "how": "call at +0x90 of 82936190"
+ },
+ "82936190": {
+  "nights": "82323340",
+  "how": "call at +0xcc of 82930A38"
+ },
+ "829362B0": {
+  "nights": "82323460",
+  "how": "call at +0xbc of 82935310"
+ },
+ "82936698": {
+  "nights": "82323838",
+  "how": "call at +0x398 of 8291EFD0"
+ },
+ "82936D10": {
+  "nights": "82323EB0",
+  "how": "call at +0x594 of 82938730"
+ },
+ "82937000": {
+  "nights": "82324190",
+  "how": "call at +0x1b4 of 8291EFD0"
+ },
+ "82937110": {
+  "nights": "82324298",
+  "how": "call at +0x1ac of 829372A8"
+ },
+ "82937178": {
+  "nights": "82324300",
+  "how": "call at +0x3f8 of 82938730"
+ },
+ "829372A8": {
+  "nights": "82324428",
+  "how": "call at +0x5f4 of 82938730"
+ },
+ "829376B8": {
+  "nights": "82324830",
+  "how": "call at +0x62c of 82938730"
+ },
+ "829377C0": {
+  "nights": "82324920",
+  "how": "call at +0x4dc of 82938730"
+ },
+ "82938150": {
+  "nights": "82325288",
+  "how": "call at +0x52c of 82938730"
+ },
+ "82938470": {
+  "nights": "823255A0",
+  "how": "call at +0x33c of 82938730"
+ },
+ "82938730": {
+  "nights": "82325848",
+  "how": "call at +0x1dc of 8291EFD0"
+ },
+ "8293A020": {
+  "nights": "82315DD0",
+  "how": "call at +0x38 of 82922E60"
+ },
+ "8293A030": {
+  "nights": "82315DE0",
+  "how": "call at +0x7c of 82922E60"
+ },
+ "8293A040": {
+  "nights": "82327150",
+  "how": "unique shape"
+ },
+ "8293A090": {
+  "nights": "823271A0",
+  "how": "unique shape"
+ },
+ "8293A0D0": {
+  "nights": "823271E0",
+  "how": "unique shape"
+ },
+ "8293A128": {
+  "nights": "82327238",
+  "how": "unique shape"
+ },
+ "8293A188": {
+  "nights": "82327328",
+  "how": "call at +0x58 of 8298F6B8"
+ },
+ "8293A348": {
+  "nights": "82327550",
+  "how": "unique shape"
+ },
+ "8293A390": {
+  "nights": "82327598",
+  "how": "unique shape"
+ },
+ "8293A3F8": {
+  "nights": "82327600",
+  "how": "call at +0x16c of 82998A20"
+ },
+ "8293A440": {
+  "nights": "82327648",
+  "how": "unique shape"
+ },
+ "8293A488": {
+  "nights": "82327690",
+  "how": "call at +0x78 of 829417B8"
+ },
+ "8293A5D8": {
+  "nights": "823277E0",
+  "how": "call at +0xe94 of 829CF9A8"
+ },
+ "8293A668": {
+  "nights": "823278D0",
+  "how": "unique shape"
+ },
+ "8293A6C0": {
+  "nights": "82327928",
+  "how": "call at +0x190 of 8293D7A8"
+ },
+ "8293A728": {
+  "nights": "82327990",
+  "how": "call at +0x2c of 829F5B68"
+ },
+ "8293A7B8": {
+  "nights": "82327A20",
+  "how": "call at +0x4c of 8296E820"
+ },
+ "8293A9F0": {
+  "nights": "82327D38",
+  "how": "call at +0x278 of 829F5500"
+ },
+ "8293AA48": {
+  "nights": "82327D90",
+  "how": "call at +0x804 of 829A8CA0"
+ },
+ "8293AAC8": {
+  "nights": "82327E10",
+  "how": "call at +0x1ac of 8294D158"
+ },
+ "8293AB78": {
+  "nights": "82327EC0",
+  "how": "unique shape"
+ },
+ "8293AC60": {
+  "nights": "823B0D28",
+  "how": "call at +0x3c of 829C20D8"
+ },
+ "8293ACB0": {
+  "nights": "82327FB0",
+  "how": "call at +0x24 of 8293AD28"
+ },
+ "8293AD28": {
+  "nights": "82328028",
+  "how": "call at +0x34 of 829716A0"
+ },
+ "8293ADD8": {
+  "nights": "823280D8",
+  "how": "call at +0x8c of 829BE4F8"
+ },
+ "8293AE80": {
+  "nights": "82328180",
+  "how": "call at +0x4c4 of 8293D7A8"
+ },
+ "8293AF30": {
+  "nights": "82328230",
+  "how": "call at +0x130 of 829280D8"
+ },
+ "8293B738": {
+  "nights": "823291B8",
+  "how": "call at +0xcf8 of 8293D7A8"
+ },
+ "8293D7A8": {
+  "nights": "8232BAD0",
+  "how": "call at +0x1b0 of 829280D8"
+ },
+ "8293EC18": {
+  "nights": "8232D0A8",
+  "how": "unique shape"
+ },
+ "829402F0": {
+  "nights": "8232E770",
+  "how": "unique shape"
+ },
+ "829407F0": {
+  "nights": "8232EC88",
+  "how": "unique shape"
+ },
+ "829408E8": {
+  "nights": "8232ED80",
+  "how": "unique shape"
+ },
+ "829409C8": {
+  "nights": "8232EE60",
+  "how": "unique shape"
+ },
+ "829415D0": {
+  "nights": "8232FA60",
+  "how": "call at +0x1f4 of 829280D8"
+ },
+ "829415D8": {
+  "nights": "8232FA68",
+  "how": "call at +0x200 of 829280D8"
+ },
+ "829415E0": {
+  "nights": "8232FE28",
+  "how": "call at +0x14 of 829449A0"
+ },
+ "82941630": {
+  "nights": "82327298",
+  "how": "unique shape"
+ },
+ "82941678": {
+  "nights": "8232FA70",
+  "how": "call at +0x1bc4 of 829C6080"
+ },
+ "82941758": {
+  "nights": "82327828",
+  "how": "call at +0x708 of 8298DB50"
+ },
+ "829417B8": {
+  "nights": "8232FC48",
+  "how": "call at +0x24 of 82944398"
+ },
+ "82941848": {
+  "nights": "8232FCD8",
+  "how": "unique shape"
+ },
+ "82941998": {
+  "nights": "8232FF48",
+  "how": "call at +0xf0 of 82970A20"
+ },
+ "82941A28": {
+  "nights": "8232FFD8",
+  "how": "call at +0x300 of 829B5128"
+ },
+ "82941AF0": {
+  "nights": "823300B0",
+  "how": "call at +0xf78 of 82969A20"
+ },
+ "82941D38": {
+  "nights": "823307B8",
+  "how": "call at +0x16c of 829280D8"
+ },
+ "82942A28": {
+  "nights": "82331D98",
+  "how": "unique shape"
+ },
+ "82942AC8": {
+  "nights": "82331E88",
+  "how": "call at +0x3c of 82942D98"
+ },
+ "82942BE0": {
+  "nights": "82331FA0",
+  "how": "call at +0x50 of 82962C80"
+ },
+ "82942C38": {
+  "nights": "82331FF8",
+  "how": "call at +0x4f8 of 8295E0E8"
+ },
+ "82942CD8": {
+  "nights": "82332160",
+  "how": "call at +0x260 of 82943668"
+ },
+ "82942D98": {
+  "nights": "823321F8",
+  "how": "call at +0x7bc of 82966F58"
+ },
+ "82942F18": {
+  "nights": "82332378",
+  "how": "call at +0x28 of 8295F4D0"
+ },
+ "82942FC8": {
+  "nights": "82332420",
+  "how": "call at +0x50 of 8295F4D0"
+ },
+ "82943068": {
+  "nights": "8232FEF0",
+  "how": "call at +0x1bac of 829CF9A8"
+ },
+ "829430C0": {
+  "nights": "823324D0",
+  "how": "call at +0x44 of 82966860"
+ },
+ "82943118": {
+  "nights": "82332528",
+  "how": "call at +0x474 of 82966F58"
+ },
+ "829431A0": {
+  "nights": "823325B0",
+  "how": "call at +0x88 of 82943668"
+ },
+ "82943280": {
+  "nights": "82332690",
+  "how": "call at +0x88 of 8294AF50"
+ },
+ "82943308": {
+  "nights": "82332710",
+  "how": "call at +0x4c4 of 8295E0E8"
+ },
+ "82943368": {
+  "nights": "82332770",
+  "how": "call at +0x230 of 8294AF50"
+ },
+ "829433E8": {
+  "nights": "823327F8",
+  "how": "call at +0x5cc of 82943668"
+ },
+ "82943538": {
+  "nights": "823328E8",
+  "how": "call at +0x554 of 82943668"
+ },
+ "82943668": {
+  "nights": "82332A10",
+  "how": "call at +0x64 of 82944178"
+ },
+ "82944178": {
+  "nights": "82333598",
+  "how": "call at +0x164 of 829280D8"
+ },
+ "829442F8": {
+  "nights": "82333720",
+  "how": "call at +0x38c of 829C6080"
+ },
+ "82944340": {
+  "nights": "823AFD58",
+  "how": "call at +0x1ccc of 829CF9A8"
+ },
+ "82944398": {
+  "nights": "823337C0",
+  "how": "unique shape"
+ },
+ "82944460": {
+  "nights": "82333828",
+  "how": "call at +0x17c of 8295E0E8"
+ },
+ "829446D0": {
+  "nights": "82333AB0",
+  "how": "call at +0x15c of 829280D8"
+ },
+ "82944948": {
+  "nights": "82333D30",
+  "how": "call at +0x48 of 8295F5F8"
+ },
+ "829449A0": {
+  "nights": "82334818",
+  "how": "unique shape"
+ },
+ "82944A60": {
+  "nights": "823348D8",
+  "how": "unique shape"
+ },
+ "82944AC0": {
+  "nights": "82333D88",
+  "how": "unique shape"
+ },
+ "82944B60": {
+  "nights": "82333E20",
+  "how": "unique shape"
+ },
+ "82944BB8": {
+  "nights": "82333E78",
+  "how": "call at +0x68 of 82944D38"
+ },
+ "82944C10": {
+  "nights": "82333ED8",
+  "how": "unique shape"
+ },
+ "82944C90": {
+  "nights": "82333F58",
+  "how": "call at +0x1420 of 82948180"
+ },
+ "82944D38": {
+  "nights": "82334000",
+  "how": "call at +0x3c of 82945898"
+ },
+ "82944F18": {
+  "nights": "823341D8",
+  "how": "call at +0x8c of 82946F78"
+ },
+ "82945048": {
+  "nights": "82334308",
+  "how": "call at +0x76c of 82948180"
+ },
+ "829451B8": {
+  "nights": "82334478",
+  "how": "call at +0x21c of 829B75A8"
+ },
+ "82945210": {
+  "nights": "823344E8",
+  "how": "call at +0x4ec of 82947070"
+ },
+ "829452A0": {
+  "nights": "82334578",
+  "how": "call at +0x134 of 829460C0"
+ },
+ "82945310": {
+  "nights": "823345E8",
+  "how": "call at +0x684 of 82947070"
+ },
+ "82945380": {
+  "nights": "82334658",
+  "how": "call at +0x30 of 82945670"
+ },
+ "82945478": {
+  "nights": "82334750",
+  "how": "call at +0x3c of 82945670"
+ },
+ "82945548": {
+  "nights": "82334938",
+  "how": "call at +0x4c8 of 8294AF50"
+ },
+ "829455D0": {
+  "nights": "82383B48",
+  "how": "call at +0x1aac of 82948180"
+ },
+ "82945620": {
+  "nights": "823349C0",
+  "how": "call at +0x230 of 82947070"
+ },
+ "82945670": {
+  "nights": "82334A10",
+  "how": "call at +0x24 of 829460C0"
+ },
+ "829457D8": {
+  "nights": "82334B78",
+  "how": "call at +0xb4 of 82946F78"
+ },
+ "82945898": {
+  "nights": "82334C40",
+  "how": "call at +0x20 of 82948180"
+ },
+ "82945930": {
+  "nights": "82334CD8",
+  "how": "call at +0x30 of 82948180"
+ },
+ "82945A98": {
+  "nights": "82334E48",
+  "how": "call at +0x148 of 82948180"
+ },
+ "82945CF8": {
+  "nights": "823350A0",
+  "how": "call at +0x250 of 829F5B68"
+ },
+ "82945D90": {
+  "nights": "8238A130",
+  "how": "call at +0x1be4 of 82948180"
+ },
+ "82945FA8": {
+  "nights": "823352F8",
+  "how": "call at +0xa0 of 829B7808"
+ },
+ "82946058": {
+  "nights": "82335430",
+  "how": "call at +0x788 of 82947070"
+ },
+ "829460C0": {
+  "nights": "823354A0",
+  "how": "call at +0x69c of 82947070"
+ },
+ "82946208": {
+  "nights": "823355E0",
+  "how": "call at +0x10c of 82947070"
+ },
+ "82946260": {
+  "nights": "82335638",
+  "how": "call at +0x60 of 82947938"
+ },
+ "82946348": {
+  "nights": "82335728",
+  "how": "call at +0x1374 of 82948180"
+ },
+ "829463B8": {
+  "nights": "82335798",
+  "how": "call at +0x185c of 82948180"
+ },
+ "82946418": {
+  "nights": "823357F8",
+  "how": "call at +0x28 of 829465E0"
+ },
+ "829464E0": {
+  "nights": "823358C0",
+  "how": "call at +0x1960 of 82948180"
+ },
+ "829465E0": {
+  "nights": "823359C0",
+  "how": "call at +0x1894 of 82948180"
+ },
+ "829467F8": {
+  "nights": "82335BD0",
+  "how": "call at +0x1c of 829469B8"
+ },
+ "82946870": {
+  "nights": "82335C48",
+  "how": "call at +0x23c of 82947070"
+ },
+ "829468F0": {
+  "nights": "82335CC8",
+  "how": "call at +0xa4 of 82946F78"
+ },
+ "82946950": {
+  "nights": "82335D28",
+  "how": "call at +0x160 of 82947070"
+ },
+ "829469B8": {
+  "nights": "82335D90",
+  "how": "call at +0x18c of 82949F00"
+ },
+ "82946A38": {
+  "nights": "82335E10",
+  "how": "call at +0x70 of 82947E38"
+ },
+ "82946F78": {
+  "nights": "823362F8",
+  "how": "call at +0x40 of 82948180"
+ },
+ "82947070": {
+  "nights": "823363F0",
+  "how": "call at +0x114 of 82948180"
+ },
+ "82947870": {
+  "nights": "82336B48",
+  "how": "call at +0xf0 of 82947E38"
+ },
+ "82947938": {
+  "nights": "82336C10",
+  "how": "call at +0xbc of 82947B58"
+ },
+ "82947A88": {
+  "nights": "82336D60",
+  "how": "call at +0x40 of 82947C48"
+ },
+ "82947B58": {
+  "nights": "82336E30",
+  "how": "call at +0x1534 of 82948180"
+ },
+ "82947C48": {
+  "nights": "82336F20",
+  "how": "call at +0x1650 of 82948180"
+ },
+ "82947E38": {
+  "nights": "82337110",
+  "how": "call at +0x1614 of 82948180"
+ },
+ "82947F48": {
+  "nights": "82337228",
+  "how": "call at +0x1864 of 82948180"
+ },
+ "82948010": {
+  "nights": "823372F0",
+  "how": "call at +0x1438 of 82948180"
+ },
+ "82948180": {
+  "nights": "82337460",
+  "how": "call at +0x19c of 82949F00"
+ },
+ "82949F00": {
+  "nights": "82339208",
+  "how": "call at +0xfc of 829280D8"
+ },
+ "8294A410": {
+  "nights": "82339728",
+  "how": "call at +0x7a4 of 8294AF50"
+ },
+ "8294A538": {
+  "nights": "82339858",
+  "how": "call at +0x2c of 8294A668"
+ },
+ "8294A5B0": {
+  "nights": "823398D0",
+  "how": "call at +0x38 of 8295EE40"
+ },
+ "8294A620": {
+  "nights": "82339940",
+  "how": "call at +0xd78 of 82969A20"
+ },
+ "8294A668": {
+  "nights": "82339988",
+  "how": "call at +0x24 of 8294A728"
+ },
+ "8294A728": {
+  "nights": "82339A48",
+  "how": "call at +0x6a0 of 8294AF50"
+ },
+ "8294A7D0": {
+  "nights": "82339AF0",
+  "how": "call at +0x6dc of 8294AF50"
+ },
+ "8294AF50": {
+  "nights": "8233A280",
+  "how": "call at +0xec of 829280D8"
+ },
+ "8294B798": {
+  "nights": "8233AA78",
+  "how": "unique shape"
+ },
+ "8294B7F0": {
+  "nights": "8233AAD0",
+  "how": "unique shape"
+ },
+ "8294B890": {
+  "nights": "8233AB70",
+  "how": "unique shape"
+ },
+ "8294B9C8": {
+  "nights": "8233ACA8",
+  "how": "call at +0x8c of 8294FEE8"
+ },
+ "8294BAB8": {
+  "nights": "8233AD98",
+  "how": "call at +0x410 of 829506E0"
+ },
+ "8294BB58": {
+  "nights": "8233AE38",
+  "how": "call at +0x14 of 8294BBB0"
+ },
+ "8294BBB0": {
+  "nights": "8233AE98",
+  "how": "unique shape"
+ },
+ "8294BD10": {
+  "nights": "8233AFF8",
+  "how": "call at +0x3c of 8294C8A0"
+ },
+ "8294BE88": {
+  "nights": "8233B168",
+  "how": "unique shape"
+ },
+ "8294BEE0": {
+  "nights": "8233B1C0",
+  "how": "call at +0xb8 of 82976918"
+ },
+ "8294BF40": {
+  "nights": "8233B220",
+  "how": "unique shape"
+ },
+ "8294C000": {
+  "nights": "8233B2E8",
+  "how": "unique shape"
+ },
+ "8294C088": {
+  "nights": "8233B370",
+  "how": "unique shape"
+ },
+ "8294C0E8": {
+  "nights": "8233B3D0",
+  "how": "call at +0x197c of 82969A20"
+ },
+ "8294C208": {
+  "nights": "8233B508",
+  "how": "call at +0xa64 of 829506E0"
+ },
+ "8294C5C0": {
+  "nights": "8233B8C8",
+  "how": "call at +0x7b8 of 829506E0"
+ },
+ "8294C650": {
+  "nights": "8233B968",
+  "how": "call at +0x1a0 of 829F5500"
+ },
+ "8294C6B0": {
+  "nights": "8233B9D0",
+  "how": "call at +0x6c of 82992C90"
+ },
+ "8294C740": {
+  "nights": "8233BA60",
+  "how": "call at +0x150 of 829A9F40"
+ },
+ "8294C8A0": {
+  "nights": "8233BCB8",
+  "how": "call at +0x314 of 8294DF88"
+ },
+ "8294CF20": {
+  "nights": "8233C350",
+  "how": "unique shape"
+ },
+ "8294CFB8": {
+  "nights": "8233C3E8",
+  "how": "call at +0x3c of 8294FE88"
+ },
+ "8294D158": {
+  "nights": "8233C598",
+  "how": "call at +0xf10 of 829506E0"
+ },
+ "8294D4D8": {
+  "nights": "8233C930",
+  "how": "call at +0x103c of 829506E0"
+ },
+ "8294D898": {
+  "nights": "8233CCF8",
+  "how": "call at +0x6bc of 829506E0"
+ },
+ "8294D938": {
+  "nights": "8233CD90",
+  "how": "call at +0x5f4 of 8299BCB8"
+ },
+ "8294D9F8": {
+  "nights": "8233CE50",
+  "how": "call at +0xac8 of 82969A20"
+ },
+ "8294DA38": {
+  "nights": "8233CE90",
+  "how": "call at +0xb0 of 829B54E0"
+ },
+ "8294DF88": {
+  "nights": "8233D3D8",
+  "how": "call at +0x62c of 82967D30"
+ },
+ "8294E300": {
+  "nights": "8233D750",
+  "how": "call at +0xe8 of 82952030"
+ },
+ "8294FE88": {
+  "nights": "8233F2F0",
+  "how": "unique shape"
+ },
+ "8294FEE8": {
+  "nights": "8233F350",
+  "how": "call at +0x1fc of 829506E0"
+ },
+ "82950030": {
+  "nights": "8233F498",
+  "how": "call at +0xe98 of 829506E0"
+ },
+ "82950290": {
+  "nights": "8233F700",
+  "how": "call at +0xe4 of 829280D8"
+ },
+ "829504C8": {
+  "nights": "823353A8",
+  "how": "call at +0x140 of 829F5B68"
+ },
+ "829505F0": {
+  "nights": "82328E50",
+  "how": "call at +0x378 of 82983B00"
+ },
+ "829506E0": {
+  "nights": "8233FA28",
+  "how": "call at +0x30 of 8295E0E8"
+ },
+ "82951BC0": {
+  "nights": "82340FA8",
+  "how": "call at +0xc4 of 829528C0"
+ },
+ "82951CB0": {
+  "nights": "82341098",
+  "how": "call at +0x304 of 829528C0"
+ },
+ "82951E60": {
+  "nights": "82341270",
+  "how": "call at +0x4a4 of 829528C0"
+ },
+ "82951F30": {
+  "nights": "82341340",
+  "how": "call at +0x6b4 of 829528C0"
+ },
+ "82952030": {
+  "nights": "82341440",
+  "how": "call at +0x798 of 8298DB50"
+ },
+ "829528C0": {
+  "nights": "82341CD0",
+  "how": "call at +0x30 of 829B4638"
+ },
+ "829532A8": {
+  "nights": "823426D8",
+  "how": "call at +0x1c4 of 829B4638"
+ },
+ "82953398": {
+  "nights": "823427D8",
+  "how": "call at +0x1d4 of 829B4638"
+ },
+ "82956C90": {
+  "nights": "823467B8",
+  "how": "call at +0x24 of 82957328"
+ },
+ "82956E08": {
+  "nights": "8232FB50",
+  "how": "call at +0x188c of 829ADE10"
+ },
+ "82956E58": {
+  "nights": "8232FBA0",
+  "how": "call at +0xd84 of 829A8CA0"
+ },
+ "82956F80": {
+  "nights": "82346978",
+  "how": "unique shape"
+ },
+ "829571B8": {
+  "nights": "82346AF8",
+  "how": "unique shape"
+ },
+ "82957328": {
+  "nights": "82346C68",
+  "how": "call at +0x18 of 82957908"
+ },
+ "829573C0": {
+  "nights": "82346D90",
+  "how": "call at +0x32c of 8296F590"
+ },
+ "829573E0": {
+  "nights": "82346DB0",
+  "how": "call at +0x2c8 of 8296F590"
+ },
+ "82957428": {
+  "nights": "82346DD8",
+  "how": "call at +0x86c of 829F6908"
+ },
+ "82957488": {
+  "nights": "82346E20",
+  "how": "call at +0x60 of 8294CF20"
+ },
+ "82957498": {
+  "nights": "82346E30",
+  "how": "unique shape"
+ },
+ "829574F0": {
+  "nights": "82346E88",
+  "how": "call at +0x34c of 82964B28"
+ },
+ "82957698": {
+  "nights": "82347030",
+  "how": "unique shape"
+ },
+ "82957798": {
+  "nights": "82347130",
+  "how": "call at +0x5a0 of 8295E0E8"
+ },
+ "82957908": {
+  "nights": "82347278",
+  "how": "call at +0x2ec of 8295E0E8"
+ },
+ "82957CD8": {
+  "nights": "82347660",
+  "how": "call at +0x424 of 82978DA8"
+ },
+ "829582F0": {
+  "nights": "82348008",
+  "how": "call at +0x1b0 of 8296F590"
+ },
+ "82958CF8": {
+  "nights": "82348A10",
+  "how": "call at +0x3d8 of 8295E0E8"
+ },
+ "82959A18": {
+  "nights": "82349730",
+  "how": "call at +0x374 of 8296F590"
+ },
+ "82959BC0": {
+  "nights": "823498D0",
+  "how": "call at +0x10d8 of 829793F0"
+ },
+ "82959E50": {
+  "nights": "82349BF8",
+  "how": "call at +0x5c of 82983B00"
+ },
+ "8295E0E8": {
+  "nights": "8234DDE8",
+  "how": "call at +0xd0 of 829280D8"
+ },
+ "8295E708": {
+  "nights": "8234E410",
+  "how": "unique shape"
+ },
+ "8295E7F8": {
+  "nights": "8234E500",
+  "how": "unique shape"
+ },
+ "8295EAD0": {
+  "nights": "8234E7A8",
+  "how": "unique shape"
+ },
+ "8295EAF0": {
+  "nights": "8234E7C8",
+  "how": "call at +0xd04 of 82960FE8"
+ },
+ "8295EB58": {
+  "nights": "8234E830",
+  "how": "call at +0x1c of 8295F3E0"
+ },
+ "8295EBC0": {
+  "nights": "8234E898",
+  "how": "call at +0x2c of 8295EE40"
+ },
+ "8295EC38": {
+  "nights": "8234E910",
+  "how": "call at +0x18 of 8295F6D8"
+ },
+ "8295ECA0": {
+  "nights": "8234E978",
+  "how": "call at +0x18 of 8295F670"
+ },
+ "8295ED08": {
+  "nights": "8234E9E0",
+  "how": "call at +0x28 of 8295F108"
+ },
+ "8295ED80": {
+  "nights": "8234EA58",
+  "how": "call at +0x30 of 8295F108"
+ },
+ "8295EE40": {
+  "nights": "8234EB18",
+  "how": "call at +0x48 of 829608A0"
+ },
+ "8295EF00": {
+  "nights": "8234EBD8",
+  "how": "call at +0x28 of 8295F598"
+ },
+ "8295EF98": {
+  "nights": "8234EC68",
+  "how": "call at +0x50 of 8295F598"
+ },
+ "8295F038": {
+  "nights": "8234EE78",
+  "how": "call at +0x48 of 8295F3E0"
+ },
+ "8295F108": {
+  "nights": "8234EDC8",
+  "how": "call at +0x20 of 8295F5F8"
+ },
+ "8295F1B8": {
+  "nights": "8234EF48",
+  "how": "call at +0x3c of 8295F670"
+ },
+ "8295F280": {
+  "nights": "8234F010",
+  "how": "call at +0x810 of 8294AF50"
+ },
+ "8295F2F8": {
+  "nights": "8234F088",
+  "how": "call at +0xf1c of 82960FE8"
+ },
+ "8295F360": {
+  "nights": "8234F180",
+  "how": "call at +0x15fc of 82960FE8"
+ },
+ "8295F3E0": {
+  "nights": "8234F200",
+  "how": "call at +0xecc of 82960FE8"
+ },
+ "8295F4D0": {
+  "nights": "8234F408",
+  "how": "call at +0xacc of 82960FE8"
+ },
+ "8295F530": {
+  "nights": "8234F4F8",
+  "how": "call at +0x150c of 82960FE8"
+ },
+ "8295F598": {
+  "nights": "8234F288",
+  "how": "call at +0xadc of 82960FE8"
+ },
+ "8295F5F8": {
+  "nights": "8234F560",
+  "how": "call at +0x17d4 of 82960FE8"
+ },
+ "8295F670": {
+  "nights": "8234F5D8",
+  "how": "call at +0x1c of 829601D8"
+ },
+ "8295F6D8": {
+  "nights": "8234F640",
+  "how": "call at +0x1c of 82960260"
+ },
+ "8295F740": {
+  "nights": "8234F6A8",
+  "how": "call at +0x1a4 of 829D32B0"
+ },
+ "8295F7E8": {
+  "nights": "8234F750",
+  "how": "call at +0x1c of 82960FE8"
+ },
+ "8295FF68": {
+  "nights": "8234FED0",
+  "how": "call at +0x155c of 82960FE8"
+ },
+ "829601D8": {
+  "nights": "82350148",
+  "how": "call at +0x151c of 82960FE8"
+ },
+ "82960260": {
+  "nights": "823501D0",
+  "how": "call at +0x157c of 82960FE8"
+ },
+ "829602B8": {
+  "nights": "82350228",
+  "how": "call at +0x156c of 82960FE8"
+ },
+ "82960310": {
+  "nights": "82350280",
+  "how": "call at +0x9dc of 82960FE8"
+ },
+ "829603A0": {
+  "nights": "82350310",
+  "how": "call at +0xb88 of 82960FE8"
+ },
+ "829605E0": {
+  "nights": "82350528",
+  "how": "call at +0xd2c of 82960FE8"
+ },
+ "82960678": {
+  "nights": "823505C0",
+  "how": "call at +0xdf4 of 82960FE8"
+ },
+ "82960718": {
+  "nights": "823506E8",
+  "how": "call at +0xc10 of 82960FE8"
+ },
+ "829607A0": {
+  "nights": "82350660",
+  "how": "call at +0xc28 of 82960FE8"
+ },
+ "82960830": {
+  "nights": "82350768",
+  "how": "call at +0x2d14 of 829C6080"
+ },
+ "829608A0": {
+  "nights": "823507D8",
+  "how": "call at +0xcb4 of 82960FE8"
+ },
+ "82960A28": {
+  "nights": "82350960",
+  "how": "call at +0x234 of 829EF468"
+ },
+ "82960FE8": {
+  "nights": "82350F38",
+  "how": "call at +0xb4 of 829280D8"
+ },
+ "829627F0": {
+  "nights": "82352840",
+  "how": "call at +0x17fc of 82969A20"
+ },
+ "82962828": {
+  "nights": "823531D0",
+  "how": "call at +0x150 of 829644D8"
+ },
+ "82962AE0": {
+  "nights": "82352998",
+  "how": "call at +0x1c8 of 829644D8"
+ },
+ "82962B50": {
+  "nights": "82354990",
+  "how": "unique shape"
+ },
+ "82962BC0": {
+  "nights": "82352A08",
+  "how": "call at +0xf90 of 8298BCE0"
+ },
+ "82962C80": {
+  "nights": "82352AC8",
+  "how": "call at +0x254 of 82966F58"
+ },
+ "82962D00": {
+  "nights": "82352B48",
+  "how": "call at +0x2bc of 82966F58"
+ },
+ "82962D88": {
+  "nights": "82352BD0",
+  "how": "call at +0x13c of 82966F58"
+ },
+ "82962E08": {
+  "nights": "82352C58",
+  "how": "call at +0x4d8 of 82943668"
+ },
+ "829633D8": {
+  "nights": "82353438",
+  "how": "call at +0x494 of 82966F58"
+ },
+ "82963510": {
+  "nights": "82353570",
+  "how": "call at +0xf98 of 82967D30"
+ },
+ "82963578": {
+  "nights": "82353670",
+  "how": "call at +0x5d8 of 82966F58"
+ },
+ "82963630": {
+  "nights": "82353730",
+  "how": "call at +0x5e4 of 82966F58"
+ },
+ "829636F8": {
+  "nights": "823537F8",
+  "how": "call at +0x6d4 of 82966F58"
+ },
+ "82963830": {
+  "nights": "82353928",
+  "how": "call at +0x600 of 82966F58"
+ },
+ "82963910": {
+  "nights": "82353A08",
+  "how": "call at +0x994 of 82966F58"
+ },
+ "82963990": {
+  "nights": "82353A88",
+  "how": "call at +0x908 of 82966F58"
+ },
+ "82963A80": {
+  "nights": "82355548",
+  "how": "call at +0xe8 of 82966F58"
+ },
+ "82964300": {
+  "nights": "82353B78",
+  "how": "call at +0xb4c of 82966F58"
+ },
+ "829644D8": {
+  "nights": "82353D50",
+  "how": "call at +0x398 of 82966F58"
+ },
+ "829648C8": {
+  "nights": "82354158",
+  "how": "call at +0x36c of 82966928"
+ },
+ "82964B28": {
+  "nights": "823543B8",
+  "how": "call at +0xae8 of 82966F58"
+ },
+ "82964FE0": {
+  "nights": "82354880",
+  "how": "call at +0x828 of 82966F58"
+ },
+ "82965088": {
+  "nights": "82354928",
+  "how": "call at +0x2a8 of 82966F58"
+ },
+ "829650F8": {
+  "nights": "82354A00",
+  "how": "call at +0x234 of 82966490"
+ },
+ "829651D0": {
+  "nights": "82354AD8",
+  "how": "call at +0x1f1c of 829C6080"
+ },
+ "82965278": {
+  "nights": "82354B80",
+  "how": "call at +0x250 of 82966490"
+ },
+ "82965320": {
+  "nights": "82354C28",
+  "how": "call at +0x26c of 82966490"
+ },
+ "829653C8": {
+  "nights": "82354CD0",
+  "how": "call at +0x350 of 82966928"
+ },
+ "829654A0": {
+  "nights": "82354DA8",
+  "how": "call at +0x334 of 82966928"
+ },
+ "82965578": {
+  "nights": "82354E80",
+  "how": "call at +0x318 of 82966928"
+ },
+ "82965650": {
+  "nights": "82354F58",
+  "how": "call at +0x20c of 82966490"
+ },
+ "829656F8": {
+  "nights": "82355000",
+  "how": "call at +0x1f8 of 82966490"
+ },
+ "829657A0": {
+  "nights": "823550A8",
+  "how": "call at +0x1e4 of 82966490"
+ },
+ "82965848": {
+  "nights": "82355150",
+  "how": "call at +0x150 of 82966F58"
+ },
+ "82965C30": {
+  "nights": "82355E40",
+  "how": "call at +0x218 of 82966F58"
+ },
+ "82965CA8": {
+  "nights": "82355EB8",
+  "how": "call at +0x58c of 82966928"
+ },
+ "82965EB8": {
+  "nights": "823560C8",
+  "how": "call at +0x43c of 82966928"
+ },
+ "829660A0": {
+  "nights": "823562A8",
+  "how": "call at +0x46c of 82966928"
+ },
+ "82966490": {
+  "nights": "823566A0",
+  "how": "call at +0x348 of 82966F58"
+ },
+ "82966860": {
+  "nights": "82356B48",
+  "how": "call at +0x264 of 82966F58"
+ },
+ "82966928": {
+  "nights": "82356C10",
+  "how": "call at +0x640 of 82966F58"
+ },
+ "82966F58": {
+  "nights": "82357240",
+  "how": "call at +0xf6c of 82967D30"
+ },
+ "82967D30": {
+  "nights": "823580C0",
+  "how": "call at +0xa4 of 829280D8"
+ },
+ "82968D08": {
+  "nights": "823590D8",
+  "how": "call at +0x17b0 of 82969A20"
+ },
+ "82968D58": {
+  "nights": "82359128",
+  "how": "unique shape"
+ },
+ "82968DA0": {
+  "nights": "82359170",
+  "how": "call at +0x17b8 of 829C6080"
+ },
+ "82968DF0": {
+  "nights": "823591C0",
+  "how": "unique shape"
+ },
+ "82968E40": {
+  "nights": "82359210",
+  "how": "unique shape"
+ },
+ "82968EB0": {
+  "nights": "82359280",
+  "how": "call at +0x120 of 829B7808"
+ },
+ "82968F18": {
+  "nights": "82359330",
+  "how": "call at +0x41c of 82983B00"
+ },
+ "82968FE8": {
+  "nights": "82359410",
+  "how": "call at +0x1b54 of 82969A20"
+ },
+ "829690D8": {
+  "nights": "82359500",
+  "how": "call at +0xfcc of 82969A20"
+ },
+ "82969708": {
+  "nights": "82359B28",
+  "how": "call at +0x1bc of 8299BCB8"
+ },
+ "82969778": {
+  "nights": "82359BA0",
+  "how": "call at +0x28d8 of 82969A20"
+ },
+ "82969918": {
+  "nights": "82359D40",
+  "how": "call at +0x24e8 of 82969A20"
+ },
+ "82969A20": {
+  "nights": "82359E48",
+  "how": "call at +0x94 of 829280D8"
+ },
+ "8296D958": {
+  "nights": "8235DFC0",
+  "how": "call at +0x6c of 829F6560"
+ },
+ "8296D998": {
+  "nights": "8235E000",
+  "how": "unique shape"
+ },
+ "8296D9F0": {
+  "nights": "8235E058",
+  "how": "call at +0xc of 8296DA40"
+ },
+ "8296DA40": {
+  "nights": "8235E0A8",
+  "how": "unique shape"
+ },
+ "8296DA70": {
+  "nights": "8235E0D8",
+  "how": "call at +0x748 of 82983B00"
+ },
+ "8296DAD0": {
+  "nights": "8235E138",
+  "how": "call at +0x310 of 829733E0"
+ },
+ "8296DB98": {
+  "nights": "8235E200",
+  "how": "call at +0xe2c of 829793F0"
+ },
+ "8296DC68": {
+  "nights": "8235E2D0",
+  "how": "call at +0x140 of 82972618"
+ },
+ "8296DD08": {
+  "nights": "8235E368",
+  "how": "call at +0x9d4 of 82969A20"
+ },
+ "8296DE78": {
+  "nights": "8235E4D8",
+  "how": "call at +0x17c of 82978DA8"
+ },
+ "8296DFE8": {
+  "nights": "8235E650",
+  "how": "call at +0x40c of 829826A8"
+ },
+ "8296E0E8": {
+  "nights": "8235E750",
+  "how": "call at +0x54 of 8297A968"
+ },
+ "8296E150": {
+  "nights": "8235E7B8",
+  "how": "call at +0xa4 of 8297A968"
+ },
+ "8296E340": {
+  "nights": "8235E9A8",
+  "how": "call at +0x498 of 82978108"
+ },
+ "8296E3B8": {
+  "nights": "8235EAB0",
+  "how": "call at +0x1158 of 829793F0"
+ },
+ "8296E440": {
+  "nights": "8235EB38",
+  "how": "call at +0x3ec of 829826A8"
+ },
+ "8296E4A8": {
+  "nights": "8235EBA0",
+  "how": "call at +0x2818 of 82983B00"
+ },
+ "8296E570": {
+  "nights": "8235EC70",
+  "how": "unique shape"
+ },
+ "8296E608": {
+  "nights": "8235ED08",
+  "how": "call at +0x64 of 829733E0"
+ },
+ "8296E728": {
+  "nights": "8235EE20",
+  "how": "call at +0x4e8 of 82972618"
+ },
+ "8296E820": {
+  "nights": "8235EF18",
+  "how": "unique shape"
+ },
+ "8296F1C8": {
+  "nights": "8235F8C0",
+  "how": "unique shape"
+ },
+ "8296F258": {
+  "nights": "8235F950",
+  "how": "call at +0xbc of 829700D8"
+ },
+ "8296F498": {
+  "nights": "8235FB90",
+  "how": "call at +0x1aa8 of 82983B00"
+ },
+ "8296F590": {
+  "nights": "8235FCB0",
+  "how": "call at +0x2c8 of 829793F0"
+ },
+ "8296F958": {
+  "nights": "82360070",
+  "how": "call at +0xa8 of 829700D8"
+ },
+ "8296FC28": {
+  "nights": "82360320",
+  "how": "call at +0xe54 of 829793F0"
+ },
+ "8296FDC0": {
+  "nights": "823604B8",
+  "how": "call at +0x434 of 82983B00"
+ },
+ "82970088": {
+  "nights": "823607D0",
+  "how": "unique shape"
+ },
+ "829700D8": {
+  "nights": "82360820",
+  "how": "call at +0x120 of 82981C80"
+ },
+ "82970458": {
+  "nights": "82360BA0",
+  "how": "call at +0x2798 of 82983B00"
+ },
+ "829704A0": {
+  "nights": "82360BF0",
+  "how": "call at +0x27c8 of 82983B00"
+ },
+ "82970558": {
+  "nights": "82360CA8",
+  "how": "call at +0x29a4 of 82983B00"
+ },
+ "82970610": {
+  "nights": "82360D68",
+  "how": "call at +0x70c of 82997238"
+ },
+ "829706E0": {
+  "nights": "82360E38",
+  "how": "call at +0x870 of 82997238"
+ },
+ "82970C20": {
+  "nights": "8233AB18",
+  "how": "call at +0x4f4 of 82983B00"
+ },
+ "829714A8": {
+  "nights": "82361C40",
+  "how": "call at +0x25b8 of 82983B00"
+ },
+ "82971528": {
+  "nights": "82361CC0",
+  "how": "call at +0x28 of 82971728"
+ },
+ "829715E0": {
+  "nights": "8238A2A8",
+  "how": "call at +0x204 of 8299C688"
+ },
+ "82971640": {
+  "nights": "823B4858",
+  "how": "call at +0x138 of 829C2208"
+ },
+ "829716A0": {
+  "nights": "8238A308",
+  "how": "call at +0x74 of 82973338"
+ },
+ "82971728": {
+  "nights": "82361D78",
+  "how": "call at +0x2614 of 82983B00"
+ },
+ "82971778": {
+  "nights": "82361E00",
+  "how": "call at +0x414 of 829F6908"
+ },
+ "82971838": {
+  "nights": "82361EB8",
+  "how": "call at +0x164 of 829822C8"
+ },
+ "82971D00": {
+  "nights": "82362380",
+  "how": "call at +0x2320 of 82983B00"
+ },
+ "82971E68": {
+  "nights": "823624F0",
+  "how": "call at +0x174 of 829733E0"
+ },
+ "82972150": {
+  "nights": "823627E0",
+  "how": "call at +0x368 of 82969A20"
+ },
+ "82972618": {
+  "nights": "82362D10",
+  "how": "call at +0xda4 of 829793F0"
+ },
+ "82972C88": {
+  "nights": "82363380",
+  "how": "call at +0x2d94 of 82983B00"
+ },
+ "82973238": {
+  "nights": "82363930",
+  "how": "call at +0x2830 of 82983B00"
+ },
+ "829732D0": {
+  "nights": "823639C8",
+  "how": "call at +0x1194 of 829793F0"
+ },
+ "82973338": {
+  "nights": "82363A30",
+  "how": "unique shape"
+ },
+ "829733E0": {
+  "nights": "82363AD8",
+  "how": "call at +0x9e0 of 829793F0"
+ },
+ "82974BC8": {
+  "nights": "823652C8",
+  "how": "call at +0x3ac of 829793F0"
+ },
+ "82975260": {
+  "nights": "82365970",
+  "how": "call at +0x2ea4 of 82983B00"
+ },
+ "82976918": {
+  "nights": "82367040",
+  "how": "call at +0xcf8 of 82983B00"
+ },
+ "82976BA8": {
+  "nights": "823672D8",
+  "how": "call at +0xf3c of 82983B00"
+ },
+ "82977078": {
+  "nights": "82367850",
+  "how": "call at +0xa54 of 82983B00"
+ },
+ "82977300": {
+  "nights": "82367AD8",
+  "how": "call at +0x4d8 of 8297A968"
+ },
+ "82978108": {
+  "nights": "82368950",
+  "how": "call at +0x150 of 82981C80"
+ },
+ "829785B0": {
+  "nights": "82368DF8",
+  "how": "call at +0x184 of 829822C8"
+ },
+ "82978DA8": {
+  "nights": "82369600",
+  "how": "call at +0x44 of 829825B8"
+ },
+ "829793F0": {
+  "nights": "82369C68",
+  "how": "call at +0x2368 of 82983B00"
+ },
+ "8297A740": {
+  "nights": "8236B000",
+  "how": "call at +0xdc of 829830D8"
+ },
+ "8297A968": {
+  "nights": "8236B288",
+  "how": "call at +0x28c4 of 82983B00"
+ },
+ "8297BE78": {
+  "nights": "8236C888",
+  "how": "call at +0x2858 of 82983B00"
+ },
+ "82981C80": {
+  "nights": "82372870",
+  "how": "call at +0xbc0 of 82983B00"
+ },
+ "82981E48": {
+  "nights": "82372A30",
+  "how": "call at +0x1458 of 82983B00"
+ },
+ "82982030": {
+  "nights": "82372C10",
+  "how": "call at +0x2ba4 of 82983B00"
+ },
+ "829822C8": {
+  "nights": "82372EA8",
+  "how": "call at +0x2198 of 82983B00"
+ },
+ "829825B8": {
+  "nights": "82373198",
+  "how": "call at +0x2340 of 82983B00"
+ },
+ "82982610": {
+  "nights": "823731F8",
+  "how": "call at +0x8c of 82983820"
+ },
+ "829826A8": {
+  "nights": "82373290",
+  "how": "call at +0x5bc of 829830D8"
+ },
+ "82983050": {
+  "nights": "82373BF0",
+  "how": "call at +0x2660 of 82983B00"
+ },
+ "829830D8": {
+  "nights": "82373C70",
+  "how": "call at +0x2934 of 82983B00"
+ },
+ "82983740": {
+  "nights": "823742E8",
+  "how": "call at +0xf4 of 82983958"
+ },
+ "82983820": {
+  "nights": "823743C0",
+  "how": "call at +0x2904 of 82983B00"
+ },
+ "82983958": {
+  "nights": "823744F8",
+  "how": "call at +0x2bb8 of 82983B00"
+ },
+ "82983B00": {
+  "nights": "823746A0",
+  "how": "call at +0x5c of 829280D8"
+ },
+ "829887C8": {
+  "nights": "823792F0",
+  "how": "call at +0x26c8 of 82969A20"
+ },
+ "82988AE0": {
+  "nights": "82379600",
+  "how": "call at +0xca8 of 8298BCE0"
+ },
+ "82988BB0": {
+  "nights": "823796D8",
+  "how": "call at +0xac of 82989938"
+ },
+ "82988D60": {
+  "nights": "82379888",
+  "how": "call at +0x6c0 of 829AB178"
+ },
+ "82988D68": {
+  "nights": "82379890",
+  "how": "call at +0x1144 of 8298DB50"
+ },
+ "82988E50": {
+  "nights": "82379970",
+  "how": "call at +0x10c of 8298ECF8"
+ },
+ "82989228": {
+  "nights": "82379D40",
+  "how": "call at +0x1ce4 of 8298BCE0"
+ },
+ "829892F8": {
+  "nights": "82379E10",
+  "how": "call at +0x278 of 8298DB50"
+ },
+ "82989488": {
+  "nights": "82379FA0",
+  "how": "call at +0x8d4 of 8298DB50"
+ },
+ "82989938": {
+  "nights": "8237A460",
+  "how": "call at +0x1f4 of 8298BCE0"
+ },
+ "82989C80": {
+  "nights": "8237A7A8",
+  "how": "call at +0xbc8 of 829ACFE8"
+ },
+ "82989C88": {
+  "nights": "8237A7B0",
+  "how": "call at +0x13c0 of 8298BCE0"
+ },
+ "82989DC0": {
+  "nights": "8237A8E8",
+  "how": "call at +0x189c of 8298BCE0"
+ },
+ "8298BCE0": {
+  "nights": "8237C738",
+  "how": "call at +0xda0 of 8298DB50"
+ },
+ "8298DB50": {
+  "nights": "8237E5A0",
+  "how": "call at +0x4c of 829280D8"
+ },
+ "8298ECF8": {
+  "nights": "8237F7A0",
+  "how": "call at +0x27c of 829822C8"
+ },
+ "8298F1B0": {
+  "nights": "8237FC50",
+  "how": "call at +0xcc of 829822C8"
+ },
+ "8298F238": {
+  "nights": "8237FCD8",
+  "how": "unique shape"
+ },
+ "8298F410": {
+  "nights": "8237FEB0",
+  "how": "call at +0x2c of 8296D9F0"
+ },
+ "8298F428": {
+  "nights": "8237FEC8",
+  "how": "call at +0xa70 of 829793F0"
+ },
+ "8298F4B0": {
+  "nights": "8237FF50",
+  "how": "call at +0x19c of 82965CA8"
+ },
+ "8298F530": {
+  "nights": "8237FFD0",
+  "how": "call at +0x64 of 829B9100"
+ },
+ "8298F6B8": {
+  "nights": "82380158",
+  "how": "unique shape"
+ },
+ "8298F740": {
+  "nights": "823801E0",
+  "how": "call at +0x160 of 82992270"
+ },
+ "8298F838": {
+  "nights": "823802D8",
+  "how": "unique shape"
+ },
+ "8298F898": {
+  "nights": "82380338",
+  "how": "unique shape"
+ },
+ "8298FA78": {
+  "nights": "82380518",
+  "how": "unique shape"
+ },
+ "8298FA90": {
+  "nights": "82380530",
+  "how": "unique shape"
+ },
+ "8298FAC8": {
+  "nights": "82380568",
+  "how": "unique shape"
+ },
+ "8298FB38": {
+  "nights": "82380E00",
+  "how": "call at +0x84 of 82990370"
+ },
+ "8298FC70": {
+  "nights": "82380628",
+  "how": "call at +0x288 of 829ADE10"
+ },
+ "8298FCD8": {
+  "nights": "82380690",
+  "how": "unique shape"
+ },
+ "8298FD30": {
+  "nights": "823806E8",
+  "how": "unique shape"
+ },
+ "8298FE00": {
+  "nights": "823807B8",
+  "how": "unique shape"
+ },
+ "8298FE48": {
+  "nights": "82380868",
+  "how": "call at +0x28 of 8298FED8"
+ },
+ "8298FED8": {
+  "nights": "823808F8",
+  "how": "call at +0x9b4 of 829ADE10"
+ },
+ "8298FF28": {
+  "nights": "823809B8",
+  "how": "call at +0x108 of 829EE158"
+ },
+ "82990048": {
+  "nights": "82380AD8",
+  "how": "call at +0x2d4 of 829ACFE8"
+ },
+ "829900F0": {
+  "nights": "82380B80",
+  "how": "call at +0x394 of 8299F2F0"
+ },
+ "82990370": {
+  "nights": "82383330",
+  "how": "call at +0x38 of 82998090"
+ },
+ "82990448": {
+  "nights": "82380F20",
+  "how": "call at +0x26a8 of 829ADE10"
+ },
+ "82990938": {
+  "nights": "82381410",
+  "how": "call at +0x2840 of 829ADE10"
+ },
+ "82990C80": {
+  "nights": "82381758",
+  "how": "call at +0x750 of 829A8CA0"
+ },
+ "82990CF8": {
+  "nights": "823817D0",
+  "how": "call at +0x1e8 of 82999908"
+ },
+ "82990F10": {
+  "nights": "823819F0",
+  "how": "call at +0x94 of 829F59A8"
+ },
+ "82991008": {
+  "nights": "82381B10",
+  "how": "call at +0x98c of 829A8CA0"
+ },
+ "82991450": {
+  "nights": "82381F78",
+  "how": "call at +0x3d0 of 829528C0"
+ },
+ "829914F0": {
+  "nights": "82382028",
+  "how": "call at +0x38 of 82999B18"
+ },
+ "82991838": {
+  "nights": "823824F8",
+  "how": "call at +0x1cc of 8298DB50"
+ },
+ "829918F0": {
+  "nights": "823825B8",
+  "how": "call at +0x6e0 of 829ADE10"
+ },
+ "829919A8": {
+  "nights": "82382680",
+  "how": "call at +0x1e4 of 82998A20"
+ },
+ "82991FC0": {
+  "nights": "82382CA8",
+  "how": "call at +0xae0 of 829ACFE8"
+ },
+ "82992270": {
+  "nights": "82382F50",
+  "how": "call at +0x938 of 829AB178"
+ },
+ "82992510": {
+  "nights": "82389A48",
+  "how": "call at +0xd4 of 82998090"
+ },
+ "829928D0": {
+  "nights": "82383750",
+  "how": "call at +0xd0 of 829A8448"
+ },
+ "82992A70": {
+  "nights": "82383930",
+  "how": "call at +0x6e4 of 829A8448"
+ },
+ "82992BD8": {
+  "nights": "82383A98",
+  "how": "call at +0x66c of 829ACFE8"
+ },
+ "82992C90": {
+  "nights": "82383BA0",
+  "how": "call at +0x5ac of 8299BCB8"
+ },
+ "82992E00": {
+  "nights": "82383DF8",
+  "how": "call at +0x98c of 82997238"
+ },
+ "829931D0": {
+  "nights": "82384498",
+  "how": "call at +0x53c of 829A8448"
+ },
+ "82993740": {
+  "nights": "82384A08",
+  "how": "call at +0xe68 of 829CF9A8"
+ },
+ "829938A8": {
+  "nights": "82384B70",
+  "how": "call at +0x558 of 829A8448"
+ },
+ "82993B18": {
+  "nights": "82384DE0",
+  "how": "call at +0x570 of 829A8448"
+ },
+ "82994438": {
+  "nights": "823856C8",
+  "how": "call at +0xb20 of 82997238"
+ },
+ "82994520": {
+  "nights": "823857A8",
+  "how": "call at +0x624 of 82997238"
+ },
+ "82994608": {
+  "nights": "82385888",
+  "how": "call at +0x728 of 82997238"
+ },
+ "829946E0": {
+  "nights": "8238A390",
+  "how": "call at +0x30 of 829280D8"
+ },
+ "82996758": {
+  "nights": "82387F88",
+  "how": "call at +0x37c of 8298ECF8"
+ },
+ "82996938": {
+  "nights": "82388160",
+  "how": "call at +0x58 of 829ACFE8"
+ },
+ "82996F48": {
+  "nights": "823887C0",
+  "how": "call at +0xd0 of 82999B18"
+ },
+ "82996FE0": {
+  "nights": "82388858",
+  "how": "call at +0xe8 of 82998A20"
+ },
+ "829970A8": {
+  "nights": "82388920",
+  "how": "call at +0x1c00 of 829ADE10"
+ },
+ "82997238": {
+  "nights": "82388AB8",
+  "how": "call at +0x28 of 829B4638"
+ },
+ "82997F60": {
+  "nights": "823897E0",
+  "how": "call at +0x72c of 829ADE10"
+ },
+ "82998090": {
+  "nights": "8238C828",
+  "how": "call at +0x58 of 8299EC90"
+ },
+ "829981C0": {
+  "nights": "82389AD8",
+  "how": "call at +0xc6c of 829ADE10"
+ },
+ "82998390": {
+  "nights": "82389CB0",
+  "how": "call at +0x29c of 829A9F40"
+ },
+ "829984C8": {
+  "nights": "82389DD8",
+  "how": "unique shape"
+ },
+ "82998518": {
+  "nights": "82389E28",
+  "how": "unique shape"
+ },
+ "82998818": {
+  "nights": "823B4B90",
+  "how": "call at +0x40 of 829C24C0"
+ },
+ "829988A0": {
+  "nights": "8238BE00",
+  "how": "call at +0x1ec of 829996E0"
+ },
+ "82998A20": {
+  "nights": "8238BF80",
+  "how": "call at +0x118c of 829ADE10"
+ },
+ "82999240": {
+  "nights": "82315080",
+  "how": "call at +0x1e4 of 829B4638"
+ },
+ "829996E0": {
+  "nights": "8238CE50",
+  "how": "call at +0x38 of 829B4638"
+ },
+ "82999908": {
+  "nights": "8238D080",
+  "how": "call at +0x70 of 829B4638"
+ },
+ "82999B18": {
+  "nights": "8238D2C0",
+  "how": "call at +0x644 of 829ACFE8"
+ },
+ "8299B078": {
+  "nights": "8238E910",
+  "how": "call at +0x494 of 8299BCB8"
+ },
+ "8299B158": {
+  "nights": "8238E9F0",
+  "how": "call at +0x148 of 829822C8"
+ },
+ "8299BCB8": {
+  "nights": "8238F548",
+  "how": "call at +0x20 of 8294FE88"
+ },
+ "8299C470": {
+  "nights": "8238FD40",
+  "how": "call at +0x84 of 8299F2F0"
+ },
+ "8299C688": {
+  "nights": "8238FF68",
+  "how": "call at +0x220 of 8299F2F0"
+ },
+ "8299CBC0": {
+  "nights": "823904D0",
+  "how": "call at +0x124 of 829AACD0"
+ },
+ "8299E9B0": {
+  "nights": "82392360",
+  "how": "call at +0x4b8 of 8299F2F0"
+ },
+ "8299EC90": {
+  "nights": "82392640",
+  "how": "call at +0x2458 of 829ADE10"
+ },
+ "8299EEF0": {
+  "nights": "823928C8",
+  "how": "call at +0xd08 of 829A8CA0"
+ },
+ "8299F2F0": {
+  "nights": "82392CD8",
+  "how": "call at +0x68 of 829B4638"
+ },
+ "8299F9F8": {
+  "nights": "823933E8",
+  "how": "call at +0xe0 of 829AACD0"
+ },
+ "829A1460": {
+  "nights": "82394FD0",
+  "how": "call at +0xc4 of 829AB178"
+ },
+ "829A8448": {
+  "nights": "823A0CC8",
+  "how": "call at +0x1cc of 829B4638"
+ },
+ "829A8CA0": {
+  "nights": "8239C7C0",
+  "how": "call at +0x7c of 829B4638"
+ },
+ "829A9F40": {
+  "nights": "8239DB48",
+  "how": "call at +0x1bc of 829B4638"
+ },
+ "829AACD0": {
+  "nights": "8239E8E0",
+  "how": "call at +0x84 of 829B4638"
+ },
+ "829AB178": {
+  "nights": "8239ED80",
+  "how": "call at +0xd4 of 829B4638"
+ },
+ "829ACFE8": {
+  "nights": "823A1FE0",
+  "how": "call at +0x4c of 829B4638"
+ },
+ "829ADE10": {
+  "nights": "823A2E88",
+  "how": "call at +0x19c of 829B4638"
+ },
+ "829B4638": {
+  "nights": "823A9B68",
+  "how": "call at +0x38 of 829280D8"
+ },
+ "829B4838": {
+  "nights": "823AB5E8",
+  "how": "call at +0xf8 of 829B5DD0"
+ },
+ "829B4988": {
+  "nights": "823AB430",
+  "how": "call at +0x9fc of 82967D30"
+ },
+ "829B4A70": {
+  "nights": "823AB518",
+  "how": "call at +0x214 of 829B5DD0"
+ },
+ "829B4B28": {
+  "nights": "823AB760",
+  "how": "call at +0x1c4 of 829C2208"
+ },
+ "829B4D10": {
+  "nights": "823AB948",
+  "how": "call at +0x1d4 of 829B5128"
+ },
+ "829B5128": {
+  "nights": "823ABD70",
+  "how": "call at +0x320 of 829B5DD0"
+ },
+ "829B54E0": {
+  "nights": "823AC140",
+  "how": "call at +0x114 of 829B5DD0"
+ },
+ "829B5DD0": {
+  "nights": "823ACA48",
+  "how": "call at +0x1b4 of 82928630"
+ },
+ "829B6430": {
+  "nights": "823AD0C8",
+  "how": "call at +0xe4 of 829B75A8"
+ },
+ "829B6490": {
+  "nights": "823AD140",
+  "how": "call at +0x208 of 829B75A8"
+ },
+ "829B6510": {
+  "nights": "823AD258",
+  "how": "call at +0xe8 of 829B7808"
+ },
+ "829B75A8": {
+  "nights": "823AE300",
+  "how": "call at +0xfc of 829B7808"
+ },
+ "829B7808": {
+  "nights": "823AE578",
+  "how": "call at +0x184 of 82928630"
+ },
+ "829B7C40": {
+  "nights": "823AE9B8",
+  "how": "unique shape"
+ },
+ "829B7C80": {
+  "nights": "823AE9F8",
+  "how": "call at +0x2088 of 829CF9A8"
+ },
+ "829B7CE0": {
+  "nights": "823AEA68",
+  "how": "call at +0x80c of 829C6080"
+ },
+ "829B7D20": {
+  "nights": "823AEAA8",
+  "how": "call at +0x444 of 829C47E8"
+ },
+ "829B7DB8": {
+  "nights": "823AEB40",
+  "how": "unique shape"
+ },
+ "829B7DE0": {
+  "nights": "823AEB68",
+  "how": "call at +0x798 of 8293D7A8"
+ },
+ "829B7E08": {
+  "nights": "823AEC48",
+  "how": "call at +0x7bc of 8293D7A8"
+ },
+ "829B7E30": {
+  "nights": "823AEC70",
+  "how": "call at +0xec of 829A8448"
+ },
+ "829B7E58": {
+  "nights": "823AEC98",
+  "how": "unique shape"
+ },
+ "829B7E80": {
+  "nights": "823AECC0",
+  "how": "call at +0xa0 of 829B88A8"
+ },
+ "829B7FC8": {
+  "nights": "823AEE08",
+  "how": "unique shape"
+ },
+ "829B8048": {
+  "nights": "823AEE88",
+  "how": "unique shape"
+ },
+ "829B8078": {
+  "nights": "823AEEB8",
+  "how": "unique shape"
+ },
+ "829B8108": {
+  "nights": "823AEF48",
+  "how": "call at +0x36c of 829C47E8"
+ },
+ "829B8168": {
+  "nights": "823B4E70",
+  "how": "call at +0x2d0 of 829C47E8"
+ },
+ "829B84E0": {
+  "nights": "823AEFA8",
+  "how": "call at +0x4c of 829B8718"
+ },
+ "829B8650": {
+  "nights": "823AF118",
+  "how": "call at +0x4c of 829B8820"
+ },
+ "829B8718": {
+  "nights": "823AF1D8",
+  "how": "unique shape"
+ },
+ "829B87A0": {
+  "nights": "823AF1D8",
+  "how": "call at +0x29c of 829C3EB0"
+ },
+ "829B8820": {
+  "nights": "823AF2E0",
+  "how": "unique shape"
+ },
+ "829B88A8": {
+  "nights": "823AF368",
+  "how": "call at +0xc64 of 829C6080"
+ },
+ "829B89F0": {
+  "nights": "823AF4B0",
+  "how": "call at +0x70 of 829B8EB0"
+ },
+ "829B8C68": {
+  "nights": "823AF718",
+  "how": "call at +0x1f4 of 829C6080"
+ },
+ "829B8EB0": {
+  "nights": "823AF970",
+  "how": "call at +0x68 of 829C5F60"
+ },
+ "829B8FE0": {
+  "nights": "823AFAC0",
+  "how": "call at +0x1c of 829C1C00"
+ },
+ "829B9080": {
+  "nights": "823AFB60",
+  "how": "unique shape"
+ },
+ "829B90D0": {
+  "nights": "823AFBB0",
+  "how": "unique shape"
+ },
+ "829B9100": {
+  "nights": "823AFCA8",
+  "how": "unique shape"
+ },
+ "829B9228": {
+  "nights": "823AFE38",
+  "how": "call at +0x16c of 829D32B0"
+ },
+ "829B9298": {
+  "nights": "823AFEA0",
+  "how": "call at +0x180 of 829D32B0"
+ },
+ "829B92F0": {
+  "nights": "823AFEF8",
+  "how": "call at +0x310 of 829D32B0"
+ },
+ "829B9398": {
+  "nights": "823AFF98",
+  "how": "call at +0x20 of 829B9540"
+ },
+ "829B93F0": {
+  "nights": "823AFFF0",
+  "how": "call at +0x320 of 829D32B0"
+ },
+ "829B9450": {
+  "nights": "823B0050",
+  "how": "call at +0xb8 of 829B97F0"
+ },
+ "829B94A0": {
+  "nights": "823B00A0",
+  "how": "call at +0x1964 of 829CF9A8"
+ },
+ "829B9540": {
+  "nights": "823B0138",
+  "how": "call at +0xc0 of 829BCFD0"
+ },
+ "829B9598": {
+  "nights": "823B0190",
+  "how": "call at +0x1c88 of 829CF9A8"
+ },
+ "829B9660": {
+  "nights": "823B0250",
+  "how": "call at +0x44 of 829B9758"
+ },
+ "829B9758": {
+  "nights": "823B0388",
+  "how": "call at +0x1630 of 829C6080"
+ },
+ "829B97F0": {
+  "nights": "823B0420",
+  "how": "call at +0x1138 of 829CF9A8"
+ },
+ "829B9940": {
+  "nights": "823B05D0",
+  "how": "call at +0x17b0 of 829CF9A8"
+ },
+ "829B9AA0": {
+  "nights": "823B0730",
+  "how": "call at +0x270 of 829CF9A8"
+ },
+ "829B9B50": {
+  "nights": "823B07E0",
+  "how": "call at +0xe0 of 829C4D20"
+ },
+ "829B9C20": {
+  "nights": "823B08B0",
+  "how": "call at +0x28 of 829B9E30"
+ },
+ "829B9CD0": {
+  "nights": "823B0980",
+  "how": "call at +0x4fc of 829CF9A8"
+ },
+ "829B9D68": {
+  "nights": "823B0A18",
+  "how": "call at +0xc8 of 829BE240"
+ },
+ "829B9E30": {
+  "nights": "823B0AE8",
+  "how": "call at +0x9c of 829B9F40"
+ },
+ "829B9F40": {
+  "nights": "823B0BF8",
+  "how": "unique shape"
+ },
+ "829BA208": {
+  "nights": "823B0F00",
+  "how": "call at +0x1d4 of 829CF9A8"
+ },
+ "829BA2E0": {
+  "nights": "823B0FE8",
+  "how": "call at +0xc90 of 829C6080"
+ },
+ "829BA360": {
+  "nights": "823B10D0",
+  "how": "call at +0x2c1c of 829C6080"
+ },
+ "829BA540": {
+  "nights": "823B12B0",
+  "how": "call at +0x24 of 829BDBD0"
+ },
+ "829BA720": {
+  "nights": "823B1490",
+  "how": "call at +0x2b34 of 829C6080"
+ },
+ "829BB280": {
+  "nights": "823B1FF0",
+  "how": "call at +0x440 of 829C6080"
+ },
+ "829BC6A0": {
+  "nights": "823B33E0",
+  "how": "call at +0x40c of 829C4E10"
+ },
+ "829BC778": {
+  "nights": "823B34B0",
+  "how": "call at +0x3fc of 829C4E10"
+ },
+ "829BCA30": {
+  "nights": "823B3750",
+  "how": "call at +0x9c of 829BD258"
+ },
+ "829BCB20": {
+  "nights": "823B3838",
+  "how": "call at +0x178 of 829BD258"
+ },
+ "829BCC28": {
+  "nights": "823B3938",
+  "how": "call at +0x2c of 829EF468"
+ },
+ "829BCCB0": {
+  "nights": "823B39C0",
+  "how": "call at +0x3a4 of 829D32B0"
+ },
+ "829BCD40": {
+  "nights": "823B3A48",
+  "how": "call at +0xa4 of 829BCFD0"
+ },
+ "829BCDF0": {
+  "nights": "823B3EE0",
+  "how": "call at +0x2d8 of 829D32B0"
+ },
+ "829BCFD0": {
+  "nights": "823B4098",
+  "how": "call at +0x494 of 829D32B0"
+ },
+ "829BD0D8": {
+  "nights": "823B4198",
+  "how": "call at +0x574 of 829D32B0"
+ },
+ "829BD1A8": {
+  "nights": "823B4268",
+  "how": "call at +0x17c of 82998A20"
+ },
+ "829BD258": {
+  "nights": "823B4318",
+  "how": "call at +0x48 of 829BDFB8"
+ },
+ "829BD6A0": {
+  "nights": "82335140",
+  "how": "call at +0x1b28 of 829CF9A8"
+ },
+ "829BD710": {
+  "nights": "823B4768",
+  "how": "call at +0x2648 of 829C6080"
+ },
+ "829BD808": {
+  "nights": "8238A208",
+  "how": "call at +0x58c of 829CF9A8"
+ },
+ "829BD910": {
+  "nights": "823B4928",
+  "how": "call at +0x128 of 829C2208"
+ },
+ "829BD968": {
+  "nights": "823B4980",
+  "how": "call at +0x2b5c of 829CF9A8"
+ },
+ "829BDA00": {
+  "nights": "823B4A20",
+  "how": "call at +0x1c1c of 829CF9A8"
+ },
+ "829BDA60": {
+  "nights": "823B4A80",
+  "how": "call at +0xe8 of 829C2858"
+ },
+ "829BDAE8": {
+  "nights": "823B4B08",
+  "how": "call at +0x40 of 829C2450"
+ },
+ "829BDBD0": {
+  "nights": "823B4C78",
+  "how": "unique shape"
+ },
+ "829BDC38": {
+  "nights": "823B4CE0",
+  "how": "call at +0x6a0 of 829C6080"
+ },
+ "829BDD18": {
+  "nights": "823B4DC0",
+  "how": "call at +0x2b44 of 829C6080"
+ },
+ "829BDFB8": {
+  "nights": "823B5128",
+  "how": "call at +0xf4 of 829BE4F8"
+ },
+ "829BE0A8": {
+  "nights": "823B5228",
+  "how": "call at +0x430 of 829C6080"
+ },
+ "829BE240": {
+  "nights": "823B53C8",
+  "how": "call at +0x17a8 of 829C6080"
+ },
+ "829BE470": {
+  "nights": "823B55F0",
+  "how": "call at +0x2b08 of 829C6080"
+ },
+ "829BE4F8": {
+  "nights": "823B5678",
+  "how": "call at +0x48 of 829C20D8"
+ },
+ "829BE750": {
+  "nights": "823B58E0",
+  "how": "call at +0x2a6c of 829CF9A8"
+ },
+ "829BE898": {
+  "nights": "823B5A38",
+  "how": "call at +0x1c14 of 829CF9A8"
+ },
+ "829BE8E0": {
+  "nights": "823B5A80",
+  "how": "call at +0x61c of 829C6080"
+ },
+ "829BE920": {
+  "nights": "823B5AC0",
+  "how": "call at +0x5e4 of 829C6080"
+ },
+ "829BED60": {
+  "nights": "823B5F00",
+  "how": "call at +0x3b8 of 829C4E10"
+ },
+ "829BEE40": {
+  "nights": "823B5FE0",
+  "how": "call at +0x388 of 829C4E10"
+ },
+ "829BF5E8": {
+  "nights": "823B67D0",
+  "how": "call at +0x6a4 of 829C4E10"
+ },
+ "829C0050": {
+  "nights": "823B71D8",
+  "how": "call at +0x3ec of 829C4E10"
+ },
+ "829C0158": {
+  "nights": "823B72D8",
+  "how": "call at +0x13c of 829C1228"
+ },
+ "829C0250": {
+  "nights": "823B73C8",
+  "how": "call at +0x378 of 829C4E10"
+ },
+ "829C0348": {
+  "nights": "823B74B8",
+  "how": "call at +0xa4 of 829C0630"
+ },
+ "829C0440": {
+  "nights": "823B75B0",
+  "how": "call at +0x34 of 829C2B28"
+ },
+ "829C0540": {
+  "nights": "823B76B0",
+  "how": "call at +0x520 of 829CF9A8"
+ },
+ "829C0630": {
+  "nights": "823B7CB8",
+  "how": "call at +0x2d8 of 829CF9A8"
+ },
+ "829C1228": {
+  "nights": "823B88B8",
+  "how": "call at +0x238 of 829C2208"
+ },
+ "829C1AE8": {
+  "nights": "82362CA8",
+  "how": "call at +0x1c of 829C1B90"
+ },
+ "829C1B90": {
+  "nights": "823B91B8",
+  "how": "unique shape"
+ },
+ "829C1C00": {
+  "nights": "823B9228",
+  "how": "call at +0x178 of 829CF9A8"
+ },
+ "829C1E78": {
+  "nights": "823B94A0",
+  "how": "call at +0x2b54 of 829CF9A8"
+ },
+ "829C1FC8": {
+  "nights": "823B95F0",
+  "how": "call at +0x3a8 of 829CF9A8"
+ },
+ "829C20D8": {
+  "nights": "823B9700",
+  "how": "unique shape"
+ },
+ "829C2208": {
+  "nights": "823B9830",
+  "how": "call at +0x1770 of 829C6080"
+ },
+ "829C24C0": {
+  "nights": "823B9AE8",
+  "how": "call at +0xec of 829C2E00"
+ },
+ "829C2530": {
+  "nights": "823B9B58",
+  "how": "unique shape"
+ },
+ "829C25B0": {
+  "nights": "823B9BD8",
+  "how": "call at +0xf30 of 829CF9A8"
+ },
+ "829C2670": {
+  "nights": "823B9C98",
+  "how": "call at +0xf60 of 829CF9A8"
+ },
+ "829C27B0": {
+  "nights": "823B9E70",
+  "how": "call at +0x1abc of 829CF9A8"
+ },
+ "829C2858": {
+  "nights": "823B9F20",
+  "how": "call at +0x40 of 829C2B28"
+ },
+ "829C2B28": {
+  "nights": "823BA1E8",
+  "how": "call at +0x40 of 829C5538"
+ },
+ "829C2B80": {
+  "nights": "823BA240",
+  "how": "call at +0x60 of 829C5538"
+ },
+ "829C2BF0": {
+  "nights": "823BA2B0",
+  "how": "call at +0xaf8 of 829CF9A8"
+ },
+ "829C2C70": {
+  "nights": "823BA330",
+  "how": "call at +0x74c of 829C6080"
+ },
+ "829C2CF0": {
+  "nights": "823BA3B0",
+  "how": "unique shape"
+ },
+ "829C2D80": {
+  "nights": "823BA440",
+  "how": "call at +0xcf4 of 829CF9A8"
+ },
+ "829C2E00": {
+  "nights": "823BA5D0",
+  "how": "call at +0x1cc of 829CF9A8"
+ },
+ "829C3298": {
+  "nights": "823BB340",
+  "how": "call at +0xbfc of 829C6080"
+ },
+ "829C34B8": {
+  "nights": "823BB570",
+  "how": "call at +0x94 of 829C35D0"
+ },
+ "829C35D0": {
+  "nights": "823BB688",
+  "how": "call at +0x2a8 of 829C6080"
+ },
+ "829C3710": {
+  "nights": "823BB7C8",
+  "how": "unique shape"
+ },
+ "829C3750": {
+  "nights": "823BB808",
+  "how": "call at +0x2728 of 829C6080"
+ },
+ "829C3B78": {
+  "nights": "823BBC28",
+  "how": "call at +0x286c of 829C6080"
+ },
+ "829C3C70": {
+  "nights": "823BBD28",
+  "how": "call at +0x1984 of 829C6080"
+ },
+ "829C3EB0": {
+  "nights": "823BBF68",
+  "how": "call at +0x1ac of 829CF9A8"
+ },
+ "829C4658": {
+  "nights": "823BC5A0",
+  "how": "call at +0x98 of 829C5538"
+ },
+ "829C47E8": {
+  "nights": "823BC738",
+  "how": "call at +0xbc of 829C4D20"
+ },
+ "829C4C48": {
+  "nights": "823BCB88",
+  "how": "call at +0xd0 of 829C4D20"
+ },
+ "829C4D20": {
+  "nights": "823BCC60",
+  "how": "call at +0x4f0 of 829CF9A8"
+ },
+ "829C4E10": {
+  "nights": "823BCD78",
+  "how": "call at +0x2888 of 829C6080"
+ },
+ "829C5538": {
+  "nights": "823BD4E8",
+  "how": "call at +0x188 of 829C5618"
+ },
+ "829C5618": {
+  "nights": "823BD5C8",
+  "how": "call at +0x1f0 of 829CF9A8"
+ },
+ "829C57B0": {
+  "nights": "823BD788",
+  "how": "call at +0x10c of 829C5A70"
+ },
+ "829C5910": {
+  "nights": "823BD8F8",
+  "how": "call at +0xd8 of 829C5A70"
+ },
+ "829C5A70": {
+  "nights": "823BDA58",
+  "how": "call at +0x208 of 829CF9A8"
+ },
+ "829C5F60": {
+  "nights": "823BDF60",
+  "how": "call at +0x28b4 of 829CF9A8"
+ },
+ "829C6080": {
+  "nights": "823BE088",
+  "how": "call at +0x368 of 829CF9A8"
+ },
+ "829CF240": {
+  "nights": "823C7858",
+  "how": "call at +0x12d8 of 829CF9A8"
+ },
+ "829CF9A8": {
+  "nights": "823C8180",
+  "how": "call at +0x17c of 82928630"
+ },
+ "829D2840": {
+  "nights": "823CB4B8",
+  "how": "call at +0x15c of 82928630"
+ },
+ "829D32B0": {
+  "nights": "823CC0F8",
+  "how": "call at +0x2c of 82928818"
+ },
+ "829D3C28": {
+  "nights": "823DB6D0",
+  "how": "call at +0x2c of 82935310"
+ },
+ "829D3C60": {
+  "nights": "823CCCC8",
+  "how": "call at +0x24 of 829D3F58"
+ },
+ "829D3CE0": {
+  "nights": "823CCD48",
+  "how": "call at +0x38 of 829D3F58"
+ },
+ "829D3D50": {
+  "nights": "823CCDB8",
+  "how": "call at +0x44 of 829D3F58"
+ },
+ "829D3DF0": {
+  "nights": "823CCE58",
+  "how": "call at +0x50 of 829D3F58"
+ },
+ "829D3F58": {
+  "nights": "823CCFC0",
+  "how": "unique shape"
+ },
+ "829D4130": {
+  "nights": "823CD198",
+  "how": "call at +0x184 of 82935310"
+ },
+ "829D4198": {
+  "nights": "823CD200",
+  "how": "call at +0x4c of 829362B0"
+ },
+ "829D4508": {
+  "nights": "823CD570",
+  "how": "call at +0xa8 of 82930EA0"
+ },
+ "829D5638": {
+  "nights": "823CE600",
+  "how": "call at +0x94 of 82935310"
+ },
+ "829D5740": {
+  "nights": "823CE708",
+  "how": "call at +0x28 of 829D4508"
+ },
+ "829D57B8": {
+  "nights": "823CE780",
+  "how": "call at +0x34 of 829D4508"
+ },
+ "829D5848": {
+  "nights": "823CE810",
+  "how": "call at +0xb0 of 829D5978"
+ },
+ "829D5908": {
+  "nights": "823CE8D0",
+  "how": "call at +0x100 of 82935A60"
+ },
+ "829D5978": {
+  "nights": "823CE930",
+  "how": "call at +0x20 of 829FED40"
+ },
+ "829D5A78": {
+  "nights": "823CEA38",
+  "how": "call at +0xd8 of 829316B8"
+ },
+ "829D5AE0": {
+  "nights": "823CEAA0",
+  "how": "call at +0x18c of 82935310"
+ },
+ "829D5C30": {
+  "nights": "823CEBF0",
+  "how": "call at +0x58 of 829D8F38"
+ },
+ "829D5D30": {
+  "nights": "823CECF0",
+  "how": "call at +0x194 of 82935310"
+ },
+ "829D5F70": {
+  "nights": "823CEF30",
+  "how": "call at +0x19c of 82935310"
+ },
+ "829D70C0": {
+  "nights": "823D0068",
+  "how": "call at +0x6c of 82935310"
+ },
+ "829D7C58": {
+  "nights": "823D0C00",
+  "how": "unique shape"
+ },
+ "829D7F30": {
+  "nights": "823D0ED8",
+  "how": "call at +0x84 of 829D5638"
+ },
+ "829D8188": {
+  "nights": "823D1128",
+  "how": "call at +0x134 of 82935310"
+ },
+ "829D8878": {
+  "nights": "823D1800",
+  "how": "call at +0x2c of 829D8A08"
+ },
+ "829D8A08": {
+  "nights": "823D1990",
+  "how": "call at +0x15c of 82935310"
+ },
+ "829D8B60": {
+  "nights": "823D1AE8",
+  "how": "call at +0xe0 of 82935A60"
+ },
+ "829D8C00": {
+  "nights": "823D1B88",
+  "how": "call at +0xcc of 82936190"
+ },
+ "829D8CA8": {
+  "nights": "823D1C30",
+  "how": "call at +0x4c of 829359F8"
+ },
+ "829D8D88": {
+  "nights": "823D1D10",
+  "how": "call at +0xa0 of 82935B88"
+ },
+ "829D8F38": {
+  "nights": "823D1EC0",
+  "how": "call at +0x9c of 829D5638"
+ },
+ "829D8FD8": {
+  "nights": "823D1F60",
+  "how": "call at +0xe0 of 82936190"
+ },
+ "829D9098": {
+  "nights": "823D2020",
+  "how": "call at +0x60 of 82936190"
+ },
+ "829D9190": {
+  "nights": "823D2118",
+  "how": "call at +0xd8 of 82935B88"
+ },
+ "829D9248": {
+  "nights": "823D21D0",
+  "how": "call at +0x48 of 829D5638"
+ },
+ "829D9B08": {
+  "nights": "823D2A90",
+  "how": "unique shape"
+ },
+ "829E6668": {
+  "nights": "823DF220",
+  "how": "call at +0xc8 of 82936698"
+ },
+ "829E68A0": {
+  "nights": "823DF448",
+  "how": "call at +0x234 of 82A042B8"
+ },
+ "829E6908": {
+  "nights": "823DF4B0",
+  "how": "call at +0x450 of 82A04DC0"
+ },
+ "829E6970": {
+  "nights": "823DF518",
+  "how": "call at +0x204 of 82A03078"
+ },
+ "829E6A38": {
+  "nights": "823DF5E0",
+  "how": "call at +0x7ec of 82A054E0"
+ },
+ "829E6AA0": {
+  "nights": "823DF6A0",
+  "how": "call at +0x88 of 82A03908"
+ },
+ "829E6D68": {
+  "nights": "823DF910",
+  "how": "unique shape"
+ },
+ "829E6FE8": {
+  "nights": "823DFB90",
+  "how": "call at +0x44 of 829E75A8"
+ },
+ "829E7178": {
+  "nights": "823DFD28",
+  "how": "call at +0x88 of 829362B0"
+ },
+ "829E7520": {
+  "nights": "823E00C8",
+  "how": "unique shape"
+ },
+ "829E75A8": {
+  "nights": "823E0150",
+  "how": "unique shape"
+ },
+ "829EA0F8": {
+  "nights": "823E2B68",
+  "how": "call at +0x1c of 829D4508"
+ },
+ "829EA160": {
+  "nights": "823E2BD0",
+  "how": "call at +0xac of 82936698"
+ },
+ "829EA1B8": {
+  "nights": "823E2C28",
+  "how": "call at +0x98 of 82936698"
+ },
+ "829EA968": {
+  "nights": "823E33F0",
+  "how": "call at +0x34 of 829D7C58"
+ },
+ "829EB248": {
+  "nights": "823E3A50",
+  "how": "unique shape"
+ },
+ "829EB4F8": {
+  "nights": "823E3C30",
+  "how": "unique shape"
+ },
+ "829EBB50": {
+  "nights": "823E4400",
+  "how": "unique shape"
+ },
+ "829EBBB0": {
+  "nights": "823E4460",
+  "how": "call at +0x250 of 829644D8"
+ },
+ "829EBC18": {
+  "nights": "823E44C8",
+  "how": "call at +0x5c of 829EBE40"
+ },
+ "829EBC98": {
+  "nights": "823E4548",
+  "how": "call at +0x1c08 of 82969A20"
+ },
+ "829EBE28": {
+  "nights": "823E46D8",
+  "how": "call at +0x1594 of 82969A20"
+ },
+ "829EBE40": {
+  "nights": "823E46F0",
+  "how": "unique shape"
+ },
+ "829EC170": {
+  "nights": "823E4978",
+  "how": "unique shape"
+ },
+ "829EC260": {
+  "nights": "823E4A68",
+  "how": "call at +0x1420 of 82969A20"
+ },
+ "829EC330": {
+  "nights": "823E4B30",
+  "how": "call at +0x14dc of 82969A20"
+ },
+ "829EC878": {
+  "nights": "823E5058",
+  "how": "call at +0x704 of 829A8448"
+ },
+ "829EC950": {
+  "nights": "823E5130",
+  "how": "call at +0xc4 of 829EF748"
+ },
+ "829ECA40": {
+  "nights": "823E5220",
+  "how": "unique shape"
+ },
+ "829ECAB0": {
+  "nights": "823E5290",
+  "how": "unique shape"
+ },
+ "829ECEA0": {
+  "nights": "823E5480",
+  "how": "call at +0xe8 of 82948180"
+ },
+ "829ECF98": {
+  "nights": "823E5578",
+  "how": "call at +0x16cc of 82960FE8"
+ },
+ "829EDCE8": {
+  "nights": "823E6980",
+  "how": "call at +0x114 of 829EF9B8"
+ },
+ "829EDDA8": {
+  "nights": "823E6A40",
+  "how": "call at +0x17c of 829F8AF8"
+ },
+ "829EDDF8": {
+  "nights": "823E6A90",
+  "how": "call at +0x58 of 829F5500"
+ },
+ "829EE088": {
+  "nights": "823E6F10",
+  "how": "call at +0xb1c of 82983B00"
+ },
+ "829EE158": {
+  "nights": "823E6FF0",
+  "how": "call at +0x20c of 829F73F0"
+ },
+ "829EE4B8": {
+  "nights": "823E7360",
+  "how": "call at +0x54 of 829EEC88"
+ },
+ "829EEB20": {
+  "nights": "823E79E0",
+  "how": "call at +0x2c of 829BA540"
+ },
+ "829EEBC8": {
+  "nights": "823E7A88",
+  "how": "call at +0x1c4 of 829EF468"
+ },
+ "829EEC88": {
+  "nights": "823E7B48",
+  "how": "call at +0x94 of 829B9E30"
+ },
+ "829EED28": {
+  "nights": "823E7BE8",
+  "how": "call at +0x374 of 829C6080"
+ },
+ "829EF030": {
+  "nights": "823E7EF8",
+  "how": "call at +0x5f0 of 82997238"
+ },
+ "829EF150": {
+  "nights": "823E8488",
+  "how": "call at +0x54 of 829B4B28"
+ },
+ "829EF2E0": {
+  "nights": "823E8620",
+  "how": "call at +0x584 of 82960FE8"
+ },
+ "829EF468": {
+  "nights": "823E8A90",
+  "how": "call at +0x1dc of 829BE4F8"
+ },
+ "829EF748": {
+  "nights": "823E8D60",
+  "how": "call at +0x4f8 of 829AB178"
+ },
+ "829EF9B8": {
+  "nights": "823E8FD0",
+  "how": "call at +0x2e78 of 82983B00"
+ },
+ "829EFAF0": {
+  "nights": "823E9108",
+  "how": "unique shape"
+ },
+ "829EFBD0": {
+  "nights": "823E91E0",
+  "how": "call at +0xac of 829F0E68"
+ },
+ "829EFC78": {
+  "nights": "823E9280",
+  "how": "call at +0xc0 of 829F0E68"
+ },
+ "829EFD20": {
+  "nights": "823E9320",
+  "how": "call at +0x68 of 829F0E68"
+ },
+ "829EFDC8": {
+  "nights": "823E93C0",
+  "how": "call at +0x98 of 829F0E68"
+ },
+ "829F0310": {
+  "nights": "823E98E8",
+  "how": "call at +0x1dc0 of 829C6080"
+ },
+ "829F0528": {
+  "nights": "823E9B40",
+  "how": "call at +0x15c of 829F0A78"
+ },
+ "829F0760": {
+  "nights": "823E9D68",
+  "how": "call at +0x234 of 82960FE8"
+ },
+ "829F0898": {
+  "nights": "823E9E98",
+  "how": "call at +0x828 of 829C6080"
+ },
+ "829F0A78": {
+  "nights": "823EA080",
+  "how": "call at +0x15b4 of 8298BCE0"
+ },
+ "829F0C00": {
+  "nights": "823EA208",
+  "how": "call at +0xa8 of 8294B9C8"
+ },
+ "829F0C90": {
+  "nights": "823EA280",
+  "how": "call at +0x3b8 of 829F6908"
+ },
+ "829F0D60": {
+  "nights": "823EA378",
+  "how": "call at +0x98 of 8294B9C8"
+ },
+ "829F0E68": {
+  "nights": "823EC240",
+  "how": "call at +0xce8 of 829A9F40"
+ },
+ "829F18E8": {
+  "nights": "823ECCC0",
+  "how": "call at +0xc of 829F1C28"
+ },
+ "829F1C28": {
+  "nights": "823ED008",
+  "how": "call at +0x47c of 8299BCB8"
+ },
+ "829F1C50": {
+  "nights": "823ED498",
+  "how": "call at +0x60 of 829F35A0"
+ },
+ "829F26B0": {
+  "nights": "823EDAD8",
+  "how": "call at +0x20 of 829F2720"
+ },
+ "829F2720": {
+  "nights": "823EDB48",
+  "how": "call at +0x87c of 829C6080"
+ },
+ "829F2778": {
+  "nights": "823EDB98",
+  "how": "call at +0x3a0 of 82983B00"
+ },
+ "829F27C0": {
+  "nights": "823EDBE0",
+  "how": "call at +0x4d0 of 829A8448"
+ },
+ "829F28A0": {
+  "nights": "823E6520",
+  "how": "call at +0xc70 of 82983B00"
+ },
+ "829F31E0": {
+  "nights": "823EDF98",
+  "how": "call at +0x90 of 829F35A0"
+ },
+ "829F35A0": {
+  "nights": "823EE358",
+  "how": "call at +0x1f4 of 829BE4F8"
+ },
+ "829F3650": {
+  "nights": "823EA488",
+  "how": "call at +0x38 of 829505F0"
+ },
+ "829F5500": {
+  "nights": "823EE408",
+  "how": "call at +0x17c of 8299BCB8"
+ },
+ "829F5788": {
+  "nights": "823EE690",
+  "how": "call at +0x2338 of 82969A20"
+ },
+ "829F59A8": {
+  "nights": "823EE8B0",
+  "how": "call at +0x4a0 of 829F8AF8"
+ },
+ "829F5B68": {
+  "nights": "823EEA78",
+  "how": "call at +0x74 of 829F7DB8"
+ },
+ "829F5E68": {
+  "nights": "823EED78",
+  "how": "call at +0xbc of 829F6560"
+ },
+ "829F6188": {
+  "nights": "823EF098",
+  "how": "call at +0xa8 of 829F7C60"
+ },
+ "829F6560": {
+  "nights": "823EF4A8",
+  "how": "call at +0x58 of 829F7DB8"
+ },
+ "829F6630": {
+  "nights": "823EF578",
+  "how": "call at +0x170 of 82944460"
+ },
+ "829F6908": {
+  "nights": "823EF850",
+  "how": "call at +0x298 of 82971E68"
+ },
+ "829F73F0": {
+  "nights": "823F0350",
+  "how": "call at +0x740 of 829AB178"
+ },
+ "829F78D0": {
+  "nights": "823F0830",
+  "how": "call at +0x20d4 of 829ADE10"
+ },
+ "829F7B50": {
+  "nights": "823F0AB0",
+  "how": "call at +0x1830 of 82969A20"
+ },
+ "829F7C60": {
+  "nights": "823F0BC8",
+  "how": "call at +0x918 of 8298DB50"
+ },
+ "829F7D18": {
+  "nights": "823F0C80",
+  "how": "call at +0x14fc of 82969A20"
+ },
+ "829F7DB8": {
+  "nights": "823F0D20",
+  "how": "unique shape"
+ },
+ "829F7E40": {
+  "nights": "823F0DA8",
+  "how": "call at +0x150 of 829ACFE8"
+ },
+ "829F8768": {
+  "nights": "823F16E0",
+  "how": "call at +0x1e4 of 8299F2F0"
+ },
+ "829F8930": {
+  "nights": "823F18B0",
+  "how": "call at +0x3f4 of 829F7E40"
+ },
+ "829F8AF8": {
+  "nights": "823F1A78",
+  "how": "call at +0xb0 of 829F92A8"
+ },
+ "829F8FF0": {
+  "nights": "823F1F70",
+  "how": "call at +0x1d0 of 82997238"
+ },
+ "829F92A8": {
+  "nights": "823F2268",
+  "how": "call at +0xa0 of 82999908"
+ },
+ "829F9378": {
+  "nights": "823F2338",
+  "how": "call at +0xf8 of 82969A20"
+ },
+ "829F9930": {
+  "nights": "823F28C8",
+  "how": "unique shape"
+ },
+ "829F99D0": {
+  "nights": "823F2968",
+  "how": "call at +0x810 of 829ACFE8"
+ },
+ "829F9A10": {
+  "nights": "823F29A8",
+  "how": "call at +0x734 of 8299BCB8"
+ },
+ "829F9A60": {
+  "nights": "823F2A00",
+  "how": "call at +0xd7c of 829A8CA0"
+ },
+ "829F9B10": {
+  "nights": "823F2AB0",
+  "how": "unique shape"
+ },
+ "829F9B80": {
+  "nights": "823F2B20",
+  "how": "unique shape"
+ },
+ "829F9BF0": {
+  "nights": "823F2B90",
+  "how": "call at +0x550 of 829528C0"
+ },
+ "829F9C30": {
+  "nights": "823F2BD0",
+  "how": "call at +0xd0 of 829F5500"
+ },
+ "829F9DE0": {
+  "nights": "823F2EA0",
+  "how": "call at +0xb4 of 829FD260"
+ },
+ "829FA000": {
+  "nights": "823F30B0",
+  "how": "call at +0x44 of 82A03AD0"
+ },
+ "829FA130": {
+  "nights": "823F31E0",
+  "how": "call at +0xb4 of 82A03AD0"
+ },
+ "829FA3E0": {
+  "nights": "823F3490",
+  "how": "call at +0x44 of 82A06590"
+ },
+ "829FA510": {
+  "nights": "823F35C0",
+  "how": "call at +0x44 of 82A06500"
+ },
+ "829FA620": {
+  "nights": "823F36D0",
+  "how": "call at +0x44 of 82A06620"
+ },
+ "829FA730": {
+  "nights": "823F38F8",
+  "how": "call at +0xa0 of 82A042B8"
+ },
+ "829FA958": {
+  "nights": "823F3A08",
+  "how": "call at +0x110 of 82A042B8"
+ },
+ "829FAA70": {
+  "nights": "823F3B20",
+  "how": "call at +0x1dc of 82A042B8"
+ },
+ "829FAB88": {
+  "nights": "823F3C38",
+  "how": "call at +0x2a4 of 82A042B8"
+ },
+ "829FACA0": {
+  "nights": "823F3D50",
+  "how": "call at +0x2e0 of 82A042B8"
+ },
+ "829FADB8": {
+  "nights": "823F3E68",
+  "how": "call at +0x31c of 82A042B8"
+ },
+ "829FB360": {
+  "nights": "823F4410",
+  "how": "call at +0x44 of 82A066B0"
+ },
+ "829FC498": {
+  "nights": "823F37E0",
+  "how": "call at +0x68 of 82A042B8"
+ },
+ "829FD260": {
+  "nights": "823F6320",
+  "how": "call at +0x5bc of 82A054E0"
+ },
+ "829FD368": {
+  "nights": "823F6428",
+  "how": "call at +0x28 of 82A00AE0"
+ },
+ "829FD408": {
+  "nights": "823F64C8",
+  "how": "call at +0x44 of 82A00AE0"
+ },
+ "829FD4A8": {
+  "nights": "823F6568",
+  "how": "call at +0x60 of 82A00AE0"
+ },
+ "829FDBF8": {
+  "nights": "823F6CB8",
+  "how": "call at +0x7c of 82A00AE0"
+ },
+ "829FDE10": {
+  "nights": "823F6ED0",
+  "how": "call at +0x344 of 82A042B8"
+ },
+ "829FDEB0": {
+  "nights": "823F6F70",
+  "how": "call at +0x388 of 82A042B8"
+ },
+ "829FDF50": {
+  "nights": "823F7010",
+  "how": "call at +0x518 of 82A042B8"
+ },
+ "829FED40": {
+  "nights": "823F7E00",
+  "how": "unique shape"
+ },
+ "829FF1B0": {
+  "nights": "823F8270",
+  "how": "call at +0x58 of 829D9098"
+ },
+ "829FFBE0": {
+  "nights": "823F8D48",
+  "how": "call at +0x6e0 of 82A04DC0"
+ },
+ "829FFC40": {
+  "nights": "823F8DA8",
+  "how": "call at +0x20 of 82A1DCC8"
+ },
+ "829FFC88": {
+  "nights": "823F8E50",
+  "how": "call at +0x220 of 82A03078"
+ },
+ "829FFCE0": {
+  "nights": "823F8DF0",
+  "how": "unique shape"
+ },
+ "829FFD40": {
+  "nights": "823F8EA8",
+  "how": "call at +0x480 of 82A02A80"
+ },
+ "829FFDA8": {
+  "nights": "823F8F10",
+  "how": "call at +0x4b0 of 82A02A80"
+ },
+ "829FFE30": {
+  "nights": "823F8F98",
+  "how": "call at +0x378 of 82A03078"
+ },
+ "829FFED8": {
+  "nights": "823F9040",
+  "how": "call at +0x4fc of 82A02A80"
+ },
+ "829FFFB8": {
+  "nights": "823F9120",
+  "how": "call at +0x284 of 82A02A80"
+ },
+ "82A001E8": {
+  "nights": "823F9350",
+  "how": "call at +0x74 of 82A03908"
+ },
+ "82A003B8": {
+  "nights": "823F9520",
+  "how": "call at +0x10 of 82A04DC0"
+ },
+ "82A00530": {
+  "nights": "823F9698",
+  "how": "call at +0x15c of 82A04DC0"
+ },
+ "82A008C0": {
+  "nights": "823F9AA0",
+  "how": "unique shape"
+ },
+ "82A00918": {
+  "nights": "823F9A30",
+  "how": "call at +0x108 of 82A03078"
+ },
+ "82A00990": {
+  "nights": "823F9AF8",
+  "how": "call at +0xc4 of 82A03AD0"
+ },
+ "82A00AE0": {
+  "nights": "823F9C48",
+  "how": "call at +0xcc of 82A03AD0"
+ },
+ "82A02938": {
+  "nights": "823FBA90",
+  "how": "call at +0x24 of 82A06740"
+ },
+ "82A02A20": {
+  "nights": "823FBB78",
+  "how": "call at +0x158 of 82A02A80"
+ },
+ "82A02A80": {
+  "nights": "823FBBD8",
+  "how": "call at +0x2c of 82A06740"
+ },
+ "82A03078": {
+  "nights": "823FC1B8",
+  "how": "call at +0x1c of 82A06740"
+ },
+ "82A03908": {
+  "nights": "823FCA08",
+  "how": "call at +0x48 of 82A039B0"
+ },
+ "82A039B0": {
+  "nights": "823FCAB0",
+  "how": "call at +0x10 of 82A05F10"
+ },
+ "82A03AD0": {
+  "nights": "823FCBE8",
+  "how": "call at +0x2c of 82A06788"
+ },
+ "82A03BA8": {
+  "nights": "823FCCD0",
+  "how": "call at +0x84 of 82A06500"
+ },
+ "82A042B8": {
+  "nights": "823FD3F0",
+  "how": "call at +0x84 of 82A06590"
+ },
+ "82A04DC0": {
+  "nights": "823FDED8",
+  "how": "call at +0x84 of 82A06620"
+ },
+ "82A054E0": {
+  "nights": "823FE5F0",
+  "how": "call at +0x84 of 82A066B0"
+ },
+ "82A05F10": {
+  "nights": "823FF030",
+  "how": "call at +0x14 of 82A06740"
+ },
+ "82A06500": {
+  "nights": "823FF618",
+  "how": "call at +0x14 of 82A06788"
+ },
+ "82A06590": {
+  "nights": "823FF6C0",
+  "how": "call at +0x34 of 82A06788"
+ },
+ "82A06620": {
+  "nights": "823FF768",
+  "how": "call at +0x1c of 82A06788"
+ },
+ "82A066B0": {
+  "nights": "823FF810",
+  "how": "call at +0x24 of 82A06788"
+ },
+ "82A06740": {
+  "nights": "823FF8B8",
+  "how": "unique shape"
+ },
+ "82A06788": {
+  "nights": "823FF900",
+  "how": "unique shape"
+ },
+ "82A06988": {
+  "nights": "823FFB00",
+  "how": "call at +0x40 of 829E7178"
+ },
+ "82A06A50": {
+  "nights": "823FFBC0",
+  "how": "call at +0x38 of 829E6970"
+ },
+ "82A08550": {
+  "nights": "82401710",
+  "how": "call at +0x80 of 82A09B60"
+ },
+ "82A089A8": {
+  "nights": "82401B70",
+  "how": "unique shape"
+ },
+ "82A09B60": {
+  "nights": "82402C88",
+  "how": "unique shape"
+ },
+ "82A0EA58": {
+  "nights": "82407B88",
+  "how": "unique shape"
+ },
+ "82A0EA70": {
+  "nights": "82407BA0",
+  "how": "unique shape"
+ },
+ "82A0EA90": {
+  "nights": "82407BC0",
+  "how": "unique shape"
+ },
+ "82A0EAC0": {
+  "nights": "82407BF0",
+  "how": "unique shape"
+ },
+ "82A0EB10": {
+  "nights": "82407C40",
+  "how": "unique shape"
+ },
+ "82A0EB80": {
+  "nights": "82407CB0",
+  "how": "unique shape"
+ },
+ "82A0EEA0": {
+  "nights": "82407F68",
+  "how": "unique shape"
+ },
+ "82A0EED8": {
+  "nights": "82407FA0",
+  "how": "unique shape"
+ },
+ "82A0EEF8": {
+  "nights": "82407FC0",
+  "how": "unique shape"
+ },
+ "82A0F750": {
+  "nights": "824088A8",
+  "how": "call at +0x30 of 82A04DC0"
+ },
+ "82A12568": {
+  "nights": "8240B648",
+  "how": "unique shape"
+ },
+ "82A12610": {
+  "nights": "8240B6F0",
+  "how": "call at +0x18 of 82A20448"
+ },
+ "82A133B0": {
+  "nights": "8240C4C8",
+  "how": "unique shape"
+ },
+ "82A16440": {
+  "nights": "8240E860",
+  "how": "unique shape"
+ },
+ "82A165F0": {
+  "nights": "8240EA20",
+  "how": "unique shape"
+ },
+ "82A19968": {
+  "nights": "82412A78",
+  "how": "unique shape"
+ },
+ "82A19A10": {
+  "nights": "82412B20",
+  "how": "unique shape"
+ },
+ "82A1B948": {
+  "nights": "82414D48",
+  "how": "call at +0x20 of 829FFCE0"
+ },
+ "82A1B9C8": {
+  "nights": "82414DC8",
+  "how": "call at +0x2c of 829FFCE0"
+ },
+ "82A1C710": {
+  "nights": "82415BE0",
+  "how": "call at +0x14 of 82A1CC58"
+ },
+ "82A1CAE0": {
+  "nights": "82415FB0",
+  "how": "call at +0x24 of 82A1CC58"
+ },
+ "82A1CC58": {
+  "nights": "82416120",
+  "how": "unique shape"
+ },
+ "82A1D2F8": {
+  "nights": "824167A0",
+  "how": "unique shape"
+ },
+ "82A1D310": {
+  "nights": "824167B8",
+  "how": "unique shape"
+ },
+ "82A1D340": {
+  "nights": "824167E8",
+  "how": "call at +0x50 of 82A22B38"
+ },
+ "82A1D360": {
+  "nights": "82416808",
+  "how": "call at +0x50 of 82A22AD8"
+ },
+ "82A1D380": {
+  "nights": "82416828",
+  "how": "unique shape"
+ },
+ "82A1D3A0": {
+  "nights": "82416848",
+  "how": "call at +0x38 of 82A22C68"
+ },
+ "82A1D3D8": {
+  "nights": "82416880",
+  "how": "unique shape"
+ },
+ "82A1D400": {
+  "nights": "824168A8",
+  "how": "call at +0x23c of 82A22C68"
+ },
+ "82A1D428": {
+  "nights": "824168D0",
+  "how": "call at +0x230 of 82A22C68"
+ },
+ "82A1D578": {
+  "nights": "82416A20",
+  "how": "call at +0x40 of 82A24828"
+ },
+ "82A1D640": {
+  "nights": "82416AE0",
+  "how": "call at +0x23c of 82A03078"
+ },
+ "82A1D6C8": {
+  "nights": "82416B68",
+  "how": "call at +0x8c of 82A1D9B0"
+ },
+ "82A1D778": {
+  "nights": "82416C18",
+  "how": "call at +0xa8 of 82A1D9B0"
+ },
+ "82A1D8F0": {
+  "nights": "82416D98",
+  "how": "call at +0x30 of 82A0F750"
+ },
+ "82A1D9B0": {
+  "nights": "82416E58",
+  "how": "call at +0x30 of 82A0EEF8"
+ },
+ "82A1DC18": {
+  "nights": "82417128",
+  "how": "unique shape"
+ },
+ "82A1DC30": {
+  "nights": "82417140",
+  "how": "unique shape"
+ },
+ "82A1DC50": {
+  "nights": "82417160",
+  "how": "unique shape"
+ },
+ "82A1DCC8": {
+  "nights": "824171D8",
+  "how": "unique shape"
+ },
+ "82A1DDC0": {
+  "nights": "824172D0",
+  "how": "call at +0x1c of 82A23638"
+ },
+ "82A1DDE8": {
+  "nights": "824172F8",
+  "how": "unique shape"
+ },
+ "82A1DE70": {
+  "nights": "82417380",
+  "how": "call at +0x1c of 82A1E908"
+ },
+ "82A1E320": {
+  "nights": "82417830",
+  "how": "call at +0xd4 of 82A00990"
+ },
+ "82A1E908": {
+  "nights": "82417E18",
+  "how": "unique shape"
+ },
+ "82A1F8A0": {
+  "nights": "82418D08",
+  "how": "unique shape"
+ },
+ "82A1F920": {
+  "nights": "82418D88",
+  "how": "unique shape"
+ },
+ "82A1F9F0": {
+  "nights": "82418E58",
+  "how": "unique shape"
+ },
+ "82A1FA30": {
+  "nights": "82418E98",
+  "how": "call at +0xf0 of 82A04DC0"
+ },
+ "82A1FAD8": {
+  "nights": "82418F28",
+  "how": "call at +0x170 of 82A04DC0"
+ },
+ "82A1FF30": {
+  "nights": "82419378",
+  "how": "call at +0x40 of 82A20AB8"
+ },
+ "82A20410": {
+  "nights": "824197B8",
+  "how": "unique shape"
+ },
+ "82A20448": {
+  "nights": "824197F0",
+  "how": "unique shape"
+ },
+ "82A20488": {
+  "nights": "82419830",
+  "how": "call at +0x144 of 82A02A80"
+ },
+ "82A204F0": {
+  "nights": "82419898",
+  "how": "unique shape"
+ },
+ "82A206A8": {
+  "nights": "82419A48",
+  "how": "unique shape"
+ },
+ "82A209B8": {
+  "nights": "82419D58",
+  "how": "call at +0x3c of 82A21E90"
+ },
+ "82A20AB8": {
+  "nights": "82419E80",
+  "how": "call at +0x5dc of 82A054E0"
+ },
+ "82A20B68": {
+  "nights": "82419FD0",
+  "how": "call at +0x3c of 82A21E40"
+ },
+ "82A20C60": {
+  "nights": "8241A0E0",
+  "how": "call at +0x14 of 82A21328"
+ },
+ "82A20D58": {
+  "nights": "8241A1D8",
+  "how": "call at +0x1e4 of 82A22C68"
+ },
+ "82A20DA8": {
+  "nights": "8241A230",
+  "how": "call at +0x21c of 82A22C68"
+ },
+ "82A21328": {
+  "nights": "8241A858",
+  "how": "call at +0x58 of 82A00990"
+ },
+ "82A21E40": {
+  "nights": "8241AD20",
+  "how": "call at +0x4ec of 82A02A80"
+ },
+ "82A21E90": {
+  "nights": "8241ADC0",
+  "how": "call at +0x90 of 82A00AE0"
+ },
+ "82A21F00": {
+  "nights": "8241B3F8",
+  "how": "call at +0x128 of 82A00AE0"
+ },
+ "82A220C0": {
+  "nights": "8241B570",
+  "how": "call at +0x4c of 82A03908"
+ },
+ "82A221B8": {
+  "nights": "8241B660",
+  "how": "call at +0x7c of 82A03908"
+ },
+ "82A22588": {
+  "nights": "8241BA30",
+  "how": "call at +0x64 of 82A03908"
+ },
+ "82A22A48": {
+  "nights": "8241BEE8",
+  "how": "call at +0x168 of 82A04DC0"
+ },
+ "82A22A90": {
+  "nights": "8241BF30",
+  "how": "call at +0x78 of 82A02938"
+ },
+ "82A22AD8": {
+  "nights": "8241BF78",
+  "how": "call at +0x2bc of 82A03078"
+ },
+ "82A22B38": {
+  "nights": "8241BFD8",
+  "how": "call at +0x358 of 82A03078"
+ },
+ "82A22BE0": {
+  "nights": "8241C080",
+  "how": "unique shape"
+ },
+ "82A22C68": {
+  "nights": "8241C108",
+  "how": "call at +0x684 of 82A04DC0"
+ },
+ "82A22F90": {
+  "nights": "8241C430",
+  "how": "call at +0x60 of 82A133B0"
+ },
+ "82A22FA8": {
+  "nights": "8241C448",
+  "how": "call at +0x18 of 82A133B0"
+ },
+ "82A22FD0": {
+  "nights": "8241C470",
+  "how": "call at +0x5c of 82A04DC0"
+ },
+ "82A233F0": {
+  "nights": "8241C888",
+  "how": "call at +0x28 of 82A23928"
+ },
+ "82A23538": {
+  "nights": "8241C9C8",
+  "how": "call at +0x1c of 82A23928"
+ },
+ "82A23638": {
+  "nights": "8241CAC8",
+  "how": "unique shape"
+ },
+ "82A23928": {
+  "nights": "8241CDB8",
+  "how": "unique shape"
+ },
+ "82A23AA0": {
+  "nights": "8241CF88",
+  "how": "call at +0x1f4 of 82A04DC0"
+ },
+ "82A24828": {
+  "nights": "8241DD00",
+  "how": "unique shape"
+ },
+ "82A2DC68": {
+  "nights": "82427150",
+  "how": "call at +0x14 of 82A2DDF8"
+ },
+ "82A2DDF8": {
+  "nights": "824272E0",
+  "how": "unique shape"
+ },
+ "82A2DEA0": {
+  "nights": "82427388",
+  "how": "unique shape"
+ },
+ "82A30708": {
+  "nights": "82429C18",
+  "how": "unique shape"
+ },
+ "82A30740": {
+  "nights": "82429C50",
+  "how": "unique shape"
+ },
+ "82A307A0": {
+  "nights": "82429CB0",
+  "how": "unique shape"
+ },
+ "82A307D8": {
+  "nights": "82429CE8",
+  "how": "unique shape"
+ },
+ "82A30990": {
+  "nights": "82429EA0",
+  "how": "unique shape"
+ },
+ "82A309F0": {
+  "nights": "82429F00",
+  "how": "unique shape"
+ },
+ "82A30A88": {
+  "nights": "82429F98",
+  "how": "unique shape"
+ },
+ "82A30B70": {
+  "nights": "8242A080",
+  "how": "unique shape"
+ },
+ "82A30BC8": {
+  "nights": "82223E98",
+  "how": "unique shape"
+ },
+ "82A30C40": {
+  "nights": "82223300",
+  "how": "call at +0x1578 of 82948180"
+ },
+ "82A38180": {
+  "nights": "822232B0",
+  "how": "unique shape"
+ },
+ "82A382A0": {
+  "nights": "82487778",
+  "how": "unique shape"
+ },
+ "82A38330": {
+  "nights": "824876F0",
+  "how": "call at +0xe4 of 82928C28"
+ },
+ "82A38338": {
+  "nights": "82487660",
+  "how": "unique shape"
+ },
+ "82A38600": {
+  "nights": "82225580",
+  "how": "call at +0x44 of 82A387E8"
+ },
+ "82A386A0": {
+  "nights": "82225620",
+  "how": "call at +0x20 of 82A387E8"
+ },
+ "82A38740": {
+  "nights": "822256C8",
+  "how": "call at +0x24 of 82A3AEB8"
+ },
+ "82A387E8": {
+  "nights": "82225770",
+  "how": "call at +0x20 of 82A39410"
+ },
+ "82A39410": {
+  "nights": "82226378",
+  "how": "unique shape"
+ },
+ "82A396A8": {
+  "nights": "82226610",
+  "how": "unique shape"
+ },
+ "82A39738": {
+  "nights": "822266A0",
+  "how": "call at +0x360 of 82A3D048"
+ },
+ "82A39818": {
+  "nights": "82226788",
+  "how": "call at +0x6c of 82A3D4F8"
+ },
+ "82A39C18": {
+  "nights": "82226B88",
+  "how": "call at +0x170 of 82A3A328"
+ },
+ "82A3A230": {
+  "nights": "822271F8",
+  "how": "unique shape"
+ },
+ "82A3A328": {
+  "nights": "822272F0",
+  "how": "call at +0x84 of 82A3AF48"
+ },
+ "82A3A4D8": {
+  "nights": "82227490",
+  "how": "call at +0x78 of 82A3A558"
+ },
+ "82A3A558": {
+  "nights": "82227510",
+  "how": "call at +0x40 of 82A3A7F8"
+ },
+ "82A3A638": {
+  "nights": "822275E0",
+  "how": "call at +0x4c of 82A3AE40"
+ },
+ "82A3A7F8": {
+  "nights": "822277A8",
+  "how": "call at +0x11c of 82A3D048"
+ },
+ "82A3A8E8": {
+  "nights": "82227898",
+  "how": "call at +0x1dc of 82A3B390"
+ },
+ "82A3AA90": {
+  "nights": "82227A40",
+  "how": "call at +0x1a4 of 82A3BEC0"
+ },
+ "82A3AD30": {
+  "nights": "82227CD8",
+  "how": "call at +0x70 of 82A3CA48"
+ },
+ "82A3AE40": {
+  "nights": "82227DD8",
+  "how": "unique shape"
+ },
+ "82A3AEB8": {
+  "nights": "82227E50",
+  "how": "unique shape"
+ },
+ "82A3AF48": {
+  "nights": "82227EE0",
+  "how": "call at +0xe8 of 82A3B988"
+ },
+ "82A3B390": {
+  "nights": "82228328",
+  "how": "call at +0x58 of 82A3CA48"
+ },
+ "82A3B988": {
+  "nights": "82228918",
+  "how": "call at +0x88 of 82A3BEC0"
+ },
+ "82A3BBA0": {
+  "nights": "82228B30",
+  "how": "call at +0xf8 of 82A3BEC0"
+ },
+ "82A3BCE0": {
+  "nights": "82228C70",
+  "how": "call at +0x10c of 82A3BEC0"
+ },
+ "82A3BEC0": {
+  "nights": "82228E50",
+  "how": "call at +0x7c of 82A3D688"
+ },
+ "82A3C0E8": {
+  "nights": "82229070",
+  "how": "call at +0x50 of 82A3C4A8"
+ },
+ "82A3C298": {
+  "nights": "822291F8",
+  "how": "call at +0x6c of 82A3C4A8"
+ },
+ "82A3C4A8": {
+  "nights": "822293F0",
+  "how": "call at +0x20 of 82A3D578"
+ },
+ "82A3CA48": {
+  "nights": "82229978",
+  "how": "unique shape"
+ },
+ "82A3D048": {
+  "nights": "82229F68",
+  "how": "call at +0x34 of 82A3D408"
+ },
+ "82A3D408": {
+  "nights": "8222A310",
+  "how": "call at +0x44 of 82A3D4F8"
+ },
+ "82A3D4F8": {
+  "nights": "8222A400",
+  "how": "call at +0x64 of 82A3D780"
+ },
+ "82A3D578": {
+  "nights": "8222A480",
+  "how": "call at +0x80 of 82A3D780"
+ },
+ "82A3D5E8": {
+  "nights": "8222A4F0",
+  "how": "call at +0xc4 of 82A3D780"
+ },
+ "82A3D688": {
+  "nights": "8222A590",
+  "how": "call at +0xa0 of 82A3D780"
+ },
+ "82A3D780": {
+  "nights": "8222A688",
+  "how": "unique shape"
+ },
+ "82A3EA50": {
+  "nights": "8222B938",
+  "how": "unique shape"
+ },
+ "82A3F628": {
+  "nights": "822248E0",
+  "how": "call at +0x1c of 82A3F6C8"
+ },
+ "82A3F6C8": {
+  "nights": "82224980",
+  "how": "unique shape"
+ },
+ "82A53258": {
+  "nights": "8241A790",
+  "how": "call at +0x31c of 82822BF8"
+ },
+ "82B4B448": {
+  "nights": "82201230",
+  "how": "unique shape"
+ },
+ "82BA88F0": {
+  "nights": "824491C8",
+  "how": "state table row 9 col 0"
+ },
+ "82BBACE8": {
+  "nights": "8243D110",
+  "how": "unique shape"
+ },
+ "82BBDE60": {
+  "nights": "8243FFB0",
+  "how": "unique shape"
+ },
+ "82BD0668": {
+  "nights": "82455440",
+  "how": "call at +0x54 of 82BD3598"
+ },
+ "82BD0730": {
+  "nights": "82455508",
+  "how": "unique shape"
+ },
+ "82BD3538": {
+  "nights": "824580E8",
+  "how": "unique shape"
+ },
+ "82BD3598": {
+  "nights": "82458148",
+  "how": "unique shape"
+ },
+ "82BD5118": {
+  "nights": "82459C20",
+  "how": "call at +0x6c of 82BBDE60"
+ },
+ "82BEC9A0": {
+  "nights": "824702E8",
+  "how": "call at +0x24 of 82BD3538"
+ },
+ "82BEC9C0": {
+  "nights": "82470308",
+  "how": "call at +0x10 of 82BD3598"
+ },
+ "82BECDE0": {
+  "nights": "82470758",
+  "how": "call at +0x1c of 82BD3598"
+ },
+ "82C8BD60": {
+  "nights": "82476E20",
+  "how": "unique shape"
+ },
+ "82C8C480": {
+  "nights": "821D5EF0",
+  "how": "call at +0x28 of 82C8C520"
+ },
+ "82C8C520": {
+  "nights": "821D5F88",
+  "how": "unique shape"
+ },
+ "82C8F8D8": {
+  "nights": "82223FF0",
+  "how": "unique shape"
+ },
+ "82EA8054": {
+  "nights": "8249FD7C",
+  "how": "call at +0x50 of 822F70E0"
+ },
+ "82EA8074": {
+  "nights": "8249FD5C",
+  "how": "call at +0x14 of 82A3F628"
+ },
+ "82EA80A4": {
+  "nights": "824A008C",
+  "how": "call at +0x58 of 821CB658"
+ },
+ "82EA80E4": {
+  "nights": "8249FDAC",
+  "how": "call at +0x58 of 821CB818"
+ },
+ "82EA80F4": {
+  "nights": "8249FDBC",
+  "how": "call at +0x50 of 821CB818"
+ },
+ "82EA8104": {
+  "nights": "8249FDCC",
+  "how": "call at +0x20 of 821CB818"
+ },
+ "82EA8144": {
+  "nights": "8249FCDC",
+  "how": "call at +0x14 of 822C60E0"
+ },
+ "82EA8154": {
+  "nights": "8249FCBC",
+  "how": "call at +0x38 of 822C4970"
+ },
+ "82EA8184": {
+  "nights": "8249FF3C",
+  "how": "call at +0x794 of 821CDBA0"
+ },
+ "82EA81A4": {
+  "nights": "824A01FC",
+  "how": "call at +0x64 of 821CDBA0"
+ },
+ "82EA81B4": {
+  "nights": "8249FD4C",
+  "how": "call at +0x40 of 821CDBA0"
+ },
+ "82EA81C4": {
+  "nights": "8249FF2C",
+  "how": "call at +0x22c of 821CD048"
+ },
+ "82EA81D4": {
+  "nights": "824A020C",
+  "how": "call at +0xf8 of 821CC388"
+ },
+ "82EA8204": {
+  "nights": "824A022C",
+  "how": "call at +0x84c of 821CDBA0"
+ },
+ "82EA8214": {
+  "nights": "8249FF8C",
+  "how": "call at +0xc of 821CF070"
+ },
+ "82EA8224": {
+  "nights": "8249FE7C",
+  "how": "call at +0x34 of 821CF0C8"
+ },
+ "82EA8274": {
+  "nights": "8249FABC",
+  "how": "call at +0x64 of 822F7330"
+ },
+ "82EA8374": {
+  "nights": "824A042C",
+  "how": "call at +0x9c of 8286C748"
+ },
+ "82EA8384": {
+  "nights": "824A040C",
+  "how": "call at +0xcc of 8286C748"
+ },
+ "82EA8394": {
+  "nights": "824A041C",
+  "how": "call at +0x110 of 8286C748"
+ },
+ "82EA83B4": {
+  "nights": "824A055C",
+  "how": "call at +0x14 of 822CA320"
+ },
+ "82EA84B4": {
+  "nights": "824A03AC",
+  "how": "call at +0x14 of 822E11F0"
+ },
+ "82EA84C4": {
+  "nights": "8249FFEC",
+  "how": "call at +0x10 of 822E11F0"
+ },
+ "82EA84D4": {
+  "nights": "824A031C",
+  "how": "call at +0xc8 of 822E1480"
+ },
+ "82EA8594": {
+  "nights": "8249FFBC",
+  "how": "call at +0x7c of 82A3F628"
+ },
+ "82EA85A4": {
+  "nights": "8249FFCC",
+  "how": "call at +0x74 of 82A3F628"
+ },
+ "82EA85B4": {
+  "nights": "8249FFDC",
+  "how": "call at +0x54 of 82A3F628"
+ },
+ "82EA8614": {
+  "nights": "8249FD2C",
+  "how": "call at +0x24 of 822F9B58"
+ },
+ "82EA8624": {
+  "nights": "8249FF5C",
+  "how": "call at +0xd8 of 822F3488"
+ },
+ "82EA8634": {
+  "nights": "824A03BC",
+  "how": "call at +0x5c of 822F3488"
+ },
+ "82EA8644": {
+  "nights": "824A03CC",
+  "how": "call at +0x34 of 822F3488"
+ },
+ "82EA8654": {
+  "nights": "8249FF7C",
+  "how": "call at +0x18 of 822F3488"
+ },
+ "82EA8694": {
+  "nights": "8249FEAC",
+  "how": "call at +0x38 of 822F7510"
+ },
+ "82EA86A4": {
+  "nights": "8249FE1C",
+  "how": "call at +0x4c of 822F79A0"
+ },
+ "82EA86D4": {
+  "nights": "8249FD9C",
+  "how": "call at +0x58 of 822FC628"
+ },
+ "82EA8704": {
+  "nights": "8249FE8C",
+  "how": "call at +0x70 of 822F8198"
+ },
+ "82EA8714": {
+  "nights": "8249FF6C",
+  "how": "call at +0x10 of 822F82C0"
+ },
+ "82EA8734": {
+  "nights": "8249FEBC",
+  "how": "call at +0x4c of 822F8480"
+ },
+ "82EA8744": {
+  "nights": "8249FFFC",
+  "how": "call at +0x24 of 822F8480"
+ },
+ "82EA8814": {
+  "nights": "8249FE4C",
+  "how": "call at +0x10 of 82A30BC8"
+ },
+ "82EA88F4": {
+  "nights": "8249FC0C",
+  "how": "call at +0xc of 82A38180"
+ },
+ "82EA8A74": {
+  "nights": "824A05AC",
+  "how": "call at +0x54 of 82A382A0"
+ },
+ "82EA8A84": {
+  "nights": "824A05BC",
+  "how": "call at +0x28 of 82A382A0"
+ },
+ "82EA8A94": {
+  "nights": "824A05CC",
+  "how": "call at +0x18 of 82A382A0"
+ },
+ "82EA8AA4": {
+  "nights": "82226EE0",
+  "how": "call at +0xd8 of 82A3AD30"
+ },
+ "82EA8B04": {
+  "nights": "8249FF0C",
+  "how": "call at +0x4c of 82A39818"
+ },
+ "82EA8B24": {
+  "nights": "824A017C",
+  "how": "call at +0xc8 of 82A3A230"
+ }
+}
