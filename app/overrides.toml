@@ -5,6 +5,11 @@
 # First codegen (2026-11-16): "UnresolvedCall b 0x8242D428 from 0x8242FE9C". An 8-byte leaf thunk with no .pdata
 # (among small accessors): lwz r3,0x260(r3); b 0x82438F70. Reached only as a tail call (Episode I had the same shape).
 "0x8242D428" = { size = 0x8 }
+# Mark's first full PC build (2026-11-16): "Unresolved b target 0x821F3A10 from 0x821F39BC" (the first codegen's one
+# warning) became a call with no name, "DECLARE_REX_FUNC();", in renut_recomp.31.cpp. 0x821F3A10 is a shared tail:
+# reached only by "b" from 0x821F39BC and 0x821F3A08 (no bl, no data word), with r3 set; it reads only r1 and r3
+# before writing (checked over its 105 instructions to 0x821F3C70), so it is a function of its own.
+"0x821F3A10" = { }
 
 # Code pointers into unclaimed gaps, stored in data (vtables, callback tables) or built in code (lis/addi:
 # callbacks passed at run time), accepted by tools/pointer_fixpoint.py pass 1: the scratch listing fits
@@ -98,3 +103,14 @@
 "0x82873598" = { }  # 6 instructions, pointer at 0x829410D0
 "0x828C95B0" = { }  # 20 instructions, pointer at 0x828E0060
 "0x828DA178" = { }  # 1 instructions, built at 0x828D95A0
+
+# Mark's first full PC build (2026-11-16), found by a cloud compile check of all the generated code: sub_826D01F0's
+# byte jump table (lbzx from 0x82073710, base 0x826D0238, bctr at 0x826D0234) has no bounds check, so the generator
+# read 513 entries; from entry 16 on the bytes belong to something else and point into sub_826D0340 (mid-sequence:
+# 0x826D02B4 is the middle of an lwarx/stwcx. loop), giving gotos to labels that do not exist ("use of undeclared
+# label 'loc_826D0908'"). Index r11 = [r3+0x110] - 1; the first 16 entries are the function's own targets (0x238,
+# 0x268, and entry 4 at 0x826D0340, which the generator already wrote as a tail call).
+[[switch_tables]]
+address = 0x826D0234
+register = 11
+labels = [0x826D0268, 0x826D0268, 0x826D0268, 0x826D0268, 0x826D0340, 0x826D0268, 0x826D0268, 0x826D0268, 0x826D0268, 0x826D0238, 0x826D0268, 0x826D0268, 0x826D0238, 0x826D0238, 0x826D0238, 0x826D0238]

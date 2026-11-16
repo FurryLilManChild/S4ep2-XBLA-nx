@@ -2,6 +2,16 @@
 
 Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark at wrap-up, then moved into the skills.
 
+- 2026-11-16 (S4ep2-XBLA-nx): Mark's first PC build failed five times in a row, each a separate cause, and the first
+  two were the 2026-11-14 copy pitfall below, repeated: the kickoff copy dropped the force-tracked files (rexglue.cmake,
+  FFmpeg's three headers) and all 125 README/LICENSE files (fmt's CMake lists its README as a source). Then a source
+  ordering race on a fresh tree (the hot-copy files before the code generator), a codegen warning left open since the
+  first codegen (an unresolved `b` that became a call with no name), and a jump table with no bounds check that the
+  generator read to 513 entries. Before the FIRST PC build of a new game, all of these: `comm` of both repos'
+  `git ls-files` (must be empty outside docs/); resolve every codegen warning; run post_codegen.py and a
+  `-fsyntax-only` pass over every generated file and every app source in the cloud (about 15 minutes on 2 cores);
+  read this file first.
+
 
 
 - 2026-11-14: copying TFU-nx's tree with tar and committing with `git add -A` silently dropped four files TFU tracks

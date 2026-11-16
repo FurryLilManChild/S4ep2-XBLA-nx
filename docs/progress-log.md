@@ -2,6 +2,18 @@
 
 Newest first.
 
+## 2026-11-16 (evening): five failed first PC builds, and the checks that should have come first
+
+- Failures, in order: missing `app/generated/rexglue.cmake` and FFmpeg's three config headers (force-tracked in
+  Episode I, dropped by the kickoff copy); fmt's README.md (one of 125 README/LICENSE files the copy dropped); the
+  hot-copy sources compiled before the code generator on a fresh tree (now OBJECT_DEPENDS on its stamp); a call with
+  no name in renut_recomp.31.cpp (the first codegen's open warning, "Unresolved b target 0x821F3A10": declared as a
+  function); gotos to missing labels in sub_826D0340, found by the new check below (sub_826D01F0's byte jump table at
+  0x82073710 has no bounds check and was read to 513 entries: a manual 16-entry [[switch_tables]] entry).
+- Now `git ls-files` matches Episode I's outside docs/, codegen gives no warnings, and after post_codegen.py every
+  generated file and hot-copy file (140) and every app source passes clang -fsyntax-only in the cloud.
+- docs/pitfalls.md: the pre-build checklist, since the first two were a repeat of a 2026-11-14 pitfall.
+
 ## 2026-11-16 (afternoon): Episode I's renderer hooks moved to Episode II, first PC build ready
 
 - Direct3D: `tools/d3d_align.py` (an order-kept alignment of the two Direct3D libraries, 527 pairs) and the state
