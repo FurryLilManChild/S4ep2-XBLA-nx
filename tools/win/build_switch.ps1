@@ -1,5 +1,5 @@
 # TFU-nx: builds the Switch NRO on Mark's PC with devkitPro (C:\devkitPro), Renut's renderer on deko3d, and puts the
-# test folder together in out\sd\switch\s4ep1-nx\ (renut.nro, renut.toml) with the NRO's SHA-256. Every step's full
+# test folder together in out\sd\switch\s4ep2-xbla-nx\ (renut.nro, renut.toml) with the NRO's SHA-256. Every step's full
 # output goes to out\logs\.
 #
 # Usage (from C:\TFU-nx): powershell -ExecutionPolicy Bypass -File tools\win\build_switch.ps1 [-Jobs N] [-Clean]
@@ -26,7 +26,7 @@ New-Item -ItemType Directory -Force -Path $logDir | Out-Null
 $build = Join-Path $repo 'out\switch'
 $shaders = Join-Path $repo 'out\renut_switch'
 $hostShaders = Join-Path $repo 'out\renut_switch_host'
-$sdOut = Join-Path $repo 'out\sd\switch\s4ep1-nx'
+$sdOut = Join-Path $repo 'out\sd\switch\s4ep2-xbla-nx'
 $devkitPro = 'C:\devkitPro'
 
 function Step($name, $logName, [scriptblock]$body) {
@@ -160,4 +160,4 @@ Write-Host ''
 Write-Host "BUILD OK: $sdOut"
 Write-Host "   renut.nro  $([math]::Round((Get-Item $nro).Length / 1MB)) MB  sha256 $hash"
 Write-Host "   $stamp"
-Write-Host 'On the SD card: /switch/s4ep1-nx/ gets renut.nro, renut.toml and a game_root folder holding default.xex and data.cpk (assets\extracted).'
+Write-Host 'On the SD card: /switch/s4ep2-xbla-nx/ gets renut.nro, renut.toml and a game_root folder holding default.xex and data.cpk (assets\extracted).'

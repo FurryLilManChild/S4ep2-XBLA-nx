@@ -2,6 +2,28 @@
 
 Newest first.
 
+## 2026-11-16 (afternoon): Episode I's renderer hooks moved to Episode II, first PC build ready
+
+- Direct3D: `tools/d3d_align.py` (an order-kept alignment of the two Direct3D libraries, 527 pairs) and the state
+  tables (render 0x8293D300, sampler 0x8293D7C0; 221 getters and setters, 0 disagreements). `tools/s4ep2_retarget.py`
+  moved 298 hooks; SetSamplerState slot 7 (sub_823EF380) by hand from the sampler table.
+- Device layout: `tools/s4ep2_field_votes.py` over the pairs gave ten offset bands (+0 below 0x2A80 up to +256);
+  `tools/s4ep2_device_offsets.py` and `s4ep2_offset_literals.py` applied them (88 literals). Allocation 0x6080 (CreateDevice
+  li r5,0x6080). The render thread's unread private range is now 0x2A80-0x2EC0 (queued.cpp; still 42 chunks compared).
+- Data, each from the paired function: build qword 0x8295BA48 (CreateDevice ld), device holder 0x82AAC01C, present
+  parameters 0x82AA32D8, caps table 0x820F80E0 (GetDeviceCaps), import slot 0x82000830 (D3DResource_Destroy),
+  no-large-pages word 0x8295DA24 (XPhysicalAlloc sub_8245BE28, Episode I sub_822252B8 at 1.00), format table
+  0x82107E50 (47 votes), HiZ owner 0x82AA70F4 (11 votes). GetCurrentThreadId 0x82459490, the game's XMemFree 0x8245A420.
+- Argument lists that differ from Episode I (read from the generated code): DrawVertices and DrawIndexedVertices take
+  Direct3D's full form (Episode I's S4 adapters dropped); BeginTiling takes flags r4, count r5, rects r6, colour r7,
+  stencil r9.
+- Present: the wrapper sub_828770F8 rewritten from Episode I's (all its globals mapped by hand, listed in draw.cpp),
+  plus the call Episode I lacks, sub_82860008(0x82AABFA0, 1). Direct3D's Present sub_823FBF58 hooked too. The pacer
+  step sub_828604B8 for the speed line.
+- Paths: build stamp, Switch folder `/switch/s4ep2-xbla-nx/`, `C:\S4ep2-XBLA-nx`.
+- Checked: every app source passes a clang syntax check against Episode I's Linux configure (two errors found and
+  fixed: offset comments the band tool had left without `//`, and the delta chunk range). Not yet built or run.
+
 ## 2026-11-16 (morning): first codegen, sweeps, Direct3D match against Episode I
 
 - Codegen pass 1: one UnresolvedCall, an 8-byte tail-call thunk at 0x8242D428 (declared). Pass 2: 23,629 functions,

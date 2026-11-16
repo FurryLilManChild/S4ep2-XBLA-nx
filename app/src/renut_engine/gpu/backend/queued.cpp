@@ -329,7 +329,11 @@ constexpr u32 kDeltaUnreadEnd = kDeltaVertexF - 0x300;  // 0x480: the fetch cons
 // chunk before the one holding the vertex declaration). SA2: 11008-12224.
 // katamari-nx: a 64-byte chunk boundary, not a field: 11776 is still the last boundary before Beautiful Katamari's
 // vertex declaration (+11812), and the words between are private ones the render thread does not read.
-constexpr u32 kDeltaPrivateUnreadBegin = 10880, kDeltaPrivateUnreadEnd = 11776;
+// S4ep2-XBLA-nx (2026-11-16): Episode II's device has 128 new bytes before 0x2A80 (nothing Renut reads: m_MiscPacket
+// ends at 0x2A50, unmoved) and its private block from 0x2B00; Episode I's unread words 0x2A80-0x2E00 are at
+// 0x2B00-0x2EF8 here, and its vertex declaration at 0x2FD0. So 10880 to 11968 (0x2EC0, the last chunk boundary before
+// 0x2EF8): the unread range grows by 3 chunks and still ends below everything Episode I compared.
+constexpr u32 kDeltaPrivateUnreadBegin = 10880, kDeltaPrivateUnreadEnd = 11968;
 constexpr bool DeltaChunkRead(u32 i) {
   const u32 at = DeltaChunkOffset(i);
   return !(at < kDeltaUnreadEnd || (at >= kDeltaPrivateUnreadBegin && at + 64 <= kDeltaPrivateUnreadEnd));
@@ -352,7 +356,7 @@ constexpr DeltaChunkList MakeDeltaChunkList(bool narrow) {
 }
 constexpr DeltaChunkList kDeltaAllChunks = MakeDeltaChunkList(false);
 constexpr DeltaChunkList kDeltaReadChunks = MakeDeltaChunkList(true);
-static_assert(kDeltaReadChunks.count == 42);  // S4ep1-nx: Sonic 4 42 (its snapshot 12888, 176 bytes past TFU's 12712: 3 more chunks); N&B 39 (SA2 40; bangaio-nx's XDK 20209: 40)
+static_assert(kDeltaReadChunks.count == 42);  // S4ep2-XBLA-nx: still 42 (snapshot 0x3320: 3 more chunks, 3 more unread); S4ep1-nx: Sonic 4 42 (its snapshot 12888, 176 bytes past TFU's 12712: 3 more chunks); N&B 39 (SA2 40; bangaio-nx's XDK 20209: 40)
 
 // bangaio-nx (2026-10-29, banjo_renut_delta_masks, A/B 81 here, 73 in bangaio-nx): a chunk list as runs of whole chunks at consecutive
 // offsets, and each short chunk (the tail's last, 24 bytes in XDK 20209) as a run of its own. CaptureDelta asks

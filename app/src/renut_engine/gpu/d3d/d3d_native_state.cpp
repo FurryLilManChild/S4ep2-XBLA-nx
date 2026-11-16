@@ -1033,7 +1033,7 @@ bool TilingBoundSurfaces(Device device) {
 void UpdateTilePredicated(Device device) {
   const u8 flags = device.B(off::Flags);
   const bool predicated = !device.W(off::PredicationSet) && !(flags & 0x08) && !(flags & 0x04) &&
-                          !device.B(0x304B) && TilingBoundSurfaces(device);  // katamari-nx: 0x2FA3->0x2F93 (TFU-nx: offset 0x2F93->0x2F9B) (S4ep1-nx: offset 0x2F9B->0x304B)
+                          !device.B(0x3113) && TilingBoundSurfaces(device);  // katamari-nx: 0x2FA3->0x2F93 (TFU-nx: offset 0x2F93->0x2F9B) (S4ep1-nx: offset 0x2F9B->0x304B) (S4ep2-XBLA-nx: offsets moved 0x304B->0X3113)
   device.SetB(off::Flags, u8((flags & 0xFE) | (predicated ? 1 : 0)));
 }
 
@@ -1204,7 +1204,7 @@ void SetDepthStencilSurface(Device device, u32 surface) {
     device.SetW(off::HiControl, hi_control);
     device.SetB(off::Flags2, u8(Insert(device.B(off::Flags2), hi_control, 5, 1)));
     if ((device.B(off::Flags3) & 0x20) && TilingBoundSurfaces(device))
-      device.SetW(off::SurfaceInfo, Insert(device.W(off::SurfaceInfo), device.W(0x3424), 18, 14));  // katamari-nx: 0x337C->0x336C (TFU-nx: offset 0x336C->0x3374) (S4ep1-nx: offset 0x3374->0x3424)
+      device.SetW(off::SurfaceInfo, Insert(device.W(off::SurfaceInfo), device.W(0x34EC), 18, 14));  // katamari-nx: 0x337C->0x336C (TFU-nx: offset 0x336C->0x3374) (S4ep1-nx: offset 0x3374->0x3424) (S4ep2-XBLA-nx: offsets moved 0x3424->0X34EC)
     device.Dirty(kPendingStates, Bit(55) | 0x100 | 0x20000);
   } else {
     device.SetW(off::HiControl, device.W(off::HiControl) & ~0xFu);

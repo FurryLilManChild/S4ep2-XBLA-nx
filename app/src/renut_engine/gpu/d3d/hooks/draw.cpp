@@ -409,7 +409,7 @@ static void BeginTilingImpl(u32 device, u32 count, u32 rects_va, u32 color_va, u
   }
   d.SetW(native::off::TilingExtent, extent_x);
   d.SetW(native::off::TilingExtent + 4, extent_y);
-  d.SetW(0x3434, flags);  // katamari-nx: 0x338C->0x337C; XDK 2.0.5632 keeps Flags there (N&B's update: 0) (TFU-nx: offset 0x337C->0x3384) (S4ep1-nx: offset 0x3384->0x3434)
+  d.SetW(0x34FC, flags);  // katamari-nx: 0x338C->0x337C; XDK 2.0.5632 keeps Flags there (N&B's update: 0) (TFU-nx: offset 0x337C->0x3384) (S4ep1-nx: offset 0x3384->0x3434) (S4ep2-XBLA-nx: offsets moved 0x3434->0X34FC)
 
   if (!(flags & 1) && !(d.B(native::off::Flags3) & 0x20)) {
     // The largest tile, from its origin: its clear covers a tile of EDRAM.
@@ -422,7 +422,7 @@ static void BeginTilingImpl(u32 device, u32 count, u32 rects_va, u32 color_va, u
     // after the clear.
     float viewport[6];
     for (u32 i = 0; i < 6; ++i)
-      viewport[i] = d.F(0x3218 + i * 4);  // katamari-nx: 0x3170->0x3160 (TFU-nx: offset 0x3160->0x3168) (S4ep1-nx: offset 0x3168->0x3218)
+      viewport[i] = d.F(0x32E0 + i * 4);  // katamari-nx: 0x3170->0x3160 (TFU-nx: offset 0x3160->0x3168) (S4ep1-nx: offset 0x3168->0x3218) (S4ep2-XBLA-nx: offsets moved 0x3218->0X32E0)
     i32 scissor[4];
     for (u32 i = 0; i < 4; ++i)
       scissor[i] = i32(d.W(native::off::ScissorRect + i * 4));
@@ -438,17 +438,17 @@ static void BeginTilingImpl(u32 device, u32 count, u32 rects_va, u32 color_va, u
     native::SetScissorRect(d, scissor[0], scissor[1], scissor[2], scissor[3]);
   }
   if (const auto *color = color_va ? GuestPtr<const u8>(color_va) : nullptr)
-    std::memcpy(d.bytes + 0x3440, color, 16);  // katamari-nx: 0x3390->0x3380 (TFU-nx: offset 0x3380->0x3390) (S4ep1-nx: offset 0x3390->0x3440)
+    std::memcpy(d.bytes + 0x3508, color, 16);  // katamari-nx: 0x3390->0x3380 (TFU-nx: offset 0x3380->0x3390) (S4ep1-nx: offset 0x3390->0x3440) (S4ep2-XBLA-nx: offsets moved 0x3440->0X3508)
   else
-    std::memset(d.bytes + 0x3440, 0, 16);  // katamari-nx: 0x3390->0x3380 (TFU-nx: offset 0x3380->0x3390) (S4ep1-nx: offset 0x3390->0x3440)
-  d.SetF(0x3450, clear_z);  // flt_82000D18 (katamari-nx: 0x33A0->0x3390; XDK 2.0.5632: the ClearZ argument) (TFU-nx: offset 0x3390->0x33A0) (S4ep1-nx: offset 0x33A0->0x3450)
-  d.SetW(0x3454, clear_stencil);  // katamari-nx: 0x33A4->0x3394; XDK 2.0.5632: the ClearStencil argument (TFU-nx: offset 0x3394->0x33A4) (S4ep1-nx: offset 0x33A4->0x3454)
+    std::memset(d.bytes + 0x3508, 0, 16);  // katamari-nx: 0x3390->0x3380 (TFU-nx: offset 0x3380->0x3390) (S4ep1-nx: offset 0x3390->0x3440) (S4ep2-XBLA-nx: offsets moved 0x3440->0X3508)
+  d.SetF(0x3518, clear_z);  // flt_82000D18 (katamari-nx: 0x33A0->0x3390; XDK 2.0.5632: the ClearZ argument) (TFU-nx: offset 0x3390->0x33A0) (S4ep1-nx: offset 0x33A0->0x3450) (S4ep2-XBLA-nx: offsets moved 0x3450->0X3518)
+  d.SetW(0x351C, clear_stencil);  // katamari-nx: 0x33A4->0x3394; XDK 2.0.5632: the ClearStencil argument (TFU-nx: offset 0x3394->0x33A4) (S4ep1-nx: offset 0x33A4->0x3454) (S4ep2-XBLA-nx: offsets moved 0x3454->0X351C)
 
   const u32 target = d.W(native::off::RenderTargets);
-  d.SetW(0x3264, target ? target : d.W(native::off::DepthStencil));  // katamari-nx: 0x31BC->0x31AC (TFU-nx: offset 0x31AC->0x31B4) (S4ep1-nx: offset 0x31B4->0x3264)
+  d.SetW(0x332C, target ? target : d.W(native::off::DepthStencil));  // katamari-nx: 0x31BC->0x31AC (TFU-nx: offset 0x31AC->0x31B4) (S4ep1-nx: offset 0x31B4->0x3264) (S4ep2-XBLA-nx: offsets moved 0x3264->0X332C)
   for (u32 i = 0; i < 5; ++i)  // the 4 targets, then depth
     d.SetW(native::off::TilingSurfaces + i * 4, d.W(native::off::RenderTargets + i * 4));
-  d.SetW(0x3260, 2);  // katamari-nx: 0x31B8->0x31A8 (TFU-nx: offset 0x31A8->0x31B0) (S4ep1-nx: offset 0x31B0->0x3260)
+  d.SetW(0x3328, 2);  // katamari-nx: 0x31B8->0x31A8 (TFU-nx: offset 0x31A8->0x31B0) (S4ep1-nx: offset 0x31B0->0x3260) (S4ep2-XBLA-nx: offsets moved 0x3260->0X3328)
   d.SetB(native::off::Flags, d.B(native::off::Flags) | 0x20);
   d.SetW(native::off::PredicationSet, 0);
   native::UpdateTilePredicated(d);
@@ -501,7 +501,7 @@ static u32 EndTilingImpl(u32 device, bool katamari, u32 resolve_flags, u32 rects
       const u32 tile = native::off::TileRects + i * 16;
       ClearRect rect{i32(d.W(tile)), i32(d.W(tile + 4)), i32(d.W(tile + 8)), i32(d.W(tile + 12))};
       // A tile at the surface's edge resolves to a multiple of 8.
-      const u32 surface = d.W(0x3264);  // katamari-nx: 0x31BC->0x31AC (TFU-nx: offset 0x31AC->0x31B4) (S4ep1-nx: offset 0x31B4->0x3264)
+      const u32 surface = d.W(0x332C);  // katamari-nx: 0x31BC->0x31AC (TFU-nx: offset 0x31AC->0x31B4) (S4ep1-nx: offset 0x31B4->0x3264) (S4ep2-XBLA-nx: offsets moved 0x3264->0X332C)
       const auto *s = surface ? GuestPtr<const be_u32>(surface) : nullptr;
       const u32 size = s ? u32(s[9]) : 0;
       if (u32(rect.x2) == (size >> 18) + 1)
@@ -520,8 +520,8 @@ static u32 EndTilingImpl(u32 device, bool katamari, u32 resolve_flags, u32 rects
           if (d.W(native::off::DepthStencil))
             flags |= 0x200;
         }
-        Resolve(device, flags, &rect, dest_texture, dest_x, dest_y, 0, 0, device + 0x3440,  // katamari-nx: 0x3390->0x3380 (TFU-nx: offset 0x3380->0x3390) (S4ep1-nx: offset 0x3390->0x3440)
-                d.F(0x3450), d.W(0x3454), 0);  // katamari-nx: 0x33A0->0x3390, 0x33A4->0x3394 (TFU-nx: offset 0x3390->0x33A0, 0x3394->0x33A4) (S4ep1-nx: offset 0x33A0->0x3450, 0x33A4->0x3454)
+        Resolve(device, flags, &rect, dest_texture, dest_x, dest_y, 0, 0, device + 0x3508,  // katamari-nx: 0x3390->0x3380 (TFU-nx: offset 0x3380->0x3390) (S4ep1-nx: offset 0x3390->0x3440) (S4ep2-XBLA-nx: offsets moved 0x3440->0X3508)
+                d.F(0x3518), d.W(0x351C), 0);  // katamari-nx: 0x33A0->0x3390, 0x33A4->0x3394 (TFU-nx: offset 0x3390->0x33A0, 0x3394->0x33A4) (S4ep1-nx: offset 0x33A0->0x3450, 0x33A4->0x3454) (S4ep2-XBLA-nx: offsets moved 0x3450->0X3518, 0x3454->0X351C)
       } else {
         Resolve(device, resolve_flags, &rect, dest_texture, dest_x, dest_y, 0, 0, color_va,
                 clear_z /*N&B: flt_82000C1C*/, clear_stencil, params);
@@ -539,7 +539,7 @@ static u32 EndTilingImpl(u32 device, bool katamari, u32 resolve_flags, u32 rects
 
   d.SetB(native::off::Flags3, d.B(native::off::Flags3) & 0xCF);
   d.SetB(native::off::Flags, d.B(native::off::Flags) & 0xDF);
-  d.SetW(0x3264, 0);  // katamari-nx: 0x31BC->0x31AC (TFU-nx: offset 0x31AC->0x31B4) (S4ep1-nx: offset 0x31B4->0x3264)
+  d.SetW(0x332C, 0);  // katamari-nx: 0x31BC->0x31AC (TFU-nx: offset 0x31AC->0x31B4) (S4ep1-nx: offset 0x31B4->0x3264) (S4ep2-XBLA-nx: offsets moved 0x3264->0X332C)
   d.SetW(native::off::PredicationSet, 0);
   native::UpdateTilePredicated(d);
   d.SetW(native::off::RunPredicationState, 0);
@@ -697,7 +697,7 @@ void D3DDevice_Present_hook(u32 device) {
   FlushDeferredVertices(device);
   float viewport[6];
   for (u32 i = 0; i < 6; ++i)
-    viewport[i] = d.F(0x3218 + i * 4);  // katamari-nx: 0x3170->0x3160 (TFU-nx: offset 0x3160->0x3168) (S4ep1-nx: offset 0x3168->0x3218)
+    viewport[i] = d.F(0x32E0 + i * 4);  // katamari-nx: 0x3170->0x3160 (TFU-nx: offset 0x3160->0x3168) (S4ep1-nx: offset 0x3168->0x3218) (S4ep2-XBLA-nx: offsets moved 0x3218->0X32E0)
   i32 scissor[4];
   for (u32 i = 0; i < 4; ++i)
     scissor[i] = i32(d.W(native::off::ScissorRect + i * 4));
@@ -727,7 +727,7 @@ void D3DDevice_Present_hook(u32 device) {
   native::SetViewport(d, viewport[0], viewport[1], viewport[2], viewport[3], viewport[4],
                       viewport[5]);
   native::SetScissorRect(d, scissor[0], scissor[1], scissor[2], scissor[3]);
-  native::Swap(device, front_buffer, device + 0x361C);  // S4ep1-nx: offset 0x3548->0x361C
+  native::Swap(device, front_buffer, device + 0x36DC);  // S4ep1-nx: offset 0x3548->0x361C (S4ep2-XBLA-nx: offsets moved 0x361C->0X36DC)
   if (tfu_diag && (tfu_presents == 60 || tfu_presents == 300 || tfu_presents == 700 || tfu_presents == 1000 ||
       tfu_presents == 1300 || tfu_presents == 1600 || tfu_presents == 1900))
     TfuDiagCaptureScanOut(tfu_presents);  // TFU-nx (2026-11-11)  // katamari-nx: 0x3548->0x3530 (TFU-nx: offset 0x3530->0x3548)
@@ -773,15 +773,15 @@ void S4_Resolve_hook(u32 device, u32 flags, u32 rect_va, u32 dest_texture, u32 p
 
 } // namespace
 
-BANJO_RENUT_HOOK(sub_821BFE48, S4_DrawVertices_hook);  // TFU-nx: Katamari sub_824D9D08, d3d_match 1.00 (next 0.71);  // D3DDevice_DrawVertices  // katamari-nx: N&B sub_821FB880, signature 0.90 (next 0.77)  // S4ep1-nx: TFU sub_8281E2B8, seed los1 d3d_match 0.98 (same XDK) D3DDevice_DrawVertices
-BANJO_RENUT_HOOK(sub_821C0238, S4_DrawIndexedVertices_hook);  // TFU-nx: Katamari sub_824DA0F0, d3d_match 1.00 (next 0.72);  // D3DDevice_DrawIndexedVertices  // katamari-nx: N&B sub_8263F358, signature 0.87 (next 0.78)  // S4ep1-nx: TFU sub_8281E6A0, seed los1 d3d_match 0.90 (same XDK) D3DDevice_DrawIndexedVertices
+BANJO_RENUT_HOOK(sub_823F9E18, D3DDevice_DrawVertices_hook);  // S4ep2-XBLA-nx: Episode II takes the full form (device r3, primitive r4, start r5, count r6): r5 and r6 are kept where Episode I kept its count and a 0 start  // TFU-nx: Katamari sub_824D9D08, d3d_match 1.00 (next 0.71);  // D3DDevice_DrawVertices  // katamari-nx: N&B sub_821FB880, signature 0.90 (next 0.77)  // S4ep1-nx: TFU sub_8281E2B8, seed los1 d3d_match 0.98 (same XDK) D3DDevice_DrawVertices  // S4ep2-XBLA-nx: Episode I sub_821BFE48, aligned 0.92
+BANJO_RENUT_HOOK(sub_823FA230, D3DDevice_DrawIndexedVertices_hook);  // S4ep2-XBLA-nx: the full form (device r3, primitive r4, base vertex r5, start index r6, count r7): r6 is shifted by 1 and 2 as Episode I's start, r7 compared with 0xFFFF as its count  // TFU-nx: Katamari sub_824DA0F0, d3d_match 1.00 (next 0.72);  // D3DDevice_DrawIndexedVertices  // katamari-nx: N&B sub_8263F358, signature 0.87 (next 0.78)  // S4ep1-nx: TFU sub_8281E6A0, seed los1 d3d_match 0.90 (same XDK) D3DDevice_DrawIndexedVertices  // S4ep2-XBLA-nx: Episode I sub_821C0238, aligned 0.85
 BANJO_RENUT_UNHOOKED_HOOK(sub_8281EAF8, D3DDevice_DrawIndexedTessellatedVertices_hook);  // TFU-nx: Katamari sub_824DA9C0, d3d_match 0.99 (next 0.66);  // D3DDevice_DrawIndexedTessellatedVertices  // katamari-nx: N&B sub_821FF958, signature 0.86 (next 0.65)  // S4ep1-nx: no counterpart found in Sonic 4 (docs/renut-map.md, still open)
-BANJO_RENUT_HOOK(sub_821BFE00, D3DDevice_DrawVerticesUP_hook);  // TFU-nx: no counterpart in TFU (docs/renut-map.md);  // D3DDevice_DrawVerticesUP  // katamari-nx: N&B sub_821FD698, D3DDevice_DrawVerticesUP: BeginVertices-style reserve, reads VerticesRingEnd +13428 (N&B +13444) and the flags +10940; sig 0.69/0.55  // S4ep1-nx: was unhooked in TFU (sub_824D9758); D3DDevice_DrawVerticesUP: LoS1 d3d_match 1.00 (same XDK)
+BANJO_RENUT_HOOK(sub_823F9DD0, D3DDevice_DrawVerticesUP_hook);  // TFU-nx: no counterpart in TFU (docs/renut-map.md);  // D3DDevice_DrawVerticesUP  // katamari-nx: N&B sub_821FD698, D3DDevice_DrawVerticesUP: BeginVertices-style reserve, reads VerticesRingEnd +13428 (N&B +13444) and the flags +10940; sig 0.69/0.55  // S4ep1-nx: was unhooked in TFU (sub_824D9758); D3DDevice_DrawVerticesUP: LoS1 d3d_match 1.00 (same XDK)  // S4ep2-XBLA-nx: Episode I sub_821BFE00, aligned 1.00
 BANJO_RENUT_UNHOOKED_HOOK(sub_8263F2B8, D3DDevice_DrawIndexedVerticesUP_hook);  // D3DDevice_DrawIndexedVerticesUP  // katamari-nx: not hooked (D3DDevice_DrawIndexedVerticesUP: no counterpart found (sig 0.32))  // S4ep1-nx: unhooked as in TFU
-BANJO_RENUT_HOOK(sub_821BF968, D3DDevice_BeginVertices_hook);  // TFU-nx: no counterpart in TFU (docs/renut-map.md);  // D3DDevice_BeginVertices  // katamari-nx: N&B sub_821FBD30, signature 0.87 (next 0.70)  // S4ep1-nx: was unhooked in TFU (sub_824D92B8); D3DDevice_BeginVertices: LoS1 d3d_match 1.00 (same XDK)
-BANJO_RENUT_HOOK(sub_821B2FD0, D3DDevice_ClearF_hook);  // TFU-nx: Katamari sub_824F3248, d3d_match 1.00 (next 0.41);  // D3DDevice_ClearF  // katamari-nx: N&B sub_8224F110, D3DDevice_ClearF: sig 0.71/0.40; reads the targets +12432.. and tiling surfaces +12720.. as N&B +12448 / +12736  // S4ep1-nx: TFU sub_822F67F0, seed los1 d3d_match 1.00 (same XDK) D3DDevice_ClearF
+BANJO_RENUT_HOOK(sub_823F9910, D3DDevice_BeginVertices_hook);  // TFU-nx: no counterpart in TFU (docs/renut-map.md);  // D3DDevice_BeginVertices  // katamari-nx: N&B sub_821FBD30, signature 0.87 (next 0.70)  // S4ep1-nx: was unhooked in TFU (sub_824D92B8); D3DDevice_BeginVertices: LoS1 d3d_match 1.00 (same XDK)  // S4ep2-XBLA-nx: Episode I sub_821BF968, aligned 0.96
+BANJO_RENUT_HOOK(sub_823ECD20, D3DDevice_ClearF_hook);  // TFU-nx: Katamari sub_824F3248, d3d_match 1.00 (next 0.41);  // D3DDevice_ClearF  // katamari-nx: N&B sub_8224F110, D3DDevice_ClearF: sig 0.71/0.40; reads the targets +12432.. and tiling surfaces +12720.. as N&B +12448 / +12736  // S4ep1-nx: TFU sub_822F67F0, seed los1 d3d_match 1.00 (same XDK) D3DDevice_ClearF  // S4ep2-XBLA-nx: Episode I sub_821B2FD0, aligned 0.97
 BANJO_RENUT_UNHOOKED_HOOK(sub_822F6918, D3DDevice_Clear_hook);  // TFU-nx: Katamari sub_824F3370, d3d_match 1.00 (next 0.37);  // D3DDevice_Clear  // katamari-nx: N&B sub_8224F238, signature 0.84 (next 0.36)  // S4ep1-nx: no counterpart found in Sonic 4 (docs/renut-map.md, still open)
-BANJO_RENUT_HOOK(sub_821C1C80, S4_Resolve_hook);  // TFU-nx: Katamari sub_824F12B8, by hand: 0.82, between ClearF/Clear and SetPredication as in Katamari;  // D3DDevice_Resolve  // katamari-nx: N&B sub_821FC7A0, signature 0.78 (next 0.33)  // S4ep1-nx: TFU sub_822F47A8, seed Resolve: called by Present in both; TFU d3d_match top 0.48
+BANJO_RENUT_HOOK(sub_823FD100, S4_Resolve_hook);  // TFU-nx: Katamari sub_824F12B8, by hand: 0.82, between ClearF/Clear and SetPredication as in Katamari;  // D3DDevice_Resolve  // katamari-nx: N&B sub_821FC7A0, signature 0.78 (next 0.33)  // S4ep1-nx: TFU sub_822F47A8, seed Resolve: called by Present in both; TFU d3d_match top 0.48  // S4ep2-XBLA-nx: Episode I sub_821C1C80, aligned 0.80
 BANJO_RENUT_UNHOOKED_HOOK_SHARED(sub_82246798, D3DDevice_BeginTiling_hook);  // D3DDevice_BeginTiling: N&B's update form, see below  // S4ep1-nx: unhooked as in TFU
 BANJO_RENUT_UNHOOKED_HOOK(sub_821E17C0, D3DDevice_EndTiling_hook);  // D3DDevice_EndTiling: N&B's update form, see below  // S4ep1-nx: unhooked as in TFU
 // katamari-nx (2026-10-30): XDK 2.0.5632's BeginTiling (sub_824EFBC8: it stores the count at TileCount +0x31C4 and
@@ -810,9 +810,9 @@ BANJO_RENUT_UNHOOKED_HOOK_RAW(sub_822F3B78) {  // TFU-nx: EndTiling: d3d_match 1
 }
 BANJO_RENUT_UNHOOKED_HOOK_SHARED(sub_82237FE8, D3DDevice_BeginExport_hook);  // D3DDevice_BeginExport  // katamari-nx: not hooked (D3DDevice_BeginExport: XDK 2.0.5632 has no memexport functions (as feedingfrenzy2-nx found for 6534))  // S4ep1-nx: unhooked as in TFU
 BANJO_RENUT_UNHOOKED_HOOK_SHARED(sub_82237D80, D3DDevice_EndExport_hook);  // D3DDevice_EndExport  // katamari-nx: not hooked (D3DDevice_EndExport: as above)  // S4ep1-nx: unhooked as in TFU
-BANJO_RENUT_UNHOOKED_HOOK(sub_8249E2F8_whole, D3DDevice_Present_hook);  // S4ep1-nx: replaced by the raw hook at the end of the file; was  // TFU-nx: Katamari sub_824E9428, d3d_match 0.92 (next 0.34);  // D3DDevice_Present  // katamari-nx: N&B sub_826352B8, D3DDevice_Present: SynchronizeToPresentationInterval sub_824E89E8, Resolve sub_824F12B8, KickOff sub_824E0298, then Swap sub_824E8E90; sig 0.43/0.26  // S4ep1-nx: TFU sub_822E98D8, seed Present: the same callees as TFU's (SetRenderTarget, KickOff, Swap, SynchronizeToPresentationInterval, Resolve, SetScissorRect, sub_822C0450's pair); outside the D3D block (LTCG)
-BANJO_RENUT_HOOK(sub_821B9EC8, D3DDevice_SetVertexShader_hook);  // TFU-nx: Katamari sub_824D4930, d3d_match 0.99 (next 0.90);  // D3DDevice_SetVertexShader  // katamari-nx: N&B sub_821F90D8, signature 0.87 (next 0.75)  // S4ep1-nx: TFU sub_822E3E80, D3DDevice_SetVertexShader: reads and writes the device's vertex shader +0x3248 (LoS1 12872); TFU match top
-BANJO_RENUT_HOOK(sub_821B9B20, D3DDevice_SetPixelShader_hook);  // TFU-nx: Katamari sub_824D4630, d3d_match 0.96 (next 0.88);  // D3DDevice_SetPixelShader  // katamari-nx: N&B sub_821F58A8, signature 0.85 (next 0.73)  // S4ep1-nx: TFU sub_822E3B80, D3DDevice_SetPixelShader: reads and writes the device's pixel shader +0x3244 (LoS1 12868); TFU match top
+BANJO_RENUT_HOOK(sub_823FBF58, D3DDevice_Present_hook);  // S4ep2-XBLA-nx: Episode II keeps Direct3D's Present as its own function (device r3); its one caller is the wrapper hooked below, so this covers any other path. Was  // S4ep1-nx: replaced by the raw hook at the end of the file; was  // TFU-nx: Katamari sub_824E9428, d3d_match 0.92 (next 0.34);  // D3DDevice_Present  // katamari-nx: N&B sub_826352B8, D3DDevice_Present: SynchronizeToPresentationInterval sub_824E89E8, Resolve sub_824F12B8, KickOff sub_824E0298, then Swap sub_824E8E90; sig 0.43/0.26  // S4ep1-nx: TFU sub_822E98D8, seed Present: the same callees as TFU's (SetRenderTarget, KickOff, Swap, SynchronizeToPresentationInterval, Resolve, SetScissorRect, sub_822C0450's pair); outside the D3D block (LTCG)
+BANJO_RENUT_HOOK(sub_823F3E30, D3DDevice_SetVertexShader_hook);  // TFU-nx: Katamari sub_824D4930, d3d_match 0.99 (next 0.90);  // D3DDevice_SetVertexShader  // katamari-nx: N&B sub_821F90D8, signature 0.87 (next 0.75)  // S4ep1-nx: TFU sub_822E3E80, D3DDevice_SetVertexShader: reads and writes the device's vertex shader +0x3248 (LoS1 12872); TFU match top  // S4ep2-XBLA-nx: Episode I sub_821B9EC8, aligned 1.00
+BANJO_RENUT_HOOK(sub_823F3A88, D3DDevice_SetPixelShader_hook);  // TFU-nx: Katamari sub_824D4630, d3d_match 0.96 (next 0.88);  // D3DDevice_SetPixelShader  // katamari-nx: N&B sub_821F58A8, signature 0.85 (next 0.73)  // S4ep1-nx: TFU sub_822E3B80, D3DDevice_SetPixelShader: reads and writes the device's pixel shader +0x3244 (LoS1 12868); TFU match top  // S4ep2-XBLA-nx: Episode I sub_821B9B20, aligned 1.00
 
 // S4ep1-nx (2026-11-15): Sonic 4's Present (sub_8249E2F8) takes no arguments: the game's NN layer wraps it around
 // the inlined D3D Present. Its parts, from the generated code:
@@ -827,26 +827,33 @@ REXCVAR_DEFINE_INT32(s4_diag_capture_present, 0, "S4ep1-nx",
 REXCVAR_DEFINE_BOOL(s4_pacer_fix, true, "S4ep1-nx",
                     "Sonic 4's frame thread: a Present that comes after a deadline step does not wake it again, so "
                     "the game steps 60 times a second when frames are late (off: the game's own rule, which ran up "
-                    "to 1.45x in the GPU dips). draw.cpp, sub_8249E2F8's hook.");
-REX_EXTERN(__imp__sub_8249E2F8);
-REX_EXTERN(sub_82488698);
-REX_EXTERN(sub_821C0920);
-REX_EXTERN(sub_821C0E58);
-REX_EXTERN(sub_82493890);
-REX_EXTERN(sub_82223E98);
-REX_EXTERN(sub_82488738);
-BANJO_RENUT_HOOK_RAW(sub_8249E2F8) {
+                    "to 1.45x in the GPU dips). draw.cpp, sub_828770F8's hook (Episode I sub_8249E2F8).");
+// S4ep2-XBLA-nx (2026-11-16): Episode II's Present wrapper sub_828770F8 (Episode I sub_8249E2F8; its only caller of
+// Direct3D's Present sub_823FBF58, the pre-present step sub_82860120 and the after-flip sub_82862930). It calls
+// Direct3D's Present instead of carrying it inlined, and ends with one more call than Episode I's:
+// sub_82860008(0x82AABFA0, 1). Globals: pre-present check [0x8299804C] and argument 0x829974C8, own-flip flag
+// [0x82AA3428], device [0x82AAC01C], front buffers 0x82AA32CC indexed by [0x82AAC034], pacer object [0x82AABF98],
+// frame-time floats 0x82940960 x 0x820F7E24 + 0x820B48DC (the same fmadds as Episode I).
+REX_EXTERN(__imp__sub_828770F8);
+REX_EXTERN(sub_82860120);
+REX_EXTERN(sub_823FA9D8);
+REX_EXTERN(sub_823FB720);
+REX_EXTERN(sub_82862930);
+REX_EXTERN(sub_8245A7D0);
+REX_EXTERN(sub_828601B8);
+REX_EXTERN(sub_82860008);
+BANJO_RENUT_HOOK_RAW(sub_828770F8) {
   auto load_u32 = [](u32 va) -> u32 {
     const auto *p = GuestPtr<const rex::be_u32>(va);
     return p ? u32(*p) : 0;
   };
   auto load_f32 = [&](u32 va) -> float { return std::bit_cast<float>(load_u32(va)); };
 
-  if (load_u32(0x824F13CC) == 0) {
-    ctx.r3.u64 = 0x824F1330;
-    sub_82488698(ctx, base);
+  if (load_u32(0x8299804C) == 0) {
+    ctx.r3.u64 = 0x829974C8;
+    sub_82860120(ctx, base);
   }
-  const u32 device = load_u32(0x82586168);
+  const u32 device = load_u32(0x82AAC01C);
   {  // S4ep1-nx (2026-11-15, the title's white sky): TFU-nx's frame capture for the game's own flips (which skip
      // D3DDevice_Present_hook): s4_diag_capture_present = N reads render target 0 back before each resolve and
      // EndTiling of Present N's frame, and the back buffer at its end (logs/tfu_<N>_*.ppm).
@@ -866,19 +873,19 @@ BANJO_RENUT_HOOK_RAW(sub_8249E2F8) {
       }
     }
   }
-  if (load_u32(0x8252FA48) == 0) {
+  if (load_u32(0x82AA3428) == 0) {
     D3DDevice_Present_hook(device);
   } else {
     ctx.r3.u64 = device;
     ctx.r4.u64 = 0;
-    sub_821C0920(ctx, base);
+    sub_823FA9D8(ctx, base);
     ctx.r3.u64 = device;
-    ctx.r4.u64 = load_u32(0x82505BC0 + 4 * load_u32(0x82586180));
+    ctx.r4.u64 = load_u32(0x82AA32CC + 4 * load_u32(0x82AAC034));
     ctx.r5.u64 = 0;
-    sub_821C0E58(ctx, base);
-    sub_82493890(ctx, base);
+    sub_823FB720(ctx, base);
+    sub_82862930(ctx, base);
   }
-  // S4ep1-nx (2026-11-15, s4_pacer_fix): the frame thread (sub_82488B10) steps when this Present sets its event OR
+// S4ep1-nx (2026-11-15, s4_pacer_fix): the frame thread (sub_82488B10) steps when this Present sets its event OR
   // when its deadline (the last Present plus 16,667 us) passes first. On a 360 the Presents land on refreshes (16.7 or
   // 33.3 ms apart), so a late frame gives one deadline step and one Present step in 33.3 ms: 60 steps a second. With
   // Renut a Present can come at any time: a 20 ms frame gave a deadline step at 16.7 ms and a Present step at 20 ms,
@@ -891,20 +898,23 @@ BANJO_RENUT_HOOK_RAW(sub_8249E2F8) {
   const u32 s4_since = s4_entries - s4_entries_at_last;
   const bool s4_hold = REXCVAR_GET(s4_pacer_fix) && s4_since > (s4_last_woke ? 1u : 0u);
   s4_entries_at_last = s4_entries;
-  const u32 obj = load_u32(0x82586118);
+  const u32 obj = load_u32(0x82AABF98);
   s4_last_woke = obj && !s4_hold;
   if (obj && s4_hold) {
     s4::g_present_skips.fetch_add(1, std::memory_order_relaxed);
   } else if (obj) {
     s4::g_present_wakes.fetch_add(1, std::memory_order_relaxed);
     ctx.r3.u64 = load_u32(obj + 8);
-    sub_82223E98(ctx, base);
-    const float ms = float(std::fma(double(load_f32(0x824D9B14)), double(load_f32(0x82094ADC)),
-                                    double(load_f32(0x8207C954))));
-    ctx.r3.u64 = load_u32(0x82586118);
+    sub_8245A7D0(ctx, base);
+    const float ms = float(std::fma(double(load_f32(0x82940960)), double(load_f32(0x820F7E24)),
+                                    double(load_f32(0x820B48DC))));
+    ctx.r3.u64 = load_u32(0x82AABF98);
     ctx.r4.u64 = u32(rex::ppc::fctiwz(double(ms)));
-    sub_82488738(ctx, base);
+    sub_828601B8(ctx, base);
   }
+  ctx.r3.u64 = 0x82AABFA0;  // S4ep2-XBLA-nx: Episode II's wrapper ends with this call (not in Episode I's)
+  ctx.r4.u64 = 1;
+  sub_82860008(ctx, base);
 }
 
 // S4ep1-nx (2026-11-15): Sonic 4 draws 1920x1080 with predicated tiling (the colour and depth targets do not fit in
@@ -917,20 +927,23 @@ BANJO_RENUT_HOOK_RAW(sub_8249E2F8) {
 //  - EndTiling (device r3, resolve flags r4, dest texture r5, clear colour r6, clear stencil r8, clear Z f1); r7
 //    unread; no resolve rects (the tiles' own); each tile but the last resolves with flags | 0x100 (colour bound,
 //    +0x3148) | 0x200 (depth bound, +0x3158) and BeginTiling's clear values, the last with the caller's.
-BANJO_RENUT_HOOK_RAW(sub_821C2D30) {
+BANJO_RENUT_HOOK_RAW(sub_823FC300) {  // S4ep2-XBLA-nx: Episode I sub_821C2D30, BeginTiling: d3d_match 0.75 (next 0.19), linked after SetPredication as in Episode I
   static int logged = 0;
   if (logged < 4) {
     ++logged;
-    const auto *rects = GuestPtr<const rex::be_u32>(ctx.r5.u32);
-    RGPU_INFO("[s4] BeginTiling: count {}, rects {:08X} (first {} {} {} {}, second {} {} {} {}), colour {:08X}, Z {}, "
-              "stencil {}", ctx.r4.u32, ctx.r5.u32, rects ? u32(rects[0]) : 0, rects ? u32(rects[1]) : 0,
-              rects ? u32(rects[2]) : 0, rects ? u32(rects[3]) : 0, rects && ctx.r4.u32 > 1 ? u32(rects[4]) : 0,
-              rects && ctx.r4.u32 > 1 ? u32(rects[5]) : 0, rects && ctx.r4.u32 > 1 ? u32(rects[6]) : 0,
-              rects && ctx.r4.u32 > 1 ? u32(rects[7]) : 0, ctx.r6.u32, ctx.f1.f64, ctx.r8.u32);
+    const auto *rects = GuestPtr<const rex::be_u32>(ctx.r6.u32);
+    RGPU_INFO("[s4] BeginTiling: flags {:X}, count {}, rects {:08X} (first {} {} {} {}, second {} {} {} {}), colour "
+              "{:08X}, Z {}, stencil {}", ctx.r4.u32, ctx.r5.u32, ctx.r6.u32, rects ? u32(rects[0]) : 0,
+              rects ? u32(rects[1]) : 0, rects ? u32(rects[2]) : 0, rects ? u32(rects[3]) : 0,
+              rects && ctx.r5.u32 > 1 ? u32(rects[4]) : 0, rects && ctx.r5.u32 > 1 ? u32(rects[5]) : 0,
+              rects && ctx.r5.u32 > 1 ? u32(rects[6]) : 0, rects && ctx.r5.u32 > 1 ? u32(rects[7]) : 0, ctx.r7.u32,
+              ctx.f1.f64, ctx.r9.u32);
   }
-  BeginTilingImpl(ctx.r3.u32, ctx.r4.u32, ctx.r5.u32, ctx.r6.u32, 0, float(ctx.f1.f64), ctx.r8.u32);
+  // S4ep2-XBLA-nx: Episode II's BeginTiling takes D3D's own argument list: device r3, flags r4, count r5 (stored at
+  // the tile count +0x3344), rects r6, clear colour r7, clear Z f1, clear stencil r9 (r8 is the slot f1 skips).
+  BeginTilingImpl(ctx.r3.u32, ctx.r5.u32, ctx.r6.u32, ctx.r7.u32, ctx.r4.u32, float(ctx.f1.f64), ctx.r9.u32);
 }
-BANJO_RENUT_HOOK_RAW(sub_821C30D0) {
+BANJO_RENUT_HOOK_RAW(sub_823FC678) {  // S4ep2-XBLA-nx: Episode I sub_821C30D0, EndTiling: d3d_match 0.92 (next 0.19), right after BeginTiling
   static int logged = 0;
   if (logged < 4) {
     ++logged;

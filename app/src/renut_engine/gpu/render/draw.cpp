@@ -9137,7 +9137,7 @@ VertexDeclarationRecord &NoDeclaration() {
 // Its D3DVERTEXELEMENT9s (12 bytes each, ended by D3DDECL_END) are at +52 of the declaration, inside the device
 // snapshot, so a draw reads them from its own snapshot; at most 15 before the device's next field (+0x3088). One record
 // per distinct element list; each new list is logged once with its elements, to check the layout.
-constexpr u32 kDeviceDeclarationOffset = 0x3050;  // TFU-nx: offset 0x2F98->0x2FA0 (S4ep1-nx: offset 0x2FA0->0x3050)
+constexpr u32 kDeviceDeclarationOffset = 0x3118;  // TFU-nx: offset 0x2F98->0x2FA0 (S4ep1-nx: offset 0x2FA0->0x3050) (S4ep2-XBLA-nx: offsets moved 0x3050->0X3118)
 constexpr u32 kDeclarationElementsOffset = 52;
 constexpr u32 kDeviceDeclarationMaxElements = 15;
 
@@ -9806,7 +9806,7 @@ std::unordered_map<const void *, std::unordered_map<uint64_t, u32>> g_census_lef
 constexpr u32 kCensusFetchBegin = u32(offsetof(d3d::Device, m_Constants));
 constexpr u32 kCensusFloatBegin = kCensusFetchBegin + u32(offsetof(d3d::Constants, VertexShaderF));
 constexpr u32 kCensusTailBegin = kCensusFetchBegin + u32(offsetof(d3d::Constants, VertexShaderB));
-static_assert(kCensusTailBegin < 10880 && 11776 < d3d::kDeviceSnapshotSize);  // katamari-nx: a chunk boundary (backend/queued.cpp)
+static_assert(kCensusTailBegin < 11008 && 12024 < d3d::kDeviceSnapshotSize);  // katamari-nx: a chunk boundary (backend/queued.cpp) (S4ep2-XBLA-nx: offsets moved 10880->11008, 11776->12024)
 
 bool CensusCompared(u32 k) {  // g_census[k + 1] is frame N-(k+1)
   return g_census[0].frame != UINT64_MAX && g_census[k + 1].frame != UINT64_MAX &&
@@ -9861,7 +9861,7 @@ void CensusDraw(const u8 *device_state, const DrawCall &call, const Targets &tar
   // The state key.
   uint64_t state = XXH3_64bits(device_state + kCensusFetchBegin, kCensusFloatBegin - kCensusFetchBegin);
   state = XXH3_64bits_withSeed(device_state + kCensusTailBegin, 10880 - kCensusTailBegin, state);
-  state = XXH3_64bits_withSeed(device_state + 11776, d3d::kDeviceSnapshotSize - 11776, state);  // katamari-nx: a chunk boundary (backend/queued.cpp)
+  state = XXH3_64bits_withSeed(device_state + 12024, d3d::kDeviceSnapshotSize - 12024, state);  // katamari-nx: a chunk boundary (backend/queued.cpp) (S4ep2-XBLA-nx: offsets moved 11776->12024, 11776->12024)
   const u32 call_words[6] = {call.primitive, call.start_index, call.start_vertex, call.count, u32(call.base_vertex),
                              u32(call.indexed) | u32(call.tessellation) << 1 | u32(call.up_vertices != nullptr) << 2 |
                                  u32(call.up_indices != nullptr) << 3};
@@ -15030,8 +15030,8 @@ void ClearStateLocked(const u8 *device_state, u32 flags, const ClearRect *rect,
 
   // D3D clamps clears to the viewport (CDevice viewport floats at 0x3170).
   ClearRect r = rect ? *rect : ClearRect{0, 0, int32_t(targets.width), int32_t(targets.height)};
-  const float vx = device.F32(0x3218), vy = device.F32(0x321C);  // katamari-nx: 0x3170->0x3160, 0x3174->0x3164 (TFU-nx: offset 0x3160->0x3168, 0x3164->0x316C) (S4ep1-nx: offset 0x3168->0x3218, 0x316C->0x321C)
-  const float vw = device.F32(0x3220), vh = device.F32(0x3224);  // katamari-nx: 0x3178->0x3168, 0x317C->0x316C (TFU-nx: offset 0x3168->0x3170, 0x316C->0x3174) (S4ep1-nx: offset 0x3170->0x3220, 0x3174->0x3224)
+  const float vx = device.F32(0x32E0), vy = device.F32(0x32E4);  // katamari-nx: 0x3170->0x3160, 0x3174->0x3164 (TFU-nx: offset 0x3160->0x3168, 0x3164->0x316C) (S4ep1-nx: offset 0x3168->0x3218, 0x316C->0x321C) (S4ep2-XBLA-nx: offsets moved 0x3218->0X32E0, 0x321C->0X32E4)
+  const float vw = device.F32(0x32E8), vh = device.F32(0x32EC);  // katamari-nx: 0x3178->0x3168, 0x317C->0x316C (TFU-nx: offset 0x3168->0x3170, 0x316C->0x3174) (S4ep1-nx: offset 0x3170->0x3220, 0x3174->0x3224) (S4ep2-XBLA-nx: offsets moved 0x3220->0X32E8, 0x3224->0X32EC)
   if (vw > 0.0f && vh > 0.0f) {
     int32_t vx2 = int32_t(vx + vw), vy2 = int32_t(vy + vh);
     // A target grown for tiling: D3D bounds the viewport by the tile-sized

@@ -141,7 +141,7 @@ static void TfuPresentDiagSwap(uint32_t front_buffer, uint64_t swap_ordinal) {
 // Kernel exports the device code uses.
 // katamari-nx: Beautiful Katamari's GetCurrentThreadId is sub_824C1C10 (`lwz r11,256(r13); lwz r3,332(r11); blr`,
 // N&B's rex_GetCurrentThreadId 0x8220F1E0 byte for byte).
-REX_IMPORT(__imp__sub_82223E18, GuestGetCurrentThreadId,  /* S4ep1-nx: TFU sub_822F7C38; CreateDevice calls it right after the build qword, as TFU */ u32());  // TFU-nx: GetCurrentThreadId: Katamari sub_824C1C10, the same 3 instructions
+REX_IMPORT(__imp__sub_82459490, GuestGetCurrentThreadId,  /* S4ep2-XBLA-nx: Episode I sub_82223E18, d3d_match 1.00; CreateDevice calls it right after the build qword */  /* S4ep1-nx: TFU sub_822F7C38; CreateDevice calls it right after the build qword, as TFU */ u32());  // TFU-nx: GetCurrentThreadId: Katamari sub_824C1C10, the same 3 instructions
 REX_IMPORT(__imp__RtlInitializeCriticalSection, RtlInitializeCriticalSection, void(u32));
 REX_IMPORT(__imp__KeQueryPerformanceFrequency, KeQueryPerformanceFrequency, u32());
 REX_IMPORT(__imp__KeGetCurrentProcessType, KeGetCurrentProcessType, u32());
@@ -175,25 +175,25 @@ constexpr u8 kDeviceFlagImmediateFences = 0x02;
 // Pointer to the completed-fence word IsFencePending / BlockOnFence read.
 constexpr u32 kDeviceOffsetFenceCompletion = 10896;
 // Nonzero while a KickOff is in progress (BlockOnFence does not kick then).
-constexpr u32 kDeviceOffsetInKickOff = 13408;  // katamari-nx: 13232->13216 (TFU-nx: offset 13216->13232) (S4ep1-nx: offset 13232->13408)
+constexpr u32 kDeviceOffsetInKickOff = 13600;  // katamari-nx: 13232->13216 (TFU-nx: offset 13216->13232) (S4ep1-nx: offset 13232->13408) (S4ep2-XBLA-nx: offsets moved 13408->13600)
 // Side buffer (0x12C0 bytes) every device gets.
-constexpr u32 kDeviceOffsetSideBuffer = 16944;  // katamari-nx: 16728->16704 (TFU-nx: offset 16704->16728) (S4ep1-nx: offset 16728->16944)
+constexpr u32 kDeviceOffsetSideBuffer = 17136;  // katamari-nx: 16728->16704 (TFU-nx: offset 16704->16728) (S4ep1-nx: offset 16728->16944) (S4ep2-XBLA-nx: offsets moved 16944->17136)
 constexpr u32 kSideBufferSize = 0x12C0;
 // Set to -1 by the device-type-2 path.
-constexpr u32 kDeviceOffsetsMinusOne[] = {21776, 21780, 15148};  // katamari-nx: 21560->21532, 21564->21536, 14936->14912 (TFU-nx: offset 21532->21556, 21536->21560, 14912->14936) (S4ep1-nx: offset 21556->21776, 21560->21780, 14936->15148)
+constexpr u32 kDeviceOffsetsMinusOne[] = {21968, 21972, 15340};  // katamari-nx: 21560->21532, 21564->21536, 14936->14912 (TFU-nx: offset 21532->21556, 21536->21560, 14912->14936) (S4ep1-nx: offset 21556->21776, 21560->21780, 14936->15148) (S4ep2-XBLA-nx: offsets moved 21776->21968, 21780->21972, 15148->15340)
 constexpr u32 kDeviceTypeNoHardware = 2;
 // Copied from the global qword at 0x82DA3478 into every device.
-constexpr u32 kDeviceOffsetGlobalQword = 10880;
-constexpr u32 kGlobalQwordVa = 0x824E0A38;  // S4ep1-nx: TFU 0x82F43EE8; CreateDevice sub_82494160 ld 0xA38 after lis -0x7DB2, std +0x2A80; the qword encodes 0x2D6A = 11626
+constexpr u32 kDeviceOffsetGlobalQword = 11008;  // S4ep2-XBLA-nx: 10880->11008 (CreateDevice sub_828631F0: std +0x2B00)
+constexpr u32 kGlobalQwordVa = 0x8295BA48;  // S4ep2-XBLA-nx: CreateDevice sub_828631F0 ld -0x45B8 after lis -0x7D6A  // S4ep1-nx: TFU 0x82F43EE8; CreateDevice sub_82494160 ld 0xA38 after lis -0x7DB2, std +0x2A80; the qword encodes 0x2D6A = 11626
 //  // katamari-nx: 0x82DA3478->0x82AD93F8  // TFU-nx: 2.0.6534.1 build qword, right after the state tables as in Katamari
 // Hardware-path fields: two critical sections, QueryPerformanceFrequency and
 // its reciprocal as floats, and 41 words set to -1.
-constexpr u32 kDeviceOffsetCriticalSection0 = 15156;  // katamari-nx: 14944->14920 (TFU-nx: offset 14920->14944) (S4ep1-nx: offset 14944->15156)
-constexpr u32 kDeviceOffsetCriticalSection1 = 15184;  // katamari-nx: 14972->14948 (TFU-nx: offset 14948->14972) (S4ep1-nx: offset 14972->15184)
-constexpr u32 kDeviceOffsetPerfFrequency = 21804;  // katamari-nx: 21588->21560 (TFU-nx: offset 21560->21584) (S4ep1-nx: offset 21584->21804)
-constexpr u32 kDeviceOffsetTitleMinusOne = 23600;  // katamari-nx: 23380->21672 (TFU-nx: offset 21672->21700) (S4ep1-nx: offset 21700->23600)
+constexpr u32 kDeviceOffsetCriticalSection0 = 15348;  // katamari-nx: 14944->14920 (TFU-nx: offset 14920->14944) (S4ep1-nx: offset 14944->15156) (S4ep2-XBLA-nx: offsets moved 15156->15348)
+constexpr u32 kDeviceOffsetCriticalSection1 = 15376;  // katamari-nx: 14972->14948 (TFU-nx: offset 14948->14972) (S4ep1-nx: offset 14972->15184) (S4ep2-XBLA-nx: offsets moved 15184->15376)
+constexpr u32 kDeviceOffsetPerfFrequency = 21996;  // katamari-nx: 21588->21560 (TFU-nx: offset 21560->21584) (S4ep1-nx: offset 21584->21804) (S4ep2-XBLA-nx: offsets moved 21804->21996)
+constexpr u32 kDeviceOffsetTitleMinusOne = 23792;  // katamari-nx: 23380->21672 (TFU-nx: offset 21672->21700) (S4ep1-nx: offset 21700->23600) (S4ep2-XBLA-nx: offsets moved 23600->23792)
 // Import slot holding the address of the kernel's VdGlobalDevice variable.
-constexpr u32 kVdGlobalDeviceImportSlot = 0x820004FC;  // S4ep1-nx: TFU 0x820008B0; 2 paired references; holds a kernel variable address as TFU's
+constexpr u32 kVdGlobalDeviceImportSlot = 0x82000830;  // S4ep2-XBLA-nx: D3DResource_Destroy sub_823FE0D0 loads 0x830 then 0x584 where Episode I's loads 0x4FC then 0x4F8  // S4ep1-nx: TFU 0x820008B0; 2 paired references; holds a kernel variable address as TFU's
 //  // katamari-nx: 0x820007F8->0x82000750  // TFU-nx: D3DResource_Destroy and D3D_LockResource read it, tools/renut_data_refs.py
 
 constexpr u32 kE_OUTOFMEMORY = 0x8007000Eu;
@@ -248,7 +248,7 @@ bool FencePending(const u8 *bytes, u32 fence) {
 // D3D::XenonGpu_Initialize: the register image's power-on values, everything
 // dirty. (Its register writes go into the ring.)
 void XenonGpuInitialize(native::Device d) {
-  d.SetQ(0x2EE0, 0x00000000FFFFFFFFull);  // katamari-nx: 0x2E38->0x2E28 (TFU-nx: offset 0x2E28->0x2E30) (S4ep1-nx: offset 0x2E30->0x2EE0)
+  d.SetQ(0x2FE0, 0x00000000FFFFFFFFull);  // katamari-nx: 0x2E38->0x2E28 (TFU-nx: offset 0x2E28->0x2E30) (S4ep1-nx: offset 0x2E30->0x2EE0) (S4ep2-XBLA-nx: offsets moved 0x2EE0->0X2FE0)
   for (u32 i = 0; i < 26; ++i)  // texture fetch constants: type 0
     d.SetW(native::off::TextureFetch + i * 24, d.W(native::off::TextureFetch + i * 24) & ~3u);
   for (u32 i = 0; i < 18; ++i) {  // vertex fetch constants: type 1
@@ -277,32 +277,32 @@ void XenonGpuInitialize(native::Device d) {
 
 // D3D::InitializeApiState (0x82641BC8).
 void InitializeApiState(native::Device d) {
-  const u32 present_interval = d.W(0x35F0);  // katamari-nx: 0x351C->0x3504 (TFU-nx: offset 0x3504->0x351C) (S4ep1-nx: offset 0x351C->0x35F0)
-  const u32 behavior_flags2 = d.W(0x5E88);  // katamari-nx: 0x5DAC->0x56F8 (TFU-nx: offset 0x56F8->0x571C) (S4ep1-nx: offset 0x571C->0x5E88)
+  const u32 present_interval = d.W(0x36B0);  // katamari-nx: 0x351C->0x3504 (TFU-nx: offset 0x3504->0x351C) (S4ep1-nx: offset 0x351C->0x35F0) (S4ep2-XBLA-nx: offsets moved 0x35F0->0X36B0)
+  const u32 behavior_flags2 = d.W(0x5F48);  // katamari-nx: 0x5DAC->0x56F8 (TFU-nx: offset 0x56F8->0x571C) (S4ep1-nx: offset 0x571C->0x5E88) (S4ep2-XBLA-nx: offsets moved 0x5E88->0X5F48)
   native::InitializeStateTables(d);
-  d.SetW(0x3050, 5);  // katamari-nx: 0x2FA8->0x2F98 (TFU-nx: offset 0x2F98->0x2FA0) (S4ep1-nx: offset 0x2FA0->0x3050)
-  d.SetW(0x3054, 1);  // katamari-nx: 0x2FAC->0x2F9C (TFU-nx: offset 0x2F9C->0x2FA4) (S4ep1-nx: offset 0x2FA4->0x3054)
+  d.SetW(0x3118, 5);  // katamari-nx: 0x2FA8->0x2F98 (TFU-nx: offset 0x2F98->0x2FA0) (S4ep1-nx: offset 0x2FA0->0x3050) (S4ep2-XBLA-nx: offsets moved 0x3050->0X3118)
+  d.SetW(0x311C, 1);  // katamari-nx: 0x2FAC->0x2F9C (TFU-nx: offset 0x2F9C->0x2FA4) (S4ep1-nx: offset 0x2FA4->0x3054) (S4ep2-XBLA-nx: offsets moved 0x3054->0X311C)
   native::SetScreenExtentQueryMode(d, 2);  // D3DSEQM_PRECLIP
-  d.SetW(0x3140, 2);  // katamari-nx: 0x3098->0x3088 (TFU-nx: offset 0x3088->0x3090) (S4ep1-nx: offset 0x3090->0x3140)
-  d.SetW(0x3088, 0x2A23B9);  // katamari-nx: 0x2FE0->0x2FD0 (TFU-nx: offset 0x2FD0->0x2FD8) (S4ep1-nx: offset 0x2FD8->0x3088)
-  d.SetH(0x3084, 0);  // katamari-nx: 0x2FDC->0x2FCC (TFU-nx: offset 0x2FCC->0x2FD4) (S4ep1-nx: offset 0x2FD4->0x3084)
-  d.SetH(0x3086, 0);  // katamari-nx: 0x2FDE->0x2FCE (TFU-nx: offset 0x2FCE->0x2FD6) (S4ep1-nx: offset 0x2FD6->0x3086)
-  d.SetB(0x308C, 0);  // katamari-nx: 0x2FE4->0x2FD4 (TFU-nx: offset 0x2FD4->0x2FDC) (S4ep1-nx: offset 0x2FDC->0x308C)
-  d.SetB(0x308D, 0);  // katamari-nx: 0x2FE5->0x2FD5 (TFU-nx: offset 0x2FD5->0x2FDD) (S4ep1-nx: offset 0x2FDD->0x308D)
-  d.SetB(0x308E, 0);  // katamari-nx: 0x2FE6->0x2FD6 (TFU-nx: offset 0x2FD6->0x2FDE) (S4ep1-nx: offset 0x2FDE->0x308E)
-  d.SetW(0x3094, ~0u);  // katamari-nx: 0x2FEC->0x2FDC (TFU-nx: offset 0x2FDC->0x2FE4) (S4ep1-nx: offset 0x2FE4->0x3094)
+  d.SetW(0x3208, 2);  // katamari-nx: 0x3098->0x3088 (TFU-nx: offset 0x3088->0x3090) (S4ep1-nx: offset 0x3090->0x3140) (S4ep2-XBLA-nx: offsets moved 0x3140->0X3208)
+  d.SetW(0x3150, 0x2A23B9);  // katamari-nx: 0x2FE0->0x2FD0 (TFU-nx: offset 0x2FD0->0x2FD8) (S4ep1-nx: offset 0x2FD8->0x3088) (S4ep2-XBLA-nx: offsets moved 0x3088->0X3150)
+  d.SetH(0x314C, 0);  // katamari-nx: 0x2FDC->0x2FCC (TFU-nx: offset 0x2FCC->0x2FD4) (S4ep1-nx: offset 0x2FD4->0x3084) (S4ep2-XBLA-nx: offsets moved 0x3084->0X314C)
+  d.SetH(0x314E, 0);  // katamari-nx: 0x2FDE->0x2FCE (TFU-nx: offset 0x2FCE->0x2FD6) (S4ep1-nx: offset 0x2FD6->0x3086) (S4ep2-XBLA-nx: offsets moved 0x3086->0X314E)
+  d.SetB(0x3154, 0);  // katamari-nx: 0x2FE4->0x2FD4 (TFU-nx: offset 0x2FD4->0x2FDC) (S4ep1-nx: offset 0x2FDC->0x308C) (S4ep2-XBLA-nx: offsets moved 0x308C->0X3154)
+  d.SetB(0x3155, 0);  // katamari-nx: 0x2FE5->0x2FD5 (TFU-nx: offset 0x2FD5->0x2FDD) (S4ep1-nx: offset 0x2FDD->0x308D) (S4ep2-XBLA-nx: offsets moved 0x308D->0X3155)
+  d.SetB(0x3156, 0);  // katamari-nx: 0x2FE6->0x2FD6 (TFU-nx: offset 0x2FD6->0x2FDE) (S4ep1-nx: offset 0x2FDE->0x308E) (S4ep2-XBLA-nx: offsets moved 0x308E->0X3156)
+  d.SetW(0x315C, ~0u);  // katamari-nx: 0x2FEC->0x2FDC (TFU-nx: offset 0x2FDC->0x2FE4) (S4ep1-nx: offset 0x2FE4->0x3094) (S4ep2-XBLA-nx: offsets moved 0x3094->0X315C)
   // Three zero bytes; N&B leaves the fourth from its stack.
-  d.SetW(0x3098, 0);  // katamari-nx: 0x2FF0->0x2FE0 (TFU-nx: offset 0x2FE0->0x2FE8) (S4ep1-nx: offset 0x2FE8->0x3098)
-  d.SetW(0x3090, 0x00FF0000);  // katamari-nx: 0x2FE8->0x2FD8 (TFU-nx: offset 0x2FD8->0x2FE0) (S4ep1-nx: offset 0x2FE0->0x3090)
-  d.SetW(0x3068, 1);  // katamari-nx: 0x2FC0->0x2FB0 (TFU-nx: offset 0x2FB0->0x2FB8) (S4ep1-nx: offset 0x2FB8->0x3068)
-  d.SetW(0x306C, 0);  // katamari-nx: 0x2FC4->0x2FB4 (TFU-nx: offset 0x2FB4->0x2FBC) (S4ep1-nx: offset 0x2FBC->0x306C)
-  d.SetW(0x3080, 0);  // katamari-nx: 0x2FD8->0x2FC8 (TFU-nx: offset 0x2FC8->0x2FD0) (S4ep1-nx: offset 0x2FD0->0x3080)
+  d.SetW(0x3160, 0);  // katamari-nx: 0x2FF0->0x2FE0 (TFU-nx: offset 0x2FE0->0x2FE8) (S4ep1-nx: offset 0x2FE8->0x3098) (S4ep2-XBLA-nx: offsets moved 0x3098->0X3160)
+  d.SetW(0x3158, 0x00FF0000);  // katamari-nx: 0x2FE8->0x2FD8 (TFU-nx: offset 0x2FD8->0x2FE0) (S4ep1-nx: offset 0x2FE0->0x3090) (S4ep2-XBLA-nx: offsets moved 0x3090->0X3158)
+  d.SetW(0x3130, 1);  // katamari-nx: 0x2FC0->0x2FB0 (TFU-nx: offset 0x2FB0->0x2FB8) (S4ep1-nx: offset 0x2FB8->0x3068) (S4ep2-XBLA-nx: offsets moved 0x3068->0X3130)
+  d.SetW(0x3134, 0);  // katamari-nx: 0x2FC4->0x2FB4 (TFU-nx: offset 0x2FB4->0x2FBC) (S4ep1-nx: offset 0x2FBC->0x306C) (S4ep2-XBLA-nx: offsets moved 0x306C->0X3134)
+  d.SetW(0x3148, 0);  // katamari-nx: 0x2FD8->0x2FC8 (TFU-nx: offset 0x2FC8->0x2FD0) (S4ep1-nx: offset 0x2FD0->0x3080) (S4ep2-XBLA-nx: offsets moved 0x3080->0X3148)
   // The default vertex declaration is the device's own, at +0x2FA8.
-  d.SetW(d3d::kDeviceOffsetVertexDeclaration, d.va + 0x3050);  // katamari-nx: 0x2FA8->0x2F98 (TFU-nx: offset 0x2F98->0x2FA0) (S4ep1-nx: offset 0x2FA0->0x3050)
+  d.SetW(d3d::kDeviceOffsetVertexDeclaration, d.va + 0x3118);  // katamari-nx: 0x2FA8->0x2F98 (TFU-nx: offset 0x2F98->0x2FA0) (S4ep1-nx: offset 0x2FA0->0x3050) (S4ep2-XBLA-nx: offsets moved 0x3050->0X3118)
   d.Dirty(2, 0x80000);
-  d.SetW(0x35F0, present_interval);  // katamari-nx: 0x351C->0x3504 (TFU-nx: offset 0x3504->0x351C) (S4ep1-nx: offset 0x351C->0x35F0)
-  const u32 flags2 = d.W(0x5E88);  // katamari-nx: 0x5DAC->0x56F8 (TFU-nx: offset 0x56F8->0x571C) (S4ep1-nx: offset 0x571C->0x5E88)
-  d.SetW(0x5E88, (behavior_flags2 & 1) ? (flags2 | 1) : (flags2 & ~1u));  // katamari-nx: 0x5DAC->0x56F8 (TFU-nx: offset 0x56F8->0x571C) (S4ep1-nx: offset 0x571C->0x5E88)
+  d.SetW(0x36B0, present_interval);  // katamari-nx: 0x351C->0x3504 (TFU-nx: offset 0x3504->0x351C) (S4ep1-nx: offset 0x351C->0x35F0) (S4ep2-XBLA-nx: offsets moved 0x35F0->0X36B0)
+  const u32 flags2 = d.W(0x5F48);  // katamari-nx: 0x5DAC->0x56F8 (TFU-nx: offset 0x56F8->0x571C) (S4ep1-nx: offset 0x571C->0x5E88) (S4ep2-XBLA-nx: offsets moved 0x5E88->0X5F48)
+  d.SetW(0x5F48, (behavior_flags2 & 1) ? (flags2 | 1) : (flags2 & ~1u));  // katamari-nx: 0x5DAC->0x56F8 (TFU-nx: offset 0x56F8->0x571C) (S4ep1-nx: offset 0x571C->0x5E88) (S4ep2-XBLA-nx: offsets moved 0x5E88->0X5F48)
   d.SetW(native::off::PredicationSet, 0);
   native::UpdateTilePredicated(d);
   d.SetW(native::off::Predication, ~0u);
@@ -322,7 +322,7 @@ void SetScalerParameters(native::Device d, const be_u32 *scaler) {
     copy[i] = scaler[i];
   copy[6] = copy[10] = scaler[6] ? 3 : 0;
   for (u32 i = 0; i < 14; ++i)
-    d.SetW(0x3670 + i * 4, copy[i]);  // katamari-nx: 0x359C->0x3584 (TFU-nx: offset 0x3584->0x359C) (S4ep1-nx: offset 0x359C->0x3670)
+    d.SetW(0x3730 + i * 4, copy[i]);  // katamari-nx: 0x359C->0x3584 (TFU-nx: offset 0x3584->0x359C) (S4ep1-nx: offset 0x359C->0x3670) (S4ep2-XBLA-nx: offsets moved 0x3670->0X3730)
   d.SetB(native::off::Flags2, d.B(native::off::Flags2) | 0x10);
 }
 
@@ -358,10 +358,10 @@ bool InitializePresentationParameters(native::Device d, u32 parameters_va) {
 
   rex::system::X_VIDEO_MODE mode{};
   rex::kernel::xboxkrnl::VdQueryVideoMode(&mode);
-  d.SetW(0x5500, u32(mode.display_width));  // katamari-nx: 0x5428->0x540C (TFU-nx: offset 0x540C->0x5424) (S4ep1-nx: offset 0x5424->0x5500)
-  d.SetW(0x5508, u32(mode.display_width));  // katamari-nx: 0x5430->0x5414 (TFU-nx: offset 0x5414->0x542C) (S4ep1-nx: offset 0x542C->0x5508)
-  d.SetW(0x550C, u32(i64(float(mode.refresh_rate) + 0.5f)));  // katamari-nx: 0x5434->0x5418 (TFU-nx: offset 0x5418->0x5430) (S4ep1-nx: offset 0x5430->0x550C)
-  d.SetW(0x5504, u32(mode.display_height));  // katamari-nx: 0x542C->0x5410 (TFU-nx: offset 0x5410->0x5428) (S4ep1-nx: offset 0x5428->0x5504)
+  d.SetW(0x55C0, u32(mode.display_width));  // katamari-nx: 0x5428->0x540C (TFU-nx: offset 0x540C->0x5424) (S4ep1-nx: offset 0x5424->0x5500) (S4ep2-XBLA-nx: offsets moved 0x5500->0X55C0)
+  d.SetW(0x55C8, u32(mode.display_width));  // katamari-nx: 0x5430->0x5414 (TFU-nx: offset 0x5414->0x542C) (S4ep1-nx: offset 0x542C->0x5508) (S4ep2-XBLA-nx: offsets moved 0x5508->0X55C8)
+  d.SetW(0x55CC, u32(i64(float(mode.refresh_rate) + 0.5f)));  // katamari-nx: 0x5434->0x5418 (TFU-nx: offset 0x5418->0x5430) (S4ep1-nx: offset 0x5430->0x550C) (S4ep2-XBLA-nx: offsets moved 0x550C->0X55CC)
+  d.SetW(0x55C4, u32(mode.display_height));  // katamari-nx: 0x542C->0x5410 (TFU-nx: offset 0x5410->0x5428) (S4ep1-nx: offset 0x5428->0x5504) (S4ep2-XBLA-nx: offsets moved 0x5504->0X55C4)
 
   // pacman-nx: a game that asks for the automatic front buffer (N&B's parameters disable it): D3D's Present resolves the back
   // buffer into it and swaps it.
@@ -392,9 +392,9 @@ bool InitializePresentationParameters(native::Device d, u32 parameters_va) {
     native::SetDepthStencilSurface(d, surface);
   }
   for (u32 i = 0; i < 0x7C / 4; ++i)
-    d.SetW(0x35BC + i * 4, p[i]);  // katamari-nx: 0x34E8->0x34D0 (TFU-nx: offset 0x34D0->0x34E8) (S4ep1-nx: offset 0x34E8->0x35BC)
+    d.SetW(0x367C + i * 4, p[i]);  // katamari-nx: 0x34E8->0x34D0 (TFU-nx: offset 0x34D0->0x34E8) (S4ep1-nx: offset 0x34E8->0x35BC) (S4ep2-XBLA-nx: offsets moved 0x35BC->0X367C)
   if ((front_format & 0x3FFC0000u) != 0x24900000u)
-    d.SetW(0x35FC, (front_format & 0x3F) | 0x28280100u);  // katamari-nx: 0x3528->0x3510 (TFU-nx: offset 0x3510->0x3528) (S4ep1-nx: offset 0x3528->0x35FC)
+    d.SetW(0x36BC, (front_format & 0x3F) | 0x28280100u);  // katamari-nx: 0x3528->0x3510 (TFU-nx: offset 0x3510->0x3528) (S4ep1-nx: offset 0x3528->0x35FC) (S4ep2-XBLA-nx: offsets moved 0x35FC->0X36BC)
   SetScalerParameters(d, p + 0x60 / 4);
   // The default gamma: linear, as a piecewise-linear ramp for the front
   // buffer formats 7 and 0x36 (0x32 counts as 6).
@@ -421,7 +421,7 @@ bool InitializePresentationParameters(native::Device d, u32 parameters_va) {
     }
     SetGammaRamp(d, ramp);
   }
-  d.SetW(0x421C, ~0u);  // katamari-nx: 0x4144->0x412C (TFU-nx: offset 0x412C->0x4144) (S4ep1-nx: offset 0x4144->0x421C)
+  d.SetW(0x42DC, ~0u);  // katamari-nx: 0x4144->0x412C (TFU-nx: offset 0x412C->0x4144) (S4ep1-nx: offset 0x4144->0x421C) (S4ep2-XBLA-nx: offsets moved 0x421C->0X42DC)
   return true;
 }
 
@@ -431,7 +431,7 @@ bool InitializePresentationParameters(native::Device d, u32 parameters_va) {
 bool InitializeTitleDevice(native::Device d, u32 present_parameters) {
   RtlInitializeCriticalSection(d.va + kDeviceOffsetCriticalSection0);
   RtlInitializeCriticalSection(d.va + kDeviceOffsetCriticalSection1);
-  d.SetW(16928, 0);  // katamari-nx: 16712->16688 (TFU-nx: offset 16688->16712) (S4ep1-nx: offset 16712->16928)
+  d.SetW(17120, 0);  // katamari-nx: 16712->16688 (TFU-nx: offset 16688->16712) (S4ep1-nx: offset 16712->16928) (S4ep2-XBLA-nx: offsets moved 16928->17120)
 
   // D3D reads the device through the kernel's VdGlobalDevice from any thread
   // (resource locks, blockers).
@@ -517,8 +517,8 @@ u32 Direct3D_CreateDevice_hook(u32 /*adapter*/, u32 device_type, u32 /*unused*/,
     if (!(behavior_flags & 0x100) && !(behavior_flags & 0x3F000000))
       behavior_flags |= 0xC000000;
     WriteU32(bytes, d3d::kDeviceOffsetBehaviorFlags, behavior_flags);
-    WriteU32(bytes, 21776, 0xFFFFFFFFu);  // katamari-nx: 21560->21532 (TFU-nx: offset 21532->21556) (S4ep1-nx: offset 21556->21776)
-    WriteU32(bytes, 21780, 0xFFFFFFFFu);  // katamari-nx: 21564->21536 (TFU-nx: offset 21536->21560) (S4ep1-nx: offset 21560->21780)
+    WriteU32(bytes, 21968, 0xFFFFFFFFu);  // katamari-nx: 21560->21532 (TFU-nx: offset 21532->21556) (S4ep1-nx: offset 21556->21776) (S4ep2-XBLA-nx: offsets moved 21776->21968)
+    WriteU32(bytes, 21972, 0xFFFFFFFFu);  // katamari-nx: 21564->21536 (TFU-nx: offset 21536->21560) (S4ep1-nx: offset 21560->21780) (S4ep2-XBLA-nx: offsets moved 21780->21972)
   } else {
     for (u32 offset : kDeviceOffsetsMinusOne)
       WriteU32(bytes, offset, 0xFFFFFFFFu);
@@ -763,14 +763,14 @@ void ConfigureForOnePassZPass(native::Device d, bool flag, u32 tile_count, u32 w
   for (u32 i = 0; i < tile_count; ++i) {
     const u32 x = d.W(native::off::TileOrigins + i * 8);
     const u32 y = d.W(native::off::TileOrigins + i * 8 + 4);
-    d.SetW(0x33E8 + i * 4, (y / tile_height) * tiles_per_row + x / tile_width);  // katamari-nx: 0x3340->0x3330 (TFU-nx: offset 0x3330->0x3338) (S4ep1-nx: offset 0x3338->0x33E8)
+    d.SetW(0x34B0 + i * 4, (y / tile_height) * tiles_per_row + x / tile_width);  // katamari-nx: 0x3340->0x3330 (TFU-nx: offset 0x3330->0x3338) (S4ep1-nx: offset 0x3338->0x33E8) (S4ep2-XBLA-nx: offsets moved 0x33E8->0X34B0)
   }
-  d.SetW(0x3424, pitch);  // katamari-nx: 0x337C->0x336C (TFU-nx: offset 0x336C->0x3374) (S4ep1-nx: offset 0x3374->0x3424)
+  d.SetW(0x34EC, pitch);  // katamari-nx: 0x337C->0x336C (TFU-nx: offset 0x336C->0x3374) (S4ep1-nx: offset 0x3374->0x3424) (S4ep2-XBLA-nx: offsets moved 0x3424->0X34EC)
   d.SetW(native::off::SurfaceInfo, native::Insert(d.W(native::off::SurfaceInfo), pitch, 18, 14));
   d.Dirty(2, 0x100);
-  d.SetW(0x3428, ((unit + width - 1) / unit) * unit);  // katamari-nx: 0x3380->0x3370 (TFU-nx: offset 0x3370->0x3378) (S4ep1-nx: offset 0x3378->0x3428)
+  d.SetW(0x34F0, ((unit + width - 1) / unit) * unit);  // katamari-nx: 0x3380->0x3370 (TFU-nx: offset 0x3370->0x3378) (S4ep1-nx: offset 0x3378->0x3428) (S4ep2-XBLA-nx: offsets moved 0x3428->0X34F0)
   u64 predicated = d.Q(native::off::PredicatedPending2);
-  if ((d.B(native::off::Flags3) & 0x20) || (d.W(0x2EFC) & 0xE0000) != 0x40000)  // katamari-nx: 0x2E54->0x2E44 (TFU-nx: offset 0x2E44->0x2E4C) (S4ep1-nx: offset 0x2E4C->0x2EFC)
+  if ((d.B(native::off::Flags3) & 0x20) || (d.W(0x2FFC) & 0xE0000) != 0x40000)  // katamari-nx: 0x2E54->0x2E44 (TFU-nx: offset 0x2E44->0x2E4C) (S4ep1-nx: offset 0x2E4C->0x2EFC) (S4ep2-XBLA-nx: offsets moved 0x2EFC->0X2FFC)
     predicated |= 0x100;
   else
     predicated &= ~u64(0x100);
@@ -801,10 +801,10 @@ u32 D3DDevice_BeginCommandBuffer_hook(u32 device_va, u32 command_buffer, u32 fla
   bw(kBufferFlags) = u32(bw(kBufferFlags)) & ~0x70u;
   for (u32 offset : {0x7Cu, 0x80u, 0x84u, 0x70u, 0x90u, 0x74u, 0x78u})
     bw(offset) = 0u;
-  d.SetW(0x3B24, 8);  // katamari-nx: 0x3A50->0x3A38 (TFU-nx: offset 0x3A38->0x3A50) (S4ep1-nx: offset 0x3A50->0x3B24)
+  d.SetW(0x3BE4, 8);  // katamari-nx: 0x3A50->0x3A38 (TFU-nx: offset 0x3A38->0x3A50) (S4ep1-nx: offset 0x3A50->0x3B24) (S4ep2-XBLA-nx: offsets moved 0x3B24->0X3BE4)
   d.SetB(native::off::Flags1, d.B(native::off::Flags1) & 0xDF);
-  d.SetW(0x3B18, 0);  // katamari-nx: 0x3A44->0x3A2C (TFU-nx: offset 0x3A2C->0x3A44) (S4ep1-nx: offset 0x3A44->0x3B18)
-  d.SetW(0x3B14, bw(kBufferAllocatorSize));  // katamari-nx: 0x3A40->0x3A28 (TFU-nx: offset 0x3A28->0x3A40) (S4ep1-nx: offset 0x3A40->0x3B14)
+  d.SetW(0x3BD8, 0);  // katamari-nx: 0x3A44->0x3A2C (TFU-nx: offset 0x3A2C->0x3A44) (S4ep1-nx: offset 0x3A44->0x3B18) (S4ep2-XBLA-nx: offsets moved 0x3B18->0X3BD8)
+  d.SetW(0x3BD4, bw(kBufferAllocatorSize));  // katamari-nx: 0x3A40->0x3A28 (TFU-nx: offset 0x3A28->0x3A40) (S4ep1-nx: offset 0x3A40->0x3B14) (S4ep2-XBLA-nx: offsets moved 0x3B14->0X3BD4)
   for (u32 offset = 0x35A4; offset <= 0x35B8; offset += 4)  // katamari-nx: 0x34D0->0x34B8, 0x34E4->0x34CC (TFU-nx: offset 0x34B8->0x34D0, 0x34CC->0x34E4) (S4ep1-nx: offset 0x34D0->0x35A4, 0x34E4->0x35B8)
     d.SetW(offset, 0);
   native::RewindRing(d);
@@ -863,8 +863,8 @@ u32 D3DDevice_BeginCommandBuffer_hook(u32 device_va, u32 command_buffer, u32 fla
     }
     d.SetW(native::off::TilingExtent, extent_x);
     d.SetW(native::off::TilingExtent + 4, extent_y);
-    d.SetW(0x3434, 0);  // katamari-nx: 0x338C->0x337C (TFU-nx: offset 0x337C->0x3384) (S4ep1-nx: offset 0x3384->0x3434)
-    d.SetW(0x3260, 2);  // katamari-nx: 0x31B8->0x31A8 (TFU-nx: offset 0x31A8->0x31B0) (S4ep1-nx: offset 0x31B0->0x3260)
+    d.SetW(0x34FC, 0);  // katamari-nx: 0x338C->0x337C (TFU-nx: offset 0x337C->0x3384) (S4ep1-nx: offset 0x3384->0x3434) (S4ep2-XBLA-nx: offsets moved 0x3434->0X34FC)
+    d.SetW(0x3328, 2);  // katamari-nx: 0x31B8->0x31A8 (TFU-nx: offset 0x31A8->0x31B0) (S4ep1-nx: offset 0x31B0->0x3260) (S4ep2-XBLA-nx: offsets moved 0x3260->0X3328)
     if (flags & 0x40) {
       ConfigureForOnePassZPass(d, (flags >> 7) & 1, tile_count, extent_x);
       bw(kBufferFlags) = u32(bw(kBufferFlags)) | 0x20000;
@@ -872,10 +872,10 @@ u32 D3DDevice_BeginCommandBuffer_hook(u32 device_va, u32 command_buffer, u32 fla
   }
   if (flags & 4) {
     d.SetB(native::off::Flags, d.B(native::off::Flags) | 0x40);
-    d.SetW(0x3250, native::Extract(d.W(native::off::DepthControl), 4, 3));  // katamari-nx: 0x31A8->0x3198 (TFU-nx: offset 0x3198->0x31A0) (S4ep1-nx: offset 0x31A0->0x3250)
+    d.SetW(0x3318, native::Extract(d.W(native::off::DepthControl), 4, 3));  // katamari-nx: 0x31A8->0x3198 (TFU-nx: offset 0x3198->0x31A0) (S4ep1-nx: offset 0x31A0->0x3250) (S4ep2-XBLA-nx: offsets moved 0x3250->0X3318)
     if (d.B(native::off::Flags3) & 0x20) {
       u64 predicated = d.Q(native::off::PredicatedPending2) | (u64(1) << 37);
-      if (d.W(0x3428) != (d.W(native::off::SurfaceInfo) & 0x3FFF))  // katamari-nx: 0x3380->0x3370 (TFU-nx: offset 0x3370->0x3378) (S4ep1-nx: offset 0x3378->0x3428)
+      if (d.W(0x34F0) != (d.W(native::off::SurfaceInfo) & 0x3FFF))  // katamari-nx: 0x3380->0x3370 (TFU-nx: offset 0x3370->0x3378) (S4ep1-nx: offset 0x3378->0x3428) (S4ep2-XBLA-nx: offsets moved 0x3428->0X34F0)
         predicated |= u64(1) << 57;
       d.SetQ(native::off::PredicatedPending2, predicated);
     }
@@ -1005,7 +1005,7 @@ void D3DDevice_Swap_hook(u32 device_va, u32 front_buffer, u32 /*parameters*/) {
     banjo::renut_gpu::checks::QueueKickFlush();
     KickFence(device);
     // banjo-nx (2026-10-20, banjo_renut_game_gamma): the device's gamma ramp (StoreGamma's +0x3A9C) for the present.
-    Video::NoteGameGamma(device + 0x3B70, g_gamma_piecewise);  // katamari-nx: 0x3A9C->0x3A84; halo3-nx: the form (TFU-nx: offset 0x3A84->0x3A9C) (S4ep1-nx: offset 0x3A9C->0x3B70)
+    Video::NoteGameGamma(device + 0x3C30, g_gamma_piecewise);  // katamari-nx: 0x3A9C->0x3A84; halo3-nx: the form (TFU-nx: offset 0x3A84->0x3A9C) (S4ep1-nx: offset 0x3A9C->0x3B70) (S4ep2-XBLA-nx: offsets moved 0x3B70->0X3C30)
   }
 
   TfuPresentDiagSwap(front_buffer, swap_ordinal);  // TFU-nx (2026-11-11)
@@ -1063,8 +1063,8 @@ void D3DDevice_InsertCallback_hook(u32 device, u32 /*type*/, u32 callback, u32 c
 // ---------------------------------------------------------------------------
 
 constexpr u32 kDeviceOffsetReferenceCount = 0x3C;
-constexpr u32 kDeviceOffsetOwnerThread = 0x2A88;
-constexpr u32 kDeviceCapsVa = 0x8209BD10;  // S4ep1-nx: TFU 0x8202D230 (the same D3DCAPS words)
+constexpr u32 kDeviceOffsetOwnerThread = 0x2B08;  // S4ep2-XBLA-nx: 0x2A88->0x2B08 (CreateDevice stores the thread id at +0x2B08)
+constexpr u32 kDeviceCapsVa = 0x820F80E0;  // S4ep2-XBLA-nx: GetDeviceCaps sub_824040C8 copies 0x130 bytes from lis -0x7DEF, addi -0x7F20  // S4ep1-nx: TFU 0x8202D230 (the same D3DCAPS words)
 //  // N&B's constant D3DCAPS9 (katamari-nx: 0x82161B30->0x820FC1F8)  // TFU-nx: GetDeviceCaps sub_822DDBE8, tools/renut_data_refs.py
 constexpr u32 kDeviceCapsSize = 0x130;
 // katamari-nx: XDK 2.0.5632 has no D3D_IsFusion and no such word (N&B's 0x82DC67D4); 0 = not a Fusion GPU.
@@ -1109,10 +1109,10 @@ void D3DDevice_GetDisplayMode_hook(u32 device_va, u32 /*swap_chain*/, mapped_u32
   const native::Device d = native::DeviceAt(device_va);
   if (!d || !mode)
     return;
-  mode[0] = d.W(0x35BC);  // katamari-nx: 0x34E8->0x34D0 (TFU-nx: offset 0x34D0->0x34E8) (S4ep1-nx: offset 0x34E8->0x35BC)
-  mode[1] = d.W(0x35C0);  // katamari-nx: 0x34EC->0x34D4 (TFU-nx: offset 0x34D4->0x34EC) (S4ep1-nx: offset 0x34EC->0x35C0)
-  mode[2] = d.W(0x550C);  // katamari-nx: 0x5434->0x5418 (TFU-nx: offset 0x5418->0x5430) (S4ep1-nx: offset 0x5430->0x550C)
-  mode[3] = d.W(0x35C4);  // katamari-nx: 0x34F0->0x34D8 (TFU-nx: offset 0x34D8->0x34F0) (S4ep1-nx: offset 0x34F0->0x35C4)
+  mode[0] = d.W(0x367C);  // katamari-nx: 0x34E8->0x34D0 (TFU-nx: offset 0x34D0->0x34E8) (S4ep1-nx: offset 0x34E8->0x35BC) (S4ep2-XBLA-nx: offsets moved 0x35BC->0X367C)
+  mode[1] = d.W(0x3680);  // katamari-nx: 0x34EC->0x34D4 (TFU-nx: offset 0x34D4->0x34EC) (S4ep1-nx: offset 0x34EC->0x35C0) (S4ep2-XBLA-nx: offsets moved 0x35C0->0X3680)
+  mode[2] = d.W(0x55CC);  // katamari-nx: 0x5434->0x5418 (TFU-nx: offset 0x5418->0x5430) (S4ep1-nx: offset 0x5430->0x550C) (S4ep2-XBLA-nx: offsets moved 0x550C->0X55CC)
+  mode[3] = d.W(0x3684);  // katamari-nx: 0x34F0->0x34D8 (TFU-nx: offset 0x34D8->0x34F0) (S4ep1-nx: offset 0x34F0->0x35C4) (S4ep2-XBLA-nx: offsets moved 0x35C4->0X3684)
 }
 
 // void D3DDevice_BlockOnFence(DWORD Fence) [0x8225D1D0]: on the device D3D
@@ -1216,22 +1216,22 @@ std::array<u16, 1024> GammaTable(bool inverse) {
 
 // The device's gamma (+0x3A9C, red, green, blue: 256 words each) for the
 // display to pick up; the renderer presents without it.
-constexpr u32 kDeviceOffsetGammaRamp = 0x3B70;  // katamari-nx: 0x3A9C->0x3A84 (TFU-nx: offset 0x3A84->0x3A9C) (S4ep1-nx: offset 0x3A9C->0x3B70)
+constexpr u32 kDeviceOffsetGammaRamp = 0x3C30;  // katamari-nx: 0x3A9C->0x3A84 (TFU-nx: offset 0x3A84->0x3A9C) (S4ep1-nx: offset 0x3A9C->0x3B70) (S4ep2-XBLA-nx: offsets moved 0x3B70->0X3C30)
 
 void StoreGamma(native::Device d, const be_u16 (&corrected)[768]) {
   if (std::memcmp(corrected, d.bytes + kDeviceOffsetGammaRamp, sizeof(corrected)) == 0)
     return;
   if (KeGetCurrentProcessType() != 2) {
     // The display's pending copy takes the previous ramp first.
-    const u32 pending = d.W(0x5E6C);  // katamari-nx: 0x5D90->0x56E4 (TFU-nx: offset 0x56E4->0x5700) (S4ep1-nx: offset 0x5700->0x5E6C)
-    if (pending && !(d.W(0x5E70) & 0x80000000u)) {  // katamari-nx: 0x5D94->0x56E8 (TFU-nx: offset 0x56E8->0x5704) (S4ep1-nx: offset 0x5704->0x5E70)
+    const u32 pending = d.W(0x5F2C);  // katamari-nx: 0x5D90->0x56E4 (TFU-nx: offset 0x56E4->0x5700) (S4ep1-nx: offset 0x5700->0x5E6C) (S4ep2-XBLA-nx: offsets moved 0x5E6C->0X5F2C)
+    if (pending && !(d.W(0x5F30) & 0x80000000u)) {  // katamari-nx: 0x5D94->0x56E8 (TFU-nx: offset 0x56E8->0x5704) (S4ep1-nx: offset 0x5704->0x5E70) (S4ep2-XBLA-nx: offsets moved 0x5E70->0X5F30)
       if (auto *dest = GuestPtr<u8>(pending))
         std::memcpy(dest, d.bytes + kDeviceOffsetGammaRamp, sizeof(corrected));
     }
-    d.SetW(0x5E70, d.W(0x5E70) | 0x80000000u);  // katamari-nx: 0x5D94->0x56E8, 0x5D94->0x56E8 (TFU-nx: offset 0x56E8->0x5704, 0x56E8->0x5704) (S4ep1-nx: offset 0x5704->0x5E70, 0x5704->0x5E70)
+    d.SetW(0x5F30, d.W(0x5F30) | 0x80000000u);  // katamari-nx: 0x5D94->0x56E8, 0x5D94->0x56E8 (TFU-nx: offset 0x56E8->0x5704, 0x56E8->0x5704) (S4ep1-nx: offset 0x5704->0x5E70, 0x5704->0x5E70) (S4ep2-XBLA-nx: offsets moved 0x5E70->0X5F30, 0x5E70->0X5F30)
   }
   std::memcpy(d.bytes + kDeviceOffsetGammaRamp, corrected, sizeof(corrected));
-  d.SetW(0x421C, d.W(0x421C) | 2);  // katamari-nx: 0x4144->0x412C, 0x4144->0x412C (TFU-nx: offset 0x412C->0x4144, 0x412C->0x4144) (S4ep1-nx: offset 0x4144->0x421C, 0x4144->0x421C)
+  d.SetW(0x42DC, d.W(0x42DC) | 2);  // katamari-nx: 0x4144->0x412C, 0x4144->0x412C (TFU-nx: offset 0x412C->0x4144, 0x412C->0x4144) (S4ep1-nx: offset 0x4144->0x421C, 0x4144->0x421C) (S4ep2-XBLA-nx: offsets moved 0x421C->0X42DC, 0x421C->0X42DC)
 }
 
 // D3DDevice_SetGammaRamp's work: the ramp (D3DGAMMARAMP, 3 x 256 words)
@@ -1322,8 +1322,8 @@ u32 D3D_InitializePresentationParameters_hook(u32 device, u32 parameters) {
 // 0x82505BC8, which InitializePresentationParameters sub_821CF318 (device only) reads itself.
 // The first Renut boot hooked sub_82494160 with Direct3D_CreateDevice's six arguments and read leftover registers as
 // the parameters (1920x1080, back format 0, "depth format" 0x780).
-constexpr u32 kS4PresentParametersVa = 0x82505BC8;
-constexpr u32 kS4DeviceHolderVa = 0x82586168;
+constexpr u32 kS4PresentParametersVa = 0x82AA32D8;  // S4ep2-XBLA-nx: InitializePresentationParameters sub_8240B660 lis -0x7D56, addi 0x32D8
+constexpr u32 kS4DeviceHolderVa = 0x82AAC01C;  // S4ep2-XBLA-nx: CreateDevice sub_828631F0 stw -0x3FE4 after lis -0x7D55
 constexpr u32 kS4BehaviorFlags = 0x0C000001u;
 u32 S4_CreateDevice_hook() {
   rex::MappedPtr<rex::be_u32> holder(GuestPtr<rex::be_u32>(kS4DeviceHolderVa), kS4DeviceHolderVa);
@@ -1377,10 +1377,10 @@ void SetFence(u32 device_va) {
   if (bytes[kDeviceOffsetFlags2] & kDeviceFlagImmediateFences) {
     Device d = DeviceAt(device_va);
     const u32 fence = d.W(off::FenceTag);
-    if (!d.W(0x54F4)) {  // katamari-nx: 0x541C->0x5404 (TFU-nx: offset 0x5404->0x541C) (S4ep1-nx: offset 0x541C->0x54F4)
+    if (!d.W(0x55B4)) {  // katamari-nx: 0x541C->0x5404 (TFU-nx: offset 0x5404->0x541C) (S4ep1-nx: offset 0x541C->0x54F4) (S4ep2-XBLA-nx: offsets moved 0x54F4->0X55B4)
       if (auto *completion = GuestPtr<be_u32>(d.W(off::FenceCompletion))) {
         completion[0] = fence;
-        completion[1] = (d.W(0x3B1C) & 3) | d.W(off::Ring);  // katamari-nx: 0x3A48->0x3A30 (TFU-nx: offset 0x3A30->0x3A48) (S4ep1-nx: offset 0x3A48->0x3B1C)
+        completion[1] = (d.W(0x3BDC) & 3) | d.W(off::Ring);  // katamari-nx: 0x3A48->0x3A30 (TFU-nx: offset 0x3A30->0x3A48) (S4ep1-nx: offset 0x3A48->0x3B1C) (S4ep2-XBLA-nx: offsets moved 0x3B1C->0X3BDC)
       }
     }
     d.SetW(off::FenceTag, fence + 2);
@@ -1396,33 +1396,33 @@ BANJO_RENUT_UNHOOKED_HOOK(sub_822D9EE8, D3DDevice_InsertCallback_hook);  // TFU-
 BANJO_RENUT_UNHOOKED_HOOK(sub_822D8338, D3DDevice_AddRef_hook);  // TFU-nx: Katamari sub_824D01C8, by hand: exact shape, just before Release as in Katamari;  // D3DDevice_AddRef  // katamari-nx: N&B sub_82634AD0, signature 1.00 (next 0.43)  // S4ep1-nx: no counterpart found in Sonic 4 (docs/renut-map.md, still open)
 BANJO_RENUT_UNHOOKED_HOOK(sub_822D85A8, D3DDevice_AcquireThreadOwnership_hook);  // TFU-nx: Katamari sub_824D0430, d3d_match 1.00 (next 0.88);  // D3DDevice_AcquireThreadOwnership  // katamari-nx: N&B sub_82634B40, signature 1.00 (next 0.78)  // S4ep1-nx: no counterpart found in Sonic 4 (docs/renut-map.md, still open)
 BANJO_RENUT_UNHOOKED_HOOK(sub_822D85E8, D3DDevice_ReleaseThreadOwnership_hook);  // TFU-nx: Katamari sub_824D0470, d3d_match 1.00 (next 0.75);  // D3DDevice_ReleaseThreadOwnership  // katamari-nx: N&B sub_82634B80, signature 1.00 (next 0.46)  // S4ep1-nx: no counterpart found in Sonic 4 (docs/renut-map.md, still open)
-BANJO_RENUT_HOOK(sub_821C6B80, D3DDevice_GetDeviceCaps_hook);  // TFU-nx: Katamari sub_824E6410, d3d_match 1.00 (next 0.67);  // D3DDevice_GetDeviceCaps  // katamari-nx: N&B sub_82641480, D3DDevice_GetDeviceCaps: memcpy(out, 0x820FC1F8, 304), N&B's memcpy(out, 0x82161B30, 304)  // S4ep1-nx: TFU sub_822DDBE8, seed tfu d3d_match 1.00 (next 0.67) D3DDevice_GetDeviceCaps
+BANJO_RENUT_HOOK(sub_824040C8, D3DDevice_GetDeviceCaps_hook);  // TFU-nx: Katamari sub_824E6410, d3d_match 1.00 (next 0.67);  // D3DDevice_GetDeviceCaps  // katamari-nx: N&B sub_82641480, D3DDevice_GetDeviceCaps: memcpy(out, 0x820FC1F8, 304), N&B's memcpy(out, 0x82161B30, 304)  // S4ep1-nx: TFU sub_822DDBE8, seed tfu d3d_match 1.00 (next 0.67) D3DDevice_GetDeviceCaps  // S4ep2-XBLA-nx: Episode I sub_821C6B80, GetDeviceCaps: 1.00 between its aligned neighbours
 BANJO_RENUT_UNHOOKED_HOOK(sub_82641498, D3DDevice_GetDisplayMode_hook);  // D3DDevice_GetDisplayMode  // katamari-nx: not hooked (signature too weak or ambiguous (sub_824E67A0 0.38, next 0.35))  // S4ep1-nx: unhooked as in TFU
 BANJO_RENUT_UNHOOKED_HOOK(sub_8225D1D0, D3DDevice_BlockOnFence_hook);  // D3DDevice_BlockOnFence  // katamari-nx: not hooked (signature too weak or ambiguous (sub_824E8610 0.51, next 0.51))  // S4ep1-nx: unhooked as in TFU
-BANJO_RENUT_HOOK(sub_821C0920, D3D_SynchronizeToPresentationInterval_hook);  // TFU-nx: Katamari sub_824E89E8, d3d_match 0.99 (next 0.22);  // D3D_SynchronizeToPresentationInterval  // katamari-nx: N&B sub_82258778, D3D_SynchronizeToPresentationInterval: called by Present before the resolve; sig 0.72/0.39  // S4ep1-nx: TFU sub_822E8E98, seed los1 d3d_match 1.00 (same XDK) SynchronizeToPresentationInterval
+BANJO_RENUT_HOOK(sub_823FA9D8, D3D_SynchronizeToPresentationInterval_hook);  // TFU-nx: Katamari sub_824E89E8, d3d_match 0.99 (next 0.22);  // D3D_SynchronizeToPresentationInterval  // katamari-nx: N&B sub_82258778, D3D_SynchronizeToPresentationInterval: called by Present before the resolve; sig 0.72/0.39  // S4ep1-nx: TFU sub_822E8E98, seed los1 d3d_match 1.00 (same XDK) SynchronizeToPresentationInterval  // S4ep2-XBLA-nx: Episode I sub_821C0920, aligned 0.97
 BANJO_RENUT_UNHOOKED_HOOK(sub_8263D4B8, D3DResource_GetDevice_hook);  // D3DResource_GetDevice  // katamari-nx: not hooked (signature too weak or ambiguous (sub_824E8610 0.43, next 0.43))  // S4ep1-nx: unhooked as in TFU
 BANJO_RENUT_UNHOOKED_HOOK(sub_82BC8078, D3D_IsFusion_hook);  // D3D_IsFusion  // katamari-nx: not hooked (signature too weak or ambiguous (sub_824903A8 0.56, next 0.43))  // S4ep1-nx: unhooked as in TFU
-BANJO_RENUT_HOOK(sub_821B6978, D3DDevice_SetGammaRamp_hook);  // S4ep1-nx (2026-11-15): two arguments in Sonic 4 (XDK 2.0.11626): the ramp is r4, passed straight to the converter sub_821CB018 (its callers in sub_821CF318 put the ramp in r4). The three-argument TFU form read r5 and stored an all-zero ramp ("game gamma ramp applied ... 0/0/0"): black output. Was  // TFU-nx: Katamari sub_824DE218, by hand: twin of PWLGamma, first as in Katamari;  // D3DDevice_SetGammaRamp  // katamari-nx: N&B sub_82636F48, D3DDevice_SetGammaRamp: InitializePresentationParameters calls it, then SetPWLGamma, in N&B's order; sig 0.63 for both  // S4ep1-nx: TFU sub_822D75B0, call at +0x204 of 822E1480
-BANJO_RENUT_HOOK(sub_821B6A48, D3DDevice_SetPWLGamma_hook);  // S4ep1-nx (2026-11-15): two arguments, the curve in r4 (converter sub_821CB0B0), as SetGammaRamp. Was  // TFU-nx: Katamari sub_824DE2F8, by hand: twin of GammaRamp, second as in Katamari;  // D3DDevice_SetPWLGamma  // katamari-nx: N&B sub_82637018, D3DDevice_SetPWLGamma: as above  // S4ep1-nx: TFU sub_822D7690, call at +0x224 of 822E1480
+BANJO_RENUT_HOOK(sub_823F08A8, D3DDevice_SetGammaRamp_hook);  // S4ep1-nx (2026-11-15): two arguments in Sonic 4 (XDK 2.0.11626): the ramp is r4, passed straight to the converter sub_821CB018 (its callers in sub_821CF318 put the ramp in r4). The three-argument TFU form read r5 and stored an all-zero ramp ("game gamma ramp applied ... 0/0/0"): black output. Was  // TFU-nx: Katamari sub_824DE218, by hand: twin of PWLGamma, first as in Katamari;  // D3DDevice_SetGammaRamp  // katamari-nx: N&B sub_82636F48, D3DDevice_SetGammaRamp: InitializePresentationParameters calls it, then SetPWLGamma, in N&B's order; sig 0.63 for both  // S4ep1-nx: TFU sub_822D75B0, call at +0x204 of 822E1480  // S4ep2-XBLA-nx: Episode I sub_821B6978, aligned 1.00
+BANJO_RENUT_HOOK(sub_823F0978, D3DDevice_SetPWLGamma_hook);  // S4ep1-nx (2026-11-15): two arguments, the curve in r4 (converter sub_821CB0B0), as SetGammaRamp. Was  // TFU-nx: Katamari sub_824DE2F8, by hand: twin of GammaRamp, second as in Katamari;  // D3DDevice_SetPWLGamma  // katamari-nx: N&B sub_82637018, D3DDevice_SetPWLGamma: as above  // S4ep1-nx: TFU sub_822D7690, call at +0x224 of 822E1480  // S4ep2-XBLA-nx: Episode I sub_821B6A48, aligned 1.00
 BANJO_RENUT_UNHOOKED_HOOK(sub_821B6978_tfu, D3DDevice_SetGammaRamp3_hook);  // S4ep1-nx: TFU's three-argument form, kept for reference
 BANJO_RENUT_UNHOOKED_HOOK(sub_821B6A48_tfu, D3DDevice_SetPWLGamma3_hook);
-BANJO_RENUT_HOOK(sub_82494160, S4_CreateDevice_hook);  // S4ep1-nx (2026-11-15): Sonic 4's inlined CreateDevice takes no arguments (see S4_CreateDevice_hook);  // TFU-nx: Katamari sub_824D0598, d3d_match 0.92 (next 0.42);  // Direct3D_CreateDevice  // katamari-nx: N&B sub_82634990, Direct3D_CreateDevice: allocates the 0x5700 device (li r3,22272 / 128 alignment, sub_824D0240), calls the device init sub_824E18D0 (XenonGpu_Initialize, InitializePresentationParameters, InitializeApiState); sig 0.39 because N&B inlines that init  // S4ep1-nx: TFU sub_822D8710, Direct3D_CreateDevice: calls the device init, Release, GameXMemFree and the physical allocator, as TFU's; LTCG moved it
-BANJO_RENUT_HOOK(sub_821C4B80, D3DDevice_Release_hook);  // TFU-nx: Katamari sub_824D0368, d3d_match 1.00 (next 0.68);  // D3DDevice_Release  // katamari-nx: N&B sub_82634AE8, signature 1.00 (next 0.59)  // S4ep1-nx: TFU sub_822D84D0, seed tfu d3d_match 0.95 (next 0.74) D3DDevice_Release
-BANJO_RENUT_HOOK(sub_821D5578, D3D_XenonGpu_Initialize_hook);  // TFU-nx: Katamari sub_824ED278, by hand: 0.81;  // D3D_XenonGpu_Initialize  // katamari-nx: N&B sub_8264B748, D3D_XenonGpu_Initialize: called by the device init sub_824E18D0 after the -1 words; sig 0.66/0.23  // S4ep1-nx: TFU sub_822EDAB8, XenonGpu_Initialize: its only caller is the device init sub_821CF800 (TFU: the device init); calls KickOff; TFU match top
-BANJO_RENUT_HOOK(sub_821CF0A8, D3D_InitializeApiState_hook);  // TFU-nx: Katamari sub_824E11A0, d3d_match 1.00 (next 0.17);  // D3D_InitializeApiState  // katamari-nx: N&B sub_82641BC8, D3D_InitializeApiState: called by the device init; reads PresentInterval +13572 and BehaviorFlags +22264; sig 0.58/0.25  // S4ep1-nx: TFU sub_822E1218, seed los1 d3d_match 0.92 (same XDK) InitializeApiState
-BANJO_RENUT_HOOK(sub_821CF318, S4_InitializePresentationParameters_hook);  // S4ep1-nx (2026-11-15): device only, the parameters are the global 0x82505BC8;  // TFU-nx: Katamari sub_824E1408, d3d_match 1.00 (next 0.24);  // D3D_InitializePresentationParameters  // katamari-nx: N&B sub_82641EA8, D3D_InitializePresentationParameters: makes the auto surfaces (+14800..14808) with CreateTexture / CreateSurface; sig 0.65/0.27  // S4ep1-nx: TFU sub_822E1480, seed InitializePresentationParameters: VdQueryVideoMode caller in both; LoS1 0.79 and TFU 0.66 tops agree
+BANJO_RENUT_HOOK(sub_828631F0, S4_CreateDevice_hook);  // S4ep1-nx (2026-11-15): Sonic 4's inlined CreateDevice takes no arguments (see S4_CreateDevice_hook);  // TFU-nx: Katamari sub_824D0598, d3d_match 0.92 (next 0.42);  // Direct3D_CreateDevice  // katamari-nx: N&B sub_82634990, Direct3D_CreateDevice: allocates the 0x5700 device (li r3,22272 / 128 alignment, sub_824D0240), calls the device init sub_824E18D0 (XenonGpu_Initialize, InitializePresentationParameters, InitializeApiState); sig 0.39 because N&B inlines that init  // S4ep1-nx: TFU sub_822D8710, Direct3D_CreateDevice: calls the device init, Release, GameXMemFree and the physical allocator, as TFU's; LTCG moved it  // S4ep2-XBLA-nx: Episode I sub_82494160, Direct3D_CreateDevice: d3d_match 0.97 (next 0.42); clears 0x6080 bytes (Episode I 0x5F00)
+BANJO_RENUT_UNHOOKED_HOOK(sub_821C4B80, D3DDevice_Release_hook);  // TFU-nx: Katamari sub_824D0368, d3d_match 1.00 (next 0.68);  // D3DDevice_Release  // katamari-nx: N&B sub_82634AE8, signature 1.00 (next 0.59)  // S4ep1-nx: TFU sub_822D84D0, seed tfu d3d_match 0.95 (next 0.74) D3DDevice_Release  // S4ep2-XBLA-nx: no Episode II pair
+BANJO_RENUT_HOOK(sub_824123C8, D3D_XenonGpu_Initialize_hook);  // TFU-nx: Katamari sub_824ED278, by hand: 0.81;  // D3D_XenonGpu_Initialize  // katamari-nx: N&B sub_8264B748, D3D_XenonGpu_Initialize: called by the device init sub_824E18D0 after the -1 words; sig 0.66/0.23  // S4ep1-nx: TFU sub_822EDAB8, XenonGpu_Initialize: its only caller is the device init sub_821CF800 (TFU: the device init); calls KickOff; TFU match top  // S4ep2-XBLA-nx: Episode I sub_821D5578, aligned 0.93
+BANJO_RENUT_HOOK(sub_8240B3F0, D3D_InitializeApiState_hook);  // TFU-nx: Katamari sub_824E11A0, d3d_match 1.00 (next 0.17);  // D3D_InitializeApiState  // katamari-nx: N&B sub_82641BC8, D3D_InitializeApiState: called by the device init; reads PresentInterval +13572 and BehaviorFlags +22264; sig 0.58/0.25  // S4ep1-nx: TFU sub_822E1218, seed los1 d3d_match 0.92 (same XDK) InitializeApiState  // S4ep2-XBLA-nx: Episode I sub_821CF0A8, aligned 0.99
+BANJO_RENUT_HOOK(sub_8240B660, S4_InitializePresentationParameters_hook);  // S4ep1-nx (2026-11-15): device only, the parameters are the global 0x82505BC8;  // TFU-nx: Katamari sub_824E1408, d3d_match 1.00 (next 0.24);  // D3D_InitializePresentationParameters  // katamari-nx: N&B sub_82641EA8, D3D_InitializePresentationParameters: makes the auto surfaces (+14800..14808) with CreateTexture / CreateSurface; sig 0.65/0.27  // S4ep1-nx: TFU sub_822E1480, seed InitializePresentationParameters: VdQueryVideoMode caller in both; LoS1 0.79 and TFU 0.66 tops agree  // S4ep2-XBLA-nx: Episode I sub_821CF318, aligned 0.89
 BANJO_RENUT_UNHOOKED_HOOK(sub_824E1B50, D3D_CDevice_Uninitialize_hook);  // TFU-nx: no counterpart in TFU (docs/renut-map.md);  // D3D_CDevice_Uninitialize  // katamari-nx: N&B sub_82642568, D3D_CDevice_Uninitialize: VdShutdownEngines, VdSetGraphicsInterruptCallback; sig 0.40/0.26  // S4ep1-nx: unhooked as in TFU
-BANJO_RENUT_HOOK(sub_821C61C8, KickOff_hook);  // TFU-nx: Katamari sub_824E0298, d3d_match 1.00 (next 0.38);  // D3D_CDevice_KickOff  // katamari-nx: N&B sub_821DFFF0, signature 0.80 (next 0.41)  // S4ep1-nx: TFU sub_822D9BE8, seed los1 d3d_match 0.94 (same XDK) CDevice::KickOff
-BANJO_RENUT_HOOK(sub_821C5EE8, KickOffSegment_hook);  // TFU-nx: Katamari sub_824E0110, d3d_match 0.96 (next 0.25);  // D3D_CDevice_KickOffSegment  // katamari-nx: N&B sub_821DFC08, D3D_CDevice_KickOffSegment: sig 0.71/0.31; CommandBuffer +13492, InKickOff +13216 as the zones say  // S4ep1-nx: TFU sub_822D9A60, seed los1 d3d_match 0.97 (same XDK) CDevice::KickOffSegment
-BANJO_RENUT_HOOK(sub_821C4D58, BeginRingBig_hook);  // TFU-nx: Katamari sub_824E04B0, d3d_match 1.00 (next 0.45);  // D3D_CDevice_BeginRingBig  // katamari-nx: N&B sub_821C7360, D3D_CDevice_BeginRingBig: sig 0.67/0.32  // S4ep1-nx: TFU sub_822D9E08, seed los1 d3d_match 1.00 (same XDK) BeginRingBig
+BANJO_RENUT_HOOK(sub_824013F8, KickOff_hook);  // TFU-nx: Katamari sub_824E0298, d3d_match 1.00 (next 0.38);  // D3D_CDevice_KickOff  // katamari-nx: N&B sub_821DFFF0, signature 0.80 (next 0.41)  // S4ep1-nx: TFU sub_822D9BE8, seed los1 d3d_match 0.94 (same XDK) CDevice::KickOff  // S4ep2-XBLA-nx: Episode I sub_821C61C8, aligned 1.00
+BANJO_RENUT_HOOK(sub_82400FB8, KickOffSegment_hook);  // TFU-nx: Katamari sub_824E0110, d3d_match 0.96 (next 0.25);  // D3D_CDevice_KickOffSegment  // katamari-nx: N&B sub_821DFC08, D3D_CDevice_KickOffSegment: sig 0.71/0.31; CommandBuffer +13492, InKickOff +13216 as the zones say  // S4ep1-nx: TFU sub_822D9A60, seed los1 d3d_match 0.97 (same XDK) CDevice::KickOffSegment  // S4ep2-XBLA-nx: Episode I sub_821C5EE8, aligned 1.00
+BANJO_RENUT_HOOK(sub_823FFE08, BeginRingBig_hook);  // TFU-nx: Katamari sub_824E04B0, d3d_match 1.00 (next 0.45);  // D3D_CDevice_BeginRingBig  // katamari-nx: N&B sub_821C7360, D3D_CDevice_BeginRingBig: sig 0.67/0.32  // S4ep1-nx: TFU sub_822D9E08, seed los1 d3d_match 1.00 (same XDK) BeginRingBig  // S4ep2-XBLA-nx: Episode I sub_821C4D58, aligned 1.00
 BANJO_RENUT_UNHOOKED_HOOK(sub_8255A200, BeginRingManual_hook);  // TFU-nx: no counterpart in TFU (docs/renut-map.md);  // D3D_CDevice_BeginRingManual  // katamari-nx: N&B sub_82A6DD88, signature 1.00 (next 0.46)  // S4ep1-nx: unhooked as in TFU
-BANJO_RENUT_HOOK(sub_821C5118, RingBufferDeviceAllocate_hook);  // TFU-nx: Katamari sub_824DF3F0, d3d_match 0.97 (next 0.16);  // D3D_RingBufferDeviceAllocate  // katamari-nx: N&B sub_821FC4B8, D3D_RingBufferDeviceAllocate: sig 0.61/0.31  // S4ep1-nx: TFU sub_822D8D30, seed los1 d3d_match 1.00 (same XDK) RingBufferDeviceAllocate
+BANJO_RENUT_HOOK(sub_824001D0, RingBufferDeviceAllocate_hook);  // TFU-nx: Katamari sub_824DF3F0, d3d_match 0.97 (next 0.16);  // D3D_RingBufferDeviceAllocate  // katamari-nx: N&B sub_821FC4B8, D3D_RingBufferDeviceAllocate: sig 0.61/0.31  // S4ep1-nx: TFU sub_822D8D30, seed los1 d3d_match 1.00 (same XDK) RingBufferDeviceAllocate  // S4ep2-XBLA-nx: Episode I sub_821C5118, aligned 1.00
 BANJO_RENUT_UNHOOKED_HOOK(sub_821FC318, AllocateInlineData_hook);  // D3D_CDevice_AllocateInlineData  // katamari-nx: not hooked (signature too weak or ambiguous (sub_824DFF98 0.38, next 0.31))  // S4ep1-nx: unhooked as in TFU
-BANJO_RENUT_HOOK(sub_821C6788, D3DDevice_SetRingBufferParameters_hook);  // TFU-nx: Katamari sub_824E05E8, d3d_match 0.97 (next 0.13);  // D3DDevice_SetRingBufferParameters  // katamari-nx: N&B sub_82640090, D3DDevice_SetRingBufferParameters: the VdInitializeRingBuffer caller; sig 0.70/0.21  // S4ep1-nx: TFU sub_822D9F40, seed los1 d3d_match 0.91 (same XDK) SetRingBufferParameters
-BANJO_RENUT_HOOK(sub_821C0E58, D3DDevice_Swap_hook);  // TFU-nx: Katamari sub_824E8E90, d3d_match 0.99 (next 0.17);  // D3DDevice_Swap  // katamari-nx: N&B sub_822554F8, D3DDevice_Swap: the only VdSwap caller; sig 0.53/0.26  // S4ep1-nx: TFU sub_822E9340, seed the only caller of VdSwap in both games (also VdGetSystemCommandBuffer, VdPersistDisplay); LoS1 0.72 and TFU 0.52 tops agree
+BANJO_RENUT_HOOK(sub_82401AD8, D3DDevice_SetRingBufferParameters_hook);  // TFU-nx: Katamari sub_824E05E8, d3d_match 0.97 (next 0.13);  // D3DDevice_SetRingBufferParameters  // katamari-nx: N&B sub_82640090, D3DDevice_SetRingBufferParameters: the VdInitializeRingBuffer caller; sig 0.70/0.21  // S4ep1-nx: TFU sub_822D9F40, seed los1 d3d_match 0.91 (same XDK) SetRingBufferParameters  // S4ep2-XBLA-nx: Episode I sub_821C6788, aligned 1.00
+BANJO_RENUT_HOOK(sub_823FB720, D3DDevice_Swap_hook);  // TFU-nx: Katamari sub_824E8E90, d3d_match 0.99 (next 0.17);  // D3DDevice_Swap  // katamari-nx: N&B sub_822554F8, D3DDevice_Swap: the only VdSwap caller; sig 0.53/0.26  // S4ep1-nx: TFU sub_822E9340, seed the only caller of VdSwap in both games (also VdGetSystemCommandBuffer, VdPersistDisplay); LoS1 0.72 and TFU 0.52 tops agree  // S4ep2-XBLA-nx: Episode I sub_821C0E58, aligned 0.71
 BANJO_RENUT_UNHOOKED_HOOK_SHARED(sub_82640818, D3DDevice_BeginCommandBuffer_hook);  // D3DDevice_BeginCommandBuffer  // katamari-nx: not hooked (D3DDevice_BeginCommandBuffer: no clear counterpart (sig 0.27); census first)  // S4ep1-nx: unhooked as in TFU
 BANJO_RENUT_UNHOOKED_HOOK(sub_82640DE8, D3DDevice_EndCommandBuffer_hook);  // D3DDevice_EndCommandBuffer  // katamari-nx: not hooked (D3DDevice_EndCommandBuffer: no clear counterpart (sig 0.49/0.48))  // S4ep1-nx: unhooked as in TFU
 BANJO_RENUT_UNHOOKED_HOOK_SHARED(sub_821F1A78, D3DDevice_RunCommandBuffer_hook);  // D3DDevice_RunCommandBuffer  // katamari-nx: not hooked (D3DDevice_RunCommandBuffer: no clear counterpart (sig 0.50/0.48))  // S4ep1-nx: unhooked as in TFU
-BANJO_RENUT_HOOK(sub_821C62C8, BlockOnFence_hook);  // TFU-nx: Katamari sub_824DFC48, d3d_match 1.00 (next 0.34);  // D3D_CDevice_BlockOnFence  // katamari-nx: N&B sub_8225D370, D3D_CDevice_BlockOnFence: sig 0.55/0.32  // S4ep1-nx: TFU sub_822D9588, call at +0xd0 of 822D9BE8
-BANJO_RENUT_HOOK(sub_821C4870, CBlocker_Check_hook);  // TFU-nx: Katamari sub_824D0290, by hand: 0.78 (Mirror of Fate pairing agrees);  // D3D_CBlocker_Check  // katamari-nx: N&B sub_82634740, D3D_CBlocker_Check: sig 0.66/0.26  // S4ep1-nx: TFU sub_822D83F8, seed los1 d3d_match 1.00 (same XDK) CBlocker::Check
-BANJO_RENUT_HOOK(sub_821C66F8, IsFencePending_hook);  // TFU-nx: Katamari sub_824E03D0, d3d_match 1.00 (next 0.59);  // D3DDevice_IsFencePending  // katamari-nx: N&B sub_8225D468, D3DDevice_IsFencePending: sig 0.71/0.47  // S4ep1-nx: TFU sub_822D9D20, seed los1 d3d_match 1.00 (same XDK) IsFencePending
+BANJO_RENUT_HOOK(sub_824014F8, BlockOnFence_hook);  // TFU-nx: Katamari sub_824DFC48, d3d_match 1.00 (next 0.34);  // D3D_CDevice_BlockOnFence  // katamari-nx: N&B sub_8225D370, D3D_CDevice_BlockOnFence: sig 0.55/0.32  // S4ep1-nx: TFU sub_822D9588, call at +0xd0 of 822D9BE8  // S4ep2-XBLA-nx: Episode I sub_821C62C8, aligned 1.00
+BANJO_RENUT_HOOK(sub_823FF840, CBlocker_Check_hook);  // TFU-nx: Katamari sub_824D0290, by hand: 0.78 (Mirror of Fate pairing agrees);  // D3D_CBlocker_Check  // katamari-nx: N&B sub_82634740, D3D_CBlocker_Check: sig 0.66/0.26  // S4ep1-nx: TFU sub_822D83F8, seed los1 d3d_match 1.00 (same XDK) CBlocker::Check  // S4ep2-XBLA-nx: Episode I sub_821C4870, aligned 1.00
+BANJO_RENUT_HOOK(sub_824019F0, IsFencePending_hook);  // TFU-nx: Katamari sub_824E03D0, d3d_match 1.00 (next 0.59);  // D3DDevice_IsFencePending  // katamari-nx: N&B sub_8225D468, D3DDevice_IsFencePending: sig 0.71/0.47  // S4ep1-nx: TFU sub_822D9D20, seed los1 d3d_match 1.00 (same XDK) IsFencePending  // S4ep2-XBLA-nx: Episode I sub_821C66F8, aligned 1.00

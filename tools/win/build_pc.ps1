@@ -1,7 +1,7 @@
 # S4ep1-nx (from TFU-nx): builds the Windows PC test build. Extracts the XBLA package the first time, configures, runs the code generator
 # through the build, and compiles everything. Every step's full output goes to out\logs\.
 #
-# Usage (from C:\S4ep1-nx): powershell -ExecutionPolicy Bypass -File tools\win\build_pc.ps1 [-Jobs N] [-Clean] [-Renut]
+# Usage (from C:\S4ep2-XBLA-nx): powershell -ExecutionPolicy Bypass -File tools\win\build_pc.ps1 [-Jobs N] [-Clean] [-Renut]
 #   -Jobs   parallel compile jobs (default: half the logical CPUs, at most 8; each translated file needs 1-2 GB RAM)
 #   -Clean  delete the build folder first
 #   -Renut  build Renut's renderer in (the shaders come from out\renut_shader_dump, plus what Renut captured last run)

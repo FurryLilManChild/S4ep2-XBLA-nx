@@ -1,4 +1,4 @@
-# S4ep1-nx (2026-11-15): the Switch test build's settings (renut.toml next to renut.nro in sdmc:/switch/s4ep1-nx/),
+# S4ep1-nx (2026-11-15): the Switch test build's settings (renut.toml next to renut.nro in sdmc:/switch/s4ep2-xbla-nx/),
 # copied from TFU-nx's app/tfu_switch_test.toml (tested on the console there); the TFU forwarder id removed.
 # TFU-nx: the Switch test build's settings (renut.toml next to renut.nro in sdmc:/switch/tfu-nx/).
 # Made 2026-11-12 from rr6-nx's Switch settings (Renut on deko3d, tested on the console there), without RR6's
