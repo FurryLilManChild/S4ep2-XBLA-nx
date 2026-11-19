@@ -82,6 +82,12 @@ def main():
     print('shaders missing at run time: %d%s' % (len(missing), (' (' + ' '.join(missing[:8]) + ')') if missing else ''))
     dropped = [l for l in lines if 'Draw dropped' in l]
     print('draws dropped: %d%s' % (len(dropped), (': ' + dropped[0][dropped[0].find('Draw dropped'):][:120]) if dropped else ''))
+    # Frame captures (TFU_PRESENT_DIAG): every one, since a single non-black capture matters (2026-11-19: Present 700
+    # had 239,900 pixels and the report missed it).
+    for l in lines:
+        mm = re.search(r'\[tfu diag\] (Present \d+ back|Present \d+: scan-out).*?average RGB ([\d/]+), (\d+) of (\d+) pixels', l)
+        if mm:
+            print('capture: %s: average %s, %s of %s pixels not black' % mm.groups())
     for tag in ('[drawlog]', '[tfu diag]', '[s4 speed]'):
         n = sum(1 for l in lines if tag in l)
         if n:

@@ -10,7 +10,11 @@ Newest first.
   (boot_test.ps1 now splits it and prints the game's arguments).
 - The game's frame function sub_828755A8 skips its resolves when the own-flip flag [0x82AA3428] is 0 and draws into
   the auto back buffer, which Present resolves: 0 resolves a frame is expected on this path.
-- Next build: s4_diag_phases cycles four 300-frame phases (as set; depth off; plus blending off and all channels; plus
+- Missed by my read, found by gate 5: the 850eb991 run's Present 700 capture is not black (239,900 pixels, average 13):
+  a flat grey panel with a black rectangle cut out, a dialog's shape. Geometry lands on screen; no texture detail
+  anywhere. Suspect (not proven): textures sample black. read_log.py now prints every capture. The phase test below
+  was judged unsound by the same check (content changes over time, so a phase cannot be credited) and is not run.
+- Planned before that: s4_diag_phases cycles four 300-frame phases (as set; depth off; plus blending off and all channels; plus
   culling off) with "[s4 phase]" lines, and TFU_PRESENT_DIAG captures land in different phases; the stream dump with
   the corrected flags.
 
