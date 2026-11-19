@@ -13,6 +13,9 @@ Newest first.
 - Gate 5 (independent check) found: 6 of 38 logged draws have colour mask 0; the declarations logged so far have no
   COLOR element (only position and texcoords), while the shaders read COLOR. The draw log now prints the device's
   declaration at each draw with its elements, to settle whether the draws' declaration lacks it.
+- Fix attempt in the same build (Mark: every build carries a fix for the leading suspect): s4_merge_shader_inputs (on)
+  adds to the device's declaration, per vertex shader, an element for each input it lacks, from the shader's own
+  vfetch (stream, offset, format); "[s4 inputs]" lines prove it in force and list what was added.
 
 ## 2026-11-19: black screen, draws with no vertex data
 

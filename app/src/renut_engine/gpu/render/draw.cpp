@@ -10597,6 +10597,7 @@ int FastDrawLocked(const u8 *device_state, const DrawCall &call, const ReplayCon
       declaration = g_last_declaration_va == declaration_va ? g_last_declaration : nullptr;
       if (!declaration && declaration_va == Video::GuestDevice() + kDeviceDeclarationOffset)
         declaration = DeviceDeclarationLocked(device);  // katamari-nx
+      declaration = DeclarationWithShaderInputsLocked(declaration, *vs);  // S4ep2-XBLA-nx (2026-11-19)
     } else if (vs->bound_declaration) {
       declaration = vs->bound_declaration.get();
       shader_strides = vs->bound_strides;
@@ -12165,6 +12166,8 @@ bool DrawStateLocked(const u8 *device_state, const DrawCall &call, const ReplayC
     declaration = g_last_declaration_va == declaration_va ? g_last_declaration : nullptr;
     if (!declaration && declaration_va == Video::GuestDevice() + kDeviceDeclarationOffset)
       declaration = DeviceDeclarationLocked(device);  // katamari-nx
+    if (vs)
+      declaration = DeclarationWithShaderInputsLocked(declaration, *vs);  // S4ep2-XBLA-nx (2026-11-19)
   } else if (vs && vs->bound_declaration) {
     declaration = vs->bound_declaration.get();
     shader_strides = vs->bound_strides;

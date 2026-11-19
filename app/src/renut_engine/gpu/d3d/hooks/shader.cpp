@@ -12,6 +12,7 @@
  * guest objects; the host side is kept per object address, keyed by the same
  * container hash.
  */
+#include <map>
 #include <algorithm>
 #include <cstring>
 #include <deque>
@@ -391,6 +392,63 @@ const VertexDeclarationRecord *ShaderFetchDeclarationLocked(ShaderRecord &vs) {
   BuildDeclarationLayout(*declaration);
   vs.fetch_declaration = std::move(declaration);
   return vs.fetch_declaration.get();
+}
+
+REXCVAR_DEFINE_BOOL(s4_merge_shader_inputs, true, "S4ep2-XBLA-nx",
+                    "A vertex shader input the device's declaration has no element for reads from the stream, offset "
+                    "and format the shader's own vfetch gives (Episode II's unbound shaders read COLOR no declaration "
+                    "has); off: Renut's default (0, 0, 0, 1)");
+
+const VertexDeclarationRecord *DeclarationWithShaderInputsLocked(const VertexDeclarationRecord *declaration,
+                                                                 ShaderRecord &vs) {
+  static const bool on = REXCVAR_GET(s4_merge_shader_inputs);
+  if (!on || !declaration || !vs.entry || !vs.entry->vertexInputCount)
+    return declaration;
+  struct Key {
+    const void *decl;
+    uint64_t decl_hash;
+    const void *shader;
+    uint64_t shader_hash;
+    bool operator<(const Key &o) const {
+      return std::tie(decl, decl_hash, shader, shader_hash) < std::tie(o.decl, o.decl_hash, o.shader, o.shader_hash);
+    }
+  };
+  static std::map<Key, std::unique_ptr<VertexDeclarationRecord>> merged;  // null: nothing missing, use the device's
+  static uint64_t made = 0, logged = 0;
+  const Key key{declaration, declaration->layout_hash, &vs, vs.hash};
+  if (auto it = merged.find(key); it != merged.end())
+    return it->second ? it->second.get() : declaration;
+  const VertexDeclarationRecord *fetch = ShaderFetchDeclarationLocked(vs);
+  std::unique_ptr<VertexDeclarationRecord> out;
+  std::string added;
+  if (fetch) {
+    for (const GuestVertexElement &e : fetch->elements) {
+      bool have = false;
+      for (const GuestVertexElement &d : declaration->elements)
+        have = have || (d.Usage == e.Usage && d.UsageIndex == e.UsageIndex);
+      if (have)
+        continue;
+      if (!out) {
+        out = std::make_unique<VertexDeclarationRecord>();
+        out->x360 = declaration->x360;
+        out->self_va = declaration->self_va;
+        out->elements = declaration->elements;
+      }
+      out->elements.push_back(e);
+      added += fmt::format(" {}.{} (stream {} +{}, type {:06X})", e.Usage, e.UsageIndex, u32(e.Stream), u32(e.Offset),
+                           u32(e.Type));
+    }
+  }
+  if (out) {
+    BuildDeclarationLayout(*out);
+    ++made;
+    if (logged++ < 24)
+      RGPU_INFO("[s4 inputs] declaration {:08X} + vertex shader {:016X}: added from the shader's vfetch:{} ({} so far)",
+                declaration->self_va, vs.hash, added, made);
+  }
+  const VertexDeclarationRecord *result = out ? out.get() : declaration;
+  merged.emplace(key, std::move(out));
+  return result;
 }
 
 plume::RenderShader *GetHostShader(ShaderRecord *shader) {

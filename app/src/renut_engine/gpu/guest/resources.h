@@ -143,6 +143,13 @@ void BuildDeclarationLayout(VertexDeclarationRecord &declaration);
 // Requires State().mutex.
 const VertexDeclarationRecord *ShaderFetchDeclarationLocked(ShaderRecord &vs);
 
+// S4ep2-XBLA-nx (2026-11-19): the device's declaration plus, for each vertex shader input it has no element for (same
+// usage and index), the element the shader's own vfetch describes (its stream, offset and format). Episode II draws with
+// shaders it never binds whose COLOR input no declaration provides; Renut fed it (0, 0, 0, 1). Off with
+// s4_merge_shader_inputs=false. Requires State().mutex.
+const VertexDeclarationRecord *DeclarationWithShaderInputsLocked(const VertexDeclarationRecord *declaration,
+                                                                 ShaderRecord &vs);
+
 // The shader's host object, building it on first call. nullptr if the shader
 // is missing from the cache or creation failed. Requires State().mutex.
 plume::RenderShader *GetHostShader(ShaderRecord *shader);
