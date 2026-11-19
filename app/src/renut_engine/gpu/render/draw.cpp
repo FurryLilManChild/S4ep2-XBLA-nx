@@ -9545,6 +9545,19 @@ void DrawLog(const DrawCall &call, const Geometry &geometry, const ShaderRecord 
               device.VertexFetchWord(f0, 1), f1, device.VertexFetchWord(f1, 0), device.VertexFetchWord(f1, 1),
               device.U32(d3d::kDeviceOffsetStreamSources), device.U32(d3d::kDeviceOffsetStreamSources + 4),
               device.U8(d3d::kDeviceOffsetStreamStrides), device.U8(d3d::kDeviceOffsetStreamStrides + 1));
+    // S4ep2-XBLA-nx (2026-11-19): the declaration the device holds at the draw (the draw state takes it before the
+    // shader's bind): its address, whether Renut has a record of it, and its elements (stream, offset, type, usage.index).
+    // The gate 5 check found the shaders read COLOR (usage 10) while the declarations logged so far have none.
+    const u32 decl_va = device.U32(d3d::kDeviceOffsetVertexDeclaration);
+    const VertexDeclarationRecord *decl =
+        decl_va ? FindRecord<VertexDeclarationRecord>(decl_va, RecordKind::VertexDeclaration) : nullptr;
+    std::string elements;
+    if (decl)
+      for (const GuestVertexElement &e : decl->elements)
+        elements += fmt::format(" s{}+{}:{:06X}:{}.{}", u32(e.Stream), u32(e.Offset), u32(e.Type), e.Usage,
+                                e.UsageIndex);
+    RGPU_INFO("[drawlog]   device declaration {:08X} ({}){}", decl_va,
+              !decl_va ? "none" : decl ? "known" : "no record", elements);
   }
 }
 

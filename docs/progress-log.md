@@ -2,6 +2,18 @@
 
 Newest first.
 
+## 2026-11-19 (later): the shader build, still black; a correction and the declaration question
+
+- Build b4000586 (read_log.py: matches; 469 shaders from data.cpk, 590 in the dump, none missing at run time). Still
+  black; render target 0 all black.
+- Correction: "vfetch 0 bytes" does not mean no vertex data. XenosRecomp's vertexFetchMemoryMask (and the bytes) cover
+  only fetches the input layout does not provide (shader_recompiler.cpp ~322); ordinary vertex elements come through
+  the input layout. The new line shows the main shaders read position, COLOR (usage 10) and texcoord from fetch 95,
+  fetch 95 holds a buffer, device stream 0 stride 7 dwords, no bind applied.
+- Gate 5 (independent check) found: 6 of 38 logged draws have colour mask 0; the declarations logged so far have no
+  COLOR element (only position and texcoords), while the shaders read COLOR. The draw log now prints the device's
+  declaration at each draw with its elements, to settle whether the draws' declaration lacks it.
+
 ## 2026-11-19: black screen, draws with no vertex data
 
 - Build f0548210 (before the shader commit: Mark's copy had not taken it). 21,000 draws in 10 s reach the GPU at 60
