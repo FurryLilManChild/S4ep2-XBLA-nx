@@ -2,6 +2,16 @@
 
 Newest first.
 
+## 2026-11-19: black screen, draws with no vertex data
+
+- Build f0548210 (before the shader commit: Mark's copy had not taken it). 21,000 draws in 10 s reach the GPU at 60
+  fps, no shader missing. Black: with TFU_PRESENT_DIAG the auto back buffer (render target 0) is all black at Presents
+  60 to 1300 and the scan-out matches it; no resolves in the captured frame (the game draws straight into it).
+- Draw log (banjo_renut_diag_draw_log_s=8): targets 1280x720, viewport and scissor whole, colour mask F, normal blend,
+  but "vfetch 0 bytes" on every draw: no vertex data fetched. Episode II binds its shaders at run time
+  (D3DVertexShader_Bind), which Episode I never did. The draw log now adds the shader entry's fetch mask and inputs,
+  the bind applied to the shader and the device's stream fetch constants, to show which part is empty.
+
 ## 2026-11-18 (night, later): every shader from the game's files, no capture loop
 
 - S4ep1-nx's fix for its GitHub issue 1 (tools/cpk_extract.py, tools/s4_cpk_shaders.py, and its build_pc.ps1 step)

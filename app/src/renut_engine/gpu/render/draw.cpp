@@ -9521,6 +9521,31 @@ void DrawLog(const DrawCall &call, const Geometry &geometry, const ShaderRecord 
             reg(ps_constants, 1), reg(ps_constants, 2), reg(ps_constants, 3), g_tiles.size(),
             device.U32(d3d::kDeviceOffsetPredication), g_replay_predication, one_tile, tile.x1, tile.y1, tile.x2,
             tile.y2);
+  // S4ep2-XBLA-nx (2026-11-19, black screen: every draw had "vfetch 0 bytes"): what the vertex fetch comes from. The
+  // shader entry's fetch mask and inputs (usage.index, fetch constant, flags, stride), the bind Renut applied to the
+  // shader, the stream 0 and 1 fetch constant words in the device and the vertex buffer pointers there.
+  {
+    std::string inputs;
+    u32 mask = 0, input_count = 0;
+    if (vs && vs->entry) {
+      mask = vs->entry->vertexFetchMemoryMask;
+      input_count = vs->entry->vertexInputCount;
+      const ShaderVertexInput *in = g_activeShaderVertexInputs + vs->entry->vertexInputOffset;
+      for (u32 i = 0; i < std::min<u32>(input_count, 8); ++i)
+        inputs += fmt::format(" {}.{}@f{}/fl{}/s{}", in[i].usage, in[i].usageIndex, in[i].fetchIndex, in[i].flags,
+                              in[i].strideDwords);
+    }
+    const u32 f0 = d3d::kFirstVertexFetchIndex + d3d::StreamFetchIndex(0);
+    const u32 f1 = d3d::kFirstVertexFetchIndex + d3d::StreamFetchIndex(1);
+    RGPU_INFO("[drawlog]   vs entry {} fetch mask {:08X} inputs {}{}; bind {} (decl {}, strides {} {}); fetch {} {:08X} "
+              "{:08X}, fetch {} {:08X} {:08X}; stream sources {:08X} {:08X}, device strides {} {}",
+              vs && vs->entry ? "yes" : "no", mask, input_count, inputs, vs ? vs->applied_binding : 0,
+              vs && vs->bound_declaration ? vs->bound_declaration->elements.size() : 0,
+              vs ? vs->bound_strides[0] : 0, vs ? vs->bound_strides[1] : 0, f0, device.VertexFetchWord(f0, 0),
+              device.VertexFetchWord(f0, 1), f1, device.VertexFetchWord(f1, 0), device.VertexFetchWord(f1, 1),
+              device.U32(d3d::kDeviceOffsetStreamSources), device.U32(d3d::kDeviceOffsetStreamSources + 4),
+              device.U8(d3d::kDeviceOffsetStreamStrides), device.U8(d3d::kDeviceOffsetStreamStrides + 1));
+  }
 }
 
 #if defined(PLUME_DEKO3D)
