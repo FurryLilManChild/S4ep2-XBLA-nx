@@ -192,6 +192,34 @@ def shaders():
                  '; data.cpk\'s are counted on Mark\'s PC by the build (cpk_shaders.log, read by tools/read_log.py)')
 
 
+def anon_externs():
+    # 2026-11-19: an extern declared inside an anonymous namespace names a variable only that file can define, so
+    # one meant for another file's global compiles (clang -fsyntax-only passes) and fails at the link (Mark's build of
+    # 5c61c45b: g_banjo_game_frames in render/draw.cpp). The syntax check does not link, so this looks for them.
+    hits = []
+    for f in glob.glob(ROOT + '/app/src/**/*.*', recursive=True):
+        if not f.endswith(('.cpp', '.h')):
+            continue
+        raw = open(f, encoding='utf-8', errors='replace').read()
+        code = re.sub(r'//[^\n]*|/\*.*?\*/|"(?:\\.|[^"\\\n])*"|\'(?:\\.|[^\'\\\n])\'',
+                      lambda mm: re.sub(r'[^\n]', ' ', mm.group(0)), raw, flags=re.S)
+        stack = []
+        for ln, line in enumerate(code.split('\n'), 1):
+            for m in re.finditer(r'namespace\s*\{|namespace\s+[\w:]+\s*\{|\{|\}|\bextern\s+(?!"C")[^;(){}]*\b(\w+)\s*;', line):
+                t = m.group(0)
+                if t.startswith('namespace'):
+                    stack.append('anon' if re.match(r'namespace\s*\{', t) else 'ns')
+                elif t == '{':
+                    stack.append('b')
+                elif t == '}':
+                    if stack:
+                        stack.pop()
+                elif 'anon' in stack:
+                    hits.append('%s:%d %s' % (os.path.relpath(f, ROOT), ln, m.group(1)))
+    return check('externs outside anonymous namespaces', not hits,
+                 '%d extern declarations inside an anonymous namespace%s' % (len(hits), (': ' + '; '.join(hits[:4])) if hits else ''))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--codegen', action='store_true')
@@ -204,7 +232,7 @@ def main():
         results.append(codegen())
     if a.full:
         results.append(generated())
-    results += [app_sources(), d3d_sweep(), offsets(), shaders()]
+    results += [app_sources(), anon_externs(), d3d_sweep(), offsets(), shaders()]
     ok = all(results)
     say('RESULT: %s (%d of %d checks passed)' % ('PASS' if ok else 'FAIL', sum(results), len(results)))
     os.makedirs(ROOT + '/out', exist_ok=True)

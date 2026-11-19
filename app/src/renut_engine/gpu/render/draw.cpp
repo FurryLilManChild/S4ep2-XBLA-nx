@@ -2374,9 +2374,6 @@ bool PredicatedTile(const GuestDevice &device, ClearRect &rect) {
 ViewportState ComputeViewportSlow(const GuestDevice &device, const Targets &t);
 REXCVAR_DEFINE_BOOL(s4_diag_no_scissor, false, "S4ep1-nx", "Test: draw with no window scissor (the whole target)");
 REXCVAR_DEFINE_BOOL(s4_diag_no_depth_test, false, "S4ep1-nx", "Test: draw with the depth test always passing");
-REXCVAR_DEFINE_BOOL(s4_diag_phases, false, "S4ep2-XBLA-nx",
-                    "Test: cycle depth off, blending off and culling off in phases of 300 frames ([s4 phase] lines)");
-extern std::atomic<uint64_t> g_banjo_game_frames;  // rr6_keys.cpp: frames presented
 
 // banjo-nx (2026-10-19, render-thread proposal 8): the last draw's viewport again when everything ComputeViewportSlow
 // reads is the same: the device words (VteControl, the six viewport values, ModeControl, WindowOffset, the window
@@ -7609,33 +7606,6 @@ PipelineKey MakeKey(const GuestDevice &device, const ShaderRecord *vs, const Sha
   key.stencil_ref_mask_bf = depth_words ? u32(dev.m_ValuesPacket.StencilRefMaskBF) & 0xFFFFFF : 0;
   key.mode_control = u32(cp.ModeControl) & 0x7;
   key.alpha_to_coverage = (u32(cp.ColorControl) >> 4) & 1;
-  // S4ep2-XBLA-nx (2026-11-19, the black screen): s4_diag_phases cycles four phases of 300 presented frames each, so
-  // TFU_PRESENT_DIAG's back-buffer captures (Presents 60, 300, 700, 1000, 1300, 1600, 1900) fall in different ones:
-  //   0 as the game set it; 1 depth test off (always passes, no depth writes); 2 also blending off (opaque) and all
-  //   colour channels written; 3 also no culling. A phase with pixels in its capture names the state that hides them.
-  //   "[s4 phase]" lines prove each phase in force.
-  static const bool s4_phases = REXCVAR_GET(s4_diag_phases);
-  if (s4_phases) {
-    const u32 phase = u32(((g_banjo_game_frames.load(std::memory_order_relaxed) + 150) / 300) % 4);
-    static u32 logged_phase = ~0u;
-    if (phase != logged_phase) {
-      logged_phase = phase;
-      RGPU_INFO("[s4 phase] {} from game frame {}: {}", phase, g_banjo_game_frames.load(std::memory_order_relaxed),
-                phase == 0   ? "as the game set it"
-                : phase == 1 ? "depth test off"
-                : phase == 2 ? "depth test off, blending off, all colour channels"
-                             : "depth test off, blending off, all colour channels, no culling");
-    }
-    if (phase >= 1)
-      key.depth_control = (key.depth_control | 0x70u) & ~0x4u;  // zfunc ALWAYS, z write off
-    if (phase >= 2) {
-      for (u32 &bc : key.blend_control)
-        bc = 0x00010001u;  // ONE, ZERO for colour and alpha
-      key.color_mask = 0xFFFFu;
-    }
-    if (phase >= 3)
-      key.mode_control &= ~0x3u;  // cull none
-  }
   if (primitive == kRectangleList) {
     if (State().rectangle_list_gs)
       key.rectangle_list = 1;

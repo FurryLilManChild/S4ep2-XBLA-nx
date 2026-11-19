@@ -2,6 +2,13 @@
 
 Newest first.
 
+## 2026-11-19 (late morning, 11:05): build 5c61c45b failed to link
+
+- pc_build.log: lld-link undefined symbol renut::gpu::(anonymous)::g_banjo_game_frames, from render/draw.cpp:7619
+  and 7623: the four-phase test of bc904028 (dropped after gate 5, never built) declared the extern inside the
+  anonymous namespace. Removed the test entirely (its cvar, the extern and the block). preflight.py now checks for
+  externs inside anonymous namespaces (it reports the old line as a FAIL and the fixed tree as a PASS).
+
 ## 2026-11-19 (early afternoon): the resolve trace; every off-screen resolve has no texture
 
 - No-rebuild run of 850eb991 with banjo_renut_diag_resolve_trace and banjo_renut_fast_draw off (read_log.py: matches;

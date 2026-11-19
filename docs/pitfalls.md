@@ -69,3 +69,8 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
 - 2026-11-19 (S4ep2-XBLA-nx): preflight's compile check took its file list from the base port's build, so a source
   this port added (s4/s4_rt_diag.cpp) was never compiled before Mark's build. It now also checks every source
   app/CMakeLists.txt lists that the base build lacks (Switch-only files excepted).
+- 2026-11-19 (S4ep2-XBLA-nx): the phase test (bc904028, never built until 5c61c45b) declared
+  `extern std::atomic<uint64_t> g_banjo_game_frames;` inside render/draw.cpp's anonymous namespace: it compiled and
+  failed at the link on Mark's PC. Preflight's compile check is syntax only and cannot see that; it now also fails on
+  any extern declared inside an anonymous namespace. Code committed but never built (a test judged unsound and not
+  sent) still rides along in the next build: remove it when the test is dropped.
