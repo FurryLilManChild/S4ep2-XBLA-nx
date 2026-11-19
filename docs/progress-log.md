@@ -2,6 +2,15 @@
 
 Newest first.
 
+## 2026-11-19 (12:40): in game
+
+- Run of 11adf4fb (read_log.py: matches). Mark: into the first level and played. No crash; the window was closed
+  ("Window closing, shutting down", exit 0; boot_test calls any early exit a crash). 56 to 60 fps, up to 15,000 draws
+  a second in play, no missing shaders, no dropped draws.
+- All 49 D3DXCreateTexture calls returned 0 with a texture (the caps fix); the port made none.
+- Still open: the captures keep red and blue swapped between the back buffer (Present 1900 average 242/177/132) and
+  the scan-out (129/176/241). One warning: a resolve through a format 06 view of EDRAM last drawn as 24.
+
 ## 2026-11-19 (midday): a picture, wrong; the caps address; the level-load crash
 
 - Run of c3e99be0 (read_log.py: matches). Things on screen, not right (Mark's screenshot: desert ruins in bands, a
