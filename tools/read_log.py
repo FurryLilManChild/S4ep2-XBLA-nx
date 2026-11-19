@@ -88,6 +88,16 @@ def main():
         mm = re.search(r'\[tfu diag\] (Present \d+ back|Present \d+: scan-out).*?average RGB ([\d/]+), (\d+) of (\d+) pixels', l)
         if mm:
             print('capture: %s: average %s, %s of %s pixels not black' % mm.groups())
+    # Switch runs: the clocks the SDK's profiler logs every few seconds (logs/rex/*.log), as counts.
+    import glob, collections
+    clk = collections.Counter()
+    for f in glob.glob(os.path.join(os.path.dirname(path), 'rex', '*.log')):
+        for l in open(f, encoding='utf-8', errors='replace'):
+            mm = re.search(r'clocks: (CPU [\d.]+ MHz, GPU [\d.]+ MHz, memory [\d.]+ MHz)', l)
+            if mm:
+                clk[mm.group(1)] += 1
+    for k, n in clk.most_common():
+        print('clocks: %s (%d samples)' % (k, n))
     for tag in ('[drawlog]', '[tfu diag]', '[s4 speed]', '[s4 rt]'):
         n = sum(1 for l in lines if tag in l)
         if n:

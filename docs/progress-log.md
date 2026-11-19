@@ -2,6 +2,18 @@
 
 Newest first.
 
+## 2026-11-19 (14:25): first Switch test (9ca60366)
+
+- read_log.py (now reads Switch build stamps and the SDK profiler's clock lines): build 9ca60366 matches. 6.5 min
+  handheld, no crash, no missing shaders. Clocks: CPU 1020 / GPU 460.8 / memory 1331.2 MHz (18 samples), plus 1785
+  CPU / 76.8 GPU (4 samples: the boost mode while a draw waited on a compile). "[s4 metal]" flag set; whether METAL
+  shows in the menu is Mark's to see. Captures: Sylvania Castle and the pause menu drawn right.
+- The stutter: uam compiled 500 variants on the console (151 ms average); 120 draws waited, 37.5 s in all. Outside
+  those, 60 fps with the render thread at 0.9 ms and the GPU at 2.6 ms a frame.
+- The console's cache: 311 of its 500 variants were not in the PC-built cache (the PC runs' list covered 38%).
+  Merged: PC list + console list (4,689 pipelines), the PC and console caches kept: 1,555 variants, 0 failed,
+  9,866 KB (sha256 fe3d9caa8a4bb1d0), a superset of both; deko3d_variants.txt 1,435 lines. In out\renut_switch.
+
 ## 2026-11-19 (14:00): shaders compiled up front
 
 - Mark's Switch test: in game; the shader-compile stutter much worse than Episode I's. Cause: Episode I's Switch build
