@@ -90,3 +90,10 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
   device.cpp and s4_shader_prep.cpp passed the syntax check and failed the PC link. Preflight now fails on any such
   call outside an #if naming __SWITCH__, PLUME_DEKO3D or REX_PLATFORM_SWITCH. Before calling a function, check which
   builds compile the file that defines it.
+- 2026-11-19 (S4ep2-XBLA-nx): two failed builds in a row (an extern in an anonymous namespace, then Switch-only calls
+  from shared code) came from preflight compiling files one at a time and never compiling the Switch-only code.
+  Mark: enhance the check instead of adding a rule per failure. Preflight now links the whole program for Linux and
+  compiles every Switch source with the Switch build's flags and devkitPro's headers; each was shown to fail on the
+  bug it exists for (the undefined PrepareListedVariants; an undeclared call in the Switch-only block).
+- 2026-11-19: I told Mark the log he had sent showed his special-stage crash. It could not: he had not copied
+  anything since. Never place an event in a log without a line that shows it.
