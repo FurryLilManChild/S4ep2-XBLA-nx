@@ -2,6 +2,23 @@
 
 Newest first.
 
+## 2026-11-19 (14:00): shaders compiled up front
+
+- Mark's Switch test: in game; the shader-compile stutter much worse than Episode I's. Cause: Episode I's Switch build
+  shipped deko3d_shaders.bin (variants compiled in the cloud from the PC's pipeline list); Episode II's first Switch
+  build shipped none, so every variant compiled on the console when first drawn. Mark: compiling shaders up front is
+  best practice (recomp-nx/fnxf_xiii compiles them at first launch, 30-40 min); both parts approved.
+- Part 1: tools/deko3d_variant_cache.py --generic --list (Mark's out\pc\pipeline_list.bin: 2,148 pipelines) --glsl
+  (the package's glsl_opt): 923 variants, 0 failed, 7,846 KB (sha256 db11b8fcd0d70c41). Put in out\renut_switch and
+  the SD folder out\sd\switch\s4ep2-xbla-nx; deko3d_variants.txt (--export-variants, every key checked) in
+  out\renut_switch.
+- Part 2: banjo::renut_gpu::deko3d::PrepareListedVariants (s4_prepare_shaders, on), from S4_CreateDevice_hook before
+  the game draws: every variant in deko3d_variants.txt through plume::Deko3DPrepareVariant (new: loadVariant now, from
+  the cache or compiled), with a full-screen "Preparing shaders: N of M" SDK dialog (s4/s4_shader_prep.cpp) and an
+  "[s4 shaders]" log line. build_switch.ps1 copies deko3d_shaders.bin and deko3d_variants.txt into the SD folder.
+  Not compile-checked for the Switch in the cloud (no devkitPro here; access to C:\devkitPro was refused): the
+  Switch-only code was read by hand.
+
 ## 2026-11-19 (afternoon): the Switch build and Episode METAL
 
 - Mark: colours looked right on screen (so the swap is in the scan-out capture's readback, not the display; left).

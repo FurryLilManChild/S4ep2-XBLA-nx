@@ -2246,6 +2246,20 @@ namespace plume {
         return out;
     }
 
+    // S4ep2-XBLA-nx (2026-11-19): see plume_deko3d.h.
+    bool Deko3DPrepareVariant(RenderDevice *device, RenderShader *shader, const RenderSpecConstant *specConstants,
+                              uint32_t specConstantsCount, bool *compiled) {
+        auto *d = static_cast<Deko3DDevice *>(device);
+        if (!d || !shader)
+            return false;
+        const uint64_t before = g_deko3dStats.shaderCompiles.load(std::memory_order_relaxed);
+        const bool ok = d->loadVariant(static_cast<const Deko3DShader *>(shader), specConstants, specConstantsCount,
+                                       nullptr) != nullptr;
+        if (compiled)
+            *compiled = g_deko3dStats.shaderCompiles.load(std::memory_order_relaxed) != before;
+        return ok;
+    }
+
     // ---- samplers
 
     std::unique_ptr<RenderSampler> Deko3DDevice::createSampler(const RenderSamplerDesc &desc) {

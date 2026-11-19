@@ -82,3 +82,7 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
 - 2026-11-19 (S4ep2-XBLA-nx): override entries appended at the end of app/overrides.toml land in its last table
   ([[switch_tables]]), not [functions]; the generator ignores unknown keys silently. Preflight now checks every
   [functions] entry is registered in the generated renut_init.cpp.
+- 2026-11-19 (S4ep2-XBLA-nx): the first Switch build shipped without deko3d_shaders.bin (Episode I's had one), so every
+  shader variant compiled mid-play. The shader cache and the up-front pass belong in the first Switch build
+  (switch-port-base "Shaders compiled up front"). Also: Python's text mode turns a CRLF file into LF on rewrite;
+  edit CRLF files (most of Renut and plume) in binary or with newline='' and check git diff --stat for whole-file diffs.

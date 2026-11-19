@@ -12,12 +12,18 @@
 
 #include <unistd.h>  // ftruncate (LoadCache)
 
+#include <chrono>
+#include <cstdlib>
+#include <fstream>
+#include <thread>
+
 #include <fmt/format.h>
 #include <rex/cvar.h>
 #include <rex/logging.h>
 #include <zstd.h>
 
 #include "renut_engine/gpu/banjo_renut_tuning.h"
+#include "renut_engine/gpu/backend/video.h"  // S4ep2-XBLA-nx: PrepareListedVariants
 #include "renut_engine/gpu/ultimate.h"
 #include "renut_engine/gpu/sasrt_gpu_round.h"  // sasrt-nx (2026-11-08)
 #include "renut_engine/gpu/guest/command_buffers.h"  // banjo-nx (2026-10-28): ReleaseSpareBuffersNow
@@ -33,6 +39,10 @@ REXCVAR_DEFINE_BOOL(sasrt_deko3d_diag_barriers, false, "SASRT/Diagnostics",
                     "deko3d renderer, a measurement: the barriers emitted counted by what they wait for and why (the "
                     "layouts and stages of every call merged into them); the 10 s deko3d line then lists the commonest "
                     "causes since the start");
+// S4ep2-XBLA-nx (2026-11-19, Mark: shaders compiled up front, before the player is in game, as recomp-nx's FFXIII port).
+REXCVAR_DEFINE_BOOL(s4_prepare_shaders, true, "S4ep2-XBLA-nx",
+                    "Before the game starts, every shader variant in deko3d_variants.txt (next to the NRO) is read from "
+                    "deko3d_shaders.bin or compiled, behind a progress screen; the rest still compile when first drawn");
 
 #if defined(PLUME_DEKO3D)
 #include <plume_deko3d.h>
@@ -645,13 +655,89 @@ std::string ReportBody(const plume::Deko3DStats &st, uint64_t compiles) {
   return r;
 }
 
+void PrepareListedVariants() {
+  ShaderPrepProgress &prog = ShaderPrep();
+  if (!REXCVAR_GET(s4_prepare_shaders))
+    return;
+  const std::string path = NextToExecutable("deko3d_variants.txt").string();
+  std::ifstream in(path);
+  if (!in) {
+    REXLOG_INFO("[s4 shaders] no {}: no shaders prepared before the game (they compile as they are first drawn)", path);
+    return;
+  }
+  struct Line {
+    uint64_t hash = 0;
+    std::vector<plume::RenderSpecConstant> constants;
+  };
+  std::vector<Line> lines;
+  std::string text;
+  while (std::getline(in, text)) {
+    // "<vs|ps>_<16 hex> <id>=<value>,<id>=<value>" (the constants may be absent: the default variant)
+    if (text.size() < 19 || (text.compare(0, 3, "vs_") != 0 && text.compare(0, 3, "ps_") != 0))
+      continue;
+    Line l;
+    l.hash = std::strtoull(text.substr(3, 16).c_str(), nullptr, 16);
+    size_t at = text.find(' ', 19);
+    while (at != std::string::npos && at + 1 < text.size()) {
+      const size_t eq = text.find('=', at + 1);
+      if (eq == std::string::npos)
+        break;
+      const size_t end = text.find(',', eq + 1);
+      const uint32_t id = uint32_t(std::strtoul(text.substr(at + 1, eq - at - 1).c_str(), nullptr, 10));
+      const uint32_t value = uint32_t(std::strtoul(text.substr(eq + 1, end == std::string::npos ? std::string::npos
+                                                                                          : end - eq - 1).c_str(),
+                                                   nullptr, 10));
+      l.constants.emplace_back(id, value);
+      at = end;
+    }
+    lines.push_back(std::move(l));
+  }
+  // The device: the renderer starts before the game's CreateDevice, but wait for it to be ready.
+  plume::RenderDevice *device = nullptr;
+  for (int i = 0; i < 600 && !(device = ::renut::gpu::Video::Device()); ++i)
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+  if (!device || lines.empty()) {
+    REXLOG_WARN("[s4 shaders] {} lines in {}, device {}: nothing prepared", lines.size(), path, device ? "ready" : "missing");
+    return;
+  }
+  prog.total.store(uint32_t(lines.size()));
+  prog.active.store(true);
+  const auto start = std::chrono::steady_clock::now();
+  std::unordered_map<uint64_t, std::unique_ptr<plume::RenderShader>> shaders;
+  for (const Line &l : lines) {
+    auto it = shaders.find(l.hash);
+    if (it == shaders.end())
+      it = shaders.emplace(l.hash, CreateGameShader(device, l.hash)).first;
+    bool compiled = false;
+    const bool ok = it->second && plume::Deko3DPrepareVariant(device, it->second.get(), l.constants.data(),
+                                                              uint32_t(l.constants.size()), &compiled);
+    if (!ok)
+      prog.failed.fetch_add(1);
+    if (compiled)
+      prog.compiled.fetch_add(1);
+    prog.done.fetch_add(1);
+  }
+  SaveShaderCache();
+  const double seconds = std::chrono::duration<double>(std::chrono::steady_clock::now() - start).count();
+  REXLOG_INFO("[s4 shaders] prepared before the game: {} variants of {} shaders in {:.1f} s; {} compiled on the "
+              "console (the rest from deko3d_shaders.bin), {} failed",
+              lines.size(), shaders.size(), seconds, prog.compiled.load(), prog.failed.load());
+  prog.active.store(false);
+}
+
 #else
 
+void PrepareListedVariants() {}
 std::unique_ptr<plume::RenderShader> CreateGameShader(plume::RenderDevice *, uint64_t) { return nullptr; }
 void InstallShaderCache() {}
 std::string Report() { return {}; }
 
 #endif
+
+ShaderPrepProgress &ShaderPrep() {
+  static ShaderPrepProgress p;
+  return p;
+}
 
 bool BoolSpecMask(uint64_t hash, uint32_t mask[8]) {
   const PackageEntry *e = Find(OpenInstalled(), hash);

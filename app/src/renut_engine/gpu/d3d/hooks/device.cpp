@@ -14,6 +14,7 @@
  * (BlockOnFence_hook), and Swap waits when the game gets a frame too far ahead.
  */
 #include <rex/frame_latency.h>  // banjo-nx (2026-10-19)
+#include "renut_engine/gpu/banjo_renut_deko3d.h"  // S4ep2-XBLA-nx: PrepareListedVariants
 #include "renut_engine/display_sync.h"
 #include "renut_engine/gpu/render/pipeline.h"  // banjo-nx (2026-10-20): SyncPipelineListLocked
 #include <algorithm>
@@ -1326,6 +1327,9 @@ constexpr u32 kS4PresentParametersVa = 0x82AA32D8;  // S4ep2-XBLA-nx: Initialize
 constexpr u32 kS4DeviceHolderVa = 0x82AAC01C;  // S4ep2-XBLA-nx: CreateDevice sub_828631F0 stw -0x3FE4 after lis -0x7D55
 constexpr u32 kS4BehaviorFlags = 0x0C000001u;
 u32 S4_CreateDevice_hook() {
+  // S4ep2-XBLA-nx (2026-11-19): every listed shader variant made ready before the game draws (the progress screen,
+  // s4/s4_shader_prep.cpp); nothing off the Switch or without deko3d_variants.txt.
+  banjo::renut_gpu::deko3d::PrepareListedVariants();
   rex::MappedPtr<rex::be_u32> holder(GuestPtr<rex::be_u32>(kS4DeviceHolderVa), kS4DeviceHolderVa);
   const u32 hr = Direct3D_CreateDevice_hook(0, 1, 0, kS4BehaviorFlags, kS4PresentParametersVa, holder);
   return hr == 0 ? 0u : 0x80004005u;

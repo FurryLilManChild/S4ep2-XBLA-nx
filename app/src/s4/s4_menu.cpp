@@ -178,7 +178,7 @@ class S4MenuDialog final : public rex::ui::ImGuiDialog {
     ImGui::SetNextWindowSize(size, ImGuiCond_Always);
     ImGui::SetNextWindowBgAlpha(0.92f);
     if (first_) ImGui::SetNextWindowFocus();
-    if (ImGui::Begin("Sonic 4 Episode I: port menu##s4", nullptr,
+    if (ImGui::Begin("Sonic 4 Episode II: port menu##s4", nullptr,
                      ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove |
                          ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_AlwaysAutoResize)) {
       if (first_) {

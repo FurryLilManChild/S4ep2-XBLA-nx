@@ -85,6 +85,7 @@ set(RENUT_SOURCES
     src/s4/s4_speed_diag.cpp
     src/s4/s4_rt_diag.cpp
     src/s4/s4_metal.cpp
+    src/s4/s4_shader_prep.cpp
     src/s4/s4_menu.cpp
     # S4ep1-nx: TFU's job-worker idle wait (src/tfu/tfu_job_idle.cpp, a patch at a TFU address) left out.
     src/rr6_keys.cpp

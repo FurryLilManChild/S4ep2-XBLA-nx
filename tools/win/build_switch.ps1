@@ -149,6 +149,12 @@ $toml = Join-Path $repo 'app\s4_switch_test.toml'
 python -c "import sys, tomllib; tomllib.load(open(sys.argv[1], 'rb'))" $toml
 if ($LASTEXITCODE -ne 0) { Write-Host 'app\s4_switch_test.toml does not parse (above). Tell Claude.'; exit 1 }
 Copy-Item $toml (Join-Path $sdOut 'renut.toml') -Force
+# S4ep2-XBLA-nx (2026-11-19, shaders compiled up front): the precompiled shader cache (tools/deko3d_variant_cache.py over
+# every recorded pipeline list) and its variant list, which the NRO prepares before the game starts. Claude makes both.
+foreach ($f in @('deko3d_shaders.bin', 'deko3d_variants.txt')) {
+    $src = Join-Path $shaders $f
+    if (Test-Path $src) { Copy-Item $src (Join-Path $sdOut $f) -Force } else { Write-Host "   (no $f in out\renut_switch: shaders compile as they are first drawn)" }
+}
 $hash = (Get-FileHash $nro -Algorithm SHA256).Hash.ToLower()
 Set-Content -Path (Join-Path $sdOut 'renut.nro.sha256') -Value "$hash  renut.nro" -Encoding ascii
 $stampFile = Join-Path $build 'tfu_build_stamp\tfu_build_stamp.h'
@@ -160,4 +166,4 @@ Write-Host ''
 Write-Host "BUILD OK: $sdOut"
 Write-Host "   renut.nro  $([math]::Round((Get-Item $nro).Length / 1MB)) MB  sha256 $hash"
 Write-Host "   $stamp"
-Write-Host 'On the SD card: /switch/s4ep2-xbla-nx/ gets renut.nro, renut.toml and a game_root folder holding default.xex and data.cpk (assets\extracted).'
+Write-Host 'On the SD card: /switch/s4ep2-xbla-nx/ gets everything in that folder (renut.nro, renut.toml, deko3d_shaders.bin, deko3d_variants.txt) and a game_root folder holding default.xex and data.cpk (assets\extracted).'

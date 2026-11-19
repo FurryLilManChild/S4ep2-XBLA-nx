@@ -47,6 +47,12 @@ namespace plume {
     // read in the background (Deko3DOptions::asyncCacheReads) instead of on the drawing thread.
     using Deko3DShaderCacheContains = std::function<bool(uint64_t sourceHash)>;
     void SetDeko3DShaderCacheContains(Deko3DShaderCacheContains contains);
+    // S4ep2-XBLA-nx (2026-11-19): one variant of a shader made ready now (read from the cache, or compiled with this
+    // thread waiting), for a pass that prepares every known variant before the game draws (s4/s4_shader_prep.cpp).
+    // The variant stays in the device's variant table, so a draw that needs it later neither compiles nor reads the
+    // card. Returns whether the variant is valid; 'compiled' is set when uam had to compile it.
+    bool Deko3DPrepareVariant(RenderDevice *device, RenderShader *shader, const RenderSpecConstant *specConstants,
+                              uint32_t specConstantsCount, bool *compiled);
 
     // Counters for the renderer's reports.
     struct Deko3DStats {

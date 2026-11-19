@@ -22,6 +22,7 @@
 #include "renut_engine/Timer.h"
 #include "renut_engine/Fps.h"
 #include "s4/s4_menu.h"
+#include "s4/s4_shader_prep.h"
 #include "renut_engine/hooks.h"
 // katamari-nx: N&B's title update is not part of this port (Beautiful Katamari has no title update in the user's
 // files). The DLC installer is (2026-10-31, the user's 16 DLC packages): reNut upstream's, game-agnostic.
@@ -132,6 +133,7 @@ public:
         drawer->AddDialog(new RenuLogOverlayDialog(drawer));
         // S4ep1-nx (2026-11-15): the port menu (src/s4/s4_menu.cpp): - and + together on the Switch, F8 on the PC.
         s4::RegisterMenu(drawer, config_file_path(), [this](bool on) { fpsManager.showFPS = on; });
+        s4::RegisterShaderPrepScreen(drawer);  // S4ep2-XBLA-nx (2026-11-19): shaders prepared before the game
         // CPU/GPU profiler window ported from UnleashedRecomp (F5 / banjo_show_profiler).
         profiler_dialog_ = std::make_unique<ProfilerOverlayDialog>(drawer);
         drawer->AddDialog(profiler_dialog_.get());
