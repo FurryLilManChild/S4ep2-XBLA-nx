@@ -768,6 +768,7 @@ void S4_DrawIndexedVertices_hook(u32 device, u32 start_index, u32 index_count) {
 // (sub_821C1710 ORs it under Z << 8). Dest level, slice and the parameters are always 0, none read from the stack.
 void S4_Resolve_hook(u32 device, u32 flags, u32 rect_va, u32 dest_texture, u32 point_va, u32 color_va,
                      u32 /*r9*/, u32 clear_stencil, double clear_z) {
+  s4::g_resolve_calls.fetch_add(1, std::memory_order_relaxed);  // S4ep2-XBLA-nx: s4/s4_rt_diag.cpp
   D3DDevice_Resolve_hook(device, flags, rect_va, dest_texture, point_va, 0, 0, color_va, clear_z, 0, clear_stencil, 0);
 }
 

@@ -104,7 +104,22 @@ def syntax(lines, template=None, sources=None):
 def app_sources():
     lines = [l for l in compile_commands(r' %s/app/src/[^ ]*\.cpp' % re.escape(BASE)) if 'banjo_hot' not in l]
     bad, n = syntax(lines)
-    return check('app sources compile', not bad, '%d of %d fail%s' % (len(bad), n, ('; ' + '; '.join(bad[:3])) if bad else ''))
+    # 2026-11-19: sources this port added (listed in app/CMakeLists.txt, absent from the base port's build) are not in
+    # the base's compile commands; check them with an app source's command as the template (s4_speed_diag.cpp's).
+    known = set(re.findall(r'%s/app/(src/[^ ]+?\.cpp)' % re.escape(BASE), ' '.join(lines)))
+    listed = set(re.findall(r'^\s*(src/[^\s)]+\.cpp)', open(ROOT + '/app/CMakeLists.txt').read(), re.M))
+    # Switch-only sources (app/CMakeLists.txt's Switch list: *_switch.cpp and the console PGO runtime) need libnx.
+    extra = sorted(x for x in listed - known if os.path.exists(ROOT + '/app/' + x) and 'banjo_hot' not in x
+                   and '_switch' not in x and not x.endswith('banjo_pgo.cpp'))
+    tmpl = [l for l in lines if 's4/s4_speed_diag.cpp' in l]
+    if extra:
+        if not tmpl:
+            return check('app sources compile', False, 'no template command for the %d added sources' % len(extra))
+        bad2, n2 = syntax(None, tmpl[0], [ROOT + '/app/' + x for x in extra])
+        bad += bad2
+        n += n2
+    return check('app sources compile', not bad, '%d of %d fail (%d added by this port: %s)%s'
+                 % (len(bad), n, len(extra), ' '.join(extra) or 'none', ('; ' + '; '.join(bad[:3])) if bad else ''))
 
 
 def generated():

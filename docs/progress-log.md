@@ -2,6 +2,23 @@
 
 Newest first.
 
+## 2026-11-19 (midday): the texture dump; the game's render-target descriptors
+
+- Run of build 850eb991 with the texture dump (read_log.py: matches; no rebuild, scripts pulled). In each one-frame
+  window the only texture any draw sampled was 0x82996C4C, 1280x720, plume format 20, and both dumps are solid black
+  (every texel 000000FF). 0 resolves all run.
+- Correction of the entry below: sub_828755A8 is not the frame function and [0x82AA3428] does not make it skip.
+  sub_828755A8 ends one of the engine's render-target descriptors; [0x82AA3428] only picks its tiled or untiled path.
+  The untiled path resolves each colour target whose bit is in the descriptor's flags, unless [0x82AABFCC] (set by
+  the begin sub_828758F8) is 0 or flag 0x20000 is set. 0 resolves is not expected.
+- 0x82996C4C is the texture header inside descriptor 0x82996BF0 (+0x5C; its texture pointer is at +0x28). sub_821EC0A0
+  samples the texture of 0x82996BF0 (or of 0x82997F68 while 0x82996BF0 is current), so the screen shows a texture the
+  game drew into and never resolved. Descriptor layout and the switch routine sub_828620A8: s4/s4_rt_diag.cpp.
+- Next build: s4/s4_rt_diag.cpp logs ("[s4 rt]") the first 60 switches and ends with each descriptor's words, the
+  resolves each end made and why none were made (not begun, flag 0x20000, no target bit), and the screen samples; and
+  s4_force_descriptor_resolve (on) makes the resolves an untiled end skipped. What confirms the fix: forced resolves
+  above 0 in the 10 s line and a picture. If forced stays 0, the reason counts say which condition to look at.
+
 ## 2026-11-19 (late morning): colour ruled out; four-phase state test
 
 - Build 850eb991 (read_log.py: matches). Still black. No "[s4 inputs]" line: the draws' declarations all carry COLOR

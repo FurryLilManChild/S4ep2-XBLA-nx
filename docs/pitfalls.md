@@ -62,3 +62,10 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
 - 2026-11-15: a feature carried over from another game's port (sasrt-nx's EDRAM depth restore) broke a picture in this
   one (the title's white sky). When a picture is wrong and shaders, textures and constants check out, A/B the inherited
   renderer features (depth restore, skips, hand-overs) before writing new code.
+- 2026-11-19 (S4ep2-XBLA-nx): I called "0 resolves a frame" expected from one misread branch (a flag that only picks a
+  tiled or untiled path read as "skip"), and it stood for two builds. A texture dump then showed the screen sampling a
+  never-resolved black texture. When a count that should be busy is 0, treat the 0 as a lead, not as expected, unless
+  a log line proves the path; and dump what the final draws sample early in any black-screen hunt.
+- 2026-11-19 (S4ep2-XBLA-nx): preflight's compile check took its file list from the base port's build, so a source
+  this port added (s4/s4_rt_diag.cpp) was never compiled before Mark's build. It now also checks every source
+  app/CMakeLists.txt lists that the base build lacks (Switch-only files excepted).

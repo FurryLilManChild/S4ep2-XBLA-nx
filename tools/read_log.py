@@ -88,7 +88,7 @@ def main():
         mm = re.search(r'\[tfu diag\] (Present \d+ back|Present \d+: scan-out).*?average RGB ([\d/]+), (\d+) of (\d+) pixels', l)
         if mm:
             print('capture: %s: average %s, %s of %s pixels not black' % mm.groups())
-    for tag in ('[drawlog]', '[tfu diag]', '[s4 speed]'):
+    for tag in ('[drawlog]', '[tfu diag]', '[s4 speed]', '[s4 rt]'):
         n = sum(1 for l in lines if tag in l)
         if n:
             print('diagnostic lines %s: %d' % (tag, n))
