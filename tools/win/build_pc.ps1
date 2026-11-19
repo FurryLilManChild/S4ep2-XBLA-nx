@@ -129,17 +129,22 @@ if ($Renut) {
     # gpu.cmake runs Renut's own tools/dump_shaders.py, which is not in this tree (TFU-nx always had the directory).
     # Ours: tools/renut_shader_dump.py takes the containers compiled into default.xex (8 in Sonic 4) from the code
     # generator's image; the rest Renut captures at run time and the next build adds them.
+    # S4ep2-XBLA-nx (2026-11-18): every shader comes from the game's own files, never from play captures (S4ep1-nx
+    # GitHub issue 1: 0.5.0 lacked 185 of the 282 in data.cpk). The default.xex step runs whenever the code image is
+    # there (the first build has none until the code generator has run once); data.cpk's shaders are added on every
+    # build. Both only add files, so a capture folder's extras are kept.
     $dump = Join-Path $repo 'out\renut_shader_dump'
-    if (-not (Test-Path $dump)) {
-        $image = Join-Path $repo 'out\renut_image.bin'
-        if (Test-Path $image) {
-            Step 'Dumping the shaders in default.xex (one time)' 'shader_dump.log' {
-                & $py (Join-Path $repo 'tools\renut_shader_dump.py') --image $image --out $dump
-            }
-        } else {
-            New-Item -ItemType Directory -Force -Path $dump | Out-Null
-            Write-Host 'out\renut_shader_dump made empty (no code image yet): Renut captures the shaders at run time.'
+    New-Item -ItemType Directory -Force -Path $dump | Out-Null
+    $image = Join-Path $repo 'out\renut_image.bin'
+    if (Test-Path $image) {
+        Step 'Adding the shaders in default.xex' 'shader_dump.log' {
+            & $py (Join-Path $repo 'tools\renut_shader_dump.py') --image $image --out $dump
         }
+    }
+    $cpk = Join-Path $repo 'assets\extracted\data.cpk'
+    if (-not (Test-Path $cpk)) { Write-Host "Missing $cpk (the game's data). Tell Claude."; exit 1 }
+    Step 'Adding the shaders in data.cpk' 'cpk_shaders.log' {
+        & $py (Join-Path $repo 'tools\s4_cpk_shaders.py') --cpk $cpk --out $dump
     }
 
     # 3c. XenosRecomp links Microsoft's DXC (Windows x64 binaries, kept out of git as rr6-nx did). One time: taken

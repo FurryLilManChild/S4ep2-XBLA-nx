@@ -2,6 +2,16 @@
 
 Newest first.
 
+## 2026-11-18 (night, later): every shader from the game's files, no capture loop
+
+- S4ep1-nx's fix for its GitHub issue 1 (tools/cpk_extract.py, tools/s4_cpk_shaders.py, and its build_pc.ps1 step)
+  carried over, with tools/built_ptr_scan.py. Episode II's data.cpk has the same NNSTDSHADER/SHADER.AMB: 469
+  containers (read on Mark's PC through the bridge). default.xex holds 121 (Episode I: 8).
+- Check against the third boot's 79 captured shaders: 37 are in SHADER.AMB, the other 42 in default.xex; none from
+  anywhere else. The first build's default.xex dump had run before the code image existed (the dump folder was made
+  empty and never filled again); build_pc.ps1 now runs the default.xex dump whenever the image is there and the
+  data.cpk dump (every file in it) on every build.
+
 ## 2026-11-18 (night): third boot runs (60 fps, light blue screen), device offsets the first pass missed
 
 - No crash: 90 s at 60 fps, audio running, data.cpk read; about 37 draws a frame reach Renut and none are drawn. The
