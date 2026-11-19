@@ -97,3 +97,7 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
   bug it exists for (the undefined PrepareListedVariants; an undeclared call in the Switch-only block).
 - 2026-11-19: I told Mark the log he had sent showed his special-stage crash. It could not: he had not copied
   anything since. Never place an event in a log without a line that shows it.
+- 2026-11-19 (S4ep2-XBLA-nx): read_log.py read only the run log, so a Switch crash recorded in logs/rex/rex_crash.log
+  was reported as "crash: none". Every log the port writes on a crash must be read by the log reader.
+- 2026-11-19: a call through a table of function pointers was generated as a one-case switch (every other index a
+  trap). Preflight now scans generated code for switches on a constant register or with one or two cases.

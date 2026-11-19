@@ -68,6 +68,22 @@ def main():
     if hp:
         print('crash host PC: %s+0x%s (symbolize: llvm-symbolizer --obj=<exe> 0x%X with the .pdb beside it)'
               % (os.path.basename(hp.group(2)), hp.group(3), 0x140000000 + int(hp.group(3), 16)))
+    # Switch runs: the port's crash handler appends to logs/rex/rex_crash.log (one block per crash, with the build
+    # stamp); a block for this build is a crash of this run or of another run of the same build. 2026-11-19: a Switch
+    # crash was reported "none" here because only the run log was read.
+    rc = os.path.join(os.path.dirname(path), 'rex', 'rex_crash.log')
+    if os.path.exists(rc):
+        text = open(rc, encoding='utf-8', errors='replace').read()
+        for blk in text.split('==== ')[1:]:
+            stamp = re.search(r'switch build ([0-9a-f]+)', blk)
+            pc = re.search(r'pc 0x[0-9a-f]+ = image\+(0x[0-9a-f]+)', blk)
+            lr = re.search(r'lr 0x[0-9a-f]+ = image\+(0x[0-9a-f]+)', blk)
+            mine = stamp and (stamp.group(1).startswith(built) or built.startswith(stamp.group(1)))
+            print('crash (rex_crash.log%s): %s; pc image+%s, lr image+%s (symbolize: llvm-addr2line-20 -f -C -i -e '
+                  '<the build\'s ELF in out/nx/elf>)' % ('' if mine else ', ANOTHER BUILD ' + (stamp.group(1) if stamp else '?'),
+                                                         blk.split('\n', 1)[0].strip(' ='), pc.group(1) if pc else '?',
+                                                         lr.group(1) if lr else '?'))
+            crashes.append(blk)
     if not crashes:
         print('crash: none')
 

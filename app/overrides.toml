@@ -1,6 +1,14 @@
 # S4ep2-XBLA-nx (2026-11-16): Episode I's entries removed (copy in docs/from-s4ep1/app-config/).
 # S4ep1-nx: per-function overrides (tail calls, share_registers, ...), each with its evidence. Empty until the first codegen.
 
+# Mark's Switch run of 8aff941b (2026-11-19, a crash after a special stage): rex_crash.log, brk #0x3e8 (a
+# __builtin_trap) in sub_82399280, called from sub_82872E68. Its "bctr" at 0x823992A0 is a call through a table of 28
+# function pointers at 0x820B6FE0 (all registered functions), indexed by [r3+4]; the generator read it as a jump table
+# with the index in r10 (which holds the table's address), so the switch had one case and every other value trapped.
+# The same bctr shape one function later (sub_823992A8, table 0x820B7050) was already an indirect call.
+# katamari-nx's fix for the same misreading: an indirect call.
+indirect_calls = [0x823992A0]
+
 [functions]
 # First codegen (2026-11-16): "UnresolvedCall b 0x8242D428 from 0x8242FE9C". An 8-byte leaf thunk with no .pdata
 # (among small accessors): lwz r3,0x260(r3); b 0x82438F70. Reached only as a tail call (Episode I had the same shape).

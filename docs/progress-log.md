@@ -2,6 +2,22 @@
 
 Newest first.
 
+## 2026-11-19 (15:50): Switch test of 8aff941b; the special-stage crash
+
+- read_log.py: build 8aff941b matches. "[s4 shaders] prepared before the game: 1435 variants of 569 shaders in 1.6 s; 0
+  compiled on the console", DKSH cache 1,555 variants at start. 8.5 min handheld at 1020/460.8/1331.2 MHz: 56-60 fps,
+  up to 18,000 draws a second; 131 variants compiled in the background over the run, 0 draws waited for one (the
+  first Switch run: 500 compiled, 120 waits, 37.5 s). "[s4 metal]" flag set.
+- Crash after a special stage (Mark; logs/rex/rex_crash.log, build 8aff941b): brk #0x3e8 (__builtin_trap) at
+  image+0x1002150 = sub_82399280, from sub_82872E68 (ELF renut_e53f08bb1bd9.elf). sub_82399280's bctr (0x823992A0) is
+  a call through a table of 28 function pointers (0x820B6FE0, indexed by [r3+4]); the generator read it as a jump
+  table switching on r10, which holds the table address: one case, every other index trapped. Fix: indirect_calls =
+  [0x823992A0] in overrides.toml (katamari-nx's fix for the same misreading); regenerated: REX_CALL_INDIRECT_FUNC.
+  All 28 targets are registered. Preflight: "generated switches" fails on any switch on a register set to a constant
+  just before, or with one or two cases (a sweep of all generated code found only this one).
+- read_log.py now reads logs/rex/rex_crash.log (it had reported "crash: none" for this run).
+- Shaders merged again (this run's console cache and list): 1,804 variants, 0 failed, 10,662 KB; list 1,639 lines.
+
 ## 2026-11-19 (14:25): first Switch test (9ca60366)
 
 - read_log.py (now reads Switch build stamps and the SDK profiler's clock lines): build 9ca60366 matches. 6.5 min

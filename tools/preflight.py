@@ -304,6 +304,35 @@ def switch_compile():
     return check('Switch compile', r.returncode == 0, last + ('; ' + ' | '.join(fails[:4])[:400] if fails else ''))
 
 
+def generated_switches():
+    # 2026-11-19 (Mark's Switch crash after a special stage): the generator read a call through a table of function
+    # pointers (sub_82399280's bctr) as a jump table and switched on the register that held the table's address: one
+    # case, every other index a __builtin_trap. Any generated switch on a register the lines just before it set to a
+    # constant, or with one or two cases, fails here unless overrides.toml names the bctr in indirect_calls or a
+    # [[switch_tables]] entry.
+    bad = []
+    for f in glob.glob(ROOT + '/app/generated/renut_recomp.*.cpp'):
+        lines = open(f, encoding='utf-8', errors='replace').read().split('\n')
+        func = None
+        for i, l in enumerate(lines):
+            m = re.match(r'DEFINE_REX_FUNC\((sub_[0-9A-F]+)\)', l)
+            if m:
+                func = m.group(1)
+            m = re.search(r'switch \(ctx\.r(\d+)\.u32\)', l)
+            if not m:
+                continue
+            r = m.group(1)
+            n, j = 0, i + 1
+            while j < len(lines) and 'default:' not in lines[j]:
+                n += lines[j].strip().startswith('case ')
+                j += 1
+            back = '\n'.join(lines[max(0, i - 14):i])
+            const = re.search(r'ctx\.r%s\.s64 = -?\d+;' % r, back) and re.search(r'ctx\.r%s\.s64 = ctx\.r%s\.s64 \+ \d+;' % (r, r), back)
+            if const or n <= 2:
+                bad.append('%s (switch on r%s, %d cases%s)' % (func, r, n, ', a constant' if const else ''))
+    return check('generated switches', not bad, '%d suspect%s' % (len(bad), (': ' + '; '.join(bad[:4])) if bad else ''))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--codegen', action='store_true')
@@ -316,6 +345,7 @@ def main():
         results.append(codegen())
     if a.full:
         results.append(generated())
+    results.append(generated_switches())
     results += [app_sources(), anon_externs(), switch_only_calls(), overrides_check(), d3d_sweep(), offsets(), addr_refs(), shaders(), switch_compile(), link_check()]
     ok = all(results)
     say('RESULT: %s (%d of %d checks passed)' % ('PASS' if ok else 'FAIL', sum(results), len(results)))
