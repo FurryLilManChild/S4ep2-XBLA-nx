@@ -24,7 +24,10 @@ if ($Renderer) { $runArgs += "--banjo_renderer=$Renderer" }
 # TFU-nx: without Renut (the first builds) the SDK's emulated GPU draws; rr6-nx never loads it (gpu_plugin empty).
 if (-not $Renderer) { $runArgs += "--banjo_renderer=emulated"; $runArgs += "--gpu_plugin=xenos" }  # S4ep1-nx: a -Renut build otherwise falls back to Renut (banjo_renderer defaults to "native")
 if ($Backend) { $runArgs += "--renut_gpu_backend=$Backend" }  # Renut: d3d12 or vulkan
-if ($Extra) { $runArgs += $Extra }  # TFU-nx: more flags (present_test.ps1)
+# S4ep2-XBLA-nx (2026-11-19): powershell -File hands '-Extra a,b' over as the one string "a,b" (a run lost its second
+# flag that way); split at every comma that starts another --flag, and print what goes to the game.
+if ($Extra) { foreach ($e in $Extra) { $runArgs += ($e -split ',(?=--)') } }  # TFU-nx: more flags (present_test.ps1)
+Write-Host "Game arguments: $($runArgs -join ' ')"
 Write-Host "Starting the game for $Seconds seconds..."
 $p = Start-Process -FilePath $exe -ArgumentList $runArgs -WorkingDirectory (Split-Path $exe) -PassThru
 

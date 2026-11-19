@@ -2,6 +2,18 @@
 
 Newest first.
 
+## 2026-11-19 (late morning): colour ruled out; four-phase state test
+
+- Build 850eb991 (read_log.py: matches). Still black. No "[s4 inputs]" line: the draws' declarations all carry COLOR
+  (BBCB3AF0: position, COLOR 0 and 1, texcoord; 28 of 38 logged draws), so the colour suspect is out. The stream dump
+  did not run: `powershell -File` passed "-Extra a,b" as one string, so only the first flag reached the game
+  (boot_test.ps1 now splits it and prints the game's arguments).
+- The game's frame function sub_828755A8 skips its resolves when the own-flip flag [0x82AA3428] is 0 and draws into
+  the auto back buffer, which Present resolves: 0 resolves a frame is expected on this path.
+- Next build: s4_diag_phases cycles four 300-frame phases (as set; depth off; plus blending off and all channels; plus
+  culling off) with "[s4 phase]" lines, and TFU_PRESENT_DIAG captures land in different phases; the stream dump with
+  the corrected flags.
+
 ## 2026-11-19 (later): the shader build, still black; a correction and the declaration question
 
 - Build b4000586 (read_log.py: matches; 469 shaders from data.cpk, 590 in the dump, none missing at run time). Still

@@ -11,6 +11,9 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
   `git ls-files` (must be empty outside docs/); resolve every codegen warning; run post_codegen.py and a
   `-fsyntax-only` pass over every generated file and every app source in the cloud (about 15 minutes on 2 cores);
   read this file first.
+- 2026-11-19 (S4ep2-XBLA-nx): a change to the build script itself (gate 1's self-update) reaches Mark's copy only by a
+  pull: tell him to pull once whenever a build or test script changed. And `powershell -File script -Extra 'a','b'`
+  passes "a,b" as one string: test every new command form (boot_test.ps1 now splits and prints the arguments).
 - 2026-11-18 (S4ep2-XBLA-nx): I planned Renut's capture-and-rebuild loop for shaders, the method that left 185 of
   S4ep1-nx 0.5.0's shaders out, though S4ep1-nx had just replaced it. Every Renut port takes its shaders from the
   game's own files before the first boot (default.xex and every data archive) and checks a run's captures against
