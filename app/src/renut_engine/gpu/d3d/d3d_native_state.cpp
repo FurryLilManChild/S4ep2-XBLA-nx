@@ -728,9 +728,9 @@ constexpr SamplerStateFn kSamplerStateFns[kSamplerStates] = {
 };
 
 // N&B's state tables: {getter, setter, default} per state.
-constexpr u32 kRenderStateTable = 0x824D6498;  // S4ep1-nx: TFU 0x82F43938; 101 records with the same defaults (docs/renut-map.md)
+constexpr u32 kRenderStateTable = 0x8293D300;  // S4ep2-XBLA-nx: Episode II's table (the 221 getters and setters agree with the alignment). Episode I's address left here was game code in Episode II: the first boot called the instruction word 0x80C10054 (at 0x824D6530) as a state setter;  // S4ep1-nx: TFU 0x82F43938; 101 records with the same defaults (docs/renut-map.md)
 //  // katamari-nx: 0x82D8A948->0x82AD8E48  // TFU-nx: 101 records, every default N&B's
-constexpr u32 kSamplerStateTable = 0x824D6958;  // S4ep1-nx: TFU 0x82F43DF8; 20 records with the same defaults
+constexpr u32 kSamplerStateTable = 0x8293D7C0;  // S4ep2-XBLA-nx: Episode II's table;  // S4ep1-nx: TFU 0x82F43DF8; 20 records with the same defaults
 //  // katamari-nx: 0x82D8AE28->0x82AD9308  // TFU-nx: 20 records
 constexpr u32 kTextureSamplers = 26;
 
@@ -1365,7 +1365,7 @@ namespace {
 
 // Per D3DFORMAT (low 6 bits) its format description; 0xF00 marks a float
 // depth format (word_82005200).
-constexpr u32 kFormatTable = 0x8209BB70;  // S4ep1-nx: TFU 0x8202CBD8; the same words, read at the same place by the paired functions
+constexpr u32 kFormatTable = 0x82107E50;  // S4ep2-XBLA-nx: as hooks/resource.cpp (the first pass changed only that copy);  // S4ep1-nx: TFU 0x8202CBD8; the same words, read at the same place by the paired functions
 //  // katamari-nx: 0x82005200->0x820FA9D0  // TFU-nx: as hooks/resource.cpp
 // The register packets between RB_COPY_CONTROL and RB_COPY_DEST_INFO.
 constexpr u32 kCopyControl = 0x2A18;

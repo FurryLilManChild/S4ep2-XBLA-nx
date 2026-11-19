@@ -2,6 +2,18 @@
 
 Newest first.
 
+## 2026-11-18: first boot crash found (Episode I's state tables)
+
+- Mark's boots stopped right after the device was created, on a call to 0x80C10054. The registers logged by the new
+  bad-call line (r3 the device, r9 0x8294040C, r7 0x820B48DC, r8 0x82ABF0A0) place it in sub_823E45D8 (called by
+  sub_823E4010 from the device setup sub_82862E40's caller): it calls each render state's setter through the
+  device's own table, `lwz r11,0x40(device + offset)`. Renut fills that table from the game's {getter, setter,
+  default} records, and d3d_native_state.cpp still named Episode I's tables (0x824D6498, 0x824D6958), which are game
+  code in Episode II: 0x80C10054 is the instruction at 0x824D6530. Now Episode II's 0x8293D300 and 0x8293D7C0.
+- Sweep of every 0x82xxxxxx constant outside comments in app/src: one more Episode I address, the second copy of
+  the format table in d3d_native_state.cpp (0x8209BB70, now 0x82107E50 as in resource.cpp). The remaining two
+  (mnk_controls, photo_capture) are other games' and were in Episode I's working build unchanged.
+
 ## 2026-11-16 (evening): five failed first PC builds, and the checks that should have come first
 
 - Failures, in order: missing `app/generated/rexglue.cmake` and FFmpeg's three config headers (force-tracked in

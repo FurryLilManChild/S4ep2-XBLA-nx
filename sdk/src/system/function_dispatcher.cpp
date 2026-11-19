@@ -37,32 +37,14 @@ FunctionDispatcher* GetBoundFunctionDispatcher() {
 }  // namespace
 
 static void InvalidFunctionTrap(PPCContext& ctx, uint8_t* base) {
-  // S4ep2-XBLA-nx (2026-11-16): say where the bad call came from before stopping. The registers as the context has
-  // them (the generated code keeps some in locals, so a few can be stale), then every word on the guest stack that
-  // looks like a return address into the game's code (82130000-828DFD3C), nearest frame first: the call chain even
-  // where a frame does not save its link register.
+  // S4ep2-XBLA-nx (2026-11-16): the registers as the context has them before stopping (the generated code keeps some
+  // in locals, so a few can be stale). A stack scan here read past the stack's top on the first try; the access
+  // violation handler's own stack dump follows anyway.
   if (base) {
-    auto rd = [&](uint32_t va) -> uint32_t {
-      const uint8_t* p = base + va;
-      return (uint32_t(p[0]) << 24) | (uint32_t(p[1]) << 16) | (uint32_t(p[2]) << 8) | uint32_t(p[3]);
-    };
     REXLOG_ERROR("[bad call] target {:08X} lr {:08X} ctr {:08X} r1 {:08X} r3 {:08X} r4 {:08X} r5 {:08X} r9 {:08X} "
                  "r10 {:08X} r11 {:08X} r12 {:08X} r30 {:08X} r31 {:08X}",
                  ctx.last_indirect_target, uint32_t(ctx.lr), ctx.ctr.u32, ctx.r1.u32, ctx.r3.u32, ctx.r4.u32,
                  ctx.r5.u32, ctx.r9.u32, ctx.r10.u32, ctx.r11.u32, ctx.r12.u32, ctx.r30.u32, ctx.r31.u32);
-    const uint32_t sp = ctx.r1.u32;
-    if (sp >= 0x40000000u && sp < 0xF0000000u) {
-      std::string chain;
-      int found = 0;
-      for (uint32_t off = 0; off < 0x1000 && found < 24; off += 4) {
-        const uint32_t w = rd(sp + off);
-        if (w >= 0x82130000u && w < 0x828DFD3Cu && (w & 3) == 0) {
-          chain += " " + std::to_string(off) + ":" + std::to_string(w);
-          ++found;
-        }
-      }
-      REXLOG_ERROR("[bad call] code addresses on the stack (offset from r1 : address, decimal):{}", chain);
-    }
   }
   REX_FATAL("Call to invalid or unregistered function at guest address 0x{:08X}",
             ctx.last_indirect_target);
