@@ -849,11 +849,11 @@ BANJO_RENUT_HOOK_RAW(sub_828770F8) {
   };
   auto load_f32 = [&](u32 va) -> float { return std::bit_cast<float>(load_u32(va)); };
 
-  if (load_u32(0x8299804C) == 0) {
-    ctx.r3.u64 = 0x829974C8;
+  if (load_u32(0x8299804C) == 0) {  // S4ep2-XBLA-nx: Present wrapper sub_828770F8, mapped by hand (comment above)
+    ctx.r3.u64 = 0x829974C8;  // S4ep2-XBLA-nx: Present wrapper sub_828770F8, mapped by hand (comment above)
     sub_82860120(ctx, base);
   }
-  const u32 device = load_u32(0x82AAC01C);
+  const u32 device = load_u32(0x82AAC01C);  // S4ep2-XBLA-nx: Present wrapper sub_828770F8, mapped by hand (comment above)
   {  // S4ep1-nx (2026-11-15, the title's white sky): TFU-nx's frame capture for the game's own flips (which skip
      // D3DDevice_Present_hook): s4_diag_capture_present = N reads render target 0 back before each resolve and
      // EndTiling of Present N's frame, and the back buffer at its end (logs/tfu_<N>_*.ppm).
@@ -873,14 +873,14 @@ BANJO_RENUT_HOOK_RAW(sub_828770F8) {
       }
     }
   }
-  if (load_u32(0x82AA3428) == 0) {
+  if (load_u32(0x82AA3428) == 0) {  // S4ep2-XBLA-nx: Present wrapper sub_828770F8, mapped by hand (comment above)
     D3DDevice_Present_hook(device);
   } else {
     ctx.r3.u64 = device;
     ctx.r4.u64 = 0;
     sub_823FA9D8(ctx, base);
     ctx.r3.u64 = device;
-    ctx.r4.u64 = load_u32(0x82AA32CC + 4 * load_u32(0x82AAC034));
+    ctx.r4.u64 = load_u32(0x82AA32CC + 4 * load_u32(0x82AAC034));  // S4ep2-XBLA-nx: Present wrapper sub_828770F8, mapped by hand (comment above)
     ctx.r5.u64 = 0;
     sub_823FB720(ctx, base);
     sub_82862930(ctx, base);
@@ -898,7 +898,7 @@ BANJO_RENUT_HOOK_RAW(sub_828770F8) {
   const u32 s4_since = s4_entries - s4_entries_at_last;
   const bool s4_hold = REXCVAR_GET(s4_pacer_fix) && s4_since > (s4_last_woke ? 1u : 0u);
   s4_entries_at_last = s4_entries;
-  const u32 obj = load_u32(0x82AABF98);
+  const u32 obj = load_u32(0x82AABF98);  // S4ep2-XBLA-nx: Present wrapper sub_828770F8, mapped by hand (comment above)
   s4_last_woke = obj && !s4_hold;
   if (obj && s4_hold) {
     s4::g_present_skips.fetch_add(1, std::memory_order_relaxed);
@@ -906,9 +906,9 @@ BANJO_RENUT_HOOK_RAW(sub_828770F8) {
     s4::g_present_wakes.fetch_add(1, std::memory_order_relaxed);
     ctx.r3.u64 = load_u32(obj + 8);
     sub_8245A7D0(ctx, base);
-    const float ms = float(std::fma(double(load_f32(0x82940960)), double(load_f32(0x820F7E24)),
-                                    double(load_f32(0x820B48DC))));
-    ctx.r3.u64 = load_u32(0x82AABF98);
+    const float ms = float(std::fma(double(load_f32(0x82940960)), double(load_f32(0x820F7E24)),  // S4ep2-XBLA-nx: Present wrapper sub_828770F8, mapped by hand (comment above)
+                                    double(load_f32(0x820B48DC))));  // S4ep2-XBLA-nx: Present wrapper sub_828770F8, mapped by hand (comment above)
+    ctx.r3.u64 = load_u32(0x82AABF98);  // S4ep2-XBLA-nx: Present wrapper sub_828770F8, mapped by hand (comment above)
     ctx.r4.u64 = u32(rex::ppc::fctiwz(double(ms)));
     sub_828601B8(ctx, base);
   }

@@ -17,6 +17,31 @@ $repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $logDir = Join-Path $repo 'out\logs'
 New-Item -ItemType Directory -Force -Path $logDir | Out-Null
 
+# Gate 1 (S4ep2-XBLA-nx, 2026-11-19): build only the latest pushed commit. A build of 2026-11-19 ran on the commit
+# before the shader change and two rounds of tests were read as if it had it. This brings the copy up to GitHub's
+# latest itself and stops, building nothing, when it cannot.
+Push-Location $repo
+$prevEap = $ErrorActionPreference
+$ErrorActionPreference = 'Continue'
+git fetch -q origin 2>&1 | ForEach-Object { Write-Host "   $_" }
+$localHead = "$(git rev-parse HEAD)".Trim()
+$remoteHead = "$(git rev-parse origin/main)".Trim()
+if ($localHead -ne $remoteHead) {
+    Write-Host "Updating this copy to the latest pushed commit..."
+    git merge --ff-only origin/main 2>&1 | ForEach-Object { Write-Host "   $_" }
+    $localHead = "$(git rev-parse HEAD)".Trim()
+}
+$ErrorActionPreference = $prevEap
+if (-not $remoteHead -or $localHead -ne $remoteHead) {
+    Write-Host ''
+    Write-Host "STOP: this copy is at $localHead but GitHub's latest is $remoteHead, and updating failed (see above)."
+    Write-Host 'Nothing was built. Tell Claude what this printed.'
+    Pop-Location
+    exit 1
+}
+Write-Host "== Building commit $(git log --oneline -1)"
+Pop-Location
+
 $sdk = Join-Path $repo 'sdk'
 $build = Join-Path $repo 'out\pc'
 $gameRoot = Join-Path $repo 'assets\extracted'

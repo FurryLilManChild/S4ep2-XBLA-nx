@@ -23,6 +23,11 @@ because a port of the mobile version (boraeskicioglu's s4ep2-nx) already exists.
 - Before Mark's first boot test of any build that adds or remaps hooks: run the whole-program sweeps (switch-port-base
   "Before the first boot test"): tree check, clean codegen, full compile check, `tools/s4ep2_d3d_sweep.py` with every
   unpaired reachable function hooked or explained, and every hard-coded address checked.
+- Gates (docs/reporting.md), every time: build_pc.ps1 builds only GitHub's latest (gate 1); `tools/preflight.py`
+  passes before Mark gets build commands, with `--codegen --full` when hooks or codegen changed (gate 2);
+  `tools/read_log.py --expect <commit>` before any statement about a test, WRONG BUILD stops the report (gate 3);
+  reports name the build, the evidence for each fact, and what is not checked (gate 4); an independent agent checks
+  the claims before a first boot, a release, or the test after two failed ones (gate 5).
 - Never state a theory as a diagnosis: say what a test checks and what result confirms it.
 - Any setting change must be proven in force by a log line, checked first in the next log.
 - Anything to get rid of goes to `C:\Games\04 MY PORTS\FOR DELETION` (Mark empties it in bulk). Temporary transfer

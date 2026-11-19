@@ -1,0 +1,22 @@
+# S4ep2-XBLA-nx: Direct3D functions the game reaches with no Episode I pair, each read and left unhooked on purpose
+# (2026-11-18 sweep, docs/progress-log.md). tools/preflight.py fails on any reachable unpaired, unhooked function
+# not listed here. Format: address, then the reason.
+823EF940 integer SetViewport: converts and calls the hooked SetViewport sub_823ED2F8
+823EFAE0 GetStreamSource: reads the device's stream sources and strides, which Renut keeps in the guest device
+823F2458 thunk: b to the hooked Get2DSurfaceDesc sub_823F1668
+823F2530 thunk: li r4,0; b to the hooked sub_823F1DA8
+823F2548 reads a resource's +0x30/+0x20 and calls the hooked unlock sub_823FE6F0
+823FEBD0 calls sub_823FE3C8 (paired, unhooked in Episode I too)
+823FEC20 thunk into the hooked sub_823FE6F0
+823FEC30 is-resource-set test: reads device slots Renut keeps, returns 0 or 1
+823FF5B0 reached only from sub_823FE3C8 (paired, unhooked in Episode I too): owner thread checks
+823FFC40 device AddRef (+0x3C)
+823FFC68 device Release: only the game's graphics shutdown sub_828631B0
+82401988 global D3D helper on the VdGlobalDevice import slot, behind the gamma path (hooked)
+8240BB80 kernel export lookup and call (XGetProcAddress-style), no device state
+8240BE18 device teardown (reads +0x6014, XMemFree): exit only
+824125D8 display mode query on the VdGlobalDevice slot, no device writes
+82413308 XGraphics library (CPU only)
+82413698 XGraphics library (CPU only)
+82413700 XGraphics library (CPU only)
+82413768 XGraphics library (CPU only)
