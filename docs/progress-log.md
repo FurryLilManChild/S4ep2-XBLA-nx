@@ -2,6 +2,19 @@
 
 Newest first.
 
+## 2026-11-18 (late): whole-library sweep instead of crash by crash
+
+- `tools/s4ep2_d3d_sweep.py`: every Direct3D function (0x823EC100-0x82413800) the game can reach through unhooked
+  functions (bl, b, pointers in code and data; .pdata excluded), checked against the Episode I pairs. 400 reachable,
+  276 hooked. 20 reachable with no Episode I pair, each read: SetIndices sub_823EFB68 (writes ring packets: now
+  hooked), Bind and SetVertexDeclaration (hooked earlier today); the rest call hooked functions (thunks to
+  Get2DSurfaceDesc, Lock2DSurface, UnlockResource; an integer SetViewport), read device fields Renut keeps
+  (GetStreamSource sub_823EFAE0, an is-resource-set test sub_823FEC30), the device AddRef, the kernel export lookup,
+  or are the XGraphics CPU library (0x82413xxx).
+- The same sweep run on Episode I: 11 paired functions that Episode II reaches and Episode I never did, all on the
+  path of D3DDevice_Release sub_823FFC68 (the game's graphics shutdown sub_828631B0) and the gamma setters' helpers,
+  which run only behind hooked functions or at exit.
+
 ## 2026-11-18 (later): second boot, D3DVertexShader_Bind
 
 - The state-table fix held: the device's settings now apply, the render thread starts, 9 shaders are captured and
