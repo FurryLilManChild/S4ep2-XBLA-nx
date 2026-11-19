@@ -133,6 +133,8 @@ REX_HOOK_RAW(sub_82469398) {
     std::string note;
     if (made)
       note = fmt::format(", made by the port: {:08X}", made);
+    else if (!out)
+      note = ", no out pointer";
     else if (!texture)
       note = REXCVAR_GET(s4_make_missing_textures) ? ", CreateTexture made none either" : ", none (setting off)";
     REXLOG_INFO("[s4 rt] D3DXCreateTexture device {:08X} {}x{} levels {} usage {:08X} format {:08X} pool {} out "

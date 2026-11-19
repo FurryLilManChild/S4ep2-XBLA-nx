@@ -6,7 +6,7 @@ Newest first.
 
 - No-rebuild run of 850eb991 with banjo_renut_diag_resolve_trace and banjo_renut_fast_draw off (read_log.py: matches;
   70 s, 141 "[trace]" lines, three traced frames). From 30 s on (about 2,100 draws a second) each traced frame: the
-  scene (15 draws) into a 1280x720 16-bit float target BBCA41B0, then a chain of targets 480x256, 512x256, 512x512,
+  scene (14 draws) into a 1280x720 target BBCA41B0 (guest format 3F, Renut host format 10, RGBA16 float), then a chain of targets 480x256, 512x256, 512x512,
   256x256, 64x64 down to 1x1, then the back buffer (one full-screen draw and 8 small quads). Every resolve of the
   scene and the chain has destination texture 00000000; only the Present's resolve of the back buffer (to BBCA0250)
   has one. The resolves happen (through the hook); the textures they name do not exist.
@@ -16,7 +16,13 @@ Newest first.
   resolves happen). It logs each D3DXCreateTexture call (arguments, result, texture), and when one leaves its texture
   pointer 0, makes the texture with Direct3D's CreateTexture (s4_make_missing_textures, on). What confirms it: "made by
   the port" lines, "colour targets ... with no texture 0" in the 10 s line, and a picture. If the textures are made
-  and it is still black, the next suspect is what the chain's passes do with them.
+  and it is still black, the next suspect is what the chain's passes do with them. The texture the screen samples
+  (0x82996C4C) is a view of descriptor 0x82996BF0's depth texture (+0x38), also made by D3DXCreateTexture (calls at
+  0x82861980 and 0x82861B30); the trace shows no depth resolve (flags 4) at all, consistent with that texture being 0.
+- Gate 5 asked whether the new hook is reached: the generated tree calls __imp__sub_82469398 directly (direct_calls).
+  build_pc.ps1 step 3d reruns post_codegen.py (direct_calls --redo) when the hooked set differs from
+  out\post_codegen.hooks; Mark's copy lacks 82469398, so his build reruns it. Checked in the cloud: after
+  post_codegen.py, 0 direct __imp__ calls to sub_82469398, sub_828620A8 or sub_828755A8 remain.
 
 ## 2026-11-19 (midday): the texture dump; the game's render-target descriptors; gate 5 stops dd60adbf
 
