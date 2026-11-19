@@ -20,6 +20,9 @@ because a port of the mobile version (boraeskicioglu's s4ep2-nx) already exists.
 - Never ship a Switch build without the renderer, sound, input and game code all in it.
 - Present test findings and the next build's plan to Mark and wait for his go-ahead (cloud boot work before the title
   screen is the exception: build and fix without asking, with an update at least every 10 minutes).
+- Before Mark's first boot test of any build that adds or remaps hooks: run the whole-program sweeps (switch-port-base
+  "Before the first boot test"): tree check, clean codegen, full compile check, `tools/s4ep2_d3d_sweep.py` with every
+  unpaired reachable function hooked or explained, and every hard-coded address checked.
 - Never state a theory as a diagnosis: say what a test checks and what result confirms it.
 - Any setting change must be proven in force by a log line, checked first in the next log.
 - Anything to get rid of goes to `C:\Games\04 MY PORTS\FOR DELETION` (Mark empties it in bulk). Temporary transfer
