@@ -84,6 +84,7 @@ set(RENUT_SOURCES
     # S4ep1-nx (2026-11-15): counts of the game's frame pieces every 10 s, either renderer (the slow-motion check).
     src/s4/s4_speed_diag.cpp
     src/s4/s4_rt_diag.cpp
+    src/s4/s4_metal.cpp
     src/s4/s4_menu.cpp
     # S4ep1-nx: TFU's job-worker idle wait (src/tfu/tfu_job_idle.cpp, a patch at a TFU address) left out.
     src/rr6_keys.cpp
@@ -671,7 +672,7 @@ if(REXGLUE_PLATFORM_SWITCH)
         set(RENUT_ICON_ARG ICON "${RENUT_ICON}")
     endif()
     rexglue_switch_add_nro(renut
-        NAME "Sonic the Hedgehog 4: Episode I"
+        NAME "Sonic the Hedgehog 4: Episode II"  # S4ep2-XBLA-nx
         AUTHOR "FurryLilManChild"
         VERSION "0.1.0"
         ${RENUT_ICON_ARG})

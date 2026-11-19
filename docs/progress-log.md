@@ -2,6 +2,20 @@
 
 Newest first.
 
+## 2026-11-19 (afternoon): the Switch build and Episode METAL
+
+- Mark: colours looked right on screen (so the swap is in the scan-out capture's readback, not the display; left).
+  Next: the Switch build and the Episode METAL unlock.
+- Switch shaders (cloud, the tools Mark OK'd for Episode I: XenosRecomp from the base tree, SPIRV-Cross, uam): Mark's
+  renut_shader_dump (590) -> early-alpha pass, SPIR-V 590, uam 590 of 590 (vs 389, ps 201), every optimisation pass,
+  package 1,320 KB (out/renut_switch/deko3d_glsl.bin, sha256 01c0b4d8747d1bd6). Renut's 27 host shaders for deko3d
+  are the base tree's (shaders folder identical). Both put in Mark's out\renut_switch and out\renut_switch_host.
+  NRO title "Sonic the Hedgehog 4: Episode II".
+- Episode METAL: the "Check Ep1 License" task (string 0x821059B8, constructor sub_823777A8) runs sub_823779F8, which
+  enumerates marketplace content (type 0x000D0000) for title 0x58410A07 (Episode I), mounts it as "epo" and, with
+  the license bit, writes 1 to [0x82AABC38]. sub_82343CB8 starts the check only while that word is 0; menus read it.
+  s4/s4_metal.cpp (s4_episode_metal, on) sets it before sub_82343CB8 and after the worker; "[s4 metal]" logs it.
+
 ## 2026-11-19 (12:40): in game
 
 - Run of 11adf4fb (read_log.py: matches). Mark: into the first level and played. No crash; the window was closed
