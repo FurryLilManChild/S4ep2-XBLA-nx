@@ -11,6 +11,11 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
   `git ls-files` (must be empty outside docs/); resolve every codegen warning; run post_codegen.py and a
   `-fsyntax-only` pass over every generated file and every app source in the cloud (about 15 minutes on 2 cores);
   read this file first.
+- 2026-11-18 (S4ep2-XBLA-nx): a fix for one crash is not a working boot: say what the fix cures and that the next
+  run shows what comes after it. For a crash, symbolize the host PC first (`llvm-symbolizer --obj=renut.exe
+  0x140000000+offset` with renut.pdb beside it, both staged from out\pc): it names the generated function at once,
+  no diagnostic build needed. When the base game's alignment leaves a library function unpaired, the base game never
+  called it: hook or vet every unpaired function the new game calls before the first boot.
 
 
 

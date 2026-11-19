@@ -2,6 +2,18 @@
 
 Newest first.
 
+## 2026-11-18 (later): second boot, D3DVertexShader_Bind
+
+- The state-table fix held: the device's settings now apply, the render thread starts, 9 shaders are captured and
+  data.cpk opens. Then a guest read at the stack's top (0x70140000), the stack overwritten with 0xAF.
+- Found with llvm-symbolizer on Mark's renut.exe and renut.pdb (staged from out\pc): host PC renut.exe+0x983684 is
+  sub_82403FB8, Episode II's D3DVertexShader_Bind (shader, declaration, strides; no Episode I pair, since Episode I
+  never calls it). Its loop writes (stride >> 2) as bytes for [declaration + 0x1C] elements: a Renut declaration
+  record there and strides from uninitialised stack (0xBEBEBEBE >> 2 = 0x2FAFAFAF). Hooked to Renut's Bind.
+- Also hooked: sub_823F4050, D3DDevice_SetVertexDeclaration (a function in Episode II, inline in Episode I).
+- Of 132 Direct3D functions the game calls from outside the library, 13 have no Episode I pair; besides the two above,
+  sub_823EFAE0 and sub_823EFB68 read the device's own slots and write ring packets, and are not yet checked.
+
 ## 2026-11-18: first boot crash found (Episode I's state tables)
 
 - Mark's boots stopped right after the device was created, on a call to 0x80C10054. The registers logged by the new
