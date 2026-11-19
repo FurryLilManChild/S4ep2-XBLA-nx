@@ -220,6 +220,33 @@ def anon_externs():
                  '%d extern declarations inside an anonymous namespace%s' % (len(hits), (': ' + '; '.join(hits[:4])) if hits else ''))
 
 
+def addr_refs():
+    r = sh('python3 tools/s4ep2_addr_refs.py')
+    last = r.stdout.strip().splitlines()[-1] if r.stdout.strip() else r.stderr[-200:]
+    mism = [l for l in r.stdout.splitlines() if l.startswith('MISMATCH')]
+    return check('addresses against their functions', r.returncode == 0, last + ('; ' + '; '.join(mism[:3]) if mism else ''))
+
+
+def overrides_check():
+    # 2026-11-19: two function entries appended after the file's [[switch_tables]] block became keys of that table;
+    # the generator ignored them without a warning and the crash they were meant to fix stayed. Every [functions]
+    # address must be registered by the generated code, and no table may carry keys the generator does not read.
+    import tomllib
+    t = tomllib.load(open(ROOT + '/app/overrides.toml', 'rb'))
+    bad = []
+    for st in t.get('switch_tables', []):
+        extra = set(st) - {'address', 'register', 'labels'}
+        if extra:
+            bad.append('switch table %s has keys %s' % (hex(st.get('address', 0)), ' '.join(sorted(extra))))
+    init = open(ROOT + '/app/generated/renut_init.cpp').read() if os.path.exists(ROOT + '/app/generated/renut_init.cpp') else ''
+    missing = [k for k, v in t.get('functions', {}).items()
+               if k.lower().startswith('0x') and not v.get('size') == 0 and ('{ 0x%08X,' % int(k, 16)) not in init]
+    if missing:
+        bad.append('%d [functions] entries not registered (renut_init.cpp): %s' % (len(missing), ' '.join(missing[:5])))
+    return check('overrides in force', not bad, '; '.join(bad) if bad else '%d functions, %d switch tables, all registered'
+                 % (len(t.get('functions', {})), len(t.get('switch_tables', []))))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--codegen', action='store_true')
@@ -232,7 +259,7 @@ def main():
         results.append(codegen())
     if a.full:
         results.append(generated())
-    results += [app_sources(), anon_externs(), d3d_sweep(), offsets(), shaders()]
+    results += [app_sources(), anon_externs(), overrides_check(), d3d_sweep(), offsets(), addr_refs(), shaders()]
     ok = all(results)
     say('RESULT: %s (%d of %d checks passed)' % ('PASS' if ok else 'FAIL', sum(results), len(results)))
     os.makedirs(ROOT + '/out', exist_ok=True)

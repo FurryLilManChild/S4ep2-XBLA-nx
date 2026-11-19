@@ -2,6 +2,25 @@
 
 Newest first.
 
+## 2026-11-19 (midday): a picture, wrong; the caps address; the level-load crash
+
+- Run of c3e99be0 (read_log.py: matches). Things on screen, not right (Mark's screenshot: desert ruins in bands, a
+  smaller copy in a square, blue). Crash at a level load: "Call to invalid or unregistered function at guest address
+  0x822AA168".
+- [s4 rt]: every D3DXCreateTexture returned 8007000E (E_OUTOFMEMORY) with texture 0, and the port made each one
+  ("made by the port"); "colour targets ... with no texture 0" afterwards; 6,600 of 7,800 ends resolved per 10 s.
+- Cause of the E_OUTOFMEMORY: kDeviceCapsVa was 0x820F80E0 (game strings "Boss4_01"...), written from
+  "lis 0x8211, addi -0x7F20", which is 0x821080E0 (the D3DCAPS block, checked in the image). D3DX's checks read the
+  strings as caps. Fixed; tools/s4ep2_addr_refs.py (in preflight) recomputes tagged addresses against the functions
+  they name and flags the old value.
+- Captures: the back buffer is orange (average 139/89/70 at Present 1000) and the scan-out blue (67/86/138): red and
+  blue swap between the back buffer and the screen. Not changed in this build (the caps fix changes the textures;
+  one run first).
+- Crash: tools/built_ptr_scan.py finds two built code addresses inside .pdata functions, 0x822AA168 (the crash) and
+  0x82596B48, both callbacks: added to overrides.toml. First appended after the [[switch_tables]] block, where they
+  became keys of that table and the generator ignored them; caught by checking renut_init.cpp, moved into
+  [functions]; preflight now checks every [functions] entry is registered.
+
 ## 2026-11-19 (late morning, 11:05): build 5c61c45b failed to link
 
 - pc_build.log: lld-link undefined symbol renut::gpu::(anonymous)::g_banjo_game_frames, from render/draw.cpp:7619

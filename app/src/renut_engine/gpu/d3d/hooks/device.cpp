@@ -1064,7 +1064,7 @@ void D3DDevice_InsertCallback_hook(u32 device, u32 /*type*/, u32 callback, u32 c
 
 constexpr u32 kDeviceOffsetReferenceCount = 0x3C;
 constexpr u32 kDeviceOffsetOwnerThread = 0x2B08;  // S4ep2-XBLA-nx: 0x2A88->0x2B08 (CreateDevice stores the thread id at +0x2B08)
-constexpr u32 kDeviceCapsVa = 0x820F80E0;  // S4ep2-XBLA-nx: GetDeviceCaps sub_824040C8 copies 0x130 bytes from lis -0x7DEF, addi -0x7F20  // S4ep1-nx: TFU 0x8202D230 (the same D3DCAPS words)
+constexpr u32 kDeviceCapsVa = 0x821080E0;  // S4ep2-XBLA-nx: GetDeviceCaps sub_824040C8 copies 0x130 bytes from lis 0x8211 + addi -0x7F20 = 0x821080E0 (was 0x820F80E0 by a slip, game strings: the game's D3DXCreateTexture checks failed, E_OUTOFMEMORY, 2026-11-19)  // S4ep1-nx: TFU 0x8202D230 (the same D3DCAPS words)
 //  // N&B's constant D3DCAPS9 (katamari-nx: 0x82161B30->0x820FC1F8)  // TFU-nx: GetDeviceCaps sub_822DDBE8, tools/renut_data_refs.py
 constexpr u32 kDeviceCapsSize = 0x130;
 // katamari-nx: XDK 2.0.5632 has no D3D_IsFusion and no such word (N&B's 0x82DC67D4); 0 = not a Fusion GPU.

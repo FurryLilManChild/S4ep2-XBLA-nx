@@ -74,3 +74,11 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
   failed at the link on Mark's PC. Preflight's compile check is syntax only and cannot see that; it now also fails on
   any extern declared inside an anonymous namespace. Code committed but never built (a test judged unsound and not
   sent) still rides along in the next build: remove it when the test is dropped.
+- 2026-11-19 (S4ep2-XBLA-nx): kDeviceCapsVa was written as 0x820F80E0 from "lis 0x8211, addi -0x7F20" (that is
+  0x821080E0): GetDeviceCaps handed the game a block of strings as its caps, and every D3DXCreateTexture failed with
+  E_OUTOFMEMORY, so the render targets' textures did not exist (the black screen, then a wrong picture once the port
+  made them itself). The tag comment showed the derivation and nobody recomputed it. tools/s4ep2_addr_refs.py (in
+  preflight) now checks that each tagged address naming a function is built by that function's code.
+- 2026-11-19 (S4ep2-XBLA-nx): override entries appended at the end of app/overrides.toml land in its last table
+  ([[switch_tables]]), not [functions]; the generator ignores unknown keys silently. Preflight now checks every
+  [functions] entry is registered in the generated renut_init.cpp.

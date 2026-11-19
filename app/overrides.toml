@@ -104,6 +104,12 @@
 "0x828C95B0" = { }  # 20 instructions, pointer at 0x828E0060
 "0x828DA178" = { }  # 1 instructions, built at 0x828D95A0
 
+# Mark's PC run of c3e99be0 (2026-11-19): "Call to invalid or unregistered function at guest address 0x822AA168"
+# when a level loaded. tools/built_ptr_scan.py (code addresses built with lis/addi that land inside a .pdata function
+# without starting one) lists two, both preceded by an unconditional branch and both handed out as callbacks:
+"0x822AA168" = { }  # built at 0x822A9D00 and 0x822A9E30, stored at +0xFC of the object (the crash)
+"0x82596B48" = { }  # built at 0x825AFD3C, passed in r6 to sub_8284EAE8
+
 # Mark's first full PC build (2026-11-16), found by a cloud compile check of all the generated code: sub_826D01F0's
 # byte jump table (lbzx from 0x82073710, base 0x826D0238, bctr at 0x826D0234) has no bounds check, so the generator
 # read 513 entries; from entry 16 on the bytes belong to something else and point into sub_826D0340 (mid-sequence:
@@ -114,3 +120,4 @@
 address = 0x826D0234
 register = 11
 labels = [0x826D0268, 0x826D0268, 0x826D0268, 0x826D0268, 0x826D0340, 0x826D0268, 0x826D0268, 0x826D0268, 0x826D0268, 0x826D0238, 0x826D0268, 0x826D0268, 0x826D0238, 0x826D0238, 0x826D0238, 0x826D0238]
+
