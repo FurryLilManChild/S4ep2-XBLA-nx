@@ -242,11 +242,11 @@ constexpr u32 FieldOfOffset(u32 at) {
     return kFieldMisc;
   // Title update 3's CDevice (banjo-nx 2026-10-29): 4 bytes more from 0x2AC0 and 8 from 0x2E30 (the base's 0x2E2C),
   // the same from 0x3390 (d3d.h); the base's boundaries in the comments of DrawField moved with their fields.
-  if (at < 0x2E00)  // katamari-nx: 0x2E04->0x2DF8 (TFU-nx: offset 0x2DF8->0x2E00)
+  if (at < 0x2EF8)  // S4ep2-XBLA-nx: offset 0x2E00->0x2EF8;  // katamari-nx: 0x2E04->0x2DF8 (TFU-nx: offset 0x2DF8->0x2E00)
     return kFieldUnread;
   if (at >= d3d::kDeviceOffsetVertexDeclaration && at < d3d::kDeviceOffsetVertexDeclaration + 4)
     return kFieldDecl;
-  if (at < 0x2FB0)  // katamari-nx: 0x2F08->0x2EF8 (TFU-nx: offset 0x2EF8->0x2F00) (S4ep1-nx: offset 0x2F00->0x2FB0)
+  if (at < 0x307C)  // S4ep2-XBLA-nx: offset 0x2FB0->0x307C;  // katamari-nx: 0x2F08->0x2EF8 (TFU-nx: offset 0x2EF8->0x2F00) (S4ep1-nx: offset 0x2F00->0x2FB0)
     return kFieldPrivate;
   if (at < d3d::kDeviceOffsetIndexBuffer)
     return kFieldTail;
@@ -258,7 +258,7 @@ constexpr u32 FieldOfOffset(u32 at) {
     return kFieldStreams;
   if (at < d3d::kDeviceOffsetTextures + 4 * d3d::kTextureFetchSlots)
     return kFieldTexWords;
-  if (at < 0x3234)  // katamari-nx: 0x318C->0x317C (TFU-nx: offset 0x317C->0x3184) (S4ep1-nx: offset 0x3184->0x3234)
+  if (at < 0x32FC)  // S4ep2-XBLA-nx: offset 0x3234->0x32FC;  // katamari-nx: 0x318C->0x317C (TFU-nx: offset 0x317C->0x3184) (S4ep1-nx: offset 0x3184->0x3234)
     return kFieldTail;
   if (at < d3d::kDeviceOffsetPixelShader)
     return kFieldScissor;

@@ -2,6 +2,20 @@
 
 Newest first.
 
+## 2026-11-18 (night): third boot runs (60 fps, light blue screen), device offsets the first pass missed
+
+- No crash: 90 s at 60 fps, audio running, data.cpk read; about 37 draws a frame reach Renut and none are drawn. The
+  log: "Draw dropped: vertex shader 00000000" and 71 shaders captured (not in the build's shader cache yet; the next
+  build adds them from out\pc\shader_capture, Renut's normal first-run step).
+- The vertex shader 0: d3d_native_state.cpp keeps its own copy of 27 device offsets (blend, depth, stencil, point,
+  sampler mips, viewport, declaration, shaders, export, present interval, behaviour flags) that the band tool did not
+  cover; SetVertexShader wrote Episode I's 0x3248, the draws read 0x3310. Also device.cpp's flag bytes, fence
+  completion pointer, screen-extent word and ring-reset loop, and draw.h's census boundaries.
+- `tools/s4ep2_offset_check.py`: maps each offset by its own field votes where it has them, else the bands, and checks
+  every "S4ep2-XBLA-nx: offset" tag in app/src against that (0 mismatches). The votes show two fields the bands get
+  wrong: max anisotropy (0x2F44) and the Z filter (0x2F92) are at 0x2A70 and 0x2A8A in Episode II. A scan for
+  untagged constants in 0x2A80-0x6080 outside comments now finds only non-device numbers.
+
 ## 2026-11-18 (late): whole-library sweep instead of crash by crash
 
 - `tools/s4ep2_d3d_sweep.py`: every Direct3D function (0x823EC100-0x82413800) the game can reach through unhooked

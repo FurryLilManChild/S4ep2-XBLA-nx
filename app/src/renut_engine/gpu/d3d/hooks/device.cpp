@@ -165,15 +165,15 @@ constexpr u32 kRingDataSize = 1u << 20;
 // offsets into the device allocation.
 // Byte whose 0x80 bit marks a device without GPU hardware (its device-type-2
 // path sets it); D3D's code skips hardware work for it.
-constexpr u32 kDeviceOffsetFlags = 10940;
+constexpr u32 kDeviceOffsetFlags = 11068;  // S4ep2-XBLA-nx: offset 0x2abc->0x2b3c (field votes)
 constexpr u8 kDeviceFlagNoHardware = 0x80;
 // Byte whose 0x2 bit makes CDevice::SetFence (0x82246420) write each fence's
 // completion value itself instead of waiting for the GPU to. The title device
 // runs without it once created: its fences complete on the render thread.
-constexpr u32 kDeviceOffsetFlags2 = 10941;
+constexpr u32 kDeviceOffsetFlags2 = 11069;  // S4ep2-XBLA-nx: offset 0x2abd->0x2b3d (field votes)
 constexpr u8 kDeviceFlagImmediateFences = 0x02;
 // Pointer to the completed-fence word IsFencePending / BlockOnFence read.
-constexpr u32 kDeviceOffsetFenceCompletion = 10896;
+constexpr u32 kDeviceOffsetFenceCompletion = 11024;  // S4ep2-XBLA-nx: offset 0x2a90->0x2b10 (field votes)
 // Nonzero while a KickOff is in progress (BlockOnFence does not kick then).
 constexpr u32 kDeviceOffsetInKickOff = 13600;  // katamari-nx: 13232->13216 (TFU-nx: offset 13216->13232) (S4ep1-nx: offset 13232->13408) (S4ep2-XBLA-nx: offsets moved 13408->13600)
 // Side buffer (0x12C0 bytes) every device gets.
@@ -272,7 +272,7 @@ void XenonGpuInitialize(native::Device d) {
   d.SetW(0x2A48, 2);
   for (u32 word = 0; word < 5; ++word)
     d.SetPending(word, ~u64(0));
-  d.SetW(0x2AA4, 0xE);
+  d.SetW(0x2B24, 0xE);  // S4ep2-XBLA-nx: offset 0x2AA4->0x2B24 (field votes)
 }
 
 // D3D::InitializeApiState (0x82641BC8).
@@ -805,7 +805,7 @@ u32 D3DDevice_BeginCommandBuffer_hook(u32 device_va, u32 command_buffer, u32 fla
   d.SetB(native::off::Flags1, d.B(native::off::Flags1) & 0xDF);
   d.SetW(0x3BD8, 0);  // katamari-nx: 0x3A44->0x3A2C (TFU-nx: offset 0x3A2C->0x3A44) (S4ep1-nx: offset 0x3A44->0x3B18) (S4ep2-XBLA-nx: offsets moved 0x3B18->0X3BD8)
   d.SetW(0x3BD4, bw(kBufferAllocatorSize));  // katamari-nx: 0x3A40->0x3A28 (TFU-nx: offset 0x3A28->0x3A40) (S4ep1-nx: offset 0x3A40->0x3B14) (S4ep2-XBLA-nx: offsets moved 0x3B14->0X3BD4)
-  for (u32 offset = 0x35A4; offset <= 0x35B8; offset += 4)  // katamari-nx: 0x34D0->0x34B8, 0x34E4->0x34CC (TFU-nx: offset 0x34B8->0x34D0, 0x34CC->0x34E4) (S4ep1-nx: offset 0x34D0->0x35A4, 0x34E4->0x35B8)
+  for (u32 offset = 0x3664; offset <= 0x3678; offset += 4)  // S4ep2-XBLA-nx: offset 0x35A4->0x3664, 0x35B8->0x3678 (field votes);  // katamari-nx: 0x34D0->0x34B8, 0x34E4->0x34CC (TFU-nx: offset 0x34B8->0x34D0, 0x34CC->0x34E4) (S4ep1-nx: offset 0x34D0->0x35A4, 0x34E4->0x35B8)
     d.SetW(offset, 0);
   native::RewindRing(d);
 
