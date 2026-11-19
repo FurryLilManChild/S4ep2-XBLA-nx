@@ -14,6 +14,7 @@
 #include "s4/s4_shader_prep.h"
 
 namespace s4 {
+#if defined(__SWITCH__)  // banjo_renut_deko3d.cpp (ShaderPrep) is in the Switch build only
 namespace {
 
 class ShaderPrepDialog final : public rex::ui::ImGuiDialog {
@@ -52,5 +53,8 @@ class ShaderPrepDialog final : public rex::ui::ImGuiDialog {
 void RegisterShaderPrepScreen(rex::ui::ImGuiDrawer* drawer) {
   drawer->AddDialog(new ShaderPrepDialog(drawer));
 }
+#else
+void RegisterShaderPrepScreen(rex::ui::ImGuiDrawer*) {}
+#endif
 
 }  // namespace s4

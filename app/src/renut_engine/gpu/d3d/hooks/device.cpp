@@ -1329,7 +1329,9 @@ constexpr u32 kS4BehaviorFlags = 0x0C000001u;
 u32 S4_CreateDevice_hook() {
   // S4ep2-XBLA-nx (2026-11-19): every listed shader variant made ready before the game draws (the progress screen,
   // s4/s4_shader_prep.cpp); nothing off the Switch or without deko3d_variants.txt.
+#if defined(__SWITCH__)  // banjo_renut_deko3d.cpp is in the Switch build only
   banjo::renut_gpu::deko3d::PrepareListedVariants();
+#endif
   rex::MappedPtr<rex::be_u32> holder(GuestPtr<rex::be_u32>(kS4DeviceHolderVa), kS4DeviceHolderVa);
   const u32 hr = Direct3D_CreateDevice_hook(0, 1, 0, kS4BehaviorFlags, kS4PresentParametersVa, holder);
   return hr == 0 ? 0u : 0x80004005u;

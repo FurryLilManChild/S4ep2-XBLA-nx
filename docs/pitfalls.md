@@ -86,3 +86,7 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
   shader variant compiled mid-play. The shader cache and the up-front pass belong in the first Switch build
   (switch-port-base "Shaders compiled up front"). Also: Python's text mode turns a CRLF file into LF on rewrite;
   edit CRLF files (most of Renut and plume) in binary or with newline='' and check git diff --stat for whole-file diffs.
+- 2026-11-19 (S4ep2-XBLA-nx): new calls into banjo_renut_deko3d.cpp (compiled only in the Switch build) from
+  device.cpp and s4_shader_prep.cpp passed the syntax check and failed the PC link. Preflight now fails on any such
+  call outside an #if naming __SWITCH__, PLUME_DEKO3D or REX_PLATFORM_SWITCH. Before calling a function, check which
+  builds compile the file that defines it.

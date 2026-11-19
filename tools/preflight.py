@@ -247,6 +247,39 @@ def overrides_check():
                  % (len(t.get('functions', {})), len(t.get('switch_tables', []))))
 
 
+def switch_only_calls():
+    # 2026-11-19: device.cpp and s4_shader_prep.cpp called banjo_renut_deko3d.cpp's functions, which only the Switch
+    # build compiles: the PC link failed (Mark's build of 93f76a21). Every use of a function declared in
+    # banjo_renut_deko3d.h outside the Switch-only sources must sit inside an #if naming __SWITCH__, PLUME_DEKO3D or
+    # REX_PLATFORM_SWITCH. (The syntax check does not link, so it cannot see this.)
+    hdr = open(ROOT + '/app/src/renut_engine/gpu/banjo_renut_deko3d.h', encoding='utf-8', errors='replace').read()
+    hdr = re.sub(r'//[^\n]*', '', hdr)
+    names = set(re.findall(r'\b(\w+)\s*\([^;{]*\)\s*;', hdr)) - {'if', 'for', 'while', 'return'}
+    switch_only = ('banjo_renut_deko3d.cpp',)
+    bad = []
+    for f in glob.glob(ROOT + '/app/src/**/*.cpp', recursive=True):
+        if f.endswith(switch_only) or '_switch' in os.path.basename(f) or '/me/' in f:
+            continue
+        stack = []
+        for ln, line in enumerate(open(f, encoding='utf-8', errors='replace'), 1):
+            t = line.strip()
+            if t.startswith('#if'):
+                stack.append(bool(re.search(r'__SWITCH__|PLUME_DEKO3D|REX_PLATFORM_SWITCH', t)))
+            elif t.startswith('#el'):
+                if stack:
+                    stack[-1] = False if not re.search(r'__SWITCH__|PLUME_DEKO3D|REX_PLATFORM_SWITCH', t) else stack[-1]
+            elif t.startswith('#endif'):
+                if stack:
+                    stack.pop()
+            elif not t.startswith('//'):
+                code = re.sub(r'//.*', '', line)
+                for m in re.finditer(r'deko3d::(\w+)\s*\(', code):
+                    if m.group(1) in names and not any(stack):
+                        bad.append('%s:%d %s' % (os.path.relpath(f, ROOT), ln, m.group(1)))
+    return check('Switch-only functions guarded', not bad, '%d unguarded calls into banjo_renut_deko3d.cpp%s'
+                 % (len(bad), (': ' + '; '.join(bad[:4])) if bad else ''))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--codegen', action='store_true')
@@ -259,7 +292,7 @@ def main():
         results.append(codegen())
     if a.full:
         results.append(generated())
-    results += [app_sources(), anon_externs(), overrides_check(), d3d_sweep(), offsets(), addr_refs(), shaders()]
+    results += [app_sources(), anon_externs(), switch_only_calls(), overrides_check(), d3d_sweep(), offsets(), addr_refs(), shaders()]
     ok = all(results)
     say('RESULT: %s (%d of %d checks passed)' % ('PASS' if ok else 'FAIL', sum(results), len(results)))
     os.makedirs(ROOT + '/out', exist_ok=True)
