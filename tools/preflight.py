@@ -280,6 +280,30 @@ def switch_only_calls():
                  % (len(bad), (': ' + '; '.join(bad[:4])) if bad else ''))
 
 
+def link_check():
+    # 2026-11-19 (Mark: "enhance your pre-flight check"): the whole program built and linked for Linux in the cloud
+    # (out/linux-link: the SDK, every generated file, every app source, clang 20 with the PC build's -march), so a
+    # missing or duplicate symbol, or a call into code only another platform compiles, fails here and not on Mark's PC.
+    # Incremental after the first run. Not covered: Windows-only sources and the Switch NRO's own link.
+    build = ROOT + '/out/linux-link'
+    if not os.path.exists(build + '/build.ninja'):
+        return check('Linux link', False, 'no out/linux-link (configure it: see this function)')
+    r = sh('ninja -j2 -k 0', cwd=build, timeout=14400)
+    errs = [l for l in (r.stdout + r.stderr).splitlines() if 'error:' in l or 'undefined reference' in l or 'FAILED:' in l]
+    return check('Linux link', r.returncode == 0, 'exit %d%s' % (r.returncode, ('; ' + ' | '.join(errs[:3])[:400]) if errs else ''))
+
+
+def switch_compile():
+    # 2026-11-19 (Mark: "enhance your pre-flight check"): every app and plume source the Switch build compiles, with
+    # the Switch build's own defines, flags and include paths and devkitPro's headers (tools/switch_syntax_cloud.py), so
+    # code only the Switch compiles (PLUME_DEKO3D, __SWITCH__) is checked before Mark builds. The game code itself is
+    # the same text the PC compile checks.
+    r = sh('python3 tools/switch_syntax_cloud.py', timeout=3600)
+    last = r.stdout.strip().splitlines()[-1] if r.stdout.strip() else r.stderr[-300:]
+    fails = [l for l in r.stdout.splitlines() if l.startswith('FAIL') or l.startswith('    ')]
+    return check('Switch compile', r.returncode == 0, last + ('; ' + ' | '.join(fails[:4])[:400] if fails else ''))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--codegen', action='store_true')
@@ -292,7 +316,7 @@ def main():
         results.append(codegen())
     if a.full:
         results.append(generated())
-    results += [app_sources(), anon_externs(), switch_only_calls(), overrides_check(), d3d_sweep(), offsets(), addr_refs(), shaders()]
+    results += [app_sources(), anon_externs(), switch_only_calls(), overrides_check(), d3d_sweep(), offsets(), addr_refs(), shaders(), switch_compile(), link_check()]
     ok = all(results)
     say('RESULT: %s (%d of %d checks passed)' % ('PASS' if ok else 'FAIL', sum(results), len(results)))
     os.makedirs(ROOT + '/out', exist_ok=True)

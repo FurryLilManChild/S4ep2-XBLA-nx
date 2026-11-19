@@ -37,3 +37,14 @@ Every UNSUPPORTED or WRONG claim is fixed or removed before the message goes out
 
 `python3 tools/preflight.py` (plus `--codegen --full` when hooks, overrides or code generation changed) must report
 PASS before Mark gets build commands; the reply quotes its RESULT line.
+
+## Gate 2's checks (2026-11-19, after Mark: "enhance your pre-flight check")
+
+Preflight now builds the program the way each target does, not file by file only:
+- Switch compile: every app and plume source the Switch build compiles, with that build's defines, flags and include
+  paths and the headers of Mark's devkitPro (tools/switch_syntax_cloud.py; out/switch_ref holds the Switch build's
+  generated headers, its flags and its source list, copied from Mark's out\switch; /home/claude/dkp the headers).
+  Refresh out/switch_ref when the Switch configuration changes.
+- Linux link: the whole program (SDK, every generated file, every app source) built and linked for Linux
+  (out/linux-link, clang 20, the PC build's -march), incremental after the first run.
+- Still not covered, and named in every report: Windows-only sources, the Windows link, the Switch NRO's link.
