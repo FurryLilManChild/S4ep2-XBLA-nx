@@ -33,7 +33,7 @@ def main():
     lines = open(path, encoding='utf-8', errors='replace').read().splitlines()
 
     print('== log %s (%d lines)' % (path, len(lines)))
-    m = first(lines, r'pc build ([0-9a-f]{7,}), built ([^\s]+ [^\s]+)')
+    m = first(lines, r'(?:pc|switch) build ([0-9a-f]{7,}), built ([^\s]+ [^\s]+)')
     built = m.group(1) if m else ''
     if not built:
         print('WRONG BUILD: no build stamp in the log. Stop: nothing below is about a known build.')
