@@ -17,7 +17,7 @@ Version **0.5.0**: feature complete, needs a full playthrough.
 | --- | --- |
 | Switch | Plays at a steady 60 fps at stock clocks in handheld, drawn at 960x540. Title, zones, acts and special stages tested; not yet played start to finish; docked not tested yet |
 | PC | Builds and plays (Vulkan or D3D12, or the emulated GPU); no PC release yet |
-| Episode METAL | Unlocked without an Episode I save or license (`s4_episode_metal`, on by default) |
+| Episode METAL | Unlocked without an Episode I save or license (`s4_episode_metal`, on by default); it appears in Single Player after one main level and a return to the main menu |
 | Port menu | Hold **-** and **+** together: FPS counter, handheld and docked resolution, handheld GPU profile, stick dead zone; Save and close keeps the choices |
 
 Known issues: see [Known issues](#known-issues). Session notes: [docs/progress-log.md](docs/progress-log.md).

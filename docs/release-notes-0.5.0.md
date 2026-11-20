@@ -11,7 +11,8 @@ needs a full playthrough.
 - Shaders prepared before the game starts: a short "Preparing shaders" screen at launch reads every shader variant
   seen in testing from `deko3d_shaders.bin`, so effects do not stutter the first time they appear in play.
 - Episode METAL without Episode I: the 360 version unlocks it by checking for an Episode I license; the port answers
-  that check itself (`s4_episode_metal`, on by default).
+  that check itself (`s4_episode_metal`, on by default). It appears in Single Player once you have played one main
+  level and gone back to the main menu, as on the 360 with Episode I.
 - A port menu: hold - and + together. FPS counter, handheld and docked resolution, handheld GPU profile, stick dead
   zone; Save and close keeps the choices in `renut.toml`.
 
