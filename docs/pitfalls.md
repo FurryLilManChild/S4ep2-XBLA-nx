@@ -19,6 +19,9 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
   game's own files before the first boot (default.xex and every data archive) and checks a run's captures against
   them; capture is only a check that nothing comes from elsewhere. And a "one time" build step that runs before its
   input exists (the code image) silently does nothing: run such steps whenever the input is there.
+- 2026-11-19 (S4ep2-XBLA-nx): build commands written from memory had a `git pull` build_pc.ps1 already does and no
+  `-ExecutionPolicy Bypass`. Paste the commands preflight prints (tools/build_commands.py, from each script's Usage
+  line), and the SD file list the build script itself prints at its end.
 - 2026-11-18 (S4ep2-XBLA-nx): a fix for one crash is not a working boot: say what the fix cures and that the next
   run shows what comes after it. For a crash, symbolize the host PC first (`llvm-symbolizer --obj=renut.exe
   0x140000000+offset` with renut.pdb beside it, both staged from out\pc): it names the generated function at once,

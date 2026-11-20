@@ -2,6 +2,24 @@
 
 Newest first.
 
+## 2026-11-19 (21:10): Switch test of 8a8a68aa; release 0.5.0
+
+- read_log.py --expect 8a8a68aa: renut_003.log and renut_004.log match (built 21:26 UTC). Handheld at 1020/460.8/1331.2
+  MHz; after boot every 10 s sample 56.6-60.0 fps (up to 308,400 draws in 10 s); 0 shaders missing, 0 draws dropped;
+  "[s4 shaders] prepared ... 1639 variants of 572 shaders in 1.6 s; 0 compiled on the console"; "[s4 metal]" flag set.
+  rex_crash.log is the earlier build's (8aff941b): no crash file from 8a8a68aa. Mark: "things are lookin good". Not in
+  the log: which special stages were finished (no line marks a stage's end).
+- One 21.3 s stretch at 13 fps in renut_003, between shader preparation and the license check (boot, before the
+  menu); renut_004's boot has none. Not in play.
+- The console's deko3d_shaders.bin (20:47) is older than the one shipped (20:51, 1,639 variants) and compiled nothing
+  new: no merge needed.
+- Gate 2 for working sessions (Mark): preflight `--quick` before commands, the full run in the background;
+  tools/build_commands.py prints the commands. The cloud copy of app/generated lost renut_init.cpp when the cloud
+  machine restarted; the overrides check now says so instead of failing on every entry.
+- Release 0.5.0: app/s4_switch_release.toml (test settings with the profiler stacks, screenshots, GPU profile and
+  main-thread wait log off), README, docs/release-notes-0.5.0.md. The NRO is the tested build 8a8a68aa, shipped as
+  s4ep2.nro (its NACP still says 0.1.0, as S4ep1-nx 0.5.0's did).
+
 ## 2026-11-19 (15:50): Switch test of 8aff941b; the special-stage crash
 
 - read_log.py: build 8aff941b matches. "[s4 shaders] prepared before the game: 1435 variants of 569 shaders in 1.6 s; 0

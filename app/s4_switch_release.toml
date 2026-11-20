@@ -1,6 +1,8 @@
-# S4ep1-nx 0.5.0: the release settings (renut.toml next to s4ep1.nro). Made from app/s4_switch_test.toml with the
-# test diagnostics off (profiler stacks, screenshots, GPU profile, main-thread wait log). The port menu (- and +
-# together) changes the FPS counter, resolution, handheld GPU profile and stick dead zone and saves them here.
+# S4ep2-XBLA-nx 0.5.0: the release settings (renut.toml next to s4ep2.nro in /switch/s4ep2-xbla-nx/). Made from
+# app/s4_switch_test.toml with the test diagnostics off (profiler stacks, screenshots, GPU profile, main-thread wait
+# log). The port menu (- and + together) changes the FPS counter, resolution, handheld GPU profile and stick dead zone
+# and saves them here. Episode METAL (s4_episode_metal) and the shader preparation screen (s4_prepare_shaders) are on
+# by default in the code.
 
 # Renderer: Renut on deko3d. No emulated GPU.
 banjo_renderer = "renut"

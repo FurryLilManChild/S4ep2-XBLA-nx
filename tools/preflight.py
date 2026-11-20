@@ -238,7 +238,9 @@ def overrides_check():
         extra = set(st) - {'address', 'register', 'labels'}
         if extra:
             bad.append('switch table %s has keys %s' % (hex(st.get('address', 0)), ' '.join(sorted(extra))))
-    init = open(ROOT + '/app/generated/renut_init.cpp').read() if os.path.exists(ROOT + '/app/generated/renut_init.cpp') else ''
+    if not os.path.exists(ROOT + '/app/generated/renut_init.cpp'):
+        return check('overrides in force', False, 'app/generated/renut_init.cpp missing here: run with --codegen to check')
+    init = open(ROOT + '/app/generated/renut_init.cpp').read()
     missing = [k for k, v in t.get('functions', {}).items()
                if k.lower().startswith('0x') and not v.get('size') == 0 and ('{ 0x%08X,' % int(k, 16)) not in init]
     if missing:
@@ -337,6 +339,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--codegen', action='store_true')
     ap.add_argument('--full', action='store_true')
+    # 2026-11-19 (Mark: no 20-minute wait while he is at his PC): --quick runs the checks that take seconds before
+    # build commands go out; the compiles and the link then run as a second, full preflight in the background while
+    # he builds, and a failure there is reported to him at once.
+    ap.add_argument('--quick', action='store_true')
     a = ap.parse_args()
     head = sh('git log --oneline -1').stdout.strip()
     say('preflight for %s' % head)
@@ -346,9 +352,16 @@ def main():
     if a.full:
         results.append(generated())
     results.append(generated_switches())
-    results += [app_sources(), anon_externs(), switch_only_calls(), overrides_check(), d3d_sweep(), offsets(), addr_refs(), shaders(), switch_compile(), link_check()]
+    if a.quick:
+        results += [anon_externs(), switch_only_calls(), overrides_check(), offsets(), addr_refs()]
+    else:
+        results += [app_sources(), anon_externs(), switch_only_calls(), overrides_check(), d3d_sweep(), offsets(), addr_refs(), shaders(), switch_compile(), link_check()]
     ok = all(results)
-    say('RESULT: %s (%d of %d checks passed)' % ('PASS' if ok else 'FAIL', sum(results), len(results)))
+    say('RESULT: %s (%d of %d checks passed%s)' % ('PASS' if ok else 'FAIL', sum(results), len(results),
+                                                   ', quick: compiles and link not run' if a.quick else ''))
+    if ok:
+        # 2026-11-19: build commands written from memory were wrong. They come from the scripts' Usage lines only.
+        say(sh('python3 tools/build_commands.py').stdout.rstrip())
     os.makedirs(ROOT + '/out', exist_ok=True)
     open(ROOT + '/out/preflight.txt', 'w').write('\n'.join(REPORT) + '\n')
     return 0 if ok else 1

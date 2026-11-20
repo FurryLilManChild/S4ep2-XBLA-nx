@@ -38,6 +38,13 @@ Every UNSUPPORTED or WRONG claim is fixed or removed before the message goes out
 `python3 tools/preflight.py` (plus `--codegen --full` when hooks, overrides or code generation changed) must report
 PASS before Mark gets build commands; the reply quotes its RESULT line.
 
+2026-11-19, Mark: "I would much rather have quicker loops" (the full run took 20 minutes and still was not proof).
+While he is at his PC, `--quick` runs before the commands (tree, generated switches, anonymous externs, Switch-only
+calls, overrides, device offsets, addresses: seconds) and the full run goes in the background while he builds; a
+failure there is told to him at once so he can stop. The full run comes first only when he is away or before a
+release. The build commands in every reply are the ones preflight prints (tools/build_commands.py reads them from
+the scripts' Usage lines), pasted, never typed.
+
 ## Gate 2's checks (2026-11-19, after Mark: "enhance your pre-flight check")
 
 Preflight now builds the program the way each target does, not file by file only:

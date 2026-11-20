@@ -24,7 +24,10 @@ because a port of the mobile version (boraeskicioglu's s4ep2-nx) already exists.
   "Before the first boot test"): tree check, clean codegen, full compile check, `tools/s4ep2_d3d_sweep.py` with every
   unpaired reachable function hooked or explained, and every hard-coded address checked.
 - Gates (docs/reporting.md), every time: build_pc.ps1 builds only GitHub's latest (gate 1); `tools/preflight.py`
-  passes before Mark gets build commands, with `--codegen --full` when hooks or codegen changed (gate 2);
+  passes before Mark gets build commands (gate 2). While Mark is at his PC: `--quick` (seconds) before the commands, and
+  the full run (`--codegen --full` when hooks or codegen changed) in the background while he builds, any failure told
+  to him at once; the full run first only when he is away or before a release. Build commands are pasted from
+  `tools/build_commands.py` (preflight prints them), never written from memory;
   `tools/read_log.py --expect <commit>` before any statement about a test, WRONG BUILD stops the report (gate 3);
   reports name the build, the evidence for each fact, and what is not checked (gate 4); an independent agent checks
   the claims before a first boot, a release, or the test after two failed ones (gate 5).
