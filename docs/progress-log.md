@@ -2,6 +2,21 @@
 
 Newest first.
 
+## 2026-11-21: GitHub issue 1, the Death Egg Mk. II crash
+
+- Reporter's logs (vladimirkasan2-cpu, build 8a8a68aa, six runs; copies in Mark's Issues\issue01): every run stops at
+  "[FATAL] Call to invalid or unregistered function at guest address 0x822A8410" (ctr 822E95D8) entering Death Egg
+  Mk. II; rex_crash.log's five abort() blocks are that stop.
+- 0x822A8410: stored as data at 0x820C4C64 (a field of a 0x3C-byte descriptor in .rdata), no .pdata start, the
+  instruction before it an unconditional branch. Declared in overrides.toml. Generated as a clean function: reads r3
+  only, tail-calls sub_822E3EC0.
+- Sweep: every .rdata/.data word that points into .text and is not registered (164): the rest are SEH scope labels
+  (0x8210AExx-0x8210B2xx), values in .reloc and .embsec_, or mid-instruction values; no other descriptor field.
+- preflight --codegen --quick: PASS, 92 functions all registered.
+- Not fixed yet, need PC captures: Sylvania Castle and title yellow tint, waterfalls, special stage reflections and
+  pause/results artifacts, Sky Fortress sun through geometry. The logs warn "Resolve through a view of format 06 of
+  EDRAM last drawn as 3F: its pixels are not carried over" (a lead to test, not a diagnosis).
+
 ## 2026-11-19 (21:10): Switch test of 8a8a68aa; release 0.5.0
 
 - read_log.py --expect 8a8a68aa: renut_003.log and renut_004.log match (built 21:26 UTC). Handheld at 1020/460.8/1331.2
