@@ -191,6 +191,12 @@ HostSurface *FindHostSurfaceLocked(u32 surface_va);
 // memory, so what a clear writes through one is what the others then hold.
 void ColorAliasesLocked(const HostSurface *surface, std::vector<HostSurface *> &out);
 
+// S4ep2-XBLA-nx (2026-11-22, GitHub issue 1): the colour target drawn most recently at the same EDRAM base tile, pitch and
+// host format as 'surface' (whose view differs in the rest of its key), or null. Episode II's special stage pause draws
+// its blur through one surface object and resolves it through another over the same EDRAM; the traced frame showed the
+// resolve reading a surface no draw went to. *own_key and *other_key get the two keys (for the log).
+HostSurface *DrawnColorOverSameEdramLocked(const HostSurface *surface, uint64_t *own_key, uint64_t *other_key);
+
 // vivapinata-nx (2026-11-04, the white fog at the cuts): the other color targets at the same EDRAM base in another layout (samples,
 // pitch) whose every tile a clear of 'rect' (guest pixels) of 'surface' covers. On the console that memory then holds the clear.
 void ColorEdramWipedLocked(const HostSurface *surface, const plume::RenderRect &rect, std::vector<HostSurface *> &out);

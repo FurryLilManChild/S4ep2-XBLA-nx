@@ -53,6 +53,8 @@ extern "C" char *fake_heap_end;  // libnx: the end of the malloc heap
 // pairs over (view_bits_ps), and the count of every view sync by pair for its 10 s log line. At global scope (pitfalls).
 bool s4_view_bits_on();
 void CountViewSync(uint32_t view, uint32_t drawn, bool carried);
+bool s4_resolve_redirect_on();
+void CountResolveRedirect(bool redirected);
 #include "renut_engine/gpu/render/surfaces.h"
 #include "renut_engine/gpu/render/textures.h"
 #include "renut_engine/gpu/render/vertex_format.h"
@@ -15250,6 +15252,21 @@ void ResolveStateLocked(const u8 *device_state, u32 flags, const ClearRect *sour
   const u32 source_va = source == 4 ? device.U32(d3d::kDeviceOffsetDepthStencil)
                                     : device.U32(d3d::kDeviceOffsetRenderTargets + source * 4);
   HostSurface *surface = GetHostSurfaceLocked(source_va);
+  // S4ep2-XBLA-nx (2026-11-22, GitHub issue 1): a colour resolve from a target no draw has gone to, while another surface
+  // object over the same EDRAM base, pitch and format was drawn: on the console both are the same memory, so the resolve
+  // reads what that one drew (special stage pause and results: the blur's resolves read never-drawn surfaces).
+  if (surface && !surface->depth && !surface->bound_serial) {
+    uint64_t own_key = 0, other_key = 0;
+    HostSurface *drawn = DrawnColorOverSameEdramLocked(surface, &own_key, &other_key);
+    const bool redirect = drawn && s4_resolve_redirect_on();
+    CountResolveRedirect(redirect);
+    static uint32_t logged = 0;
+    if (drawn && LogLimited(logged, 6))
+      RGPU_INFO("[s4 views] resolve of {:08X} (key {:016X}, never drawn) {} the target drawn over its EDRAM (key {:016X})",
+                source_va, own_key, redirect ? "reads" : "would read", other_key);
+    if (redirect)
+      surface = drawn;
+  }
   // sasrt-nx (2026-11-09, sasrt_gpu_diag_profile_vs; the fourth round): with the shaders' breakdown, each resolve's own
   // label: its source's size and format, colour or depth, and whether it clears after.
   if (surface && banjo::renut_gpu::DiagGpuShadersOn() && SasrtProfileVsOn() && gpu_profile::Timed()) [[unlikely]] {

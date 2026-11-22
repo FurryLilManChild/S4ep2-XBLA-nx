@@ -763,6 +763,41 @@ void ColorAliasesLocked(const HostSurface *surface, std::vector<HostSurface *> &
   }
 }
 
+// S4ep2-XBLA-nx (2026-11-22; see surfaces.h). TargetKey: the base tile in bits 0-11, the pitch in 12-25, the host format above
+// bit 32.
+HostSurface *DrawnColorOverSameEdramLocked(const HostSurface *surface, uint64_t *own_key, uint64_t *other_key) {
+  if (!surface || surface->depth)
+    return nullptr;
+  uint64_t own = 0;
+  bool found = false;
+  for (const auto &[key, target] : g_targets) {
+    if (target.get() == surface) {
+      own = key;
+      found = true;
+      break;
+    }
+  }
+  if (!found)
+    return nullptr;
+  constexpr uint64_t kSame = 0x3FFFFFFull | 0xFFFFFFFF00000000ull;  // base tile, pitch, host format
+  HostSurface *best = nullptr;
+  uint64_t best_key = 0;
+  for (const auto &[key, target] : g_targets) {
+    if (!target || target.get() == surface || !target->texture || target->depth || (key & kSame) != (own & kSame) ||
+        !target->bound_serial)
+      continue;
+    if (!best || target->bound_serial > best->bound_serial) {
+      best = target.get();
+      best_key = key;
+    }
+  }
+  if (own_key)
+    *own_key = own;
+  if (other_key)
+    *other_key = best_key;
+  return best;
+}
+
 // vivapinata-nx (2026-11-04, e242c74b; see surfaces.h).
 void ColorEdramWipedLocked(const HostSurface *surface, const plume::RenderRect &rect, std::vector<HostSurface *> &out) {
   out.clear();

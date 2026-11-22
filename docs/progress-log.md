@@ -2,6 +2,19 @@
 
 Newest first.
 
+## 2026-11-22 (12:05): Mark's run of 0ed3e6e0; the pause's resolves read never-drawn surfaces
+
+- read_log of renut_007.1/007 (build 0ed3e6e00a, 11:23-12:00): every view pair carried over, 24<-3F included (up to
+  600 per 10 s), none dropped. Mark: special stage pause and results still wrong (paused 30 s+). So the view-pair lead
+  is disproven for those screens.
+- The traced pause frame (11:47:23): the blur is drawn into the 06 target BBCA02D0, then each resolve reads a different
+  surface object, BBCD14F0 and BBCD1670, that no draw in the frame went to; their resolved textures feed the next blur
+  pass and the background. Lead (not confirmed): those surfaces' views differ from BBCA02D0's in some key bit, so each
+  got its own never-drawn target (uninitialised memory: the green blocks and noise).
+- Fix with its own check: a colour resolve from a never-bound surface reads the target most recently drawn at the same
+  EDRAM base, pitch and host format (s4_resolve_redirect, on); "[s4 views]" counts them and logs the first 6 with both
+  keys. If it counts 0 at the pause, the lead is wrong and the keys show why.
+
 ## 2026-11-22 (10:35): Mark's Switch run of 4d08d3da; the fourth view pair; shaders merged
 
 - read_log of renut_006.log (build 4d08d3daf2, 10:08-10:29): "[s4 views]" shows 06<-3F, 06<-24 and 3F<-06 carried over
