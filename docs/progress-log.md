@@ -2,6 +2,18 @@
 
 Newest first.
 
+## 2026-11-22: the cloud Switch build
+
+- Mark: past 0.5.0, NROs come from the cloud. Wine 9 crashes at start on this cloud machine ("free(): invalid
+  pointer", even `cmd /c echo`), so LoS1-nx's Wine route fails here. Mark approved the devkitPro Docker image
+  (ghcr.io/danfromtico/switch-dev-legacy-vulkan, GCC 15.2) with his own libnx and portlibs/switch mounted over its
+  copies (from C:\devkitPro, tar files in FOR DELETION). tools/linux/build_switch.sh: setup (Wine, kept for machines
+  where it runs), inputs (his out\renut_switch and the host shaders), configure, build, package (s4ep2.nro).
+- Configure matches his (NVK driver /lib/libvulkan.a, deko3d back end). 1078 of 1078 steps, 0 failed, about 50 min on 2
+  cores. NRO stamped "S4ep2-XBLA-nx switch build 4d08d3daf2", sha256 b820ae3f...; ELF out/nx/elf/renut_b820ae3fac5e.elf
+  (cloud). video.cpp compiled with the new shader's header: the preflight's app-sources failure was its own build
+  folder lacking that generated header.
+
 ## 2026-11-21 (22:40): issue 1's visual bugs: EDRAM view pairs carried over; diagnostics
 
 - Second tester's logs (8a8a68aa, 23 runs) and screenshots: special stage pause and results backgrounds are noise,
