@@ -72,8 +72,8 @@ std::atomic<uint32_t> g_switches{0}, g_ends{0}, g_ends_resolved{0}, g_resolves_b
     g_textures_asked{0}, g_textures_missing{0}, g_textures_made{0};
 
 // SyncColorViewLocked's view syncs by pair (view <- drawn), carried over or not: 06<-3F, 3F<-06, 06<-24, 36<-3F (Halo 3's),
-// and any other pair (the last one seen is named).
-std::atomic<uint32_t> g_sync_carried[5], g_sync_dropped[5], g_sync_other_pair{0};
+// 24<-3F (2026-11-22), and any other pair (the last one seen is named).
+std::atomic<uint32_t> g_sync_carried[6], g_sync_dropped[6], g_sync_other_pair{0};
 
 void Report() {
   static std::atomic<int64_t> next{0};
@@ -96,12 +96,12 @@ void Report() {
               g_skip_tiled.exchange(0), g_skip_no_mask.exchange(0), g_composites.exchange(0),
               g_textures_asked.exchange(0), g_textures_missing.exchange(0), g_textures_made.exchange(0),
               REXCVAR_GET(s4_make_missing_textures) ? "on" : "off");
-  uint32_t c[5], d[5];
-  for (int i = 0; i < 5; ++i) c[i] = g_sync_carried[i].exchange(0), d[i] = g_sync_dropped[i].exchange(0);
+  uint32_t c[6], d[6];
+  for (int i = 0; i < 6; ++i) c[i] = g_sync_carried[i].exchange(0), d[i] = g_sync_dropped[i].exchange(0);
   const uint32_t other = g_sync_other_pair.load(std::memory_order_relaxed);
   REXLOG_INFO("[s4 views] 10 s: EDRAM views read after another format drew there, carried over / not: 06<-3F {}/{}, "
-              "3F<-06 {}/{}, 06<-24 {}/{}, 36<-3F {}/{}, other {}/{} (last other {:02X}<-{:02X}); s4_view_bits {}",
-              c[0], d[0], c[1], d[1], c[2], d[2], c[3], d[3], c[4], d[4], other >> 8, other & 0xFF,
+              "3F<-06 {}/{}, 06<-24 {}/{}, 36<-3F {}/{}, 24<-3F {}/{}, other {}/{} (last other {:02X}<-{:02X}); s4_view_bits {}",
+              c[0], d[0], c[1], d[1], c[2], d[2], c[3], d[3], c[5], d[5], c[4], d[4], other >> 8, other & 0xFF,
               REXCVAR_GET(s4_view_bits) ? "on" : "off");
 }
 
@@ -123,6 +123,7 @@ void CountViewSync(uint32_t view, uint32_t drawn, bool carried) {
   else if (view == 0x3F && drawn == 0x06) i = 1;
   else if (view == 0x06 && drawn == 0x24) i = 2;
   else if (view == 0x36 && drawn == 0x3F) i = 3;
+  else if (view == 0x24 && drawn == 0x3F) i = 5;
   else g_sync_other_pair.store((view << 8) | drawn, std::memory_order_relaxed);
   (carried ? g_sync_carried[i] : g_sync_dropped[i]).fetch_add(1, std::memory_order_relaxed);
 }

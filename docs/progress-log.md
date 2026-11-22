@@ -2,6 +2,20 @@
 
 Newest first.
 
+## 2026-11-22 (10:35): Mark's Switch run of 4d08d3da; the fourth view pair; shaders merged
+
+- read_log of renut_006.log (build 4d08d3daf2, 10:08-10:29): "[s4 views]" shows 06<-3F, 06<-24 and 3F<-06 carried over
+  every time (up to 600 per 10 s), none dropped; Mark: the title tint, the waterfalls and special stage 5's pause and
+  results screens are unchanged. So carrying those three pairs is not what those screens need.
+- Not carried: 24<-3F (the 7e3 target read through a 32_FLOAT view), 70-601 per 10 s in bursts (10:16, 10:19, 10:24,
+  10:28); it feeds the 06<-24 copies. view_bits_ps mode 4 now carries it (the packed 7e3 word as the float's bits).
+  Test: special stage pause and results backgrounds.
+- No crash from 4d08d3da (rex_crash.log is 8aff941b's); 38 shaders compiled on the console; one 10 s window at 1.3 fps
+  (not checked). Death Egg Mk. II not reached yet.
+- Shaders: Mark's SD deko3d_shaders.bin (12.0 MB) as the merge source, lists PC + both console pipeline lists: 2,524
+  variants (347 compiled in the cloud, 0 failed), 12,894 KB; deko3d_variants.txt from it.
+- s4_switch_test.toml: banjo_renut_diag_resolve_trace on (one frame every 30 s), for the title and waterfall passes.
+
 ## 2026-11-22: the cloud Switch build
 
 - Mark: past 0.5.0, NROs come from the cloud. Wine 9 crashes at start on this cloud machine ("free(): invalid

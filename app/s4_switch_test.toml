@@ -212,7 +212,9 @@ banjo_renut_store_cards = true
 banjo_renut_cpu_memos = true
 banjo_renut_pipeline_memo = true
 renut_gpu_profile = 10.0
-banjo_renut_diag_resolve_trace = false
+# S4ep2-XBLA-nx (2026-11-22, GitHub issue 1): one frame every 30 s traced ("[trace]" lines), to find which passes the
+# title and the waterfalls read from.
+banjo_renut_diag_resolve_trace = true
 banjo_renut_diag_gpu_shaders = false
 target_refreshRate = -1
 frame_cap = "Off"

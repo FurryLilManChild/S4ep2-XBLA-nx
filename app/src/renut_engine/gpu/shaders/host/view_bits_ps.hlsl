@@ -5,7 +5,8 @@
 // resolves the same EDRAM through 8_8_8_8 (title, special stage pause and results, waterfalls), and the reverse.
 // Layouts (as Xenos stores them, R in the low bits): 8_8_8_8 R 0-7, G 8-15, B 16-23, A 24-31; 2_10_10_10(_FLOAT)
 // R 0-9, G 10-19, B 20-29, A 30-31; 32_FLOAT one IEEE float.
-// g_Push.param1 is the mode: 1 = 7e3 to 8_8_8_8, 2 = 8_8_8_8 to 7e3, 3 = 32_FLOAT to 8_8_8_8.
+// g_Push.param1 is the mode: 1 = 7e3 to 8_8_8_8, 2 = 8_8_8_8 to 7e3, 3 = 32_FLOAT to 8_8_8_8, 4 = 7e3 to 32_FLOAT
+// (2026-11-22: Mark's run of 4d08d3da dropped that pair 70-601 times every 10 s; it feeds the 8_8_8_8 copies).
 // g_Push.param0 is 2^bias of the float view (a host target holds the shader output without the bias).
 // The pixel plus g_Push.translate is the source texel; present_vs draws the fullscreen triangle.
 #include "utility.hlsli"
@@ -40,11 +41,13 @@ float4 main(float4 position : SV_Position) : SV_Target0
     const int2 texel = int2(position.xy) + int2(g_Push.translate);
     const float4 c = g_Textures[NonUniformResourceIndex(g_Push.textureIndex)].Load(int3(texel, 0));
     const uint mode = uint(g_Push.param1 + 0.5);
-    if (mode == 1u)
+    if (mode == 1u || mode == 4u)
     {
         const uint a = uint(clamp(c.a, 0.0, 1.0) * 3.0 + 0.5);
         const uint word = Encode7e3(c.r * g_Push.param0) | (Encode7e3(c.g * g_Push.param0) << 10) |
                           (Encode7e3(c.b * g_Push.param0) << 20) | (a << 30);
+        if (mode == 4u)
+            return float4(asfloat(word), 0.0, 0.0, 1.0);
         return Bytes(word);
     }
     if (mode == 2u)

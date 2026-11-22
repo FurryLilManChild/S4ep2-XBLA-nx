@@ -14991,6 +14991,8 @@ void SyncColorViewLocked(HostSurface *surface) {
     mode = 2;
   else if (view == kFormat8_8_8_8 && drawn == kFormat32_Float)
     mode = 3;
+  else if (view == kFormat32_Float && drawn == kFormat2_10_10_10_Float_Edram)
+    mode = 4;  // 2026-11-22: seen in Mark's run of 4d08d3da, not carried over there
   const bool fp10_pair = drawn == kFormat2_10_10_10_Float_Edram && view == kFormat2_10_10_10_As_16;
   const bool usable = single && (mode ? bool(s.view_bits_ps) && s4_view_bits_on() : fp10_pair && bool(s.view_fp10_encode_ps));
   CountViewSync(view, drawn, usable);
