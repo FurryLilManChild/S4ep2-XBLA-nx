@@ -38,6 +38,10 @@
 // another over the same EDRAM (draw.cpp, ResolveStateLocked); on reads what was drawn there.
 REXCVAR_DEFINE_BOOL(s4_resolve_redirect, true, "S4ep2-XBLA-nx",
                     "A resolve from a never-drawn surface reads the target drawn over the same EDRAM base, pitch and format");
+// 2026-11-22 (issue 1: the title's and Sylvania's orange cast, the waterfalls): a resolve of a 2_10_10_10_FLOAT (7e3) target
+// clamps as the console's EDRAM stores it: 0..31.875 after the exponent bias, no NaN (draw.cpp, ResolveFixed16Locked). Renut
+// holds the target as RGBA16F, which keeps a sun's thousands and NaNs the console never has.
+REXCVAR_DEFINE_BOOL(s4_fp10_clamp, true, "S4ep2-XBLA-nx", "Resolve 7e3 targets with the console's range (0..31.875, no NaN)");
 REXCVAR_DEFINE_BOOL(s4_view_bits, true, "S4ep2-XBLA-nx",
                     "Carry Episode II's EDRAM view pairs over bit for bit (8_8_8_8 against 2_10_10_10_FLOAT and 32_FLOAT)");
 
@@ -80,6 +84,8 @@ std::atomic<uint32_t> g_switches{0}, g_ends{0}, g_ends_resolved{0}, g_resolves_b
 std::atomic<uint32_t> g_sync_carried[6], g_sync_dropped[6], g_sync_other_pair{0};
 // Resolves from a never-drawn surface: redirected to the target drawn over the same EDRAM, or no such target.
 std::atomic<uint32_t> g_redirected{0}, g_not_redirected{0};
+std::atomic<uint32_t> g_fp10_resolves{0};  // 7e3 resolves drawn with the console's range
+std::atomic<int32_t> g_fp10_bias_min{99}, g_fp10_bias_max{-99};  // their targets' exponent biases
 
 void Report() {
   static std::atomic<int64_t> next{0};
@@ -107,10 +113,13 @@ void Report() {
   const uint32_t other = g_sync_other_pair.load(std::memory_order_relaxed);
   REXLOG_INFO("[s4 views] 10 s: EDRAM views read after another format drew there, carried over / not: 06<-3F {}/{}, "
               "3F<-06 {}/{}, 06<-24 {}/{}, 36<-3F {}/{}, 24<-3F {}/{}, other {}/{} (last other {:02X}<-{:02X}); s4_view_bits {}; "
-              "resolves from never-drawn surfaces: {} read the target drawn over their EDRAM, {} had none; s4_resolve_redirect {}",
+              "resolves from never-drawn surfaces: {} read the target drawn over their EDRAM, {} had none; s4_resolve_redirect {}; "
+              "7e3 resolves with the console's bias and range {} (exponent bias {} to {}; s4_fp10_clamp {})",
               c[0], d[0], c[1], d[1], c[2], d[2], c[3], d[3], c[5], d[5], c[4], d[4], other >> 8, other & 0xFF,
               REXCVAR_GET(s4_view_bits) ? "on" : "off", g_redirected.exchange(0), g_not_redirected.exchange(0),
-              REXCVAR_GET(s4_resolve_redirect) ? "on" : "off");
+              REXCVAR_GET(s4_resolve_redirect) ? "on" : "off", g_fp10_resolves.exchange(0), g_fp10_bias_min.exchange(99),
+              g_fp10_bias_max.exchange(-99),
+              REXCVAR_GET(s4_fp10_clamp) ? "on" : "off");
 }
 
 void LogDescriptor(const char *what, const uint8_t *base, uint32_t d) {
@@ -125,6 +134,14 @@ void LogDescriptor(const char *what, const uint8_t *base, uint32_t d) {
 
 bool s4_view_bits_on() { return REXCVAR_GET(s4_view_bits); }
 bool s4_resolve_redirect_on() { return REXCVAR_GET(s4_resolve_redirect); }
+bool s4_fp10_clamp_on() { return REXCVAR_GET(s4_fp10_clamp); }
+void CountFp10Resolve(int32_t bias) {
+  g_fp10_resolves.fetch_add(1, std::memory_order_relaxed);
+  int32_t v = g_fp10_bias_min.load(std::memory_order_relaxed);
+  while (bias < v && !g_fp10_bias_min.compare_exchange_weak(v, bias)) {}
+  v = g_fp10_bias_max.load(std::memory_order_relaxed);
+  while (bias > v && !g_fp10_bias_max.compare_exchange_weak(v, bias)) {}
+}
 void CountResolveRedirect(bool redirected) { (redirected ? g_redirected : g_not_redirected).fetch_add(1, std::memory_order_relaxed); }
 
 void CountViewSync(uint32_t view, uint32_t drawn, bool carried) {

@@ -2,6 +2,22 @@
 
 Newest first.
 
+## 2026-11-22 (16:40): Mark's run of 1753fa18; independent review; 7e3 targets as the console stores them
+
+- Mark: the special stage pause is fixed (the deko3d resolve shortcuts off). Still wrong: the title and Sylvania's orange
+  cast, the waterfalls, Sky Fortress Act 3's flare through geometry. Mark asked for an independent review.
+- Review (separate agent, code and logs only): banjoTrim (shader_common.h) applies a target's RB_COLOR_INFO exponent bias
+  to alpha only, and nothing clamps a 2_10_10_10_FLOAT (7e3) target to 0..31.875 or drops negatives and NaN; resolves
+  copy the host RGBA16F as it is. The console stores export x 2^bias in 7e3 and resolves that. The title's composite is
+  a Reinhard tone map plus a god-ray layer from an 8_8_8_8 target: auto-exposure cancels a uniform scale of the scene
+  but not its weight against the god rays. The waterfall samples a mid-frame resolve of the 3F scene (BBCB1130,
+  ps 1C7E2600F4A518AF: tex * vertex colour), so negative or NaN texels there show as blotches. Flare: no occlusion
+  queries in the game code (no EVENT_WRITE_ZPD), no CPU texture reads in the logs ("texture lock" never logged); cause
+  not found.
+- Change: a resolve of a 7e3 target (RB_COLOR_INFO format 3) is drawn as the console holds it: colour x 2^bias, NaN 0,
+  0..31.875, alpha 0..1 (view_bits_ps mode 5, s4_fp10_clamp on). "[s4 views]" counts them with the biases seen.
+  Not yet seen running. A per-write clamp (banjoTrim) would also cover blends; left for if this is not enough.
+
 ## 2026-11-22 (14:40): Mark's run of c8d3760a; the deko3d resolve shortcuts off
 
 - Mark: Death Egg Mk. II Act 1 starts (the 0x822A8410 fix holds). Special stage start and results screens still

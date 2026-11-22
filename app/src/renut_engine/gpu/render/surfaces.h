@@ -57,6 +57,9 @@ struct HostSurface {
   u32 info_word = 0;
   u32 format_word = 0;
   u32 color_info_word = 0;  // halo3-nx (838ea8c587): RB_COLOR_INFO, the guest format (gamma) and colour exponent bias
+  // S4ep2-XBLA-nx (2026-11-22): a 2_10_10_10_FLOAT (7e3) colour target (RB_COLOR_INFO format 3), held as RGBA16F. The
+  // console stores 0..31.875 after the exponent bias and no NaN; its resolves clamp so (draw.cpp, ResolveFixed16Locked).
+  bool s4_fp10 = false;
   bool sasrt_fixed16 = false;  // sasrt-nx (2026-10-20): a 16-bit fixed-point colour target (k_16_16, k_16_16_16_16)
   // sasrt-nx (2026-10-20, the EDRAM depth restore): g_surface_write_seq at this surface's last write, and for a depth surface
   // the colour surface's write it was last restored from (RestoreDepthFromColorLocked).

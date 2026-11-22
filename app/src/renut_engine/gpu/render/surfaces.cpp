@@ -252,6 +252,7 @@ bool BuildTarget(HostSurface &surface, const d3d::SurfaceDesc &desc, uint32_t mi
   surface.depth = d3d::IsDepthFormat(surface.format_word);
   surface.sasrt_fixed16 = !surface.depth && (((u32(desc.ColorInfo) >> 16) & 0xF) == 4u ||
                                              ((u32(desc.ColorInfo) >> 16) & 0xF) == 5u);  // sasrt-nx (2026-10-20)
+  surface.s4_fp10 = !surface.depth && ((u32(desc.ColorInfo) >> 16) & 0xF) == 3u;  // S4ep2-XBLA-nx (2026-11-22)
   surface.samples = SampleCount(surface.info_word);
   // banjo-nx (2026-10-21, banjo_renut_portrait_msaa_samples, NOT exact, the user's call): the small targets the game makes
   // with MSAA (the dialogue portrait's 96 x 96 box, 4x; colour and depth alike, so a framebuffer's attachments still

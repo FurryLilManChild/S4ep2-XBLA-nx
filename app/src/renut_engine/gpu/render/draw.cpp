@@ -55,6 +55,8 @@ bool s4_view_bits_on();
 void CountViewSync(uint32_t view, uint32_t drawn, bool carried);
 bool s4_resolve_redirect_on();
 void CountResolveRedirect(bool redirected);
+bool s4_fp10_clamp_on();
+void CountFp10Resolve(int32_t bias);
 #include "renut_engine/gpu/render/surfaces.h"
 #include "renut_engine/gpu/render/textures.h"
 #include "renut_engine/gpu/render/vertex_format.h"
@@ -14628,6 +14630,7 @@ bool HandOverResolveLocked(HostSurface *s, HostTexture *d, const ClearRect &src,
                                        sasrt::gpu_round::On(sasrt::gpu_round::kHandoverSmaa)) &&
                                       ResolveCopyPossible(s, d) &&
                                       !(s->sasrt_fixed16 && banjo::renut_gpu::Fixed16ClampOn()) &&  // its resolve clamps
+                                      !(s->s4_fp10 && s4_fp10_clamp_on()) &&  // S4ep2-XBLA-nx: so does a 7e3 one's
                                       !detail::ReadbackDestination(d);  // the CPU reads it (sasrt_renut_resolve_readback)
   const bool can = IsDeko3D() && kind_on && whole && s->texture &&
                    s->samples == plume::RenderSampleCount::COUNT_1 && d->width == s->width &&
@@ -14722,27 +14725,29 @@ void DepthHandOverBeforeBindLocked(HostSurface *surface, const plume::RenderRect
 // back bit for bit. 'rect' is the source rect and (host_x, host_y) its place in the destination, in host pixels.
 // sasrt-nx (2026-10-20, sasrt_renut_fixed16_clamp): a resolve of a 16-bit fixed-point target, drawn with the console's -32..32
 // (shaders/host/resolve_clamp_ps.hlsl); as DrawResolveCopy otherwise, on every back end.
+// S4ep2-XBLA-nx (2026-11-22): 'fp10': a 7e3 target, view_bits_ps mode 5 (0..31.875 after the bias, NaN 0, alpha 0..1).
 bool ResolveFixed16Locked(HostSurface *surface, HostTexture *dest, const plume::RenderRect &rect, uint32_t host_x,
-                          uint32_t host_y) {
+                          uint32_t host_y, bool fp10 = false) {
   auto &s = State();
   if (!dest->texture || !dest->render_target || dest->host_format != surface->format ||
       dest->dimension != TextureDimension::Tex2D || dest->stacked || !s.present_vs)
     return false;
-  static std::unique_ptr<plume::RenderShader> ps;
+  static std::unique_ptr<plume::RenderShader> clamp_ps;
   static bool ps_tried = false;
   if (!ps_tried) {
     ps_tried = true;
-    ps = CreateHostShader(s.device.get(), RENUT_HOST_SHADER(resolve_clamp_ps), "resolve_clamp_ps");
+    clamp_ps = CreateHostShader(s.device.get(), RENUT_HOST_SHADER(resolve_clamp_ps), "resolve_clamp_ps");
   }
+  plume::RenderShader *const ps = fp10 ? s.view_bits_ps.get() : clamp_ps.get();
   if (!ps)
     return false;
   static std::unordered_map<uint32_t, std::unique_ptr<plume::RenderPipeline>> pipelines;
-  auto &pipeline = pipelines[uint32_t(surface->format)];
+  auto &pipeline = pipelines[uint32_t(surface->format) | (fp10 ? 0x80000000u : 0u)];
   if (!pipeline) {
     plume::RenderGraphicsPipelineDesc desc;
     desc.pipelineLayout = s.utility_layout.get();
     desc.vertexShader = s.present_vs.get();
-    desc.pixelShader = ps.get();
+    desc.pixelShader = ps;
     desc.primitiveTopology = plume::RenderPrimitiveTopology::TRIANGLE_LIST;
     desc.cullMode = plume::RenderCullMode::NONE;
     desc.renderTargetCount = 1;
@@ -14752,7 +14757,7 @@ bool ResolveFixed16Locked(HostSurface *surface, HostTexture *dest, const plume::
     pipeline = s.device->createGraphicsPipeline(desc);
     if (!pipeline)
       return false;
-    pipeline->setName("sasrt fixed-point resolve");
+    pipeline->setName(fp10 ? "s4 7e3 resolve" : "sasrt fixed-point resolve");
   }
   const uint32_t source_slot = SurfaceSampleSlotLocked(surface);
   if (source_slot == kInvalidDescriptor)
@@ -14780,6 +14785,11 @@ bool ResolveFixed16Locked(HostSurface *surface, HostTexture *dest, const plume::
   push.translate[1] = float(rect.top - int32_t(host_y));
   push.texture_index = source_slot;
   push.sampler_index = kPointClampSamplerSlot;
+  if (fp10) {
+    push.param0 = std::ldexp(1.0f, int32_t(surface->color_info_word << 6) >> 26);  // RB_COLOR_INFO bits 20-25
+    push.param1 = 5.0f;
+    CountFp10Resolve(int32_t(surface->color_info_word << 6) >> 26);
+  }
   cmd->setGraphicsPushConstants(0, &push, 0, sizeof(push));
   cmd->drawInstanced(3, 1, 0, 0);
   // The draw path binds its own layout, pipeline, targets and viewport again.
@@ -15445,6 +15455,9 @@ void ResolveStateLocked(const u8 *device_state, u32 flags, const ClearRect *sour
           TransitionTextureLocked(dest, plume::RenderTextureLayout::RESOLVE_DEST);
           cmd->resolveTextureRegion(dest->texture.get(), host_x, host_y, surface->texture.get(),
                                     &rect);
+        } else if (surface->s4_fp10 && slice == 0 && z == 0 && s4_fp10_clamp_on() &&
+                   ResolveFixed16Locked(surface, dest, rect, host_x, host_y, true)) {
+          // S4ep2-XBLA-nx (2026-11-22): a 7e3 target, drawn with the console's range.
         } else if (surface->sasrt_fixed16 && slice == 0 && z == 0 && banjo::renut_gpu::Fixed16ClampOn() &&
                    ResolveFixed16Locked(surface, dest, rect, host_x, host_y)) {
           // sasrt-nx (2026-10-20): drawn with the fixed-point range.

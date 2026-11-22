@@ -19,6 +19,9 @@ Mistakes and wrong conclusions from this port, newest first. Reviewed with Mark 
   game's own files before the first boot (default.xex and every data archive) and checks a run's captures against
   them; capture is only a check that nothing comes from elsewhere. And a "one time" build step that runs before its
   input exists (the code image) silently does nothing: run such steps whenever the input is there.
+- 2026-11-22 (S4ep2-XBLA-nx): four builds chased a log warning (EDRAM views not carried over) for a colour cast a tester
+  had described as "the sun is far too bright". For every EDRAM format the game draws to, compare the console's storage
+  (range, precision, exponent bias, NaN) with the host format first: 7e3 is 0..31.875 after the bias, RGBA16F is not.
 - 2026-11-19 (S4ep2-XBLA-nx): build commands written from memory had a `git pull` build_pc.ps1 already does and no
   `-ExecutionPolicy Bypass`. Paste the commands preflight prints (tools/build_commands.py, from each script's Usage
   line), and the SD file list the build script itself prints at its end.
