@@ -15,7 +15,7 @@ Version **0.5.0**: feature complete, needs a full playthrough.
 
 | | |
 | --- | --- |
-| Switch | Plays at a steady 60 fps at stock clocks in handheld, drawn at 960x540. Title, zones, acts and special stages tested; not yet played start to finish; docked not tested yet |
+| Switch | Plays at a steady 60 fps at stock clocks in handheld, drawn at 640x360 by default (the port menu goes up to 1280x720, applied at once). Title, zones, acts and special stages tested; not yet played start to finish; docked not tested yet |
 | PC | Builds and plays (Vulkan or D3D12, or the emulated GPU); no PC release yet |
 | Episode METAL | Unlocked without an Episode I save or license (`s4_episode_metal`, on by default); it appears in Single Player after one main level and a return to the main menu |
 | Port menu | Hold **-** and **+** together: FPS counter, handheld and docked resolution, handheld GPU profile, stick dead zone; Save and close keeps the choices |
@@ -48,8 +48,8 @@ Hold **-** and **+** together (F8 on the PC). The game pauses its input while th
 | --- | --- | --- |
 | FPS counter | Off (default), On: the frames shown on screen per second | at once |
 | Stick dead zone | None (default, the game's own only), 10 %, 20 % for a drifting stick | at once |
-| Handheld resolution | 960x540 (default, a steady 60 at stock clocks), 1296x729, 1440x810 (for overclocked consoles) | next start |
-| Docked resolution | 1296x729 (default), 1440x810, 1920x1080 | next start |
+| Handheld resolution | 640x360 (default), 960x540, 1280x720 (the screen's own) | at once |
+| Docked resolution | 960x540, 1280x720 (default), 1920x1080 | at once |
 | Handheld GPU | 460.8 MHz (default, Nintendo's own handheld profile, not an overclock), 384 MHz (saves battery) | next start |
 
 **Save and close** writes the choices into `renut.toml`; **Close** keeps the live ones until the game is restarted.

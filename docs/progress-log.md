@@ -2,6 +2,19 @@
 
 Newest first.
 
+## 2026-11-22 (18:50): Mark's run of d8761055; the port menu's resolution corrected and live
+
+- read_log of renut_011/012 (d876105561, 18:23-18:26): "7e3 resolves with the console's bias and range" 600-1518 every
+  10 s, exponent bias 0 to 0 in every line. So the bias made no difference and the clamp changed nothing Mark could
+  see: title, Sylvania and the waterfalls still wrong. The 7e3 lead is disproven as the cause.
+- The logs' "Internal heights" show the menu's resolution labels were wrong since S4ep1-nx's copy: handheld 360 was
+  labelled 960x540 and drew 640x360 (486: 864x486, 540: 960x540); handheld never drew at 1280x720 in any test.
+- Mark: a corrected menu, the resolution applied at once. s4_menu.cpp: the label is worked out from the height
+  (height x 16 / 9); handheld 640x360 / 960x540 / 1280x720, docked 960x540 / 1280x720 / 1920x1080; a choice sets the
+  setting at once. surfaces.cpp: on deko3d the fixed height is read at every frame (CodeForHeightLocked rebuilds the
+  code's targets, as the dynamic resolution's steps do); "Render resolution" logs each change. Docked default 720
+  (1280x720; 486 is no longer a choice). README corrected.
+
 ## 2026-11-22 (16:40): Mark's run of 1753fa18; independent review; 7e3 targets as the console stores them
 
 - Mark: the special stage pause is fixed (the deko3d resolve shortcuts off). Still wrong: the title and Sylvania's orange

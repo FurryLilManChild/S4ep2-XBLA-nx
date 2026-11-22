@@ -525,8 +525,18 @@ void LatchResolutionScaleLocked() {
       g_dynamic_step = start;
     }
     ++g_latches;
+#if defined(PLUME_DEKO3D)
+    // S4ep2-XBLA-nx (2026-11-22, Mark: the port menu's resolution applies at once): without a dynamic range the height
+    // is the setting as it is now, not as it was at start; CodeForHeightLocked gives any height a code and rebuilds that
+    // code's targets, as the dynamic resolution's steps do.
+    const auto live = [](int32_t want) { return std::clamp((std::clamp(want, 360, 1080) + 4) / 9 * 9, 360, 1080); };
+    const int32_t fixed_height = live(docked ? banjo::renut_gpu::RenderHeightDocked()
+                                             : banjo::renut_gpu::RenderHeightHandheld());
+#else
+    const int32_t fixed_height = docked ? heights.docked : heights.handheld;
+#endif
     const int32_t chosen = count ? g_dynamic_steps[mode][std::clamp(g_dynamic_step.load(), 0, count - 1)]
-                                 : (docked ? heights.docked : heights.handheld);
+                                 : fixed_height;
 #if defined(PLUME_DEKO3D)
     render_scale = CodeForHeightLocked(chosen);  // banjo-nx (2026-10-28, night_gpu5): the steps take turns on codes 4 and 6
 #else

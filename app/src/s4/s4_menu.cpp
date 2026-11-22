@@ -6,11 +6,13 @@
 // The settings:
 //   FPS counter          banjo_show_fps: the frames shown on screen a second (the display thread's "Shown" counter).
 //                        Live.
-//   Handheld resolution  banjo_renut_render_height_handheld: 360 = 960x540 (the stock-clock default, Switch test 5:
-//                        a steady 60), 486 = 1296x729, 540 = 1440x810 (for overclocked consoles). The heights are read
-//                        once at start (surfaces.cpp), so from the next start.
-//   Docked resolution    banjo_renut_render_height_docked: 486 = 1296x729 (default), 540 = 1440x810, 720 = 1920x1080
-//                        (the game's own). From the next start.
+//   Handheld resolution  banjo_renut_render_height_handheld: the 3D image's height, 16:9 (width = height x 16 / 9):
+//                        360 = 640x360 (the default), 540 = 960x540, 720 = 1280x720 (the screen's own). Live.
+//   Docked resolution    banjo_renut_render_height_docked: 540 = 960x540, 720 = 1280x720 (the default), 1080 =
+//                        1920x1080 (the TV's). Live.
+//   S4ep2-XBLA-nx (2026-11-22): the labels were S4ep1-nx's and wrong (360 was labelled 960x540; the log's "Internal
+//   heights" said 640x360), and the heights applied only from the next start. Now the label is worked out from the
+//   height (Resolution below), and surfaces.cpp reads the setting at every frame on the Switch.
 //   Handheld GPU         banjo_gpu_boost: the official 460.8 MHz handheld GPU profile (default; Switch test 5 ran with
 //                        it) or the system's 384 MHz. Not an overclock. From the next start.
 //   Stick dead zone      input_stick_deadzone: none (default: the game's own only) / 10 % / 20 % for drifting sticks.
@@ -69,6 +71,11 @@ Choices ReadChoices() {
   c.gpu = rex::cvar::GetFlagByName("banjo_gpu_boost") != "false";
   c.deadzone = FlagInt("input_stick_deadzone", 0);
   return c;
+}
+
+// The 3D image's size for a height, as surfaces.cpp makes it (16:9: the guest screen's 1280 x height / 720).
+std::string Resolution(int height) {
+  return std::to_string(height * 16 / 9) + "x" + std::to_string(height);
 }
 
 std::string Trim(const std::string& s) {
@@ -204,19 +211,17 @@ class S4MenuDialog final : public rex::ui::ImGuiDialog {
       ImGui::Separator();
 
       Label("Handheld");
-      if (Choice("960x540##hh", c.handheld == 360)) c.handheld = 360;
-      ImGui::SameLine();
-      if (Choice("1296x729##hh", c.handheld == 486)) c.handheld = 486;
-      ImGui::SameLine();
-      if (Choice("1440x810##hh", c.handheld == 540)) c.handheld = 540;
-      ImGui::TextDisabled("960x540 holds 60 fps at stock clocks. Sharper needs an overclock.");
+      for (int h : {360, 540, 720}) {
+        if (h != 360) ImGui::SameLine();
+        if (Choice((Resolution(h) + "##hh").c_str(), c.handheld == h)) SetHeight(false, h);
+      }
+      ImGui::TextDisabled("Applies at once. 1280x720 is the screen's own.");
 
       Label("Docked");
-      if (Choice("1296x729##dk", c.docked == 486)) c.docked = 486;
-      ImGui::SameLine();
-      if (Choice("1440x810##dk", c.docked == 540)) c.docked = 540;
-      ImGui::SameLine();
-      if (Choice("1920x1080##dk", c.docked == 720)) c.docked = 720;
+      for (int h : {540, 720, 1080}) {
+        if (h != 540) ImGui::SameLine();
+        if (Choice((Resolution(h) + "##dk").c_str(), c.docked == h)) SetHeight(true, h);
+      }
 
       Label("Handheld GPU");
       if (Choice("460.8 MHz##gpu", c.gpu)) c.gpu = true;
@@ -224,8 +229,8 @@ class S4MenuDialog final : public rex::ui::ImGuiDialog {
       if (Choice("384 MHz##gpu", !c.gpu)) c.gpu = false;
       ImGui::TextDisabled("460.8 MHz is Nintendo's own handheld profile, not an overclock. 384 saves battery.");
 
-      const bool restart = c.handheld != g_start.handheld || c.docked != g_start.docked || c.gpu != g_start.gpu;
-      if (restart) ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.3f, 1.0f), "Resolution and GPU: Save, then restart.");
+      const bool restart = c.gpu != g_start.gpu;
+      if (restart) ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.3f, 1.0f), "Handheld GPU: Save, then restart.");
       ImGui::Separator();
 
       if (ImGui::Button("Save and close", ImVec2(280 * s, 0))) {
@@ -238,7 +243,7 @@ class S4MenuDialog final : public rex::ui::ImGuiDialog {
       }
       ImGui::SameLine();
       if (ImGui::Button("Close", ImVec2(280 * s, 0))) Close();
-      ImGui::TextDisabled("Close keeps the FPS and stick changes until the game is restarted.");
+      ImGui::TextDisabled("Close keeps the FPS, stick and resolution changes until the game is restarted.");
       if (!message_.empty()) ImGui::TextColored(ImVec4(1.0f, 0.5f, 0.4f, 1.0f), "%s", message_.c_str());
     }
     ImGui::End();
@@ -251,6 +256,13 @@ class S4MenuDialog final : public rex::ui::ImGuiDialog {
     g_now.fps = on;
     rex::cvar::SetFlagByName("banjo_show_fps", on ? "true" : "false");
     if (g_set_fps) g_set_fps(on);
+  }
+  // S4ep2-XBLA-nx (2026-11-22): live; the renderer reads the setting at the next frame ("Render resolution" in the log).
+  static void SetHeight(bool docked, int h) {
+    (docked ? g_now.docked : g_now.handheld) = h;
+    rex::cvar::SetFlagByName(docked ? "banjo_renut_render_height_docked" : "banjo_renut_render_height_handheld",
+                             std::to_string(h));
+    REXLOG_INFO("[menu] {} resolution now {} (height {})", docked ? "docked" : "handheld", Resolution(h), h);
   }
   static void SetDeadzone(int v) {
     g_now.deadzone = v;
