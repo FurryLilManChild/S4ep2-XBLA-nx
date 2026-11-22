@@ -49,6 +49,10 @@ extern "C" char *fake_heap_end;  // libnx: the end of the malloc heap
 #include "renut_engine/gpu/render/pipeline.h"
 #include "renut_engine/gpu/guest/resources.h"
 #include "renut_engine/gpu/render/shader_library.h"  // banjo-nx: ShaderBoolSpecMask
+// S4ep2-XBLA-nx (2026-11-21, GitHub issue 1): src/s4/s4_rt_diag.cpp. The setting for carrying Episode II's EDRAM view
+// pairs over (view_bits_ps), and the count of every view sync by pair for its 10 s log line. At global scope (pitfalls).
+bool s4_view_bits_on();
+void CountViewSync(uint32_t view, uint32_t drawn, bool carried);
 #include "renut_engine/gpu/render/surfaces.h"
 #include "renut_engine/gpu/render/textures.h"
 #include "renut_engine/gpu/render/vertex_format.h"
@@ -14975,14 +14979,26 @@ void SyncColorViewLocked(HostSurface *surface) {
   if (!latest || (surface->synced_view == latest && surface->synced_writes == latest->writes))
     return;
   constexpr u32 kFormat2_10_10_10_Float_Edram = 0x3F, kFormat2_10_10_10_As_16 = 0x36;
+  // S4ep2-XBLA-nx (2026-11-21, GitHub issue 1): Episode II's pairs, carried over bit for bit by view_bits_ps (its modes).
+  constexpr u32 kFormat8_8_8_8 = 0x06, kFormat32_Float = 0x24;
   auto &s = State();
-  if ((latest->format_word & 0x3F) != kFormat2_10_10_10_Float_Edram || (surface->format_word & 0x3F) != kFormat2_10_10_10_As_16 ||
-      latest->samples != plume::RenderSampleCount::COUNT_1 || surface->samples != plume::RenderSampleCount::COUNT_1 ||
-      !s.view_fp10_encode_ps) {
+  const u32 view = surface->format_word & 0x3F, drawn = latest->format_word & 0x3F;
+  const bool single = latest->samples == plume::RenderSampleCount::COUNT_1 && surface->samples == plume::RenderSampleCount::COUNT_1;
+  uint32_t mode = 0;  // 0 = the halo3-nx fp10 encode
+  if (view == kFormat8_8_8_8 && drawn == kFormat2_10_10_10_Float_Edram)
+    mode = 1;
+  else if (view == kFormat2_10_10_10_Float_Edram && drawn == kFormat8_8_8_8)
+    mode = 2;
+  else if (view == kFormat8_8_8_8 && drawn == kFormat32_Float)
+    mode = 3;
+  const bool fp10_pair = drawn == kFormat2_10_10_10_Float_Edram && view == kFormat2_10_10_10_As_16;
+  const bool usable = single && (mode ? bool(s.view_bits_ps) && s4_view_bits_on() : fp10_pair && bool(s.view_fp10_encode_ps));
+  CountViewSync(view, drawn, usable);
+  if (!usable) {
     static uint32_t logged = 0;
     if (LogLimited(logged, 8))
       RGPU_WARN("Resolve through a view of format {:02X} of EDRAM last drawn as {:02X}: its pixels are not carried over",
-                surface->format_word & 0x3F, latest->format_word & 0x3F);
+                view, drawn);
     return;
   }
   // renut-ultimate: a resolve handed over in this target's image is drawn out first; the encode writes the image.
@@ -14991,12 +15007,12 @@ void SyncColorViewLocked(HostSurface *surface) {
   const uint32_t source_slot = SurfaceSampleSlotLocked(latest);
   if (source_slot == kInvalidDescriptor)
     return;
-  auto &pipeline = s.view_fp10_encode_pipelines[uint32_t(surface->format)];
+  auto &pipeline = mode ? s.view_bits_pipelines[uint32_t(surface->format)] : s.view_fp10_encode_pipelines[uint32_t(surface->format)];
   if (!pipeline) {
     plume::RenderGraphicsPipelineDesc desc;
     desc.pipelineLayout = s.utility_layout.get();
     desc.vertexShader = s.present_vs.get();
-    desc.pixelShader = s.view_fp10_encode_ps.get();
+    desc.pixelShader = mode ? s.view_bits_ps.get() : s.view_fp10_encode_ps.get();
     desc.primitiveTopology = plume::RenderPrimitiveTopology::TRIANGLE_LIST;
     desc.cullMode = plume::RenderCullMode::NONE;
     desc.renderTargetCount = 1;
@@ -15006,7 +15022,7 @@ void SyncColorViewLocked(HostSurface *surface) {
     pipeline = s.device->createGraphicsPipeline(desc);
     if (!pipeline)
       return;
-    pipeline->setName("renut view fp10 encode");
+    pipeline->setName(mode ? "renut view bits" : "renut view fp10 encode");
   }
   HostSurface *const colors[] = {surface};
   plume::RenderFramebuffer *framebuffer = GetFramebufferLocked(colors, 1, nullptr);
@@ -15029,8 +15045,10 @@ void SyncColorViewLocked(HostSurface *surface) {
   push.scale[0] = push.scale[1] = 1.0f;
   push.texture_index = source_slot;
   push.sampler_index = kPointClampSamplerSlot;
-  // RB_COLOR_INFO bits 20-25: the signed exponent the console applies when it writes the colour.
-  push.param0 = std::ldexp(1.0f, int32_t(latest->color_info_word << 6) >> 26);
+  // RB_COLOR_INFO bits 20-25: the signed exponent the console applies when it writes the colour (the float view's).
+  const HostSurface *float_view = mode == 2 ? surface : latest;
+  push.param0 = std::ldexp(1.0f, int32_t(float_view->color_info_word << 6) >> 26);
+  push.param1 = float(mode);
   cmd->setGraphicsPushConstants(0, &push, 0, sizeof(push));
   cmd->drawInstanced(3, 1, 0, 0);
   surface->synced_view = latest;

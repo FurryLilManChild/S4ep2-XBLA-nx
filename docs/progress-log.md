@@ -2,6 +2,23 @@
 
 Newest first.
 
+## 2026-11-21 (22:40): issue 1's visual bugs: EDRAM view pairs carried over; diagnostics
+
+- Second tester's logs (8a8a68aa, 23 runs) and screenshots: special stage pause and results backgrounds are noise,
+  solid green and black blocks; the waterfall shows the scene behind with purple and green blotches; the title has an
+  orange cast against the 360's picture. All three read a copy of the screen. The logs' only lead: "Resolve through a
+  view of format 06 of EDRAM last drawn as 3F/24" (and 3F after 06), every frame of the title (capped at 8 per run).
+- Fix (the lead, not yet confirmed): SyncColorViewLocked carries these pairs over bit for bit as the console holds the
+  pixel (new host shader view_bits_ps: 7e3 to 8_8_8_8, 8_8_8_8 to 7e3, 32_FLOAT to 8_8_8_8), setting s4_view_bits (on).
+  Confirmed when the title matches the 360 shot and the pause, results and waterfall look right on the Switch.
+- Diagnostics: "[s4 views] 10 s:" counts every such read by pair, carried over or not; plume logs every uam compile
+  with its memory figures (the tester's one crash was inside malloc in a shader compile; heap 1.7-1.8 GB free at the
+  logged compiles, so not plainly out of memory: cause unknown).
+- The same logs: 52-222 shaders compiled on the console per long session (later zones). Merge needs an SD card's
+  deko3d_shaders.bin and pipeline_list.bin.
+- Checks: deko3d host shaders (28) built in the cloud, 0 failed; Switch syntax of the 4 changed sources, 0 fail;
+  preflight --quick PASS.
+
 ## 2026-11-21: GitHub issue 1, the Death Egg Mk. II crash
 
 - Reporter's logs (vladimirkasan2-cpu, build 8a8a68aa, six runs; copies in Mark's Issues\issue01): every run stops at

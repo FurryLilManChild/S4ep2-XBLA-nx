@@ -30,6 +30,13 @@
 #include <cstring>
 #include <string>
 
+// GitHub issue 1 (2026-11-21): the title's orange cast, the special stage pause and results backgrounds and the
+// waterfalls read a copy of the screen through an 8_8_8_8 view of EDRAM drawn as 2_10_10_10_FLOAT or 32_FLOAT. On the
+// console that is the same memory; Renut's targets are separate, so draw.cpp (SyncColorViewLocked) carries the pixels
+// over bit for bit (view_bits_ps). Off = the 0.5.0 behaviour (the warning, nothing carried over).
+REXCVAR_DEFINE_BOOL(s4_view_bits, true, "S4ep2-XBLA-nx",
+                    "Carry Episode II's EDRAM view pairs over bit for bit (8_8_8_8 against 2_10_10_10_FLOAT and 32_FLOAT)");
+
 REXCVAR_DEFINE_BOOL(s4_make_missing_textures, true, "S4ep2-XBLA-nx",
                     "When the game's D3DXCreateTexture (sub_82469398) leaves its texture pointer 0, make the texture "
                     "with Direct3D's CreateTexture (s4/s4_rt_diag.cpp)");
@@ -64,6 +71,10 @@ std::atomic<uint32_t> g_switches{0}, g_ends{0}, g_ends_resolved{0}, g_resolves_b
     g_skip_not_begun{0}, g_skip_no_resolve_flag{0}, g_skip_no_mask{0}, g_skip_tiled{0}, g_composites{0},
     g_textures_asked{0}, g_textures_missing{0}, g_textures_made{0};
 
+// SyncColorViewLocked's view syncs by pair (view <- drawn), carried over or not: 06<-3F, 3F<-06, 06<-24, 36<-3F (Halo 3's),
+// and any other pair (the last one seen is named).
+std::atomic<uint32_t> g_sync_carried[5], g_sync_dropped[5], g_sync_other_pair{0};
+
 void Report() {
   static std::atomic<int64_t> next{0};
   const int64_t now = std::chrono::duration_cast<std::chrono::milliseconds>(
@@ -85,6 +96,13 @@ void Report() {
               g_skip_tiled.exchange(0), g_skip_no_mask.exchange(0), g_composites.exchange(0),
               g_textures_asked.exchange(0), g_textures_missing.exchange(0), g_textures_made.exchange(0),
               REXCVAR_GET(s4_make_missing_textures) ? "on" : "off");
+  uint32_t c[5], d[5];
+  for (int i = 0; i < 5; ++i) c[i] = g_sync_carried[i].exchange(0), d[i] = g_sync_dropped[i].exchange(0);
+  const uint32_t other = g_sync_other_pair.load(std::memory_order_relaxed);
+  REXLOG_INFO("[s4 views] 10 s: EDRAM views read after another format drew there, carried over / not: 06<-3F {}/{}, "
+              "3F<-06 {}/{}, 06<-24 {}/{}, 36<-3F {}/{}, other {}/{} (last other {:02X}<-{:02X}); s4_view_bits {}",
+              c[0], d[0], c[1], d[1], c[2], d[2], c[3], d[3], c[4], d[4], other >> 8, other & 0xFF,
+              REXCVAR_GET(s4_view_bits) ? "on" : "off");
 }
 
 void LogDescriptor(const char *what, const uint8_t *base, uint32_t d) {
@@ -96,6 +114,18 @@ void LogDescriptor(const char *what, const uint8_t *base, uint32_t d) {
               Load(base, kCurrentDescriptor), Load(base, kBegun), Load(base, kTiling));
 }
 }  // namespace
+
+bool s4_view_bits_on() { return REXCVAR_GET(s4_view_bits); }
+
+void CountViewSync(uint32_t view, uint32_t drawn, bool carried) {
+  int i = 4;
+  if (view == 0x06 && drawn == 0x3F) i = 0;
+  else if (view == 0x3F && drawn == 0x06) i = 1;
+  else if (view == 0x06 && drawn == 0x24) i = 2;
+  else if (view == 0x36 && drawn == 0x3F) i = 3;
+  else g_sync_other_pair.store((view << 8) | drawn, std::memory_order_relaxed);
+  (carried ? g_sync_carried[i] : g_sync_dropped[i]).fetch_add(1, std::memory_order_relaxed);
+}
 
 // D3DXCreateTexture: the descriptors' textures.
 REX_HOOK_RAW(sub_82469398) {

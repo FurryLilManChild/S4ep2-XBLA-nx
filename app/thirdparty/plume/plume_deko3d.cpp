@@ -1611,8 +1611,10 @@ namespace plume {
                                                 uam::Stage::Geometry, uam::Stage::Fragment, uam::Stage::Compute};
             const uint64_t t0 = armTicksToNs(armGetSystemTick());
             {
+                // S4ep2-XBLA-nx (2026-11-21, GitHub issue 1): every compile, not the first 4: a tester's console crashed
+                // inside malloc during one (rex_crash.log), so each compile's memory figures are kept for the next one.
                 static uint32_t logged = 0;
-                if (logged < 4) {
+                {
                     logged++;
                     uint64_t hf = 0, pf = 0;
                     memoryFigures(hf, pf);

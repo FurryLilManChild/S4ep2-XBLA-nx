@@ -195,6 +195,9 @@ struct VideoState {
   // halo3-nx (2026-11-03): SyncColorViewLocked's, by the target's format.
   std::unique_ptr<plume::RenderShader> view_fp10_encode_ps;
   std::unordered_map<uint32_t, std::unique_ptr<plume::RenderPipeline>> view_fp10_encode_pipelines;
+  // S4ep2-XBLA-nx (2026-11-21): view_bits_ps, a pipeline per target format.
+  std::unique_ptr<plume::RenderShader> view_bits_ps;
+  std::unordered_map<uint32_t, std::unique_ptr<plume::RenderPipeline>> view_bits_pipelines;
   std::unique_ptr<plume::RenderPipeline> depth_resolve_pipeline[2];
   // banjo-nx (2026-10-19, banjo_renut_depth_words_lazy): the same with the words target's writes masked off.
   std::unique_ptr<plume::RenderPipeline> depth_resolve_float_pipeline[2];
