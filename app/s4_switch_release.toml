@@ -162,7 +162,7 @@ banjo_renut_alpha_to_mask_test = true
 banjo_renut_depth_words_stencil = true
 banjo_renut_half_pixel_offset = true
 banjo_renut_point_minmax_radius = true
-banjo_deko3d_draw_resolves = true
+banjo_deko3d_draw_resolves = false
 banjo_gpu_depth_words_view = true
 banjo_deko3d_depth_compression = true
 banjo_deko3d_zcull = true
@@ -177,7 +177,7 @@ banjo_renut_resolve_skip = true
 banjo_renut_depth_words_lazy = true
 banjo_deko3d_barrier_merge = true
 banjo_deko3d_barrier_lean = true
-banjo_deko3d_depth_handover = true
+banjo_deko3d_depth_handover = false
 banjo_deko3d_depth24 = true
 banjo_deko3d_push_constants = true
 banjo_deko3d_ring_cleaner = true
@@ -251,3 +251,10 @@ input_rumble = true
 input_xbox_layout = true
 input_joycon_sideways = true
 input_joycon_sideways_stick = true
+banjo_deko3d_color_handover = false
+banjo_deko3d_scanout_handover = false
+
+# S4ep2-XBLA-nx (2026-11-22, GitHub issue 1): the deko3d-only resolve shortcuts are off, so the Switch resolves the way the
+# PC build does. Mark's traced special stage pause: every one of its 5 colour resolves a frame went through the colour
+# hand-over (3005 not drawn, 1202 images taken at a whole clear per 10 s), and the title's tone-mapping chain too. Those
+# screens and the title's tint are wrong only on the Switch.

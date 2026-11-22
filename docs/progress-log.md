@@ -2,6 +2,21 @@
 
 Newest first.
 
+## 2026-11-22 (14:40): Mark's run of c8d3760a; the deko3d resolve shortcuts off
+
+- Mark: Death Egg Mk. II Act 1 starts (the 0x822A8410 fix holds). Special stage start and results screens still
+  wrong; the title and Sylvania still too orange; Sky Fortress Act 3's sun flare shows through level geometry.
+- read_log of renut_008/009 (c8d3760a35, 13:29-14:29): "resolves from never-drawn surfaces" 0 every 10 s, so the
+  never-drawn-surface lead was wrong (BBCD14F0 and the like share the drawn target).
+- The traced pause frames (13:52-13:58, 25 draws, 7 resolves): every colour resolve of the pause's blur chain goes
+  through the colour hand-over ("3005 resolves not drawn, 1803 drawn after all, 1202 images taken at a whole clear"
+  per 10 s, 5 a frame). The traced title frame: the tone-mapping chain's luminance downsample (R32_FLOAT 64x64 targets,
+  partial resolves 16x16, 4x4, 1x1) goes through the deko3d-only drawn resolves. Hand-overs, scan-out hand-over and
+  drawn resolves exist only in the deko3d renderer; the PC path copies every resolve.
+- Change (settings only, test, release and built-in): banjo_deko3d_color_handover, _scanout_handover, _depth_handover
+  and _draw_resolves off, so the Switch resolves as the PC does. The depth hand-over is the sun flare's occlusion path
+  too. Not yet seen running. If a screen is still wrong, those shortcuts were not the cause.
+
 ## 2026-11-22 (12:05): Mark's run of 0ed3e6e0; the pause's resolves read never-drawn surfaces
 
 - read_log of renut_007.1/007 (build 0ed3e6e00a, 11:23-12:00): every view pair carried over, 24<-3F included (up to

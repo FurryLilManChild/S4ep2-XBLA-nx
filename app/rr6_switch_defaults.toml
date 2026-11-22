@@ -352,7 +352,7 @@ banjo_renut_point_minmax_radius = true
 # words where they are (no copy every frame); depth targets are compressed; Zcull skips tiles a draw cannot pass the
 # depth test in. configs/banjo_deko3d_copied_resolves.toml, _words_copied, _depth_uncompressed and _zcull_off turn each
 # off, banjo_deko3d_gpu_before.toml all four.
-banjo_deko3d_draw_resolves = true
+banjo_deko3d_draw_resolves = false
 banjo_gpu_depth_words_view = true
 banjo_deko3d_depth_compression = true
 banjo_deko3d_zcull = true
@@ -390,7 +390,7 @@ banjo_deko3d_barrier_lean = true
 # there, and at the target's next whole clear the texture takes that image (the target another). The shadow maps are no
 # longer copied each frame (the "depth hand-over" line every 10 s). configs/banjo_deko3d_depth_handover_off.toml draws
 # every depth resolve as before.
-banjo_deko3d_depth_handover = true
+banjo_deko3d_depth_handover = false
 # Package 35: D24S8 depth targets (the shadow maps, small render-to-texture targets) as 24-bit unorm depth with stencil,
 # the Xbox 360's own format, instead of 32-bit float: half the bytes. Their depth is the 24-bit value the console keeps
 # (the float targets held more bits). The 20e4 float scene depth stays 32-bit float.
@@ -604,3 +604,10 @@ rr6_diag_paint_frames = 0
 # trace m13_ctr). N&B's 981A6A58F2ABFA42 never occurs here, so SMAA had run 0 frames. The composite also starts the
 # internal resolution's gameplay frames: docked stays at 1080 as before (render = display), handheld is 720 either way.
 banjo_renut_smaa_after_ps = "0D40BDEF428B4D2D"
+banjo_deko3d_color_handover = false
+banjo_deko3d_scanout_handover = false
+
+# S4ep2-XBLA-nx (2026-11-22, GitHub issue 1): the deko3d-only resolve shortcuts are off, so the Switch resolves the way the
+# PC build does. Mark's traced special stage pause: every one of its 5 colour resolves a frame went through the colour
+# hand-over (3005 not drawn, 1202 images taken at a whole clear per 10 s), and the title's tone-mapping chain too. Those
+# screens and the title's tint are wrong only on the Switch.
