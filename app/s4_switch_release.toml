@@ -258,3 +258,7 @@ banjo_deko3d_scanout_handover = false
 # PC build does. Mark's traced special stage pause: every one of its 5 colour resolves a frame went through the colour
 # hand-over (3005 not drawn, 1202 images taken at a whole clear per 10 s), and the title's tone-mapping chain too. Those
 # screens and the title's tint are wrong only on the Switch.
+
+# S4ep2-XBLA-nx (2026-11-22, GitHub issue 1): the EDRAM depth restore, which hides the sun glow behind the scene (the
+# orange title and Sylvania, the Sky Fortress flare). The code default is on too; stated here so the log line proves it.
+sasrt_renut_depth_restore = true

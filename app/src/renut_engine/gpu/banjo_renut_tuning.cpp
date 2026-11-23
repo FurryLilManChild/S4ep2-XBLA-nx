@@ -2238,6 +2238,9 @@ bool UploadCached() {
 void BeforeDeviceCreated() {
   renut::gpu::native::g_touch_compare = REXCVAR_GET(banjo_renut_touch_compare);  // banjo-nx (2026-10-26)
   renut::gpu::native::g_tags_apart = REXCVAR_GET(banjo_renut_tags_apart);
+  // S4ep2-XBLA-nx (2026-11-22): the EDRAM depth restore (the sun glow's occlusion), proven in force.
+  bool DepthRestoreOn();  // ultimate.h
+  REXLOG_INFO("[renut] sasrt_renut_depth_restore {} (the sun glow hidden by the scene's depth)", DepthRestoreOn());
   // The two rules outside the enhancement table (no master switch), stated once.
   REXLOG_INFO("[renut] banjo_renut_exact_streams {}; banjo_renut_keep_gpu_written {}{}; banjo_renut_memory_policy {}{}",
               REXCVAR_GET(banjo_renut_exact_streams), REXCVAR_GET(banjo_renut_keep_gpu_written),
