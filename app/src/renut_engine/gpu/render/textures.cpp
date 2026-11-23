@@ -1866,6 +1866,8 @@ namespace {
 
 // The sampler slot for the fetch constant's sampler state, created the first
 // time it is asked for.
+std::unordered_map<uint32_t, std::string> g_s4_sampler_text;  // S4ep2-XBLA-nx (2026-11-22)
+
 uint32_t SamplerSlotUncached(const TextureFetch &fetch, RenderScale lod_scale) {
   auto address = [](TextureAddress mode) {
     switch (mode) {
@@ -1990,6 +1992,11 @@ uint32_t SamplerSlotUncached(const TextureFetch &fetch, RenderScale lod_scale) {
     return kLinearClampSamplerSlot;
   s.sampler_slot_used[slot] = true;
   s.sampler_set->setSampler(slot, sampler.get());
+  g_s4_sampler_text[slot] = fmt::format(  // S4ep2-XBLA-nx (2026-11-22): the frame captures name each draw's sampler
+      "slot {} address {} {} {} mag {} min {} mip {} anisotropy {} ({}) LOD {}..{} bias {} border {} (key {:016X})", slot,
+      int(desc.addressU), int(desc.addressV), int(desc.addressW), int(desc.magFilter), int(desc.minFilter),
+      int(desc.mipmapMode), desc.maxAnisotropy, desc.anisotropyEnabled, desc.minLOD, desc.maxLOD, desc.mipLODBias,
+      int(desc.borderColor), key);
   for (uint32_t v = 1; v < kSamplerVariants; ++v) {
     plume::RenderSamplerDesc d = desc;
     const bool linear = v == 1 || v == 4;
@@ -2050,6 +2057,14 @@ HostTexture *S4TextureBySlotLocked(uint32_t slot, const char **what) {
 HostTexture *S4ResolveTargetByPageLocked(uint32_t base_page) {
   auto it = g_resolve_targets.find(base_page);
   return it != g_resolve_targets.end() ? it->second : nullptr;
+}
+
+// S4ep2-XBLA-nx (2026-11-22, s4 frame captures): a draw's sampler word as the host sampler it names.
+std::string S4SamplerTextLocked(uint32_t word) {
+  const uint32_t slot = IsDeko3D() ? word >> 20 : word & 0xFFFu;
+  auto it = g_s4_sampler_text.find(slot);
+  return fmt::format("word {:08X} (signs {:X}): {}", word, IsDeko3D() ? word & 0xFFFFFu : 0u,
+                     it != g_s4_sampler_text.end() ? it->second : fmt::format("slot {}: a fixed sampler", slot));
 }
 
 } // namespace renut::gpu

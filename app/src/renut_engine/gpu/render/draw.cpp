@@ -12156,6 +12156,8 @@ HostTexture *S4ResolveTargetByPageLocked(uint32_t base_page);
 HostSurface *S4SurfaceBySlotLocked(uint32_t slot, const char **what);  // render/surfaces.cpp
 void S4ForEachSurfaceLocked(void (*fn)(HostSurface *, void *), void *ctx);
 std::string S4GammaRampText();  // backend/present.cpp
+void S4RequestScanOutLocked(const std::filesystem::path &file);  // backend/present.cpp: the scanned-out picture
+std::string S4SamplerTextLocked(uint32_t word);  // render/textures.cpp
 int S4CaptureAutoSeconds();     // s4/s4_rt_diag.cpp
 
 namespace s4cap {
@@ -12243,7 +12245,7 @@ void Queue(std::filesystem::path path, std::vector<u8> bytes) {
     // At most 384 MB waiting: the render thread waits for the writer (only in a capture).
     std::unique_lock lock(writer->m);
     writer->room.wait_for(lock, std::chrono::seconds(60),
-                          [&] { return writer->queued == 0 || writer->queued + bytes.size() <= (uint64_t(384) << 20); });
+                          [&] { return writer->queued == 0 || writer->queued + bytes.size() <= (uint64_t(192) << 20); });
     writer->queued += bytes.size();
     writer->q.emplace_back(std::move(path), std::move(bytes));
   }
@@ -12264,7 +12266,10 @@ uint64_t g_dropped_at_start[kDropCount] = {};
 constexpr uint64_t kFlushBytes = uint64_t(128) << 20;  // readback bytes held before the list is sent and waited
 constexpr uint64_t kCapBytes = uint64_t(1536) << 20;   // bytes a capture reads back in all
 uint64_t g_total = 0;
-constexpr uint64_t kHoldBytes = uint64_t(384) << 20;  // most held where the list cannot be sent (inside a draw)
+uint64_t g_art_total = 0;
+constexpr uint64_t kArtCapBytes = uint64_t(384) << 20;  // the game's art (textures from guest memory), apart
+HostTexture *g_resolve_dest = nullptr;  // the resolve in progress's destination (S4CaptureResolveSourceLocked)
+constexpr uint64_t kHoldBytes = uint64_t(256) << 20;  // most held where the list cannot be sent (inside a draw)
 bool g_allow_flush = true;  // false inside a draw's state (S4CaptureDrawLocked)
 std::unordered_map<const plume::RenderTexture *, uint64_t> g_version;
 struct Dumped {
@@ -12329,6 +12334,10 @@ std::string TextureText(const HostTexture *t) {
 }
 }  // namespace s4cap
 
+void S4QueueFile(std::filesystem::path path, std::vector<u8> bytes) {  // backend/present.cpp: the scanned-out picture
+  s4cap::Queue(std::move(path), std::move(bytes));
+}
+
 void S4CaptureRequest(int delay_ms, const char *why) {
   s4cap::g_request_at_ms.store(s4cap::NowMs() + std::max(delay_ms, 0), std::memory_order_release);
   RGPU_INFO("[s4 capture] requested ({}): in {} ms", why, delay_ms);
@@ -12353,8 +12362,12 @@ uint32_t S4DumpTextureLocked(plume::RenderTexture *tex, HostSurface *surface, Ho
     surface = nullptr;
   if (owner && owner->texture.get() != tex)
     owner = owner->words && owner->words->texture.get() == tex ? owner->words.get() : nullptr;
-  const uint64_t v = g_version[tex];
-  if (auto it = g_dumped.find(tex); it != g_dumped.end() && it->second.version == v) {
+  uint64_t v = g_version[tex] * 0x9E3779B97F4A7C15ull;
+  if (owner)
+    v ^= owner->resolves * 0x100000001B3ull ^ owner->resolve_signature ^ owner->content_hash ^ (uint64_t(owner->uploaded) << 63) ^
+         (uint64_t(owner->mips_pending) << 62) ^ (owner->words ? owner->words->resolves * 31 : 0);
+  const bool never_same = surface != nullptr;  // a target: every read is read back (its writes are not all counted)
+  if (auto it = g_dumped.find(tex); !never_same && it != g_dumped.end() && it->second.version == v) {
     g_index += fmt::format("  image {} (unchanged since read back): {}\n", it->second.image, label);
     return it->second.image;
   }
@@ -12389,7 +12402,21 @@ uint32_t S4DumpTextureLocked(plume::RenderTexture *tex, HostSurface *surface, Ho
   const uint32_t bw = std::max(1u, plume::RenderFormatBlockWidth(d.format));
   const uint32_t bb = std::max(1u, BlockBytes(d.format));
   const bool volume = d.dimension == plume::RenderTextureDimension::TEXTURE_3D;
-  const uint32_t levels = std::clamp(d.mipLevels, 1u, 14u);
+  // A texture made from guest memory (the game's art): level 0 only, from a budget of its own; targets, resolve
+  // destinations and the front buffer every level, from the main one.
+  const bool art = owner && !owner->gpu_written && !owner->render_target && !surface;
+  const uint32_t levels = art ? 1u : std::clamp(d.mipLevels, 1u, 14u);
+  if (volume) {
+    line += " | a volume: not read back (its guest data is the game's)";
+    if (surface)
+      TransitionSurfaceLocked(surface, before == plume::RenderTextureLayout::UNKNOWN ? plume::RenderTextureLayout::SHADER_READ
+                                                                                    : before);
+    else if (owner)
+      TransitionTextureLocked(owner, before == plume::RenderTextureLayout::UNKNOWN ? plume::RenderTextureLayout::SHADER_READ
+                                                                                  : before);
+    g_index += line + "\n";
+    return n;
+  }
   uint32_t parts = 0;
   for (uint32_t level = 0; level < levels; ++level) {
     const uint32_t layers = level == 0 && !volume ? std::clamp(d.arraySize, 1u, 6u) : 1u;
@@ -12401,7 +12428,7 @@ uint32_t S4DumpTextureLocked(plume::RenderTexture *tex, HostSurface *surface, Ho
       const uint32_t align = bb == 12 ? 768u : 256u;
       const uint32_t row_pitch = (row_bytes + align - 1) / align * align;
       const uint64_t bytes = uint64_t(row_pitch) * blocks_h * z;
-      if (g_total + bytes > kCapBytes) {
+      if (art ? g_art_total + bytes > kArtCapBytes : g_total + bytes > kCapBytes) {
         line += fmt::format(" | level {} layer {} skipped (the capture's {} MB cap)", level, layer, kCapBytes >> 20);
         continue;
       }
@@ -12428,7 +12455,7 @@ uint32_t S4DumpTextureLocked(plume::RenderTexture *tex, HostSurface *surface, Ho
         continue;
       }
       g_bytes += bytes;
-      g_total += bytes;
+      (art ? g_art_total : g_total) += bytes;
       const plume::RenderBox box(0, 0, int32_t(w), int32_t(h), 0, int32_t(z));
       s.command_list->copyTextureRegion(
           plume::RenderTextureCopyLocation::PlacedFootprint(buffer.get(), d.format, w, h, z, row_pitch / bb * bw, 0),
@@ -12467,6 +12494,36 @@ uint32_t S4DumpSurfaceLocked(HostSurface *t, const std::string &why) {
   return S4DumpTextureLocked(t->texture.get(), t, nullptr, why + " " + s4cap::SurfaceText(t));
 }
 
+// Guest memory a draw reads (vertex streams, indices): its bytes as they are now, once per address, size and content.
+std::string S4DumpGuestLocked(u32 address, u32 bytes, const char *what) {
+  using namespace s4cap;
+  static std::unordered_map<uint64_t, uint32_t> seen;  // (address, size, hash) -> blob
+  static uint64_t total = 0;
+  static int number = -1;
+  if (number != g_number) {
+    number = g_number;
+    seen.clear();
+    total = 0;
+  }
+  const u8 *p = address ? AddressPtr(address) : nullptr;
+  if (!p || !bytes)
+    return fmt::format("{} {:08X} {} bytes: not readable", what, address, bytes);
+  const u32 take = std::min<u32>(bytes, 4u << 20);
+  const uint64_t hash = XXH3_64bits(p, take);
+  const uint64_t key = hash ^ (uint64_t(address) << 32) ^ take;
+  if (auto it = seen.find(key); it != seen.end())
+    return fmt::format("{} {:08X} {} bytes: guest blob {} (same bytes)", what, address, bytes, it->second);
+  if (total + take > (uint64_t(256) << 20))
+    return fmt::format("{} {:08X} {} bytes: not kept (256 MB of guest blobs already)", what, address, bytes);
+  total += take;
+  const uint32_t n = uint32_t(seen.size()) + 1;
+  seen[key] = n;
+  std::vector<u8> out(p, p + take);
+  Queue(g_dir / fmt::format("guest_{:04}_{:08X}.bin.zst", n, address), std::move(out));
+  return fmt::format("{} {:08X} {} bytes: guest blob {} (hash {:016X}){}", what, address, bytes, n, hash,
+                     take < bytes ? " (first 4 MB)" : "");
+}
+
 // The slot fence has been waited: the readbacks to the writer.
 void S4CaptureCompleteLocked(uint32_t slot) {
   using namespace s4cap;
@@ -12498,11 +12555,17 @@ bool S4CaptureActive() {
   return s4cap::g_active;
 }
 
+void S4CaptureNote(const std::string &text) {
+  if (s4cap::g_active)
+    s4cap::g_index += "  " + text + "\n";
+}
+
 // From DrawStateLocked, where rr6-nx's texture dump is (the textures bound, before the targets): the draw's record, its
 // sampled textures, and the targets the draw before left (their pass ended).
 void S4CaptureDrawLocked(const GuestDevice &device, const DrawCall &call, const Geometry &geometry, const ShaderRecord *vs,
                          const ShaderRecord *ps, const Targets &targets, const PipelineKey &key, const SharedConstants &sc,
-                         const FloatConstants &vs_constants, const FloatConstants &ps_constants) {
+                         const FloatConstants &vs_constants, const FloatConstants &ps_constants,
+                         plume::RenderPipeline *pipeline) {
   using namespace s4cap;
   const uint32_t n = g_draw++;
   g_allow_flush = false;
@@ -12515,9 +12578,15 @@ void S4CaptureDrawLocked(const GuestDevice &device, const DrawCall &call, const 
     now.push_back(targets.colors[i]);
   if (targets.depth)
     now.push_back(targets.depth);
-  for (HostSurface *p : g_prev)
-    if (std::find(now.begin(), now.end(), p) == now.end() && g_written.count(p))
-      S4DumpSurfaceLocked(p, fmt::format("pass end (before draw {}):", n));
+  if (!g_prev.empty()) {
+    // Only targets still alive (a surface released mid-frame is gone from g_targets and freed).
+    static std::unordered_set<HostSurface *> live;
+    live.clear();
+    S4ForEachSurfaceLocked([](HostSurface *t, void *) { live.insert(t); }, nullptr);
+    for (HostSurface *p : g_prev)
+      if (live.count(p) && std::find(now.begin(), now.end(), p) == now.end() && g_written.count(p))
+        S4DumpSurfaceLocked(p, fmt::format("pass end (before draw {}):", n));
+  }
   g_prev = now;
 
   std::string &x = g_index;
@@ -12537,6 +12606,15 @@ void S4CaptureDrawLocked(const GuestDevice &device, const DrawCall &call, const 
                      vp.viewport.maxDepth, vp.depth_remap[0], vp.depth_remap[1], vp.scissor.left, vp.scissor.top,
                      vp.scissor.right, vp.scissor.bottom);
   }
+#if defined(PLUME_DEKO3D)
+  if (IsDeko3D() && pipeline) {
+    const auto *gp = static_cast<const plume::Deko3DGraphicsPipeline *>(pipeline);
+    x += fmt::format("  pipeline {:p}: {}\n", static_cast<const void *>(pipeline),
+                     gp->provisional.load(std::memory_order_relaxed)
+                         ? "PROVISIONAL (a stage drawn with its shader's generic variant while its own compiles)"
+                         : "its own variants");
+  }
+#endif
   x += fmt::format("  key depth control {:08X} blend {:08X} {:08X} {:08X} {:08X} colour mask {:08X} a2c {} | bytes {}\n",
                    key.depth_control, key.blend_control[0], key.blend_control[1], key.blend_control[2],
                    key.blend_control[3], key.color_mask, key.alpha_to_coverage, Hex(&key, sizeof(key)));
@@ -12576,8 +12654,50 @@ void S4CaptureDrawLocked(const GuestDevice &device, const DrawCall &call, const 
       if (HostTexture *by_va = FindHostTextureLocked(header); by_va && by_va != owner)
         x += fmt::format("    header's own: {}\n", TextureText(by_va));
     x += fmt::format("    owner ({}): {}\n", what, owner ? TextureText(owner) : SurfaceText(surface));
-    S4DumpTextureLocked(g_s4_slot_textures[slot], surface, owner,
-                        fmt::format("draw {} slot {} bindless {} ({})", n, r, slot, what));
+    x += fmt::format("    sampler: {}\n", S4SamplerTextLocked(sc.sampler_indices[r]));
+    if (!owner && !surface) {
+      x += "    (no texture or target owns this slot now: not read back)\n";
+      continue;
+    }
+    plume::RenderTexture *tex = g_s4_slot_textures[slot];
+    if (owner && tex != owner->texture.get() && !(owner->words && tex == owner->words->texture.get()))
+      tex = owner->texture.get();  // a view of the owner's image: its image
+    if (surface && tex != surface->texture.get())
+      tex = surface->texture.get();
+    S4DumpTextureLocked(tex, surface, owner, fmt::format("draw {} slot {} bindless {} ({})", n, r, slot, what));
+  }
+  // What the vertex shader fetches: its inputs, the device's declaration, each fetch constant and its guest bytes, and
+  // the indices.
+  if (vs && vs->entry) {
+    const ShaderVertexInput *in = g_activeShaderVertexInputs + vs->entry->vertexInputOffset;
+    std::string inputs;
+    std::vector<u32> fetches;
+    for (u32 i = 0; i < vs->entry->vertexInputCount; ++i) {
+      inputs += fmt::format(" {}.{}@f{}/fmt{}/fl{}/stride{}/off{}", in[i].usage, in[i].usageIndex, in[i].fetchIndex,
+                            in[i].format, in[i].flags, in[i].strideDwords, in[i].offsetDwords);
+      if (std::find(fetches.begin(), fetches.end(), u32(in[i].fetchIndex)) == fetches.end())
+        fetches.push_back(in[i].fetchIndex);
+    }
+    x += fmt::format("  vs inputs ({}):{}\n", vs->entry->vertexInputCount, inputs);
+    const u32 decl_va = device.U32(d3d::kDeviceOffsetVertexDeclaration);
+    const VertexDeclarationRecord *decl =
+        decl_va ? FindRecord<VertexDeclarationRecord>(decl_va, RecordKind::VertexDeclaration) : nullptr;
+    std::string elements;
+    if (decl)
+      for (const GuestVertexElement &e : decl->elements)
+        elements += fmt::format(" s{}+{}:{:06X}:{}.{}", u32(e.Stream), u32(e.Offset), u32(e.Type), e.Usage, e.UsageIndex);
+    x += fmt::format("  declaration {:08X} ({}){}\n", decl_va, !decl_va ? "none" : decl ? "known" : "no record", elements);
+    for (const u32 fi : fetches) {
+      const u32 w0 = device.VertexFetchWord(fi, 0), w1 = device.VertexFetchWord(fi, 1);
+      x += "  " + S4DumpGuestLocked(w0 & ~3u, ((w1 >> 2) & 0xFFFFFFu) * 4,
+                                    fmt::format("vertex fetch {} words {:08X} {:08X}:", fi, w0, w1).c_str()) + "\n";
+    }
+  }
+  if (call.indexed && !call.up_indices) {
+    if (const auto *ib = GuestPtr<const d3d::IndexBuffer>(device.U32(d3d::kDeviceOffsetIndexBuffer)))
+      x += "  " + S4DumpGuestLocked(u32(ib->Address), u32(ib->Size), "index buffer") + "\n";
+  } else if (call.indexed) {
+    x += "  indices: from the draw call itself (Draw*UP)\n";
   }
   // The binary record.
   struct Head {
@@ -12610,10 +12730,13 @@ void S4CaptureDrawLocked(const GuestDevice &device, const DrawCall &call, const 
   }
 }
 
-void S4CaptureInertDrawLocked() {
+void S4CaptureInertDrawLocked(const u8 *device_state) {
   if (s4cap::g_active) {
     ++s4cap::g_inert;
-    s4cap::g_index += fmt::format("inert draw skipped before draw {} (sasrt_gpu_skip_inert_draws)\n", s4cap::g_draw);
+    const GuestDevice d(device_state);
+    s4cap::g_index += fmt::format("inert draw skipped before draw {} (sasrt_gpu_skip_inert_draws): vs {:08X} ps {:08X}\n",
+                                  s4cap::g_draw, d.valid() ? d.U32(d3d::kDeviceOffsetVertexShader) : 0,
+                                  d.valid() ? d.U32(d3d::kDeviceOffsetPixelShader) : 0);
   }
 }
 
@@ -12628,14 +12751,14 @@ void S4CaptureClearLocked(const Targets &t, u32 flags, const plume::RenderRect &
                          color ? color[1] : 0.0f, color ? color[2] : 0.0f, color ? color[3] : 0.0f, depth, stencil);
   for (uint32_t i = 0; i < t.color_count; ++i) {
     g_index += fmt::format("  target {}: {}\n", i, SurfaceText(t.colors[i]));
-    if (flags & 1) {
+    if (flags & (1u << i)) {
       ++g_version[t.colors[i]->texture.get()];
       g_written.insert(t.colors[i]);
     }
   }
   if (t.depth) {
     g_index += fmt::format("  depth: {}\n", SurfaceText(t.depth));
-    if (flags & 6) {
+    if (flags & 0x30) {
       ++g_version[t.depth->texture.get()];
       g_written.insert(t.depth);
     }
@@ -12663,17 +12786,28 @@ void S4CaptureResolveBeforeLocked(const u8 *device_state, u32 flags, const Clear
                          "{} slice {} flags {:X} dest fetch {:08X} {:08X} {:08X} {:08X} {:08X} {:08X}\n",
                          n, g_draw, source, source_va, r.x1, r.y1, r.x2, r.y2, dest_texture_va, dest_x, dest_y, dest_level,
                          dest_slice, flags, df.dword[0], df.dword[1], df.dword[2], df.dword[3], df.dword[4], df.dword[5]);
-  if (surface && !surface->depth && !surface->bound_serial)
-    g_index += "  (source never bound: the redirect to the target drawn over its EDRAM may apply)\n";
-  if (surface)
-    S4DumpSurfaceLocked(surface, fmt::format("resolve {} source:", n));
+  g_index += fmt::format("  device's source surface: {}\n", SurfaceText(surface));
+  g_resolve_dest = nullptr;
+}
+
+// Inside the resolve, once its real source is known (after the redirect and the EDRAM view carry-over): that source as it
+// is read, and the destination it goes to.
+void S4CaptureResolveSourceLocked(HostSurface *surface, HostTexture *dest) {
+  using namespace s4cap;
+  if (!g_active)
+    return;
+  g_resolve_dest = dest;
+  g_allow_flush = false;  // the resolve holds the command list it started with
+  S4DumpSurfaceLocked(surface, fmt::format("resolve {} source as read:", g_resolves - 1));
+  g_allow_flush = true;
 }
 
 // After it: the destination as the resolve left it, and a small destination's guest bytes (what the CPU can read).
 void S4CaptureResolveAfterLocked(u32 dest_texture_va, const d3d::TextureFetchConstant *dest_format) {
   using namespace s4cap;
   const u32 n = g_resolves - 1;
-  HostTexture *dest = dest_texture_va ? FindHostTextureLocked(dest_texture_va) : nullptr;
+  HostTexture *dest = g_resolve_dest ? g_resolve_dest : dest_texture_va ? FindHostTextureLocked(dest_texture_va) : nullptr;
+  g_resolve_dest = nullptr;
   TextureFetch df{};
   if (dest_format)
     df = TextureFetch::FromGuest(*dest_format);
@@ -12693,7 +12827,9 @@ void S4CaptureResolveAfterLocked(u32 dest_texture_va, const d3d::TextureFetchCon
     df.Size(w, h, dpt);
     if (uint64_t(w) * h <= 64 * 64) {
       if (const u8 *p = GuestPhysicalPtr<const u8>(df.BasePage() << 12))
-        g_index += fmt::format("  guest bytes at {:08X} ({}x{}), first 64 of 4096: {}\n", df.BasePage() << 12, w, h,
+        g_index += fmt::format("  guest bytes at {:08X} ({}x{}) when the resolve was recorded (a readback of this resolve lands "
+                               "later: the [renut] resolve readback lines name the address), first 64 of 4096: {}\n",
+                               df.BasePage() << 12, w, h,
                                Hex(p, 64));
     }
   }
@@ -12733,6 +12869,7 @@ bool S4CaptureFrameBoundaryLocked() {
     QueueText(g_dir / "index.txt", g_index);
     Queue(g_dir / "draws.bin.zst", std::move(g_records));
     QueueText(g_dir / "gamma.txt", S4GammaRampText());
+    S4RequestScanOutLocked(g_dir / "scanout.rgba.zst");
     QueueText(g_dir / "settings.toml", rex::cvar::SerializeToTOML());
     RGPU_INFO("[s4 capture] capture {} done: {} draws, {} resolves, {} images ({}); the files follow once the GPU has "
                 "them", g_number, g_draw, g_resolves, g_images, g_dir.string());
@@ -12766,6 +12903,7 @@ bool S4CaptureFrameBoundaryLocked() {
   g_active = true;
   g_draw = g_images = g_resolves = g_clears = g_inert = 0;
   g_total = 0;
+  g_art_total = 0;
   g_version.clear();
   g_dumped.clear();
   g_prev.clear();
@@ -12790,7 +12928,7 @@ bool DrawStateLocked(const u8 *device_state, const DrawCall &call, const ReplayC
     const u32 dc = inert_device.valid() ? u32(inert_device.dev().m_ControlPacket.DepthControl) : 6u;
     if ((dc & 6) != 6 && SasrtInertDrawLocked(device_state)) [[unlikely]] {
       sasrt::gpu_round::Count(sasrt::gpu_round::kInertDraws);
-      S4CaptureInertDrawLocked();
+      S4CaptureInertDrawLocked(device_state);
       return true;
     }
   }
@@ -12804,6 +12942,13 @@ bool DrawStateLocked(const u8 *device_state, const DrawCall &call, const ReplayC
   if (const int fast = FastDrawLocked(device_state, call, replay))
     return fast > 0;
   ++g_trace_draws;
+  if (S4CaptureActive()) [[unlikely]] {  // S4ep2-XBLA-nx (2026-11-22): a call that never reaches its record was dropped
+    const GuestDevice d(device_state);
+    if (d.valid())
+      if (S4CaptureActive()) S4CaptureNote(fmt::format("draw call (number {} if recorded): vs {:08X} ps {:08X} prim {} count {}", s4cap::g_draw,
+                                d.U32(d3d::kDeviceOffsetVertexShader), d.U32(d3d::kDeviceOffsetPixelShader), call.primitive,
+                                call.count));
+  }
   auto &s = State();
   const GuestDevice device(device_state);
   if (!device.valid())
@@ -13893,7 +14038,7 @@ bool DrawStateLocked(const u8 *device_state, const DrawCall &call, const ReplayC
   __builtin_prefetch(reinterpret_cast<const char *>(pipeline) + 64);
   // S4ep2-XBLA-nx (2026-11-22): the frame captures; the key made, the targets not yet bound (copies only: no list sent here).
   if (S4CaptureActive() && pipeline) [[unlikely]]
-    S4CaptureDrawLocked(device, call, geometry, vs, ps, targets, key, sc, vs_constants, ps_constants);
+    S4CaptureDrawLocked(device, call, geometry, vs, ps, targets, key, sc, vs_constants, ps_constants, pipeline);
   // banjo-nx (2026-10-28, banjo_deko3d_depth_handover_readonly): whether this draw writes depth or stencil.
   const bool draw_depth_writes = ((key.depth_control & 2) && (key.depth_control & 4)) ||
                                  ((key.depth_control & 1) && ((key.stencil_ref_mask >> 16) & 0xFF) != 0);
@@ -14261,8 +14406,8 @@ void CompleteResolveReadbacksLocked(uint32_t slot) {
           s4cap::g_readback_log_frames > 0) {
         float v;
         std::memcpy(&v, &bits, 4);
-        RGPU_INFO("[renut] resolve readback {}: {} to guest {:08X} (sasrt_renut_resolve_readback)", g_resolve_readbacks_done, v,
-                  r.guest_pa);
+        RGPU_INFO("[renut] resolve readback {}: {} (bits {:08X}) to guest {:08X} (sasrt_renut_resolve_readback)",
+                  g_resolve_readbacks_done, v, bits, r.guest_pa);
       }
     }
     buffer->unmap();
@@ -15647,8 +15792,11 @@ void SyncColorViewLocked(HostSurface *surface) {
     if (alias->bound_serial > surface->bound_serial && (!latest || alias->bound_serial > latest->bound_serial))
       latest = alias;
   }
-  if (!latest || (surface->synced_view == latest && surface->synced_writes == latest->writes))
+  if (!latest || (surface->synced_view == latest && surface->synced_writes == latest->writes)) {
+    if (S4CaptureActive())
+      if (S4CaptureActive()) S4CaptureNote(fmt::format("view carry-over: none ({})", latest ? "already carried over" : "no newer view drawn"));
     return;
+  }
   constexpr u32 kFormat2_10_10_10_Float_Edram = 0x3F, kFormat2_10_10_10_As_16 = 0x36;
   // S4ep2-XBLA-nx (2026-11-21, GitHub issue 1): Episode II's pairs, carried over bit for bit by view_bits_ps (its modes).
   constexpr u32 kFormat8_8_8_8 = 0x06, kFormat32_Float = 0x24;
@@ -15667,6 +15815,9 @@ void SyncColorViewLocked(HostSurface *surface) {
   const bool fp10_pair = drawn == kFormat2_10_10_10_Float_Edram && view == kFormat2_10_10_10_As_16;
   const bool usable = single && (mode ? bool(s.view_bits_ps) && s4_view_bits_on() : fp10_pair && bool(s.view_fp10_encode_ps));
   CountViewSync(view, drawn, usable);
+  if (S4CaptureActive())
+    if (S4CaptureActive()) S4CaptureNote(fmt::format("view carry-over: view {:02X} of EDRAM last drawn as {:02X} by {}; mode {} usable {}", view,
+                              drawn, s4cap::SurfaceText(latest), mode, usable));
   if (!usable) {
     static uint32_t logged = 0;
     if (LogLimited(logged, 8))
@@ -15955,6 +16106,9 @@ static void ResolveStateLockedImpl(const u8 *device_state, u32 flags, const Clea
                 source_va, own_key, redirect ? "reads" : "would read", other_key);
     if (redirect)
       surface = drawn;
+    if (S4CaptureActive())
+      if (S4CaptureActive()) S4CaptureNote(fmt::format("source never drawn; redirect {} to {}", redirect ? "applied" : drawn ? "off" : "found none",
+                                static_cast<const void *>(drawn)));
   }
   // sasrt-nx (2026-11-09, sasrt_gpu_diag_profile_vs; the fourth round): with the shaders' breakdown, each resolve's own
   // label: its source's size and format, colour or depth, and whether it clears after.
@@ -16022,6 +16176,7 @@ static void ResolveStateLockedImpl(const u8 *device_state, u32 flags, const Clea
           dest_level == 0 && dest_slice == 0
               ? GetDepthResolveTextureLocked(dest_texture_va, surface->scale, dest_format)
               : nullptr;
+      S4CaptureResolveSourceLocked(surface, dest);  // S4ep2-XBLA-nx (2026-11-22)
       ClearRect src;
       if (!dest) {
         if (LogLimited(depth_logged, 2)) {
@@ -16064,6 +16219,7 @@ static void ResolveStateLockedImpl(const u8 *device_state, u32 flags, const Clea
     } else if (HostTexture *dest = GetResolveTextureLocked(dest_texture_va, surface->format,
                                                            surface->scale, dest_format)) {
       SyncColorViewLocked(surface);  // halo3-nx (2026-11-03)
+      S4CaptureResolveSourceLocked(surface, dest);  // S4ep2-XBLA-nx (2026-11-22)
       ClearRect src;
       // A volume's slices are depth; stacked textures and cubes have layers.
       const bool volume = dest->dimension == TextureDimension::Tex3D && !dest->stacked;
@@ -16082,11 +16238,13 @@ static void ResolveStateLockedImpl(const u8 *device_state, u32 flags, const Clea
       if (fits && banjo::renut_gpu::ResolveSkipOn() && dest->resolve_signature == sig) {
         // banjo-nx (2026-10-19, banjo_renut_resolve_skip): the same resolve of an unchanged source is in dest already.
         banjo::renut_gpu::CountSkippedResolve(false);
+        if (S4CaptureActive()) S4CaptureNote("path: skipped (the same resolve of an unchanged source is in the destination already)");
       } else if (fits && slice == 0 && z == 0 && dest_level == 0 &&
                  HandOverResolveLocked(surface, dest, src, dest_x, dest_y, false)) {
         // kameo-nx (2026-11-03, banjo_deko3d_color_handover): left in the target's image; the target stays bound
         // (banjo_deko3d_resolve_keeps_target): nothing was drawn and no target changed.
         dest->resolve_signature = sig;
+        if (S4CaptureActive()) S4CaptureNote("path: handed over (left in the target's image)");
         if (!banjo::renut_gpu::ResolveKeepsTargetOn())
           g_bound.framebuffer = nullptr;
       } else if (fits) {
@@ -16137,13 +16295,21 @@ static void ResolveStateLockedImpl(const u8 *device_state, u32 flags, const Clea
         } else if (surface->s4_fp10 && slice == 0 && z == 0 && s4_fp10_clamp_on() &&
                    ResolveFixed16Locked(surface, dest, rect, host_x, host_y, true)) {
           // S4ep2-XBLA-nx (2026-11-22): a 7e3 target, drawn with the console's range.
+          if (S4CaptureActive()) S4CaptureNote(fmt::format("path: 7e3 clamp draw (ResolveFixed16Locked fp10), exponent bias {}, rect {} {} {} {} to {},{}",
+                                    int32_t(surface->color_info_word << 6) >> 26, rect.left, rect.top, rect.right,
+                                    rect.bottom, host_x, host_y));
         } else if (surface->sasrt_fixed16 && slice == 0 && z == 0 && banjo::renut_gpu::Fixed16ClampOn() &&
                    ResolveFixed16Locked(surface, dest, rect, host_x, host_y)) {
           // sasrt-nx (2026-10-20): drawn with the fixed-point range.
+          if (S4CaptureActive()) S4CaptureNote("path: fixed16 clamp draw (ResolveFixed16Locked)");
         } else if (IsDeko3D() && banjo::renut_gpu::DrawResolvesOn() && slice == 0 && z == 0 &&
                    DrawResolveCopy(surface, dest, rect, host_x, host_y)) {
           // banjo-nx (2026-10-18): drawn, not copied (deko3d).
+          if (S4CaptureActive()) S4CaptureNote(fmt::format("path: drawn copy (DrawResolveCopy), rect {} {} {} {} to {},{}", rect.left, rect.top,
+                                    rect.right, rect.bottom, host_x, host_y));
         } else {
+          if (S4CaptureActive()) S4CaptureNote(fmt::format("path: plain copy{}, rect {} {} {} {} to {},{}", multisampled ? " (multisampled)" : "",
+                                    rect.left, rect.top, rect.right, rect.bottom, host_x, host_y));
           TransitionSurfaceLocked(surface, plume::RenderTextureLayout::COPY_SOURCE);
           TransitionTextureLocked(dest, plume::RenderTextureLayout::COPY_DEST);
           const plume::RenderBox box(rect.left, rect.top, rect.right, rect.bottom);

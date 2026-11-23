@@ -103,6 +103,11 @@ REXCVAR_DEFINE_BOOL(pacman_renut_double_buffer, false, "PacMan/Renderer",
 
 namespace renut::gpu {
 
+// S4ep2-XBLA-nx (2026-11-22, s4 frame captures): the texture each bindless slot was last given (render/draw.cpp reads a
+// sampled slot's image from it).
+plume::RenderTexture *g_s4_slot_textures[kTextureDescriptorCount] = {};
+
+
 // banjo-nx (2026-10-19, CPU proposal 5): State() is inline (video.h): a load of this pointer, set by the first call.
 VideoState *g_state = nullptr;
 
@@ -534,6 +539,7 @@ void DrainSlot(VideoState &s, uint32_t slot) {
     if (index >= kFirstDynamicTextureSlot && index < kTextureDescriptorCount) {
       // banjo-nx: banjo_renut_diag_poison_slots points it at magenta instead.
       const bool poison = s.poison_texture != nullptr;
+      g_s4_slot_textures[index] = nullptr;  // S4ep2-XBLA-nx (2026-11-22): the frame captures' table
       s.texture_set->setTexture(index, poison ? s.poison_texture.get() : s.null_texture.get(),
                                 plume::RenderTextureLayout::SHADER_READ,
                                 poison ? s.poison_texture_view.get() : s.null_texture_view.get());
@@ -1254,10 +1260,6 @@ uint32_t Video::AllocateTextureSlotLocked() {
   RGPU_ERROR("Bindless texture table full ({} slots)", kTextureDescriptorCount);
   return kInvalidDescriptor;
 }
-
-// S4ep2-XBLA-nx (2026-11-22, s4 frame captures): the texture each bindless slot was last given (render/draw.cpp reads a
-// sampled slot's image from it).
-plume::RenderTexture *g_s4_slot_textures[kTextureDescriptorCount] = {};
 
 void Video::SetTextureSlotLocked(uint32_t slot, plume::RenderTexture *texture,
                                  plume::RenderTextureView *view) {

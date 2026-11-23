@@ -5,6 +5,7 @@
  */
 #include <algorithm>
 #include <array>
+#include <filesystem>  // S4ep2-XBLA-nx (2026-11-22)
 #include <bit>
 #include <atomic>
 #include <chrono>
@@ -412,9 +413,33 @@ bool CaptureFrameLocked(VideoState &s, const PresentImage &image, rex::ui::RawIm
   return true;
 }
 
+}  // namespace
+void S4QueueFile(std::filesystem::path path, std::vector<uint8_t> bytes);  // render/draw.cpp
+// S4ep2-XBLA-nx (2026-11-22, s4 frame captures): the capture frame's picture as the present scans it out (the game's gamma
+// ramp, the scale and fit applied), RGBX 8-bit after a one-line header.
+static std::filesystem::path g_s4_scanout_file;
+void S4RequestScanOutLocked(const std::filesystem::path &file) {
+  g_s4_scanout_file = file;
+}
+
+namespace {
+
 // From PresentLocked: one relaxed load when nobody asked.
 void ServeCaptureLocked(VideoState &s, const PresentImage *image) {
   FrameCapture &c = g_capture;
+  if (!g_s4_scanout_file.empty() && image && image->texture && image->descriptor != kInvalidDescriptor) {
+    rex::ui::RawImage out;
+    const bool ok = CaptureFrameLocked(s, *image, out);
+    if (ok) {
+      const std::string head = fmt::format("S4SCAN1 width {} height {} stride {} format RGBX8 (scanned out, gamma ramp {})\n",
+                                           out.width, out.height, out.stride, g_gamma.param != 0.0f ? "applied" : "not applied");
+      std::vector<uint8_t> bytes(head.begin(), head.end());
+      bytes.insert(bytes.end(), out.data.begin(), out.data.end());
+      S4QueueFile(g_s4_scanout_file, std::move(bytes));
+    }
+    REXLOG_INFO("[s4 capture] scanned-out picture {}: {}", ok ? "read" : "NOT read", g_s4_scanout_file.string());
+    g_s4_scanout_file.clear();
+  }
   const uint64_t requested = c.requested.load(std::memory_order_acquire);
   if (requested == c.served_render || !image || !image->texture || image->descriptor == kInvalidDescriptor)
     return;
