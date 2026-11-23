@@ -2,6 +2,15 @@
 
 Newest first.
 
+## 2026-11-23 (00:18): waterfalls fixed (ab828155), held for the next release
+
+- Mark's console test of ab828155: "waterfall fixed!" (the Sylvania waterfalls now match his Xbox 360 photos). Fix:
+  the deko3d_glsl_opt pass rcpzero (1 / TEXCOORD4.w gives 0 when w is 0) in ten pixel shaders, with the shader package
+  and variant cache rebuilt (3,243 variants). Frame capture on L3 + R3 added in the same build.
+- Not checked: the other nine shaders' effects one by one (no report of a problem); whether the game uses L3 or R3.
+- Mark: hold this for a later release, perhaps together with the cheats / unlocks feature. The next release ships
+  deko3d_shaders.bin and deko3d_variants.txt from this build (out/renut_switch).
+
 ## 2026-11-22 (18:50): Mark's run of d8761055; the port menu's resolution corrected and live
 
 - read_log of renut_011/012 (d876105561, 18:23-18:26): "7e3 resolves with the console's bias and range" 600-1518 every
