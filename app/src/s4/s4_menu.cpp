@@ -36,6 +36,10 @@
 
 #include "s4/s4_menu.h"
 
+namespace renut::gpu {
+void S4CaptureRequest(int delay_ms, const char* why);  // render/draw.cpp
+}
+
 namespace s4 {
 namespace {
 
@@ -228,6 +232,14 @@ class S4MenuDialog final : public rex::ui::ImGuiDialog {
       ImGui::SameLine();
       if (Choice("384 MHz##gpu", !c.gpu)) c.gpu = false;
       ImGui::TextDisabled("460.8 MHz is Nintendo's own handheld profile, not an overclock. 384 saves battery.");
+
+      ImGui::Separator();
+      // S4ep2-XBLA-nx (2026-11-22, GitHub issue 1): a whole frame's images and state to captures/ (render/draw.cpp).
+      if (ImGui::Button("Capture this frame (3 s after closing)", ImVec2(572 * s, 0))) {
+        renut::gpu::S4CaptureRequest(3000, "port menu");
+        Close();
+      }
+      ImGui::TextDisabled("For bug reports: one whole frame's pictures and settings go to the captures folder.");
 
       const bool restart = c.gpu != g_start.gpu;
       if (restart) ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.3f, 1.0f), "Handheld GPU: Save, then restart.");

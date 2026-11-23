@@ -147,6 +147,7 @@ struct GameGamma {
   // ones. Ridge Racer 6's ramp is not one (entry 256 is 193): only for games that load the linear ramp.
   bool identity = false;
   uint32_t identity_version = 0;  // the ramp version 'identity' was worked out for
+  bool piecewise = false;  // S4ep2-XBLA-nx (2026-11-22, s4 frame captures): the form NoteGameGamma last had
 };
 GameGamma g_gamma;
 
@@ -608,6 +609,7 @@ void Video::NoteGameGamma(const uint8_t *ramp, bool piecewise) {
     }
   }
   std::lock_guard lock(g_gamma.mutex);
+  g_gamma.piecewise = piecewise;
   if (r != g_gamma.ramp || !g_gamma.version) {
     g_gamma.ramp = r;
     ++g_gamma.version;
@@ -673,6 +675,24 @@ bool CaptureFrame(rex::ui::RawImage &out, int timeout_ms) {
     return false;
   out = c.image;
   return true;
+}
+
+// S4ep2-XBLA-nx (2026-11-22, s4 frame captures): the game's gamma ramp as the present has it, every entry.
+std::string S4GammaRampText() {
+  std::array<uint16_t, 3 * 1024> ramp;
+  uint32_t version;
+  {
+    std::lock_guard lock(g_gamma.mutex);
+    ramp = g_gamma.ramp;
+    version = g_gamma.version;
+  }
+  std::string out = fmt::format("version {} (0: the game loaded none), applied {} (banjo_renut_game_gamma {}), identity {}, "
+                                "piecewise form {}\nentry red green blue (of 1024, by 10-bit value)\n",
+                                version, g_gamma.param != 0.0f, REXCVAR_GET(banjo_renut_game_gamma), g_gamma.identity,
+                                g_gamma.piecewise);
+  for (uint32_t i = 0; i < 1024; ++i)
+    out += fmt::format("{} {} {} {}\n", i, ramp[i], ramp[1024 + i], ramp[2048 + i]);
+  return out;
 }
 
 } // namespace renut::gpu

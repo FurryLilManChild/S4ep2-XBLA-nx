@@ -2014,4 +2014,42 @@ uint32_t SamplerSlotUncached(const TextureFetch &fetch, RenderScale lod_scale) {
 
 } // namespace
 
+// S4ep2-XBLA-nx (2026-11-22, GitHub issue 1, s4 frame captures): the texture that owns a bindless slot, and what the
+// slot shows of it (draw.cpp's capture names every sampled slot by its owner).
+HostTexture *S4TextureBySlotLocked(uint32_t slot, const char **what) {
+  for (auto &[va, t] : g_textures) {
+    if (!t)
+      continue;
+    if (t->slot == slot) {
+      *what = "texture";
+      return t.get();
+    }
+    if (t->level0_slot == slot) {
+      *what = "texture level 0 view";
+      return t.get();
+    }
+    for (const auto &v : t->swizzle_views)
+      if (v.slot == slot) {
+        *what = "texture swizzle view";
+        return t.get();
+      }
+    for (const auto &v : t->words_views)
+      if (v.slot == slot) {
+        *what = "depth words view";
+        return t.get();
+      }
+    if (t->words && t->words->slot == slot) {
+      *what = "depth words";
+      return t.get();
+    }
+  }
+  return nullptr;
+}
+
+// The resolve destination a texture header's memory is (by its base page), for the capture's after-resolve image.
+HostTexture *S4ResolveTargetByPageLocked(uint32_t base_page) {
+  auto it = g_resolve_targets.find(base_page);
+  return it != g_resolve_targets.end() ? it->second : nullptr;
+}
+
 } // namespace renut::gpu

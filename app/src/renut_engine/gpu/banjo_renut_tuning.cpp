@@ -802,6 +802,10 @@ REXCVAR_DEFINE_BOOL(banjo_renut_precise_barriers, true, "Banjo/Enhancements",
                     "declared accesses instead of MEMORY_READ | MEMORY_WRITE on both sides, which NVK turns into "
                     "cache flushes and invalidations at every barrier. Same ordering for every access that exists");
 
+namespace renut::gpu {
+bool S4CaptureFrameBoundaryLocked();  // S4ep2-XBLA-nx (2026-11-22): render/draw.cpp, the frame captures
+}
+
 namespace banjo::renut_gpu {
 
 // banjo_renut_shared_dedupe's counts (render thread), read by the [renut] report (game thread).
@@ -2097,6 +2101,12 @@ std::chrono::steady_clock::time_point g_trace_last{};
 }  // namespace
 
 void ResolveTraceFrameStart() {
+  // S4ep2-XBLA-nx (2026-11-22): a capture frame is a traced frame (the full draw path, the [trace] lines).
+  if (::renut::gpu::S4CaptureFrameBoundaryLocked()) {
+    g_trace_frame.store(true, std::memory_order_relaxed);
+    REXLOG_INFO("[trace] frame start (s4 capture)");
+    return;
+  }
   if (!REXCVAR_GET(banjo_renut_diag_resolve_trace)) {
     g_trace_frame.store(false, std::memory_order_relaxed);
     return;

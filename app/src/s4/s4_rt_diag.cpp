@@ -45,6 +45,12 @@ REXCVAR_DEFINE_BOOL(s4_fp10_clamp, true, "S4ep2-XBLA-nx", "Resolve 7e3 targets w
 REXCVAR_DEFINE_BOOL(s4_view_bits, true, "S4ep2-XBLA-nx",
                     "Carry Episode II's EDRAM view pairs over bit for bit (8_8_8_8 against 2_10_10_10_FLOAT and 32_FLOAT)");
 
+// 2026-11-22 (issue 1): the frame captures (render/draw.cpp, "full frame captures"): one this many seconds after start
+// (0: none); the port menu's "Capture this frame" takes more.
+REXCVAR_DEFINE_INT32(s4_capture_auto_s, 0, "S4ep2-XBLA-nx",
+                     "Capture one whole frame (every pass's images and every draw's state) this many seconds after start; 0: off")
+    .range(0, 3600);
+
 REXCVAR_DEFINE_BOOL(s4_make_missing_textures, true, "S4ep2-XBLA-nx",
                     "When the game's D3DXCreateTexture (sub_82469398) leaves its texture pointer 0, make the texture "
                     "with Direct3D's CreateTexture (s4/s4_rt_diag.cpp)");
@@ -268,3 +274,9 @@ REX_HOOK_RAW(sub_821EC0A0) {
   }
   __imp__sub_821EC0A0(ctx, base);
 }
+
+namespace renut::gpu {
+int S4CaptureAutoSeconds() {  // render/draw.cpp
+  return REXCVAR_GET(s4_capture_auto_s);
+}
+}  // namespace renut::gpu

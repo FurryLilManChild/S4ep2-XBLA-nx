@@ -1255,10 +1255,15 @@ uint32_t Video::AllocateTextureSlotLocked() {
   return kInvalidDescriptor;
 }
 
+// S4ep2-XBLA-nx (2026-11-22, s4 frame captures): the texture each bindless slot was last given (render/draw.cpp reads a
+// sampled slot's image from it).
+plume::RenderTexture *g_s4_slot_textures[kTextureDescriptorCount] = {};
+
 void Video::SetTextureSlotLocked(uint32_t slot, plume::RenderTexture *texture,
                                  plume::RenderTextureView *view) {
   if (slot >= kTextureDescriptorCount)
     return;
+  g_s4_slot_textures[slot] = texture;
   State().texture_set->setTexture(slot, texture, plume::RenderTextureLayout::SHADER_READ, view);
 }
 

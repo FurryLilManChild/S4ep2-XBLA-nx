@@ -215,6 +215,9 @@ renut_gpu_profile = 10.0
 # S4ep2-XBLA-nx (2026-11-22, GitHub issue 1): one frame every 30 s traced ("[trace]" lines), to find which passes the
 # title and the waterfalls read from.
 banjo_renut_diag_resolve_trace = true
+# S4ep2-XBLA-nx (2026-11-22, GitHub issue 1): one whole-frame capture (render/draw.cpp) 30 s after start, on the title
+# screen; the port menu's "Capture this frame" takes more. Each goes to captures/frame_<n>_<s>s/.
+s4_capture_auto_s = 30
 banjo_renut_diag_gpu_shaders = false
 target_refreshRate = -1
 frame_cap = "Off"

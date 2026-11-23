@@ -44,6 +44,7 @@ enable_language(C)
 set(RENUT_ZSTD_LIB_DIR "${RENUT_XENOS_RECOMP_DIR}/thirdparty/zstd/lib")
 file(GLOB renut_zstd_sources
     "${RENUT_ZSTD_LIB_DIR}/common/*.c"
+    "${RENUT_ZSTD_LIB_DIR}/compress/*.c"   # S4ep2-XBLA-nx (2026-11-22): the frame captures compress their images
     "${RENUT_ZSTD_LIB_DIR}/decompress/*.c")
 add_library(renut_zstd STATIC ${renut_zstd_sources})
 target_include_directories(renut_zstd PUBLIC "${RENUT_ZSTD_LIB_DIR}")

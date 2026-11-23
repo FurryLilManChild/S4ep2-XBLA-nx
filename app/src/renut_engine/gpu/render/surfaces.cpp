@@ -1419,4 +1419,28 @@ plume::RenderFramebuffer *GetFramebufferLocked(HostSurface *const *colors, uint3
   return remember(g_framebuffers.back().framebuffer.get());
 }
 
+// S4ep2-XBLA-nx (2026-11-22, s4 frame captures): the target that owns a bindless slot (its sample or stencil view).
+HostSurface *S4SurfaceBySlotLocked(uint32_t slot, const char **what) {
+  for (auto &[key, t] : g_targets) {
+    if (!t)
+      continue;
+    if (t->sample_slot == slot) {
+      *what = "target sample view";
+      return t.get();
+    }
+    if (t->stencil_slot == slot) {
+      *what = "target stencil view";
+      return t.get();
+    }
+  }
+  return nullptr;
+}
+
+// Every target, for the capture's end of frame.
+void S4ForEachSurfaceLocked(void (*fn)(HostSurface *, void *), void *ctx) {
+  for (auto &[key, t] : g_targets)
+    if (t)
+      fn(t.get(), ctx);
+}
+
 } // namespace renut::gpu
