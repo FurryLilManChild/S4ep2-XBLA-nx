@@ -675,7 +675,7 @@ if(REXGLUE_PLATFORM_SWITCH)
     rexglue_switch_add_nro(renut
         NAME "Sonic the Hedgehog 4: Episode II"  # S4ep2-XBLA-nx
         AUTHOR "FurryLilManChild"
-        VERSION "0.1.0"
+        VERSION "0.5.1"  # S4ep2-XBLA-nx: the release (the homebrew menu shows it)
         ${RENUT_ICON_ARG})
 endif()
 

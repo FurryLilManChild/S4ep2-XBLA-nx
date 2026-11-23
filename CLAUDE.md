@@ -32,6 +32,8 @@ because a port of the mobile version (boraeskicioglu's s4ep2-nx) already exists.
   reports name the build, the evidence for each fact, and what is not checked (gate 4); an independent agent checks
   the claims before a first boot, a release, or the test after two failed ones (gate 5).
 - Never state a theory as a diagnosis: say what a test checks and what result confirms it.
+- Visual issues (Mark, 2026-11-22, every port): the first diagnostic is a full frame capture (render/draw.cpp
+  "full frame captures", read with `tools/s4_capture_read.py`), before any theory or fix build.
 - Any setting change must be proven in force by a log line, checked first in the next log.
 - Anything to get rid of goes to `C:\Games\04 MY PORTS\FOR DELETION` (Mark empties it in bulk). Temporary transfer
   files are written there directly and joined from there.
