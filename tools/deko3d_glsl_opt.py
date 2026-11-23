@@ -2780,6 +2780,19 @@ def pass_clipspec(text):
     return insert_before_main(text, CLIPSPEC_DECL)
 
 
+def pass_rcpzero(text):
+    """S4ep2-XBLA-nx (2026-11-22, GitHub issue 1, the Sylvania waterfalls): 1 / TEXCOORD4.w gives 0 when that w is 0.
+
+    Ten of Episode II's pixel shaders (the waterfall ps 9CFCC719BEABDA2A among them) take a clamped reciprocal of
+    interpolator 4's w, which their vertex shaders export as constant 0 (vs ED95786BD862EBB5: oT4.yzw = 0). The clamp
+    makes it FLT_MAX and the refraction's v coordinate saturates: every waterfall pixel read the screen's bottom row.
+    Mark's Xbox 360 photos (2026-11-22, the same spot) show the scene behind the water at its own height: on the console
+    that term comes to nothing. Only a w of exactly 0 changes; any other w gives what it gave before.
+    """
+    return re.sub(r'clamp\(1\.0 / (DK_IN_in_var_TEXCOORD4)\.w, (_\d+), (_\d+)\)',
+                  r'((\1.w == 0.0) ? 0.0 : clamp(1.0 / \1.w, \2, \3))', text)
+
+
 PASSES = [
     ('scalecodes', pass_scalecodes),
     ('scale1', pass_scale1),
@@ -2824,6 +2837,7 @@ PASSES = [
     ('vskill', pass_vskill),  # vivapinata-nx (2026-11-03): last
     ('expwin', pass_expwin),  # sasrt-nx (2026-11-08): the fourth GPU round, constant 944
     ('expparts', pass_expparts),  # sasrt-nx (2026-11-09): an EXPERIMENT, constant 945 (0: as before)
+    ('rcpzero', pass_rcpzero),  # S4ep2-XBLA-nx (2026-11-22): the waterfalls
 ]
 # banjo-nx (2026-10-21): scaled targets (648p / 900p): scale1 and fragscale (1x only) are not in the default.
 DEFAULT = ','.join(name for name, _ in PASSES if name not in ('scale1', 'fragscale'))

@@ -39,6 +39,9 @@
 namespace renut::gpu {
 void S4CaptureRequest(int delay_ms, const char* why);  // render/draw.cpp
 }
+#if defined(__SWITCH__)
+extern void (*rex_switch_capture_combo)();  // sdk/src/input/switch/switch_input_driver.cpp
+#endif
 
 namespace s4 {
 namespace {
@@ -239,7 +242,7 @@ class S4MenuDialog final : public rex::ui::ImGuiDialog {
         renut::gpu::S4CaptureRequest(3000, "port menu");
         Close();
       }
-      ImGui::TextDisabled("For bug reports: one whole frame's pictures and settings go to the captures folder.");
+      ImGui::TextDisabled("Or press both sticks in (L3 + R3) during play: a capture of that frame, no menu needed.");
 
       const bool restart = c.gpu != g_start.gpu;
       if (restart) ImGui::TextColored(ImVec4(1.0f, 0.8f, 0.3f, 1.0f), "Handheld GPU: Save, then restart.");
@@ -302,6 +305,10 @@ void RegisterMenu(rex::ui::ImGuiDrawer* drawer, const std::filesystem::path& con
                   std::function<void(bool)> set_fps) {
   g_config_path = config_path;
   g_set_fps = std::move(set_fps);
+#if defined(__SWITCH__)
+  // S4ep2-XBLA-nx (2026-11-22): both sticks pressed in (L3 + R3): a frame capture on the next frame.
+  rex_switch_capture_combo = [] { renut::gpu::S4CaptureRequest(0, "button (L3 + R3)"); };
+#endif
   if (!g_read) {
     g_start = g_now = ReadChoices();
     g_read = true;

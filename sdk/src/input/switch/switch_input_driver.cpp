@@ -111,6 +111,9 @@ REXCVAR_DEFINE_STRING(input_record, "", "Input",
 REXCVAR_DEFINE_STRING(input_play, "", "Input",
                       "Play this recorded file (input_record) back as pad 1, starting at the next MINUS press");
 
+// S4ep2-XBLA-nx (2026-11-22): the frame capture button (L3 + R3), set by the app.
+void (*rex_switch_capture_combo)() = nullptr;
+
 namespace rex::ui {
 // rex/ui/overlay/debug_overlay.h (not included here because it pulls in ImGui).
 bool DebugOverlayOpen();
@@ -799,6 +802,23 @@ void SwitchInputDriver::DispatchMenuShortcuts(Slot& slot, uint64_t held) {
       REXLOG_INFO("menu shortcut: F8 (- and +)");
     }
     slot.menu_shortcuts = now ? (slot.menu_shortcuts | kBitAppMenu) : (slot.menu_shortcuts & ~kBitAppMenu);
+  }
+
+  /*
+   * S4ep2-XBLA-nx (2026-11-22, Mark: a frame capture on a button, not through the menu, whose opening and closing reach
+   * the game as presses): both sticks pressed in together (L3 + R3) asks the app for a frame capture, on the next frame.
+   * The app sets the hook (app/src/s4/s4_menu.cpp); no hook, nothing happens.
+   */
+  {
+    const uint64_t kBitCapture = uint64_t(1) << 13;
+    constexpr uint64_t kSticks = HidNpadButton_StickL | HidNpadButton_StickR;
+    const bool now = (held & kSticks) == kSticks;
+    const bool before = (slot.menu_shortcuts & kBitCapture) != 0;
+    if (now && !before && rex_switch_capture_combo) {
+      rex_switch_capture_combo();
+      REXLOG_INFO("menu shortcut: frame capture (L3 + R3)");
+    }
+    slot.menu_shortcuts = now ? (slot.menu_shortcuts | kBitCapture) : (slot.menu_shortcuts & ~kBitCapture);
   }
 
   /*
